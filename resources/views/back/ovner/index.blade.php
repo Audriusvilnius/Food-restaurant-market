@@ -92,7 +92,6 @@
                     </div>
                 </div>
             </div>
-
             @endforelse
         </div>
     </div>
