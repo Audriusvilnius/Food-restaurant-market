@@ -197,15 +197,13 @@
                  </div>
                  @empty
                  <h5>Oops! Something went wrong, missing contacts info</h5>
-
                  @endforelse
              </div>
          </div>
      </footer>
      @forelse($ovners as $ovner)
-     <span class="text-center">{{$ovner->title}}, </span>
+     <span class="text-center">{{$ovner->title}} - </span>
      @empty
-     {{-- <h2 class="list-group-item">No types yet</h2> --}}
      @endforelse
      <span class="text-center"> © 2023</span>
  </body>
