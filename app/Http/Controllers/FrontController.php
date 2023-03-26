@@ -92,6 +92,7 @@ class FrontController extends Controller
             'perPageSelect' => Food::PER_PAGE,
             'perPageShow' => in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All',
             'typeShow'=>$request->restaurant_id ? $request->restaurant_id :'',
+            'cityShow'=>$request->restaurant_id ? $request->restaurant_id :'',
             's' => $request->s ?? ''
         ]);
     }
