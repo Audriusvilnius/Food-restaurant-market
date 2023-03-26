@@ -24,7 +24,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1>Ovner</h1>
+                    <h1>Owner</h1>
                 </div>
             </div>
             @forelse($ovners as $ovner)

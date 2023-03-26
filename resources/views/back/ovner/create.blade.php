@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card shadow bg-body-tertiary rounded d-flex">
                 <div class="card-header">
-                    <h1>Ovner create</h1>
+                    <h1>Owner create</h1>
                 </div>
             </div>
             @if($errors)
