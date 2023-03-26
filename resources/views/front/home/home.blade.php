@@ -24,7 +24,7 @@
     <div class="container ">
         <hr class="border border-second border-0 opacity-50">
         <div class="row ">
-            <div class="col-md-5 d-flex ">
+            <div class="col-md-4 d-flex ">
                 <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
                     <div class="card-body align-content-center gap-3 d-flex mb-2">
                         <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search...  " aria-label="Search" name="s" value="{{$s}}">
@@ -35,16 +35,26 @@
             <div class="col-md-2 ">
                 <form action="{{url('/')}}" method="get">
                     <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
+                        <option value="all">All City</option>
+                        @foreach($restaurants as $restaurant)
+                        <option value="{{$restaurant->id}}" @if($restaurant->id == $cityShow) selected @endif>{{$restaurant->city}}</option>
+                        @endforeach
+                    </select>
+            </div>
+            <div class="col-md-2 ">
+                <form action="{{url('/')}}" method="get">
+                    <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
                         <option value="all">All Restaurants</option>
                         @foreach($restaurants as $restaurant)
                         <option value="{{$restaurant->id}}" @if($restaurant->id == $typeShow) selected @endif>{{$restaurant->title}}</option>
                         @endforeach
                     </select>
             </div>
-            <div class="col-md-2 btnsort">
+
+            <div class="col-md-1 btnsort">
                 <div class="card-body align-content-center mb-2">
                     <select class="form-select bg-dark text-white " name="sort">
-                        <option>Default</option>
+                        <option>Sort</option>
                         @foreach($sortSelect as $value => $name)
                         <option value="{{$value}}" @if($sortShow==$value) selected @endif>{{$name}}</option>
                         @endforeach

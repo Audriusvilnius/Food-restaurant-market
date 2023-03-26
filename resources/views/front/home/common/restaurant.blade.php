@@ -10,7 +10,6 @@
 
                     <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$restaurant)}}">{{$restaurant->title}}</a>
                     {{-- {{$restaurant->food_Restaurant()->count()}} --}}
-
                 </div>
                 @empty
                 <h3 class="list-group-item">List empty</h3>
