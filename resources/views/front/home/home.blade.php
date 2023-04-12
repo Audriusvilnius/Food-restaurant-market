@@ -107,8 +107,6 @@
 
                         <hr class="border border-second border-2 opacity-50">
                         <form action="{{route('update-rate')}}" method="post">
-
-
                             <div class="gap-3 align-items-center d-flex justify-content-center">
                                 Rating: <b><i>{{$food->rating}} / 5</b></i>
                                 {{-- Voted: <b><i>{{$food->counts}}</b></i> --}}
@@ -123,6 +121,18 @@
                             </div>
                             @csrf
                         </form>
+                        <hr class="border border-second border-2 opacity-50">
+                        <form action="{{route('update-post')}}" method="post">
+                            <div class="gap-3 align-items-center d-flex justify-content-center">
+                                <input type="hidden" name="product" value="{{$food->id}}">
+                                {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-outline-secondary" style="width:200px;">Rating & Reviews</button>
+                                </div>
+                            </div>
+                            @csrf
+                        </form>
+
                         <hr class="border border-second border-2 opacity-50">
                         <form action="{{route('add-basket')}}" method="post">
                             <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
