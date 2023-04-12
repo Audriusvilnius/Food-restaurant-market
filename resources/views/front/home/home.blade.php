@@ -14,8 +14,10 @@
     </div>
 </a>
 
-<section class="py-1 text-center container ">
-    <h1 class="m-2 ">{{$text3}}</h1>
+<section class="py-1 text-center container shadow_new">
+
+    <h1 class="m-2">{{$text3}}</h1>
+
     <h2 class="m-5 fs-3"><i>{{$text1}}</i></h2>
     <hr class=" border border-second border-1 opacity-75">
     {{$text2}}
@@ -33,13 +35,13 @@
                 </form>
             </div>
             <div class="col-md-2 ">
-                <form action="{{url('/')}}" method="get">
-                    <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
-                        <option value="all">All City</option>
-                        @foreach($restaurants as $restaurant)
-                        <option value="{{$restaurant->id}}" @if($restaurant->id == $cityShow) selected @endif>{{$restaurant->city}}</option>
-                        @endforeach
-                    </select>
+                {{-- <form action="{{url('/')}}" method="get">
+                <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
+                    <option value="all">All City</option>
+                    @foreach($restaurants as $restaurant)
+                    <option value="{{$restaurant->id}}" @if($restaurant->id == $cityShow) selected @endif>{{$restaurant->city}}</option>
+                    @endforeach
+                </select> --}}
             </div>
             <div class="col-md-2 ">
                 <form action="{{url('/')}}" method="get">

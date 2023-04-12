@@ -147,7 +147,8 @@
      </div>
      <footer class="py-4">
 
-         <a href="#" class="text-decoration-none" style="color:black;">
+         {{-- <a href="#" class="text-decoration-none" style="color:black;"> --}}
+         <a href="#" class="text-decoration-none" style="color:white;">
              <div class="up sticky-bottom">
                  <i class="bi bi-chevron-up"></i>
              </div>

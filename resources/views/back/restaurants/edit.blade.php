@@ -86,8 +86,18 @@
                         <div class="col-md-4">
                             <div class="card-body">
                                 <h6>Photo change:</h6>
-                                {{-- <h6>Restaurant id: <b><i>{{$restaurant->id}}</b></i></h6> --}}
-                                <img src="{{asset($restaurant->photo)}}" class="img-fluid rounded" alt="imageset">
+                                <div class="position-relative">
+
+                                    {{-- <h6>Restaurant id: <b><i>{{$restaurant->id}}</b></i></h6> --}}
+                                    <button type="submit" class="btn btn-sm position-absolute top-0 start-100 translate-middle " name="delete_photo" value="1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle bg-danger rounded-5" viewbox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                    </button>
+
+                                    <img src="{{asset($restaurant->photo)}}" class="img-fluid rounded" alt="imageset">
+                                </div>
                                 <input type="file" class="form-control mt-4" name="photo">
 
                                 {{-- <div class=" card-body">
@@ -96,8 +106,8 @@
                             </div> --}}
 
                                 <div class="list-table__buttons ">
-                                    <button type="submit" class="btn btn-danger" name="delete_photo" value="1">Delete photo</button>
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end m-2" style="width: 80px;">Update</button>
+                                    {{-- <button type="submit" class="btn btn-danger" name="delete_photo" value="1">Delete photo</button> --}}
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end mt-2" style="width: 80px;">Update</button>
 
                                 </div>
                                 @csrf
