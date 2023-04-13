@@ -96,7 +96,20 @@ class FrontController extends Controller
             's' => $request->s ?? ''
         ]);
     }
+    public function post(Request $request, Food $food){
 
+        $foo = Food::where('id','=', $request->product)->first();
+
+        $rate=json_decode($foo->rating_json,1);
+
+        $request->user_id = Auth::user()->id;
+        $request->user_name = Auth::user()->name;
+        dd($request->user_name);
+      
+
+        return 'Comments and rate live a here';
+    
+    }
     public function rate(Request $request, Food $food)
     {  
         $foo = Food::where('id','=', $request->product)->first();
