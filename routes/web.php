@@ -27,6 +27,7 @@ Route::prefix('admin/order')->name('order-')->group(function () {
 
 Route::get('/', [F::class, 'home'])->name('start');
     Route::post('/rate', [F::class, 'rate'])->name('update-rate')->middleware('roles:A|M|C');
+    Route::post('/post', [F::class, 'post'])->name('update-post');
     Route::post('/add-basket', [F::class, 'addToBasket'])->name('add-basket');
     Route::get('/basket', [F::class, 'viewBasket'])->name('view-basket');
     Route::post('/basket', [F::class, 'updateBasket'])->name('update-basket');
