@@ -62,7 +62,7 @@
                             <div class="col-md-12 d-flex">
                                 <div class="card-body d-flex">
                                     <input type="hidden" name="product" value="{{$food->id}}">
-                                    <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber">
+                                    <input type="number" min="1" max="5" name="rated" value="3" placeholder="1 - 5" class="form-control imputnumber">
 
                                 </div>
                             </div>
@@ -90,11 +90,12 @@
                         <h4>{{$reviews['user_name']}}</h4>
                     </div>
                     <div class="col-md-8">
-                        <h4 class="float-end"> Raited {{$reviews['rate']}}</h4>
+                        <h4 class="float-end "> Raited {{$reviews['rate']}}</h4>
                     </div>
                     <div class="col-md-12 d-flex">
                         <div class="card-body ms-5 me-5">
-                            <h4>{{$reviews['review']}}</h4>
+                            <h4 class="float-end fw-light">{{$reviews['review']}}</h4>
+
                         </div>
                     </div>
                     <div class="col-md-12 d-flex">
