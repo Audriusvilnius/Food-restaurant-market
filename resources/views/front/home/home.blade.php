@@ -112,9 +112,11 @@
                                 {{-- Voted: <b><i>{{$food->counts}}</b></i> --}}
                                 Rate:
                                 <input type="hidden" name="product" value="{{$food->id}}">
+                                <input type="hidden" name="user_name" value="{{$name}}">
                                 {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
 
-                                <input type="number" min="1" max="5" name="rate" value="" placeholder="1 - 5" class="form-control imputnumber">
+                                <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber">
+
                                 <div class="btn-group">
                                     <button type="submit" class="btn btn-outline-secondary">RATE</button>
                                 </div>
@@ -122,7 +124,7 @@
                             @csrf
                         </form>
                         <hr class="border border-second border-2 opacity-50">
-                        <form action="{{route('update-post')}}" method="post">
+                        <form action="{{route('update-reviews')}}" method="get">
                             <div class="gap-3 align-items-center d-flex justify-content-center">
                                 <input type="hidden" name="product" value="{{$food->id}}">
                                 {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}

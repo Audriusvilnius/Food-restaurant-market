@@ -96,44 +96,53 @@ class FrontController extends Controller
             's' => $request->s ?? ''
         ]);
     }
-    public function post(Request $request, Food $food){
+    public function reviews(Request $request, Food $food){
 
         $foo = Food::where('id','=', $request->product)->first();
+        $food = Food::where('id','=', $request->product)->first();
 
-        $rate=json_decode($foo->rating_json,1);
-
-        $request->user_id = Auth::user()->id;
+        $rateds=json_decode($foo->rating_json,1);
         $request->user_name = Auth::user()->name;
-        dd($request->user_name);
-      
-
-        return 'Comments and rate live a here';
-    
+        // dd($rateds);
+        return view('front.reviews.index',[
+            'rateds'=>$rateds,
+            'food'=>$food,
+            'id'=>$request->product,
+            'name'=>$request->user_name,
+        ]);
     }
     public function rate(Request $request, Food $food)
     {  
         $foo = Food::where('id','=', $request->product)->first();
-        
-        $rate=json_decode($foo->rating_json,1);
+        $faker = Faker::create();
+        $rateds=json_decode($foo->rating_json,1);
         
         $request->user_id = Auth::user()->id;
-        
-        if($rate){
-            $rate[$request->user_id]=$request->rate;  
+        $request->user_name = Auth::user()->name;
+
+        if ($request->food_review == null ){$request->food_review = "The user doesn't leave a review, but...".$faker->realText($maxNbChars = 500, $indexSize = 2);}
+
+        if($rateds){
+            $rateds[$request->user_id]=['rate'=>$request->rated, 'user_name'=>$request->user_name,'review'=>$request->food_review];
         }else{ 
-            $rate = [$request->user_id=> $request->rate];
-        }  
+            $rateds = [$request->user_id=> ['rate'=>$request->rated, 'user_name'=>$request->user_name,'review'=>$request->food_review]];
+        } 
 
-        $rating=array_sum($rate)/count($rate);
-        $counts=count($rate);
-        
-        $rate=json_encode($rate);
+        $arrysum=0;
+        $count=0;
+        foreach ($rateds as $key => $arr) {
+           $arrysum += $arr['rate'];
+           $count++;
+        }
 
-        DB::table('food')->where('id', $request->product) ->update([ 'rating_json' => $rate]);
+        $rating=$arrysum/$count;
+        $rateds=json_encode($rateds);
+
+        DB::table('food')->where('id', $request->product) ->update([ 'rating_json' => $rateds]);
         DB::table('food')->where('id', $request->product) ->update([ 'rating' => $rating]);
-        DB::table('food')->where('id', $request->product) ->update([ 'counts' => $counts]);
+        DB::table('food')->where('id', $request->product) ->update([ 'counts' => $count]);
 
-        return redirect(url()->previous().'#'.$request->product)->with('ok', 'You rate '.$foo->title.' '.$request->rate. ' points');
+        return redirect(url()->previous().'#'.$request->product)->with('ok', 'You rate '.$foo->title.' '.$request->rated. ' points');
     }
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)
