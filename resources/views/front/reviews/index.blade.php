@@ -100,7 +100,6 @@
                     <div class="col-md-12 d-flex">
                         <div class="card-body ms-5 me-5">
                             <h6 class="float-end">{{$reviews['date']}}</h6>
-
                         </div>
                     </div>
                 </div>
