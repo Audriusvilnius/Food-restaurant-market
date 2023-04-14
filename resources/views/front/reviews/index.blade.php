@@ -66,7 +66,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-12 d-flex">
+                            <div class="col-md-11 d-flex">
                                 <div class="card-body">
                                     <textarea class="form-control" placeholder="Reviews leave a here" name="food_review" rows="5" cols="50"></textarea>
                                 </div>
