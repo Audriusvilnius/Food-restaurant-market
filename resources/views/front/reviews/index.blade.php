@@ -82,7 +82,8 @@
                     </form>
                 </div>
             </div>
-            @forelse($rateds as $reviews)
+            @if($rateds)
+            @foreach($rateds as $reviews)
             <div class="card mt-2 d-flex justify-content-md-between">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-4">
@@ -96,11 +97,16 @@
                             <h4>{{$reviews['review']}}</h4>
                         </div>
                     </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="card-body ms-5 me-5">
+                            <h6 class="float-end">{{$reviews['date']}}</h6>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-            @empty
-            <h2 class="list-group-item">No types yet</h2>
-            @endforelse
+            @endforeach
+            @endif
         </div>
     </div>
 </div>

@@ -103,7 +103,6 @@ class FrontController extends Controller
 
         $rateds=json_decode($foo->rating_json,1);
         $request->user_name = Auth::user()->name;
-        // dd($rateds);
         return view('front.reviews.index',[
             'rateds'=>$rateds,
             'food'=>$food,
@@ -116,16 +115,17 @@ class FrontController extends Controller
         $foo = Food::where('id','=', $request->product)->first();
         $faker = Faker::create();
         $rateds=json_decode($foo->rating_json,1);
-        
         $request->user_id = Auth::user()->id;
         $request->user_name = Auth::user()->name;
+        $date = date('Y-m-d H:i', time());
+
 
         if ($request->food_review == null ){$request->food_review = "The user doesn't leave a review, but...".$faker->realText($maxNbChars = 500, $indexSize = 2);}
 
         if($rateds){
-            $rateds[$request->user_id]=['rate'=>$request->rated, 'user_name'=>$request->user_name,'review'=>$request->food_review];
+            $rateds[$request->user_id]=['rate'=>$request->rated, 'user_name'=>$request->user_name,'review'=>$request->food_review, 'date'=>$date];
         }else{ 
-            $rateds = [$request->user_id=> ['rate'=>$request->rated, 'user_name'=>$request->user_name,'review'=>$request->food_review]];
+            $rateds = [$request->user_id=> ['rate'=>$request->rated, 'user_name'=>$request->user_name,'review'=>$request->food_review, 'date'=>$date]];
         } 
 
         $arrysum=0;
