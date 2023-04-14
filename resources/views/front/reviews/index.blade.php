@@ -66,7 +66,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-11 d-flex">
+                            <div class="col-md-12 d-flex">
                                 <div class="card-body">
                                     <textarea class="form-control" placeholder="Reviews leave a here" name="food_review" rows="5" cols="50"></textarea>
                                 </div>
@@ -82,20 +82,17 @@
                     </form>
                 </div>
             </div>
-
             @forelse($rateds as $reviews)
-
             <div class="card mt-2 d-flex justify-content-md-between">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-4">
                         <h4>{{$reviews['user_name']}}</h4>
-
                     </div>
                     <div class="col-md-8">
                         <h4 class="float-end"> Raited {{$reviews['rate']}}</h4>
                     </div>
                     <div class="col-md-12 d-flex">
-                        <div class="card-body ms-2">
+                        <div class="card-body ms-5 me-5">
                             <h4>{{$reviews['review']}}</h4>
                         </div>
                     </div>
@@ -107,6 +104,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection
