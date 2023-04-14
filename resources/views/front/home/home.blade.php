@@ -14,8 +14,10 @@
     </div>
 </a>
 
-<section class="py-1 text-center container ">
-    <h1 class="m-2 ">{{$text3}}</h1>
+<section class="py-1 text-center container shadow_new">
+
+    <h1 class="m-2">{{$text3}}</h1>
+
     <h2 class="m-5 fs-3"><i>{{$text1}}</i></h2>
     <hr class=" border border-second border-1 opacity-75">
     {{$text2}}
@@ -24,13 +26,22 @@
     <div class="container ">
         <hr class="border border-second border-0 opacity-50">
         <div class="row ">
-            <div class="col-md-5 d-flex ">
+            <div class="col-md-4 d-flex ">
                 <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
                     <div class="card-body align-content-center gap-3 d-flex mb-2">
                         <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search...  " aria-label="Search" name="s" value="{{$s}}">
                         <button type="submit" class="btn btn-info"><i class="bi bi-search"></i></button>
                     </div>
                 </form>
+            </div>
+            <div class="col-md-2 ">
+                {{-- <form action="{{url('/')}}" method="get">
+                <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
+                    <option value="all">All City</option>
+                    @foreach($restaurants as $restaurant)
+                    <option value="{{$restaurant->id}}" @if($restaurant->id == $cityShow) selected @endif>{{$restaurant->city}}</option>
+                    @endforeach
+                </select> --}}
             </div>
             <div class="col-md-2 ">
                 <form action="{{url('/')}}" method="get">
@@ -41,10 +52,11 @@
                         @endforeach
                     </select>
             </div>
-            <div class="col-md-2 btnsort">
+
+            <div class="col-md-1 btnsort">
                 <div class="card-body align-content-center mb-2">
                     <select class="form-select bg-dark text-white " name="sort">
-                        <option>Default</option>
+                        <option>Sort</option>
                         @foreach($sortSelect as $value => $name)
                         <option value="{{$value}}" @if($sortShow==$value) selected @endif>{{$name}}</option>
                         @endforeach
@@ -95,22 +107,34 @@
 
                         <hr class="border border-second border-2 opacity-50">
                         <form action="{{route('update-rate')}}" method="post">
-
-
                             <div class="gap-3 align-items-center d-flex justify-content-center">
                                 Rating: <b><i>{{$food->rating}} / 5</b></i>
                                 {{-- Voted: <b><i>{{$food->counts}}</b></i> --}}
                                 Rate:
                                 <input type="hidden" name="product" value="{{$food->id}}">
+                                <input type="hidden" name="user_name" value="{{$name}}">
                                 {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
 
-                                <input type="number" min="1" max="5" name="rate" value="" placeholder="1 - 5" class="form-control imputnumber">
+                                <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber">
+
                                 <div class="btn-group">
                                     <button type="submit" class="btn btn-outline-secondary">RATE</button>
                                 </div>
                             </div>
                             @csrf
                         </form>
+                        <hr class="border border-second border-2 opacity-50">
+                        <form action="{{route('update-reviews')}}" method="get">
+                            <div class="gap-3 align-items-center d-flex justify-content-center">
+                                <input type="hidden" name="product" value="{{$food->id}}">
+                                {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-outline-secondary" style="width:200px;">Rating & Reviews</button>
+                                </div>
+                            </div>
+                            @csrf
+                        </form>
+
                         <hr class="border border-second border-2 opacity-50">
                         <form action="{{route('add-basket')}}" method="post">
                             <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
