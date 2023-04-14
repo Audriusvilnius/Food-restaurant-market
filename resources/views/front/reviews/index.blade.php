@@ -25,8 +25,6 @@
             <div class="card">
                 <div class="card-header justify-content-center">
                     <h1>Hello {{$name}}! You can rate & reviews {{$food->title}}. Now is <b><i>{{$food->rating}}</h1>
-
-
                 </div>
             </div>
             <div class="card mt-2 d-flex justify-content-md-between">
@@ -83,8 +81,8 @@
                 </div>
             </div>
             @if($rateds)
-            @foreach($rateds as $reviews)
-            <div class="card mt-2 d-flex justify-content-md-between">
+            @foreach($rateds as $id => $reviews)
+            <div id={{$id}} class="card mt-2 d-flex justify-content-md-between">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-4">
                         <h4>{{$reviews['user_name']}}</h4>
