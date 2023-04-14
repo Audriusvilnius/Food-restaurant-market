@@ -106,26 +106,22 @@
                         <h4 @if($food->price<20) style="color:crimson;" @endif>Price: <b><i>{{$food->price}} &euro;</b></i></h4>
 
                         <hr class="border border-second border-2 opacity-50">
-                        <form action="{{route('update-rate')}}" method="post">
-                            <div class="gap-3 align-items-center d-flex justify-content-center">
-                                Rating: <b><i>{{$food->rating}} / 5</b></i>
-                                {{-- Voted: <b><i>{{$food->counts}}</b></i> --}}
-                                Rate:
-                                <input type="hidden" name="product" value="{{$food->id}}">
-                                <input type="hidden" name="user_name" value="{{$name}}">
-                                {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
-
-                                <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber">
-
-                                <div class="btn-group">
-                                    <button type="submit" class="btn btn-outline-secondary">RATE</button>
-                                </div>
-                            </div>
-                            @csrf
-                        </form>
-                        <hr class="border border-second border-2 opacity-50">
+                        {{-- <form action="{{route('update-rate')}}" method="post"> --}}
+                        <div class="gap-3 align-items-center d-flex justify-content-center">
+                            Rating:<b><i>{{$food->rating}}</i></b>
+                            {{-- Rate:
+                            <input type="hidden" name="product" value="{{$food->id}}">
+                            <input type="hidden" name="user_name" value="{{$name}}">
+                            <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber"> --}}
+                            {{-- <div class="btn-group">
+                                <button type="submit" class="btn btn-outline-secondary">RATE</button>
+                            </div> --}}
+                        </div>
+                        {{-- @csrf --}}
+                        {{-- </form> --}}
+                        {{-- <hr class="border border-second border-2 opacity-50"> --}}
                         <form action="{{route('update-reviews')}}" method="get">
-                            <div class="gap-3 align-items-center d-flex justify-content-center">
+                            <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
                                 <input type="hidden" name="product" value="{{$food->id}}">
                                 {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
                                 <div class="btn-group">
