@@ -25,8 +25,6 @@
             <div class="card">
                 <div class="card-header justify-content-center">
                     <h1>Hello {{$name}}! You can rate & reviews {{$food->title}}. Now is <b><i>{{$food->rating}}</h1>
-
-
                 </div>
             </div>
             <div class="card mt-2 d-flex justify-content-md-between">
@@ -62,7 +60,7 @@
                             <div class="col-md-12 d-flex">
                                 <div class="card-body d-flex">
                                     <input type="hidden" name="product" value="{{$food->id}}">
-                                    <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber">
+                                    <input type="number" min="1" max="5" name="rated" value="3" placeholder="1 - 5" class="form-control imputnumber">
 
                                 </div>
                             </div>
@@ -83,18 +81,19 @@
                 </div>
             </div>
             @if($rateds)
-            @foreach($rateds as $reviews)
-            <div class="card mt-2 d-flex justify-content-md-between">
+            @foreach($rateds as $id => $reviews)
+            <div id={{$id}} class="card mt-2 d-flex justify-content-md-between">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-4">
                         <h4>{{$reviews['user_name']}}</h4>
                     </div>
                     <div class="col-md-8">
-                        <h4 class="float-end"> Raited {{$reviews['rate']}}</h4>
+                        <h4 class="float-end "> Raited {{$reviews['rate']}}</h4>
                     </div>
                     <div class="col-md-12 d-flex">
                         <div class="card-body ms-5 me-5">
-                            <h4>{{$reviews['review']}}</h4>
+                            <h4 class="float-end fw-light">{{$reviews['review']}}</h4>
+
                         </div>
                     </div>
                     <div class="col-md-12 d-flex">

@@ -142,7 +142,7 @@ class FrontController extends Controller
         DB::table('food')->where('id', $request->product) ->update([ 'rating' => $rating]);
         DB::table('food')->where('id', $request->product) ->update([ 'counts' => $count]);
 
-        return redirect(url()->previous().'#'.$request->product)->with('ok', 'You rate '.$foo->title.' '.$request->rated. ' points');
+        return redirect(url()->previous().'#'.$request->user_id)->with('ok', 'You rate '.$foo->title.' '.$request->rated. ' points');
     }
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)
