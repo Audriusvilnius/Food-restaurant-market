@@ -37,6 +37,30 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123'),
             'role'=>'customer'
         ]);
+            DB::table('users')->insert([
+            'name' => 'Ina',
+            'email' => 'ina@gmail.com',
+            'password' => Hash::make('123'),
+            'role'=>'admin'
+        ]);
+            DB::table('users')->insert([
+            'name' => 'Tomas',
+            'email' => 'tomas@gmail.com',
+            'password' => Hash::make('123'),
+            'role'=>'admin'
+        ]);
+            DB::table('users')->insert([
+            'name' => 'Vytautas',
+            'email' => 'vytautas@gmail.com',
+            'password' => Hash::make('123'),
+            'role'=>'admin'
+        ]);
+            DB::table('users')->insert([
+            'name' => 'Audrius',
+            'email' => 'audrius@gmail.com',
+            'password' => Hash::make('123'),
+            'role'=>'admin'
+        ]);
 
         $faker = Faker::create();
         $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
@@ -66,12 +90,23 @@ class DatabaseSeeder extends Seeder
                 'des' => $faker->paragraph($nbSentences = rand(5, 10), $variableNbSentences = true),
             ]);
         }
+        $input = ['Vilnius', 'Kaunas', 'Klaipėda', 'Panevėžys', 'Šiauliai'];
+        // $rand_keys = array_rand($input, 1);
+
+        foreach (range(1,250) as $_) {
+        DB::table('cities')->insert([
+                'city' => $input[rand(0,4)],
+                'food_id' => rand(1,250),
+                'rest_id' => rand(1,30),
+            ]);
+        }
+
 
         foreach (range(1,30) as $_) {
             $photo_rest=rand(1,21);
         DB::table('restaurants')->insert([
                 'title' => $faker->company,
-                'city' => $faker->city,
+                'city' => $input[rand(0,4)],
                 'addres' => $faker->streetAddress,
                 'open' => $faker->time($format='H:i',$max='now'),
                 'close' => $faker->time($format='H:i',$max='now'),
@@ -79,6 +114,7 @@ class DatabaseSeeder extends Seeder
                 'phone' => $faker->e164PhoneNumber,
                 'des' => $faker->paragraph($nbSentences = rand(5, 10), $variableNbSentences = true),
             ]);
+            // 'city_id_r' => rand(0,4),
                 // 'open' => $faker->time($format='H:i:s',$max='now'),
         }
 
@@ -87,6 +123,7 @@ class DatabaseSeeder extends Seeder
             $photo_food=rand(22,49);
         DB::table('food')->insert([
                 'rest_id' => rand(1,30),
+                // 'city_id_f' => rand(0,4),
                 'title' => $faker->foodName,
                 'counts' => 0,
                 'price' => rand(499, 2999) / 100,
