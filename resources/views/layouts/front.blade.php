@@ -42,7 +42,7 @@
                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <!-- Left Side Of Navbar -->
 
-                     {{-- @include('front.home.common.restaurant') --}}
+                     @include('front.home.common.restaurant')
                      <ul class="navbar-nav me-auto">
 
                      </ul>
@@ -132,7 +132,8 @@
                          <div class="ithem">
                              {{-- <span>{{$basket->test()}}</span> --}}
                              @if($basket->count<=9) <span>{{$basket->count}}</span>
-                                 @elseif($basket->count>9) 9+@endif
+                                 @elseif($basket->count>9) 9+
+                                 @endif
                          </div>
                      </ul>
                      <span>Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>

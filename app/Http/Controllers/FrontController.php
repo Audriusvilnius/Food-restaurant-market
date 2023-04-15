@@ -120,7 +120,11 @@ class FrontController extends Controller
         $date = date('Y-m-d H:i', time());
 
 
-        if ($request->food_review == null ){$request->food_review = "The user doesn't leave a review, but...".$faker->realText($maxNbChars = 500, $indexSize = 2);}
+        if ($request->food_review == null ){
+            $request->food_review = "The user doesn't leave a review, but...".$faker->realText($maxNbChars = 500, $indexSize = 2);}
+        if ($request->rated == null){
+            $request->rated = rand(1,5);
+        }
 
         if($rateds){
             $rateds[$request->user_id]=['rate'=>$request->rated, 'user_name'=>$request->user_name,'review'=>$request->food_review, 'date'=>$date];

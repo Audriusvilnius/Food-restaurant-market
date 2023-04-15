@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rest_id')->unsigned();
+            // $table->unsignedBigInteger('city_id_f')->unsigned();
             $table->string('title',100);
             $table->string('rest_title',100)->nullable();
             $table->decimal('price', 5, 2)->unsigned()->nullable();

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
+            // $table->unsignedBigInteger('food_id')->unsigned();
+            // $table->unsignedBigInteger('city_id_r')->unsigned();
             $table->string('title',100);
             $table->string('city',100)->nullable();
             $table->text('addres',500)->nullable();
