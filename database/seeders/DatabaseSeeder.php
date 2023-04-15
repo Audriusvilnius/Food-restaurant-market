@@ -91,22 +91,24 @@ class DatabaseSeeder extends Seeder
             ]);
         }
         $input = ['Vilnius', 'Kaunas', 'Klaipėda', 'Panevėžys', 'Šiauliai'];
-        // $rand_keys = array_rand($input, 1);
+        $rest_qty=250;
 
-        foreach (range(1,250) as $_) {
+        foreach (range(1,$rest_qty) as $_) {
+            $rand=rand(0,4);
         DB::table('cities')->insert([
-                'city' => $input[rand(0,4)],
+                'city' => $input[$rand],
+                'city_no' => $rand,
                 'food_id' => rand(1,250),
                 'rest_id' => rand(1,30),
             ]);
         }
-
 
         foreach (range(1,30) as $_) {
             $photo_rest=rand(1,21);
         DB::table('restaurants')->insert([
                 'title' => $faker->company,
                 'city' => $input[rand(0,4)],
+                'rest_city_id' => rand(0,4),
                 'addres' => $faker->streetAddress,
                 'open' => $faker->time($format='H:i',$max='now'),
                 'close' => $faker->time($format='H:i',$max='now'),
@@ -118,12 +120,11 @@ class DatabaseSeeder extends Seeder
                 // 'open' => $faker->time($format='H:i:s',$max='now'),
         }
 
-        $rest_qty=250;
         foreach (range(1,$rest_qty) as $_) {
             $photo_food=rand(22,49);
         DB::table('food')->insert([
                 'rest_id' => rand(1,30),
-                // 'city_id_f' => rand(0,4),
+                'food_city_id' => rand(0,4),
                 'title' => $faker->foodName,
                 'counts' => 0,
                 'price' => rand(499, 2999) / 100,

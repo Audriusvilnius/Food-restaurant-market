@@ -19,11 +19,12 @@ return new class extends Migration
             $table->string('city',100)->nullable();
             $table->unsignedBigInteger('food_id');
             $table->unsignedBigInteger('rest_id');
+            $table->unsignedBigInteger('city_no');
             $table->timestamps();
+            // $table->foreign('food_id')->references('id')->on('food');
+            // $table->foreign('rest_id')->references('id')->on('restaurants');
         });
     }
-    // $table->foreign('food_id')->references('id')->on('food');
-    // $table->foreign('rest_id')->references('id')->on('restaurants');
 
     /**
      * Reverse the migrations.
