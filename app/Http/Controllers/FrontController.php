@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Food;
+use App\Models\City;
 use App\Models\Restaurant;
 use App\Models\Front;
 use App\Models\Order;
@@ -28,7 +29,8 @@ class FrontController extends Controller
     public function home(Request $request)
     {
         $ovners=Ovner::all()->sortBy('title');
-
+        $cities=City::all()->sortBy('title');
+// dd($cities);
         $foods=Food::all()->sortBy('title');
 
         $restaurants=Restaurant::all()->sortBy('title');
@@ -83,6 +85,7 @@ class FrontController extends Controller
         return view('front.home.home',[
             'foods'=> $foods,
             'restaurants'=>$restaurants,
+            'cities'=>$cities,
             'ovners'=>$ovners,
             'text1' => $text1,
             'text2' => $text2,
