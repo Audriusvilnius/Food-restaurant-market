@@ -91,10 +91,12 @@
                     <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary " alt=" hotel">
 
                     <div class=" card-body ">
-                        <h6>Restaurant: <b style="font-size:17px;"><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
-                            <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6>
+                            <h6>Restaurant: <b style="font-size:17px;"><i>
+                                        {{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
+
+                        <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6>
                         <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                         <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                         <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
@@ -177,5 +179,5 @@
     </div>
 </div>
 <hr class="border border-second border-0 opacity-50 m-1">
-</div>
+
 @endsection

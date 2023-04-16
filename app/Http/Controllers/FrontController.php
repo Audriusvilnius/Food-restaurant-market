@@ -98,10 +98,9 @@ class FrontController extends Controller
     }
     public function reviews(Request $request, Food $food){
 
-        $foo = Food::where('id','=', $request->product)->first();
         $food = Food::where('id','=', $request->product)->first();
 
-        $rateds=json_decode($foo->rating_json,1);
+        $rateds=json_decode($food->rating_json,1);
         $request->user_name = Auth::user()->name;
         return view('front.reviews.index',[
             'rateds'=>$rateds,
@@ -112,9 +111,9 @@ class FrontController extends Controller
     }
     public function rate(Request $request, Food $food)
     {  
-        $foo = Food::where('id','=', $request->product)->first();
+        $food = Food::where('id','=', $request->product)->first();
         $faker = Faker::create();
-        $rateds=json_decode($foo->rating_json,1);
+        $rateds=json_decode($food->rating_json,1);
         $request->user_id = Auth::user()->id;
         $request->user_name = Auth::user()->name;
         $date = date('Y-m-d H:i', time());
@@ -146,7 +145,7 @@ class FrontController extends Controller
         DB::table('food')->where('id', $request->product) ->update([ 'rating' => $rating]);
         DB::table('food')->where('id', $request->product) ->update([ 'counts' => $count]);
 
-        return redirect(url()->previous().'#'.$request->user_id)->with('ok', 'You rate '.$foo->title.' '.$request->rated. ' points');
+        return redirect(url()->previous().'#'.$request->user_id)->with('ok', 'You rate '.$food->title.' '.$request->rated. ' points');
     }
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)

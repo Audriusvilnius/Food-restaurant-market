@@ -42,7 +42,7 @@
                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <!-- Left Side Of Navbar -->
 
-                     @include('front.home.common.restaurant')
+                     {{-- @include('front.home.common.restaurant') --}}
                      <ul class="navbar-nav me-auto">
 
                      </ul>
@@ -157,6 +157,7 @@
 
          <div class="card mt-2 d-flex justify-content-md-between align-content-right">
              <div class="row g-0 shadow p-3 bg-body-tertiary ">
+
                  @forelse($ovners as $ovner)
                  <div class="container">
                      <div class="card-body text-muted">
