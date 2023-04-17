@@ -36,12 +36,6 @@ class Food extends Model
     }
 
 
-
-    //     public function foodReataurants_city()
-    // {
-    //     return $this->belongsTo(Restaurant::class, 'rest_id','id');
-    // }
-
     public function deletePhoto()
     {
         $fileName = $this->photo;

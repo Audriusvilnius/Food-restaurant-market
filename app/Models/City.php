@@ -11,6 +11,6 @@ class City extends Model
     public function food_City()
 
     {
-        return $this->hasMany(City::class, 'food_city_no','id');
+        return $this->hasMany(Food::class, 'food_city_no','id');
     }
 }

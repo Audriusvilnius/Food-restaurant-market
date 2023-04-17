@@ -8,19 +8,36 @@
         @endif
     </div>
 </section>
+
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
 
-<section class="py-1 text-center container shadow_new">
+<section class="container shadow_new">
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-6 g-3">
+        @forelse($categories as $category)
+        <div id="{{ $category['id'] }}" class="col d-flex justify-content-md-between">
+            <div class="card g-0 shadow p-1 bg-body-tertiary rounded col d-flex justify-content-md-between">
+                <div class="col-md-12 container_pic">
+                    <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="imageset">
+                    <div class="centered shadow_new justify-content-center">
+                        <h1><b><i>{{$category->title}}</i></b></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @empty
+        <h2 class="list-group-item">No types yet</h2>
+        @endforelse
+    </div>
 
-    <h1 class="m-2">{{$text3}}</h1>
+    {{-- <h1 class="m-2">{{$text3}}</h1>
 
-    <h2 class="m-5 fs-3"><i>{{$text1}}</i></h2>
+    <h2 class="m-5 fs-3"><i>{{$text1}}</i></h2> --}}
     <hr class=" border border-second border-1 opacity-75">
-    {{$text2}}
+    {{-- {{$text2}} --}}
 </section>
 <div class="page">
     <div class="container ">
@@ -84,7 +101,6 @@
         <hr class="border border-second border-0 opacity-50">
         {{-- CIA keiciam steilpeliu skaiciu  --}}
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-3 g-3">
-
             @forelse($foods as $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-2 bg-body-tertiary rounded">
@@ -95,8 +111,10 @@
                             <h6>Restaurant: <b style="font-size:17px;"><i>
                                         {{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
-                        <h6>City: <b><i>{{$food->foodCities_no->city}}</i></b></h6>
-                        <h6>Category: <b><i>{{$food->foodCategory_no->category}}</i></b></h6>
+                        <h6>City: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
+
+                        <h6>Category: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
+
 
                         {{-- <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6> --}}
                         <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>

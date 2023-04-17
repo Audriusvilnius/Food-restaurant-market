@@ -74,13 +74,15 @@ class DatabaseSeeder extends Seeder
 
         foreach ($cities as $_) {
         DB::table('cities')->insert([
-                'city' => $_,
+                'title' => $_,
             ]);
         }
         
-            foreach ($category as $_) {
+        foreach ($category as $_) {
+            $photo_food=rand(22,49);
         DB::table('categories')->insert([
-                'category' => $_,
+                'title' => $_,
+                'photo' => '/images/temp/'.$photo_food.'.jpeg',
             ]);
         }
 

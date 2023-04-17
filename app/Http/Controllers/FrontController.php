@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Restaurant;
 use App\Models\Front;
 use App\Models\Order;
+use App\Models\Category;
 use App\Models\Ovner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ class FrontController extends Controller
       
     public function home(Request $request)
     {
+        $categories=Category::all()->sortBy('title');
         $ovners=Ovner::all()->sortBy('title');
         $cities=City::all()->sortBy('title');
         // $cities=City::where('id', 1);
@@ -92,6 +94,7 @@ class FrontController extends Controller
         return view('front.home.home',[
             'foods'=> $foods,
             'restaurants'=>$restaurants,
+            'categories'=>$categories,
             'cities'=>$cities,
             'ovners'=>$ovners,
             'text1' => $text1,
@@ -217,6 +220,7 @@ class FrontController extends Controller
     
     public function listRestaurants(Request $request, Restaurant $restaurant)
     {
+        $categories=Category::all()->sortBy('title');
         $ovners=Ovner::all()->sortBy('title');
 
         $restaurants=Restaurant::all();
@@ -235,6 +239,7 @@ class FrontController extends Controller
             'restaurants'=>$restaurants,
             'foods'=> $foods,
             'cities'=>$cities,
+            'categories'=>$categories,
             'ovners'=> $ovners,
             'text1' => $text1,
             'text2' => $text2,

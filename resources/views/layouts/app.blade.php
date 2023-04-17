@@ -55,11 +55,12 @@
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Menu
+                                Foods
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('foods-create') }}">New Dish</a>
-                                <a class="dropdown-item" href="{{ route('foods-index') }}">Dish list</a>
+                                <a class="dropdown-item" href="{{ route('foods-index') }}">Foods list</a>
+                                <a class="dropdown-item" href="{{ route('category-index') }}">Category</a>
+
 
                             </div>
                         </li>
@@ -68,7 +69,6 @@
                                 Restaurant
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('restaurants-create') }}">Add new Restaurant</a>
                                 <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants list</a>
                                 <a class="dropdown-item" href="{{ route('foods-rest_title') }}">Copy Restaurant title</a>
 
