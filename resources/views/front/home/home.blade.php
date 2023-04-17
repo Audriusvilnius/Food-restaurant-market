@@ -95,18 +95,10 @@
                             <h6>Restaurant: <b style="font-size:17px;"><i>
                                         {{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
-
-                        <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6>
                         <h6>City: <b><i>{{$food->foodCities_no->city}}</i></b></h6>
+                        <h6>Category: <b><i>{{$food->foodCategory_no->category}}</i></b></h6>
 
-
-
-
-
-
-
-
-
+                        {{-- <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6> --}}
                         <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                         <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                         <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>

@@ -25,10 +25,16 @@ class Food extends Model
         return $this->belongsTo(Restaurant::class, 'rest_id','id');
     }
 
-        public function foodCities_no()
+    public function foodCities_no()
     {
         return $this->belongsTo(City::class, 'food_city_no','id');
     }
+
+    public function foodCategory_no()
+    {
+        return $this->belongsTo(Category::class, 'food_category_no','id');
+    }
+
 
 
     //     public function foodReataurants_city()

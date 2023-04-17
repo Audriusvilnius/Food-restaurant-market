@@ -69,6 +69,7 @@ class DatabaseSeeder extends Seeder
         // composer require jzonta/faker-restaurant
         
         $cities = ['Vilnius', 'Kaunas', 'Klaipėda', 'Panevėžys', 'Šiauliai'];
+        $category = ['Pasta', 'Pica', 'Drink', 'Salad', 'Soups','BBQ'];
         $rest_qty=250;
 
         foreach ($cities as $_) {
@@ -76,6 +77,13 @@ class DatabaseSeeder extends Seeder
                 'city' => $_,
             ]);
         }
+        
+            foreach ($category as $_) {
+        DB::table('categories')->insert([
+                'category' => $_,
+            ]);
+        }
+
         foreach (range(1,2) as $_) {
               $photo_rest=rand(1,21);
         DB::table('ovners')->insert([
@@ -111,8 +119,7 @@ class DatabaseSeeder extends Seeder
                 'phone' => $faker->e164PhoneNumber,
                 'des' => $faker->paragraph($nbSentences = rand(5, 10), $variableNbSentences = true),
             ]);
-            // 'city_id_r' => rand(0,4),
-                // 'open' => $faker->time($format='H:i:s',$max='now'),
+
         }
 
         foreach (range(1,$rest_qty) as $_) {
@@ -120,6 +127,7 @@ class DatabaseSeeder extends Seeder
         DB::table('food')->insert([
                 'rest_id' => rand(1,30),
                 'food_city_no' => rand(1,5),
+                'food_category_no' => rand(1,6),
                 'title' => $faker->foodName,
                 'counts' => 0,
                 'price' => rand(499, 2999) / 100,

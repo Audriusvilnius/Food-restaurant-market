@@ -30,8 +30,12 @@ class FrontController extends Controller
     {
         $ovners=Ovner::all()->sortBy('title');
         $cities=City::all()->sortBy('title');
-// dd($cities);
+        // $cities=City::where('id', 1);
+        //    dd($cities);
         $foods=Food::all()->sortBy('title');
+        // $foods=Food::where('food_city_no', 1);
+        //    dd($foods);
+
 
         $restaurants=Restaurant::all()->sortBy('title');
 
@@ -43,7 +47,10 @@ class FrontController extends Controller
             if($request->restaurant_id && $request->restaurant_id != 'all'){
             $foods = Food::where('rest_id', $request->restaurant_id);
             }else {
-            $foods = Food::where('id', '>', 0);}
+            $foods = Food::where('id', '>', 0);
+            //  $foods=Food::where('food_city_no', 2);
+            
+        }
             
         $foods=match($request->sort ?? ''){
             'asc_price'=>$foods->orderBy('price'),
@@ -213,6 +220,8 @@ class FrontController extends Controller
         $ovners=Ovner::all()->sortBy('title');
 
         $restaurants=Restaurant::all();
+        $cities=City::all()->sortBy('title');
+
 
         $foods=Food::where('rest_id',$restaurant->id)->get();  
         $foods=$foods->sortBy('title');
@@ -225,6 +234,7 @@ class FrontController extends Controller
         return view('front.home.home',[
             'restaurants'=>$restaurants,
             'foods'=> $foods,
+            'cities'=>$cities,
             'ovners'=> $ovners,
             'text1' => $text1,
             'text2' => $text2,
