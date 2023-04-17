@@ -197,6 +197,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\BasketServiceProvider::class,
         App\Providers\RestaurantServiceProvider::class, 
+        App\Providers\CategoryServiceProvider::class, 
 
     ],
 

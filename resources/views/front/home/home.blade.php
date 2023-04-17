@@ -15,30 +15,8 @@
     </div>
 </a>
 
-<section class="container shadow_new">
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-6 g-3">
-        @forelse($categories as $category)
-        <div id="{{ $category['id'] }}" class="col d-flex justify-content-md-between">
-            <div class="card g-0 shadow p-1 bg-body-tertiary rounded col d-flex justify-content-md-between">
-                <div class="col-md-12 container_pic">
-                    <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="imageset">
-                    <div class="centered shadow_new justify-content-center">
-                        <h1><b><i>{{$category->title}}</i></b></h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @empty
-        <h2 class="list-group-item">No types yet</h2>
-        @endforelse
-    </div>
+@include('front.home.common.category')
 
-    {{-- <h1 class="m-2">{{$text3}}</h1>
-
-    <h2 class="m-5 fs-3"><i>{{$text1}}</i></h2> --}}
-    <hr class=" border border-second border-1 opacity-75">
-    {{-- {{$text2}} --}}
-</section>
 <div class="page">
     <div class="container ">
         <hr class="border border-second border-0 opacity-50">
