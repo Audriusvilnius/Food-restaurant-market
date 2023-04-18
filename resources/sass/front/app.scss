@@ -52,7 +52,7 @@ svg.cart {
 }
 
 .shadow_new {
-    color: white;
+    color: rgba(254, 254, 254, 0.95);
     text-shadow: 10px 10px 20px black, 10px 10px 15px rgb(50, 50, 52), 0 0 5px rgb(19, 19, 21);
 }
 
@@ -101,5 +101,9 @@ svg.cart {
 }
 .btn{
     width: 80px;
+}
+.transition{
+    transition-duration: 3s, 1s;
+    transition-property: margin-right,
 }
 

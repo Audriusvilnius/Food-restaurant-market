@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container mb-5" style="min-height: 850px">
-
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow bg-body-tertiary rounded d-flex">

@@ -15,12 +15,9 @@
     </div>
 </a>
 <section class="py-1 text-center container shadow_new">
-
     <h1 class="m-5">All Restaurants near me</h1>
-
     {{-- <h2 class="m-5 fs-3"><i>text</i></h2> --}}
     <hr class=" border border-second border-0 opacity-75">
-
 </section>
 
 @include('front.home.common.category')

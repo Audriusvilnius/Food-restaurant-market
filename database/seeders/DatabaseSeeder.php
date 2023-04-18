@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         
         $cities = ['Vilnius', 'Kaunas', 'Klaipėda', 'Panevėžys', 'Šiauliai'];
         $category = ['Pasta', 'Pica', 'Drink', 'Salad', 'Soup','BBQ','Asian','Vegetarian','Sushi','Fish'];
-        $rest_qty=250;
+        $food_qty=500;
 
         foreach ($cities as $_) {
         DB::table('cities')->insert([
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (range(1,2) as $_) {
+        foreach (range(1,1) as $_) {
               $photo_rest=rand(1,21);
         DB::table('ovners')->insert([
                 'title' => $faker->company,
@@ -109,7 +109,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (range(1,30) as $_) {
+        foreach (range(1,60) as $_) {
             $photo_rest=rand(1,21);
         DB::table('restaurants')->insert([
                 'title' => $faker->company,
@@ -123,7 +123,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (range(1,$rest_qty) as $_) {
+        foreach (range(1,$food_qty) as $_) {
             $photo_food=rand(22,49);
         DB::table('food')->insert([
                 'rest_id' => rand(1,30),
