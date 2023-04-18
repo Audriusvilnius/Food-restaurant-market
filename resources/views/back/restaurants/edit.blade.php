@@ -46,10 +46,8 @@
 
                                 <h6>Title:</h6>
                                 <input type="text" class="form-control" name="restaurant_title" value="{{old('restaurant_title',$restaurant->title)}}">
-
                                 <h6>City:</h6>
                                 <input type="text" class="form-control" name="restaurant_city" value="{{old('restaurant_city',$restaurant->city)}}">
-
                                 <h6>Addres:</h6>
                                 <input type="text" class="form-control" name="restaurant_addres" value="{{old('restaurant_addres',$restaurant->addres)}}">
                                 <div class="col-md-12 d-flex">

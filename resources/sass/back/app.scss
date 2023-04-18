@@ -27,16 +27,6 @@ h1 {
     // color: skyblue;
 }
 
-// a.btn,
-// button.btn[type=submit] {
-//     font-size: 1.1em;
-//     margin: 0 0 0 10px;
-//     text-transform: uppercase;
-//     font-weight: 300;
-//     width: 90px;
-//     // font-family: $sa;
-// }
-
 .form-check {
     position: relative;
 
@@ -64,13 +54,6 @@ h1 {
             width: 40%;
         }
 
-        .alk {
-            svg {
-                width: 30px;
-                height:30px;
-                //fill: rgba(19, 139, 0, 0.249);
-            }
-        }
 
         .size {
             font-size: 1.8em;
@@ -83,15 +66,6 @@ h1 {
             width: 25%;
             text-align: center;
             font-weight: 300;
-        }
-
-        sup {
-            font-size: .8em;
-            width: 10%;
-            text-align: center;
-            font-weight: 100;
-            color:crimson;
-            font-style: italic;
         }
 
         .type {
@@ -153,6 +127,19 @@ svg.cart {
     align-items: center;
     justify-content: center;
 }
-// .btn {
-//     width: 80px;
-// }
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.container_pic {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.shadow_new {
+    color: white;
+    text-shadow: 10px 10px 20px black, 10px 10px 15px rgb(50, 50, 52), 0 0 5px rgb(19, 19, 21);
+}

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 // use App\Http\Requests\Request;
 use App\Models\Food;
+use App\Models\City;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -18,10 +20,13 @@ class FoodController extends Controller
      */
     public function index()
     {
-       //$foods=Food::all()->sortBy('title');
+        $cities=City::all()->sortBy('title');
+        $categories=Category::all()->sortBy('title');
         $foods = Food::orderBy('created_at', 'desc')->get();
         return view('back.food.index',[
-            'foods'=> $foods
+            'foods'=> $foods,
+            'cities'=> $cities,
+            'categories'=> $categories,
         ]);
     }
     public function copyRestTitle()
@@ -43,8 +48,13 @@ class FoodController extends Controller
         public function create()
         {
             $restaurants=Restaurant::all()->sortBy('title');
+            $cities=City::all()->sortBy('title');
+            $categories=Category::all()->sortBy('title');
+
             return view('back.food.create',[
-            'restaurants'=> $restaurants
+            'restaurants'=> $restaurants,
+            'cities'=> $cities,
+            'categories'=> $categories,
             ]);
         }
 
@@ -84,6 +94,8 @@ class FoodController extends Controller
         }
         
         $food->rest_id=$request->restaurant_id;
+        $food->food_city_no=$request->city_id;
+        $food->food_category_no=$request->category_id;
 
         $foo=Restaurant::where('id','=', $food->rest_id)->first();
         $food->rest_title=$foo->title;
@@ -121,9 +133,14 @@ class FoodController extends Controller
     public function edit(Food $food)
     {
         $restaurants=Restaurant::all()->sortBy('title');
+        $cities=City::all()->sortBy('city');
+        $categories=Category::all()->sortBy('title');
+
             return view('back.food.edit',[
             'food'=> $food,
-            'restaurants'=> $restaurants
+            'restaurants'=> $restaurants,
+            'cities'=> $cities,
+            'categories'=> $categories,
         ]);
     }
 
@@ -175,6 +192,9 @@ class FoodController extends Controller
         $food->price=$request->food_price;
 
         $food->rest_id=$request->restaurant_id;
+        $food->food_city_no=$request->city_id;
+        $food->food_category_no=$request->category_id;
+
         $foo=Restaurant::where('id','=', $food->rest_id)->first();
         $food->rest_title=$foo->title;
        
