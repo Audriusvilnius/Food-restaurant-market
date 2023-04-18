@@ -36,6 +36,7 @@ Route::get('/', [F::class, 'home'])->name('start');
     Route::get('/confirm', [F::class, 'confirmBasket'])->name('confirm-basket')->middleware('roles:A|M|C');
     Route::post('/make-order', [F::class, 'makeOrder'])->name('make-order')->middleware('roles:A|M|C');
     Route::get('/list/{restaurant}', [F::class, 'listRestaurants'])->name('list-restaurant');
+    Route::get('/list/category/{category}', [F::class, 'listCategory'])->name('list-category');
 
 Route::prefix('admin/ovner')->name('ovner-')->group(function () {
     Route::get('/', [O::class, 'index'])->name('index')->middleware('roles:A|M');

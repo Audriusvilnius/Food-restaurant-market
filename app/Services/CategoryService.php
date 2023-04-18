@@ -12,13 +12,9 @@ use App\Models\Category;
 class CategoryService
 {
    
-    public function getService()
+    public function getCategory()
     {
     return Category::all()->sortBy('title');
     }
-    
-        public function testRes()
-    {
-        return 'Test from Category service';
-    }   
+      
 }
