@@ -248,12 +248,14 @@ class FrontController extends Controller
 
         $foods=Food::where('food_category_no',$category->id)->get();  
         $foods=$foods->sortBy('title');
+        $category=$category->title;
        
-        return view('front.home.home',[
+        return view('front.home.category',[
             'restaurants'=>$restaurants,
             'foods'=> $foods,
             'cities'=>$cities,
             'categories'=>$categories,
+            'category'=>$category,
             'ovners'=> $ovners,
             'sortSelect' => Food::SORT,
             'sortShow' => isset(Food::SORT[$request->sort]) ? $request->sort : '',

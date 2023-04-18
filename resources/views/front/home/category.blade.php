@@ -4,7 +4,8 @@
     <div class="col-lg-4 col-md-8 mx-auto mt-1 fixed-top py-2">
         @if(Session::has('ok'))
         <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </h6>
         @endif
     </div>
 </section>
@@ -15,76 +16,22 @@
     </div>
 </a>
 <section class="py-1 text-center container shadow_new">
-
-    <h1 class="m-5">All Restaurants near me</h1>
-
-    {{-- <h2 class="m-5 fs-3"><i>text</i></h2> --}}
-    <hr class=" border border-second border-1 opacity-75">
-
+    <a class="navbar-brand" href="{{ url('/') }}">
+        <h1 class="m-5">Back to Restaurants </h1>
+        {{-- <button type="submit" class="btn btn-ligt" style="width:auto;">
+            <h1 class="m-5">Back to Restaurants </h1>
+        </button> --}}
+        <hr class="border border-second border-1 opacity-75">
+    </a>
+</section>
+<section class="container shadow_new">
+    <h3 class=" mb-4 text-start">Restaurants offered {{$category}} to you</h3>
 </section>
 
-@include('front.home.common.category')
+{{-- @include('front.home.common.category') --}}
 
 <div class="page">
     <div class="container ">
-        <hr class="border border-second border-0 opacity-50">
-        <div class="row ">
-            <div class="col-md-4 d-flex ">
-                <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
-                    <div class="card-body align-content-center gap-3 d-flex mb-2">
-                        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search...  " aria-label="Search" name="s" value="{{$s}}">
-                        <button type="submit" class="btn btn-info"><i class="bi bi-search"></i></button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-2 ">
-                {{-- <form action="{{url('/')}}" method="get">
-                <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
-                    <option value="all">All City</option>
-                    @foreach($restaurants as $restaurant)
-                    <option value="{{$restaurant->id}}" @if($restaurant->id == $cityShow) selected @endif>{{$restaurant->city}}</option>
-                    @endforeach
-                </select> --}}
-            </div>
-            <div class="col-md-2 ">
-                <form action="{{url('/')}}" method="get">
-                    <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
-                        <option value="all">All Restaurants</option>
-                        @foreach($restaurants as $restaurant)
-                        <option value="{{$restaurant->id}}" @if($restaurant->id == $typeShow) selected @endif>{{$restaurant->title}}</option>
-                        @endforeach
-                    </select>
-            </div>
-
-            <div class="col-md-1 btnsort">
-                <div class="card-body align-content-center mb-2">
-                    <select class="form-select bg-dark text-white " name="sort">
-                        <option>Sort</option>
-                        @foreach($sortSelect as $value => $name)
-                        <option value="{{$value}}" @if($sortShow==$value) selected @endif>{{$name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-1 ">
-                <div class="card-body align-content-center d-flex mb-2">
-                    <select class="form-select bg-dark text-white d-flex" name="per_page">
-                        @foreach($perPageSelect as $value)
-                        <option value="{{$value}}" @if($perPageShow==$value) selected @endif>{{$value}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="card-body align-content-end gap-1 d-flex float-end">
-                    <button type="submit" class="btn btn-secondary mb-2">SHOW</button>
-                    </form>
-                    <a href=" {{url('/')}}" class="btn btn-danger mb-2" style="">RESET</a>
-                </div>
-            </div>
-        </div>
-        <hr class="border border-second border-0 opacity-50">
         {{-- CIA keiciam steilpeliu skaiciu  --}}
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-3 g-3">
             @forelse($foods as $food)
@@ -98,10 +45,7 @@
                                         {{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
                         <h6>City: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
-
                         <h6>Category: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
-
-
                         {{-- <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6> --}}
                         <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                         <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
@@ -109,9 +53,7 @@
                         <hr class="border border-second border-2 opacity-50">
                         <h4><b><i>{{$food->title}}</b></i></h4>
                         <span class="text-muted">{{$food->add}}</span>
-
                         <h4 @if($food->price<20) style="color:crimson;" @endif>Price: <b><i>{{$food->price}} &euro;</b></i></h4>
-
                         <hr class="border border-second border-2 opacity-50">
                         {{-- <form action="{{route('update-rate')}}" method="post"> --}}
                         <div class="gap-3 align-items-center d-flex justify-content-center">
