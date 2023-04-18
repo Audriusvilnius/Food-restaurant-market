@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCityRequest;
-use App\Http\Requests\UpdateCityRequest;
+use Illuminate\Http\Request;
 use App\Models\City;
+use App\Models\Food;
 
 class CityController extends Controller
 {
@@ -15,7 +15,13 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $cities=City::all()->sortBy('title');
+        $foods = Food::orderBy('created_at', 'desc')->get();
+
+        return view('back.city.index',[
+            'cities'=> $cities,
+            'foods'=> $foods,
+        ]);
     }
 
     /**
@@ -25,18 +31,26 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $cities=City::all()->sortBy('title');
+
+        return view('back.city.create',[
+            'cities'=> $cities,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCityRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCityRequest $request)
+    public function store(Request $request)
     {
-        //
+        $city = new City;
+    
+        $city->title=$request->city_title;
+        $city->save();
+        return redirect()->route('city-index');  
     }
 
     /**
@@ -58,19 +72,24 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        $cities=City::all()->sortBy('title');
+        return view('back.city.edit',[
+            'cities'=> $cities,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCityRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCityRequest $request, City $city)
+    public function update(Request $request, City $city)
     {
-        //
+        $city->title=$request->city_title;
+        $city->save();
+        return redirect()->route('category-index', ['#'.$city->id])->with('ok', 'Edit complete');
     }
 
     /**
@@ -81,6 +100,11 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        if(!$city->food_City()->count()){
+            $city->delete();
+        return redirect()->route('category-index', ['#'.$city->id])->with('ok', 'Delete complete');
+        }else{
+            return redirect()->route('category-index', ['#'.$city->id])->with('not', ' Can\'t Delete city, firs delete food from city');
+        }
     }
 }
