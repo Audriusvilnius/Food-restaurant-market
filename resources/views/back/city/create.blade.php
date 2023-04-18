@@ -25,7 +25,7 @@
             @endforeach
             @endif
 
-            <form action="{{route('restaurants-store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('city-store')}}" method="post" enctype="multipart/form-data">
                 <div class="card mt-2" style="max-width: 1wm;">
                     <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                         <div class="col-md-4">
