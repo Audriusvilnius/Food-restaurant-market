@@ -8,29 +8,40 @@
         @endif
     </div>
 </section>
+
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
-
-<section class="py-1 text-center container ">
-    <h1 class="m-2 ">{{$text3}}</h1>
-    <h2 class="m-5 fs-3"><i>{{$text1}}</i></h2>
-    <hr class=" border border-second border-1 opacity-75">
-    {{$text2}}
+<section class="py-1 text-center container shadow_new">
+    <h1 class="m-5">All Restaurants near me</h1>
+    {{-- <h2 class="m-5 fs-3"><i>text</i></h2> --}}
+    <hr class=" border border-second border-0 opacity-75">
 </section>
+
+@include('front.home.common.category')
+
 <div class="page">
     <div class="container ">
         <hr class="border border-second border-0 opacity-50">
         <div class="row ">
-            <div class="col-md-5 d-flex ">
+            <div class="col-md-4 d-flex ">
                 <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
                     <div class="card-body align-content-center gap-3 d-flex mb-2">
                         <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search...  " aria-label="Search" name="s" value="{{$s}}">
                         <button type="submit" class="btn btn-info"><i class="bi bi-search"></i></button>
                     </div>
                 </form>
+            </div>
+            <div class="col-md-2 ">
+                {{-- <form action="{{url('/')}}" method="get">
+                <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
+                    <option value="all">All City</option>
+                    @foreach($restaurants as $restaurant)
+                    <option value="{{$restaurant->id}}" @if($restaurant->id == $cityShow) selected @endif>{{$restaurant->city}}</option>
+                    @endforeach
+                </select> --}}
             </div>
             <div class="col-md-2 ">
                 <form action="{{url('/')}}" method="get">
@@ -41,10 +52,11 @@
                         @endforeach
                     </select>
             </div>
-            <div class="col-md-2 btnsort">
+
+            <div class="col-md-1 btnsort">
                 <div class="card-body align-content-center mb-2">
                     <select class="form-select bg-dark text-white " name="sort">
-                        <option>Default</option>
+                        <option>Sort</option>
                         @foreach($sortSelect as $value => $name)
                         <option value="{{$value}}" @if($sortShow==$value) selected @endif>{{$name}}</option>
                         @endforeach
@@ -72,7 +84,6 @@
         <hr class="border border-second border-0 opacity-50">
         {{-- CIA keiciam steilpeliu skaiciu  --}}
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-3 g-3">
-
             @forelse($foods as $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-2 bg-body-tertiary rounded">
@@ -80,10 +91,15 @@
 
                     <div class=" card-body ">
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
-                            <h6>Restaurant: <b style="font-size:17px;"><i>{{$food->foodReataurants_name->title}}</b></i></h6>
+                            <h6>Restaurant: <b style="font-size:17px;"><i>
+                                        {{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
+                        <h6>City: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
 
-                        <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6>
+                        <h6>Category: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
+
+
+                        {{-- <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6> --}}
                         <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                         <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                         <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
@@ -94,23 +110,31 @@
                         <h4 @if($food->price<20) style="color:crimson;" @endif>Price: <b><i>{{$food->price}} &euro;</b></i></h4>
 
                         <hr class="border border-second border-2 opacity-50">
-                        <form action="{{route('update-rate')}}" method="post">
-
-
-                            <div class="gap-3 align-items-center d-flex justify-content-center">
-                                Rating: <b><i>{{$food->rating}} / 5</b></i>
-                                {{-- Voted: <b><i>{{$food->counts}}</b></i> --}}
-                                Rate:
+                        {{-- <form action="{{route('update-rate')}}" method="post"> --}}
+                        <div class="gap-3 align-items-center d-flex justify-content-center">
+                            Rating:<b><i>{{$food->rating}}</i></b>
+                            {{-- Rate:
+                            <input type="hidden" name="product" value="{{$food->id}}">
+                            <input type="hidden" name="user_name" value="{{$name}}">
+                            <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber"> --}}
+                            {{-- <div class="btn-group">
+                                <button type="submit" class="btn btn-outline-secondary">RATE</button>
+                            </div> --}}
+                        </div>
+                        {{-- @csrf --}}
+                        {{-- </form> --}}
+                        {{-- <hr class="border border-second border-2 opacity-50"> --}}
+                        <form action="{{route('update-reviews')}}" method="get">
+                            <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
                                 <input type="hidden" name="product" value="{{$food->id}}">
                                 {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
-
-                                <input type="number" min="1" max="5" name="rate" value="" placeholder="1 - 5" class="form-control imputnumber">
                                 <div class="btn-group">
-                                    <button type="submit" class="btn btn-outline-secondary">RATE</button>
+                                    <button type="submit" class="btn btn-outline-secondary" style="width:200px;">Rating & Reviews</button>
                                 </div>
                             </div>
                             @csrf
                         </form>
+
                         <hr class="border border-second border-2 opacity-50">
                         <form action="{{route('add-basket')}}" method="post">
                             <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
@@ -158,5 +182,5 @@
     </div>
 </div>
 <hr class="border border-second border-0 opacity-50 m-1">
-</div>
+
 @endsection

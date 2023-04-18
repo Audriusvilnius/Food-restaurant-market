@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rest_id')->unsigned();
+            $table->unsignedBigInteger('food_city_no')->unsigned();
+            $table->unsignedBigInteger('food_category_no')->unsigned();
             $table->string('title',100);
             $table->string('rest_title',100)->nullable();
             $table->decimal('price', 5, 2)->unsigned()->nullable();
@@ -26,6 +28,8 @@ return new class extends Migration
             $table->string('add',500)->nullable();
             $table->text('des')->nullable();
             $table->foreign('rest_id')->references('id')->on('restaurants');
+            $table->foreign('food_city_no')->references('id')->on('cities');
+            $table->foreign('food_category_no')->references('id')->on('categories');
             $table->timestamps();
         });
     }

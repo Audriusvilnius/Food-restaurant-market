@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Food;
+use App\Models\City;
 use App\Models\Restaurant;
 use App\Models\Front;
 use App\Models\Order;
+use App\Models\Category;
 use App\Models\Ovner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +22,7 @@ use App\Mail\OrderCompleted;
 use App\Mail\OrderReceived;
 use Illuminate\Support\Facades\Mail;
 
+
 // use Illuminate\Support\Facades\Hash;
 
 class FrontController extends Controller
@@ -27,9 +30,15 @@ class FrontController extends Controller
       
     public function home(Request $request)
     {
+        $categories=Category::all()->sortBy('title');
         $ovners=Ovner::all()->sortBy('title');
-
+        $cities=City::all()->sortBy('title');
+        // $cities=City::where('id', 1);
+        //    dd($cities);
         $foods=Food::all()->sortBy('title');
+        // $foods=Food::where('food_city_no', 1);
+        //    dd($foods);
+
 
         $restaurants=Restaurant::all()->sortBy('title');
 
@@ -41,7 +50,10 @@ class FrontController extends Controller
             if($request->restaurant_id && $request->restaurant_id != 'all'){
             $foods = Food::where('rest_id', $request->restaurant_id);
             }else {
-            $foods = Food::where('id', '>', 0);}
+            $foods = Food::where('id', '>', 0);
+            //  $foods=Food::where('food_city_no', 2);
+            
+        }
             
         $foods=match($request->sort ?? ''){
             'asc_price'=>$foods->orderBy('price'),
@@ -75,51 +87,71 @@ class FrontController extends Controller
             }
         }
 
-        $faker = Faker::create();
-        $text1 = $faker->realText(600,5);
-        $text2 = $faker->realText(500,5);
-        $text3 = $faker->realText(20,2);
-
         return view('front.home.home',[
             'foods'=> $foods,
             'restaurants'=>$restaurants,
+            'categories'=>$categories,
+            'cities'=>$cities,
             'ovners'=>$ovners,
-            'text1' => $text1,
-            'text2' => $text2,
-            'text3' => $text3,
             'sortSelect' => Food::SORT,
             'sortShow' => isset(Food::SORT[$request->sort]) ? $request->sort : '',
             'perPageSelect' => Food::PER_PAGE,
             'perPageShow' => in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All',
             'typeShow'=>$request->restaurant_id ? $request->restaurant_id :'',
+            // 'cityShow'=>$request->restaurant_id ? $request->restaurant_id :'',
             's' => $request->s ?? ''
         ]);
     }
+    public function reviews(Request $request, Food $food){
 
+        $food = Food::where('id','=', $request->product)->first();
+
+        $rateds=json_decode($food->rating_json,1);
+        $request->user_name = Auth::user()->name;
+        return view('front.reviews.index',[
+            'rateds'=>$rateds,
+            'food'=>$food,
+            'id'=>$request->product,
+            'name'=>$request->user_name,
+        ]);
+    }
     public function rate(Request $request, Food $food)
     {  
-        $foo = Food::where('id','=', $request->product)->first();
-        
-        $rate=json_decode($foo->rating_json,1);
-        
+        $food = Food::where('id','=', $request->product)->first();
+        $faker = Faker::create();
+        $rateds=json_decode($food->rating_json,1);
         $request->user_id = Auth::user()->id;
-        
-        if($rate){
-            $rate[$request->user_id]=$request->rate;  
+        $request->user_name = Auth::user()->name;
+        $date = date('Y-m-d H:i', time());
+
+
+        if ($request->food_review == null ){
+            $request->food_review = "The user doesn't leave a review, but...".$faker->realText($maxNbChars = 500, $indexSize = 2);}
+        if ($request->rated == null){
+            $request->rated = rand(1,5);
+        }
+
+        if($rateds){
+            $rateds[$request->user_id]=['rate'=>$request->rated, 'user_name'=>$request->user_name,'review'=>$request->food_review, 'date'=>$date];
         }else{ 
-            $rate = [$request->user_id=> $request->rate];
-        }  
+            $rateds = [$request->user_id=> ['rate'=>$request->rated, 'user_name'=>$request->user_name,'review'=>$request->food_review, 'date'=>$date]];
+        } 
 
-        $rating=array_sum($rate)/count($rate);
-        $counts=count($rate);
-        
-        $rate=json_encode($rate);
+        $arrysum=0;
+        $count=0;
+        foreach ($rateds as $key => $arr) {
+           $arrysum += $arr['rate'];
+           $count++;
+        }
 
-        DB::table('food')->where('id', $request->product) ->update([ 'rating_json' => $rate]);
+        $rating=$arrysum/$count;
+        $rateds=json_encode($rateds);
+
+        DB::table('food')->where('id', $request->product) ->update([ 'rating_json' => $rateds]);
         DB::table('food')->where('id', $request->product) ->update([ 'rating' => $rating]);
-        DB::table('food')->where('id', $request->product) ->update([ 'counts' => $counts]);
+        DB::table('food')->where('id', $request->product) ->update([ 'counts' => $count]);
 
-        return redirect(url()->previous().'#'.$request->product)->with('ok', 'You rate '.$foo->title.' '.$request->rate. ' points');
+        return redirect(url()->previous().'#'.$request->user_id)->with('ok', 'You rate '.$food->title.' '.$request->rated. ' points');
     }
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)
@@ -133,21 +165,21 @@ class FrontController extends Controller
 
     public function viewBasket(Request $request, BasketService $basket)
     {
-        $ovners=Ovner::all();
+        // $ovners=Ovner::all();
        
         // $restaurants=Restaurant::all()->sortBy('title');
-        $faker = Faker::create();
-        $text1 = $faker->realText(600,5);
-        $text2 = $faker->realText(500,5);
-        $text3 = $faker->realText(20,2);
+        // $faker = Faker::create();
+        // $text1 = $faker->realText(600,5);
+        // $text2 = $faker->realText(500,5);
+        // $text3 = $faker->realText(20,2);
 
         
         return view('front.home.basket',[
             'basketList'=>$basket->list,
-            'ovners'=>$ovners,
-            'text1' => $text1,
-            'text2' => $text2,
-            'text3' => $text3,
+            // 'ovners'=>$ovners,
+            // 'text1' => $text1,
+            // 'text2' => $text2,
+            // 'text3' => $text3,
         ]);
     }
 
@@ -181,30 +213,56 @@ class FrontController extends Controller
     
     public function listRestaurants(Request $request, Restaurant $restaurant)
     {
+        $categories=Category::all()->sortBy('title');
         $ovners=Ovner::all()->sortBy('title');
 
         $restaurants=Restaurant::all();
+        $cities=City::all()->sortBy('title');
 
         $foods=Food::where('rest_id',$restaurant->id)->get();  
         $foods=$foods->sortBy('title');
        
-        $faker = Faker::create();
-        $text1 = $faker->realText(600,5);
-        $text2 = $faker->realText(500,5);
-        $text3 = $faker->realText(20,2);
-
         return view('front.home.home',[
             'restaurants'=>$restaurants,
             'foods'=> $foods,
+            'cities'=>$cities,
+            'categories'=>$categories,
             'ovners'=> $ovners,
-            'text1' => $text1,
-            'text2' => $text2,
-            'text3' => $text3,
             'sortSelect' => Food::SORT,
             'sortShow' => isset(Food::SORT[$request->sort]) ? $request->sort : '',
             'perPageSelect' => Food::PER_PAGE,
             'perPageShow' => in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All',
             'typeShow'=>$request->restaurant_id ? $request->restaurant_id :'',
+            // 'cityShow'=>$request->restaurant_id ? $request->restaurant_id :'',
+            's' => $request->s ?? ''
+        ]);
+    } 
+
+    public function listCategory(Request $request, Category $category, City $city)
+    {
+        // $categories=Category::all()->sortBy('title');
+        // $restaurants=Restaurant::all();
+        $ovners=Ovner::all()->sortBy('title');
+
+        $cities=City::all()->sortBy('title');
+
+        $foods=Food::where('food_category_no',$category->id)->get();  
+        $foods=$foods->sortBy('title');
+        $category=$category->title;
+       
+        return view('front.home.category',[
+            // 'restaurants'=>$restaurants,
+            'foods'=> $foods,
+            'cities'=>$cities,
+            // 'categories'=>$categories,
+            'category'=>$category,
+            'ovners'=> $ovners,
+            'sortSelect' => Food::SORT,
+            'sortShow' => isset(Food::SORT[$request->sort]) ? $request->sort : '',
+            'perPageSelect' => Food::PER_PAGE,
+            'perPageShow' => in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All',
+            'typeShow'=>$request->restaurant_id ? $request->restaurant_id :'',
+            // 'cityShow'=>$request->restaurant_id ? $request->restaurant_id :'',
             's' => $request->s ?? ''
         ]);
     } 

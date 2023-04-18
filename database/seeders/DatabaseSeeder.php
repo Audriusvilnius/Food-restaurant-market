@@ -37,14 +37,60 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123'),
             'role'=>'customer'
         ]);
+            DB::table('users')->insert([
+            'name' => 'Ina',
+            'email' => 'ina@gmail.com',
+            'password' => Hash::make('123'),
+            'role'=>'admin'
+        ]);
+            DB::table('users')->insert([
+            'name' => 'Tomas',
+            'email' => 'tomas@gmail.com',
+            'password' => Hash::make('123'),
+            'role'=>'admin'
+        ]);
+            DB::table('users')->insert([
+            'name' => 'Vytautas',
+            'email' => 'vytautas@gmail.com',
+            'password' => Hash::make('123'),
+            'role'=>'admin'
+        ]);
+            DB::table('users')->insert([
+            'name' => 'Audrius',
+            'email' => 'audrius@gmail.com',
+            'password' => Hash::make('123'),
+            'role'=>'admin'
+        ]);
 
         $faker = Faker::create();
         $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
         // $faker->addProvider(new \FakerRestaurant\Provider\lt_LT\Restaurant($faker));
         // https://github.com/jzonta/FakerRestaurant
         // composer require jzonta/faker-restaurant
-      
-        foreach (range(1,2) as $_) {
+        
+        $cities = [
+            'Vilnius', 'Kaunas', 'Klaipėda', 'Panevėžys', 'Šiauliai'
+        ];
+        $category = [
+            'Pasta', 'Pica', 'Breakfast', 'Salad', 'Soup','BBQ','Asian','Vegetarian','Sushi','Fish'
+        ];
+        $food_qty=500;
+
+        foreach ($cities as $_) {
+        DB::table('cities')->insert([
+                'title' => $_,
+            ]);
+        }
+        
+        foreach ($category as $_) {
+            $photo_food=rand(22,49);
+        DB::table('categories')->insert([
+                'title' => $_,
+                'photo' => '/images/temp/'.$photo_food.'.jpeg',
+            ]);
+        }
+
+        foreach (range(1,1) as $_) {
               $photo_rest=rand(1,21);
         DB::table('ovners')->insert([
                 'title' => $faker->company,
@@ -67,11 +113,11 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (range(1,30) as $_) {
+        foreach (range(1,60) as $_) {
             $photo_rest=rand(1,21);
         DB::table('restaurants')->insert([
                 'title' => $faker->company,
-                'city' => $faker->city,
+                'city' => $cities[rand(0,4)],
                 'addres' => $faker->streetAddress,
                 'open' => $faker->time($format='H:i',$max='now'),
                 'close' => $faker->time($format='H:i',$max='now'),
@@ -79,14 +125,14 @@ class DatabaseSeeder extends Seeder
                 'phone' => $faker->e164PhoneNumber,
                 'des' => $faker->paragraph($nbSentences = rand(5, 10), $variableNbSentences = true),
             ]);
-                // 'open' => $faker->time($format='H:i:s',$max='now'),
         }
 
-        $rest_qty=250;
-        foreach (range(1,$rest_qty) as $_) {
+        foreach (range(1,$food_qty) as $_) {
             $photo_food=rand(22,49);
         DB::table('food')->insert([
                 'rest_id' => rand(1,30),
+                'food_city_no' => rand(1,5),
+                'food_category_no' => rand(1,count($category)),
                 'title' => $faker->foodName,
                 'counts' => 0,
                 'price' => rand(499, 2999) / 100,
@@ -96,7 +142,5 @@ class DatabaseSeeder extends Seeder
                 'des' => $faker->paragraph($nbSentences = rand(5, 10), $variableNbSentences = true),
             ]);
         }
-
-
     }
 }

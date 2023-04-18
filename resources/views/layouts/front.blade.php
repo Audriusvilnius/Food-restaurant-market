@@ -49,94 +49,97 @@
 
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ms-auto">
-                         @if(Auth::user()?->role == 'admin')
-                         <li class="nav-item dropdown">
-                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                 Orders
-                             </a>
-                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                 <a class="dropdown-item" href="{{ route('order-index') }}">Order list</a>
-                             </div>
-                         </li>
-
-                         <li class="nav-item dropdown">
-                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                 Menu
-                             </a>
-                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                 <a class="dropdown-item" href="{{ route('foods-create') }}">New Dish</a>
-                                 <a class="dropdown-item" href="{{ route('foods-index') }}">Dish list</a>
-
-                             </div>
-                         </li>
-                         <li class="nav-item dropdown">
-                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                 Restaurant
-                             </a>
-                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                 <a class="dropdown-item" href="{{ route('restaurants-create') }}">Add new Restaurant</a>
-                                 <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants list</a>
-                                 <a class="dropdown-item" href="{{ route('foods-rest_title') }}">Copy Restaurant title</a>
-
-
-                             </div>
-                         </li>
-                         <li class="nav-item dropdown">
-                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                 Ovners
-                             </a>
-                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                 <a class="dropdown-item" href="{{ route('ovner-create') }}">Add new</a>
-                                 <a class="dropdown-item" href="{{ route('ovner-index') }}">List</a>
-                             </div>
-                         </li>
-
-
-                         @endif
-                         <!-- Authentication Links -->
-                         @guest
-                         @if (Route::has('login'))
-                         <li class="nav-item">
-                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                         </li>
-                         @endif
-
-                         @if (Route::has('register'))
-                         <li class="nav-item">
-                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                         </li>
-                         @endif
-                         @else
-                         <li class="nav-item dropdown">
-                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                 {{ Auth::user()->name }}
-                             </a>
-
-                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                     {{ __('Logout') }}
+                         <ul class="navbar-nav ms-auto">
+                             @if(Auth::user()?->role == 'admin')
+                             <li class="nav-item dropdown">
+                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     Orders
                                  </a>
-                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                     @csrf
-                                 </form>
+                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                     <a class="dropdown-item" href="{{ route('order-index') }}">Order list</a>
+                                 </div>
+                             </li>
+
+                             <li class="nav-item dropdown">
+                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     Foods
+                                 </a>
+                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                     <a class="dropdown-item" href="{{ route('foods-index') }}">Foods list</a>
+                                     <a class="dropdown-item" href="{{ route('category-index') }}">Category</a>
+
+
+                                 </div>
+                             </li>
+                             <li class="nav-item dropdown">
+                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     Restaurant
+                                 </a>
+                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                     <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants list</a>
+                                     <a class="dropdown-item" href="{{ route('foods-rest_title') }}">Copy Restaurant title</a>
+
+
+                                 </div>
+                             </li>
+                             <li class="nav-item dropdown">
+                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     Ovners
+                                 </a>
+                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                     <a class="dropdown-item" href="{{ route('ovner-create') }}">Add new</a>
+                                     <a class="dropdown-item" href="{{ route('ovner-index') }}">List</a>
+                                 </div>
+                             </li>
+
+
+                             @endif
+
+                             <!-- Authentication Links -->
+                             @guest
+                             @if (Route::has('login'))
+                             <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                             </li>
+                             @endif
+
+                             @if (Route::has('register'))
+                             <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                             </li>
+                             @endif
+                             @else
+                             <li class="nav-item dropdown">
+                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     {{ Auth::user()->name }}
+                                 </a>
+
+                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                         {{ __('Logout') }}
+                                     </a>
+                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                         @csrf
+                                     </form>
+                                 </div>
+                             </li>
+                             @endguest
+                             <a href="{{route('view-basket')}}">
+                                 <svg class="cart">
+                                     <use xlink:href="#cart"></use>
+                                 </svg>
+                             </a>
+                             @if($basket->count!=0)
+                             <div class="ithem">
+                                 {{-- <span>{{$basket->test()}}</span> --}}
+                                 @if($basket->count<=9) <span>{{$basket->count}}</span>
+                                     @elseif($basket->count>9) 9+
+                                     @endif
                              </div>
-                         </li>
-                         @endguest
-                         <a href="{{route('view-basket')}}">
-                             <svg class="cart">
-                                 <use xlink:href="#cart"></use>
-                             </svg>
-                         </a>
-                         @if($basket->count!=0)
-                         <div class="ithem">
-                             {{-- <span>{{$basket->test()}}</span> --}}
-                             @if($basket->count<=9) <span>{{$basket->count}}</span>
-                                 @elseif($basket->count>9) 9+@endif
-                         </div>
-                     </ul>
-                     <span>Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
-                     @endif
+                         </ul>
+                         <span>Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
+                         @endif
                  </div>
              </div>
          </nav>
@@ -147,7 +150,8 @@
      </div>
      <footer class="py-4">
 
-         <a href="#" class="text-decoration-none" style="color:black;">
+         {{-- <a href="#" class="text-decoration-none" style="color:black;"> --}}
+         <a href="#" class="text-decoration-none" style="color:white;">
              <div class="up sticky-bottom">
                  <i class="bi bi-chevron-up"></i>
              </div>
@@ -155,6 +159,7 @@
 
          <div class="card mt-2 d-flex justify-content-md-between align-content-right">
              <div class="row g-0 shadow p-3 bg-body-tertiary ">
+
                  @forelse($ovners as $ovner)
                  <div class="container">
                      <div class="card-body text-muted">
@@ -164,13 +169,13 @@
                                  <div class="col-md-12">
                                      <h4><small> {{$ovner->title}}</small></h4>
                                  </div>
-                                 <div class="col-md-3">
+                                 <div class="col-md-4">
                                      <small class="fw-lighter">Street:</small>&nbsp;&nbsp; {{$ovner->street}} {{$ovner->build}}<br>
                                      <small class="fw-lighter">City:</small>&nbsp;&nbsp; {{$ovner->city}}<br>
                                      <small class="fw-lighter">Post: </small>&nbsp;&nbsp; {{$ovner->postcode}}<br>
                                      <small class="fw-lighter">Country:</small>&nbsp;&nbsp; {{$ovner->country}}<br>
                                  </div>
-                                 <div class="col-md-6">
+                                 <div class="col-md-4">
                                      <small class="fw-semibold"><i class="bi bi-globe"></i></small>&nbsp;&nbsp; {{$ovner->url}}<br>
                                      <small class="fw-semibold"><i class="bi bi-telephone"></i></small>&nbsp;&nbsp; {{$ovner->phone}}<br>
                                      <small class="fw-semibold"><i class="bi bi-phone"></small></i>&nbsp;&nbsp; {{$ovner->mobile}}<br>
@@ -184,21 +189,24 @@
                                      {{-- </div> --}}
                                      {{-- </div> --}}
                                  </div>
-                                 <div class="col-md-3">
+                                 <div class="col-md-4">
                                      <small class="fw-semibold "><i class="bi bi-bank"></small></i>&nbsp;&nbsp; {{$ovner->bank}}<br>
                                      <small class="fw-semibold"><i class="bi bi-wallet-fill"></small></i>&nbsp;&nbsp; {{$ovner->account}}<br>
                                  </div>
-                             </div>
+                                 {{-- <div class="col-md-3 p-5">
+                                     <img src="{{asset($ovner->photo)}}" class="img-fluid rounded" alt="imageset">
+                             </div> --}}
                          </div>
                      </div>
-                     <div class="container ">
-                         <hr class=" border border-second border-1 opacity-50 m-1">
-                     </div>
                  </div>
-                 @empty
-                 <h5>Oops! Something went wrong, missing contacts info</h5>
-                 @endforelse
+                 <div class="container ">
+                     <hr class=" border border-second border-1 opacity-50 m-1">
+                 </div>
              </div>
+             @empty
+             <h5>Oops! Something went wrong, missing contacts info</h5>
+             @endforelse
+         </div>
          </div>
      </footer>
      @forelse($ovners as $ovner)

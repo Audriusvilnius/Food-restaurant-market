@@ -22,6 +22,12 @@
                     <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                         <div class="col-md-4">
                             <div class="card-body">
+                                <h6>Category</h6>
+                                <select class="form-select" name="category_id">
+                                    @foreach($categories as $category)
+                                    <option value="{{$category->id}}" @if($category->id == old('category_id',$food->food_category_no)) selected @endif>{{$category->title}}</option>
+                                    @endforeach
+                                </select>
                                 <h6>Title: </h6>
                                 <input type="text" class="form-control" name="food_title" value="{{old('food_title',$food->title)}}">
                                 <h6>Price: </h6>
@@ -29,9 +35,18 @@
                                 <h6>Restaurant</h6>
                                 <select class="form-select" name="restaurant_id">
                                     @foreach($restaurants as $restaurant)
-                                    <option value="{{$restaurant->id}}" @if($restaurant->id == old('restaurant_id')) selected @endif>{{$restaurant->title}}</option>
+                                    <option value="{{$restaurant->id}}" @if($restaurant->id == old('restaurant_id',$food->rest_id)) selected @endif>{{$restaurant->title}}</option>
+
                                     @endforeach
                                 </select>
+                                <h6>City</h6>
+                                <select class="form-select" name="city_id">
+                                    @foreach($cities as $city)
+                                    <option value="{{$city->id}}" @if($city->id == old('city_id',$food->food_city_no)) selected @endif>{{$city->title}}</option>
+                                    @endforeach
+                                </select>
+
+
                                 {{-- <input type="text" class="form-control" name="food_rest_id" value="{{old('food_rest_id',$food->rest_id)}}"> --}}
                                 <h6>Additional info: </h6>
                                 <input type="text" class="form-control" name="food_add" value="{{old('food_add',$food->add)}}">
@@ -59,9 +74,6 @@
                                 <div class="list-table__buttons ">
                                     <button type="submit" class="btn btn-danger" name="delete_photo" value="1">Delete photo</button>
                                     <button type="submit" class="btn btn-primary d-flex align-content-end m-2 " style="width: 80px;" name="save">Update</button>
-
-
-
                                 </div>
                             </div>
                         </div>
