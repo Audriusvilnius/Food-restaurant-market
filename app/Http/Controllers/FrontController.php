@@ -238,12 +238,12 @@ class FrontController extends Controller
         ]);
     } 
 
-    public function listCategory(Request $request, Category $category)
+    public function listCategory(Request $request, Category $category, City $city)
     {
-        $categories=Category::all()->sortBy('title');
+        // $categories=Category::all()->sortBy('title');
+        // $restaurants=Restaurant::all();
         $ovners=Ovner::all()->sortBy('title');
 
-        $restaurants=Restaurant::all();
         $cities=City::all()->sortBy('title');
 
         $foods=Food::where('food_category_no',$category->id)->get();  
@@ -251,10 +251,10 @@ class FrontController extends Controller
         $category=$category->title;
        
         return view('front.home.category',[
-            'restaurants'=>$restaurants,
+            // 'restaurants'=>$restaurants,
             'foods'=> $foods,
             'cities'=>$cities,
-            'categories'=>$categories,
+            // 'categories'=>$categories,
             'category'=>$category,
             'ovners'=> $ovners,
             'sortSelect' => Food::SORT,
