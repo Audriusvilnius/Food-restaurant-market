@@ -1,4 +1,4 @@
-@inject('category', 'App\Services\CategoryService')
+@inject('city', 'App\Services\CityService')
 <section class="container shadow_new">
     <h3 class="mb-4 text-start"><i>Categories<i></h3>
     <hr class=" border border-second border-1 opacity-75">

@@ -25,10 +25,8 @@
     </a>
 </section>
 <section class="container shadow_new">
-    <h3 class=" mb-4 text-start"><i>Restaurants offered {{$category}} to you</i></h3>
+    <h3 class=" mb-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
     <hr class="border border-second border-1 opacity-75">
-
-
 </section>
 
 {{-- @include('front.home.common.category') --}}

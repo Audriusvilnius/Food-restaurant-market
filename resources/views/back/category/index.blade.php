@@ -31,7 +31,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-6 g-3">
             @forelse($categories as $category)
             <div id="{{ $category['id'] }}" class="col d-flex justify-content-md-between">

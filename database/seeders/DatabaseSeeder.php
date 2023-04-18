@@ -68,8 +68,12 @@ class DatabaseSeeder extends Seeder
         // https://github.com/jzonta/FakerRestaurant
         // composer require jzonta/faker-restaurant
         
-        $cities = ['Vilnius', 'Kaunas', 'Klaipėda', 'Panevėžys', 'Šiauliai'];
-        $category = ['Pasta', 'Pica', 'Drink', 'Salad', 'Soup','BBQ','Asian','Vegetarian','Sushi','Fish'];
+        $cities = [
+            'Vilnius', 'Kaunas', 'Klaipėda', 'Panevėžys', 'Šiauliai'
+        ];
+        $category = [
+            'Pasta', 'Pica', 'Breakfast', 'Salad', 'Soup','BBQ','Asian','Vegetarian','Sushi','Fish'
+        ];
         $food_qty=500;
 
         foreach ($cities as $_) {

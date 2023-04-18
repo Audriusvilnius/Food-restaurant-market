@@ -30,6 +30,5 @@ class CategoryServiceProvider extends ServiceProvider
         $this->app->singleton(CategoryService::class, function ($app){
         return new CategoryService();
         });
-
     }
 }
