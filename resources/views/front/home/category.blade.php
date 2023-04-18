@@ -17,15 +17,18 @@
 </a>
 <section class="py-1 text-center container shadow_new">
     <a class="navbar-brand" href="{{ url('/') }}">
-        <h1 class="m-5">Back to Restaurants </h1>
+        <h1 class="m-5">Back to Restaurants offers</h1>
         {{-- <button type="submit" class="btn btn-ligt" style="width:auto;">
             <h1 class="m-5">Back to Restaurants </h1>
         </button> --}}
-        <hr class="border border-second border-1 opacity-75">
+        <hr class="border border-second border-0 opacity-75">
     </a>
 </section>
 <section class="container shadow_new">
     <h3 class=" mb-4 text-start">Restaurants offered {{$category}} to you</h3>
+    <hr class="border border-second border-1 opacity-75">
+
+
 </section>
 
 {{-- @include('front.home.common.category') --}}

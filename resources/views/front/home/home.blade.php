@@ -19,7 +19,7 @@
     <h1 class="m-5">All Restaurants near me</h1>
 
     {{-- <h2 class="m-5 fs-3"><i>text</i></h2> --}}
-    <hr class=" border border-second border-1 opacity-75">
+    <hr class=" border border-second border-0 opacity-75">
 
 </section>
 
