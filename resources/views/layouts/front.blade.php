@@ -26,11 +26,11 @@
 
  </head>
 
- <body class="mystyle ">
-     <div id="app ">
-         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
-             <div class="container">
+ <body class="mystyle">
 
+     <div id="app ">
+         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">{{--fixed-top--}}
+             <div class="container">
                  <a class="navbar-brand" href="{{ url('/') }}">
                      <img class="logo" src="{{asset('/images/temp/exam.png')}}" alt="exam">
                      {{-- {{ config('app.name', 'Laravel') }} --}}
@@ -49,98 +49,97 @@
 
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ms-auto">
-                         <ul class="navbar-nav ms-auto">
-                             @if(Auth::user()?->role == 'admin')
-                             <li class="nav-item dropdown">
-                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     Orders
-                                 </a>
-                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('order-index') }}">Order list</a>
-                                 </div>
-                             </li>
-
-                             <li class="nav-item dropdown">
-                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     Foods
-                                 </a>
-                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('foods-index') }}">Foods</a>
-                                     <a class="dropdown-item" href="{{ route('category-index') }}">Category</a>
-
-
-                                 </div>
-                             </li>
-                             <li class="nav-item dropdown">
-                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     Restaurant
-                                 </a>
-                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants</a>
-                                     <a class="dropdown-item" href="{{ route('city-index') }}">City</a>
-                                     <a class="dropdown-item" href="{{ route('foods-rest_title') }}">Copy Restaurant title</a>
-
-
-                                 </div>
-                             </li>
-                             <li class="nav-item dropdown">
-                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     Ovners
-                                 </a>
-                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('ovner-create') }}">Add new</a>
-                                     <a class="dropdown-item" href="{{ route('ovner-index') }}">List</a>
-                                 </div>
-                             </li>
-
-
-                             @endif
-
-                             <!-- Authentication Links -->
-                             @guest
-                             @if (Route::has('login'))
-                             <li class="nav-item">
-                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                             </li>
-                             @endif
-
-                             @if (Route::has('register'))
-                             <li class="nav-item">
-                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                             </li>
-                             @endif
-                             @else
-                             <li class="nav-item dropdown">
-                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     {{ Auth::user()->name }}
-                                 </a>
-
-                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                         {{ __('Logout') }}
-                                     </a>
-                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                         @csrf
-                                     </form>
-                                 </div>
-                             </li>
-                             @endguest
-                             <a href="{{route('view-basket')}}">
-                                 <svg class="cart">
-                                     <use xlink:href="#cart"></use>
-                                 </svg>
+                         @if(Auth::user()?->role == 'admin')
+                         <li class="nav-item dropdown">
+                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                 Orders
                              </a>
-                             @if($basket->count!=0)
-                             <div class="ithem">
-                                 {{-- <span>{{$basket->test()}}</span> --}}
-                                 @if($basket->count<=9) <span>{{$basket->count}}</span>
-                                     @elseif($basket->count>9) 9+
-                                     @endif
+                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                 <a class="dropdown-item" href="{{ route('order-index') }}">Order list</a>
                              </div>
-                         </ul>
-                         <span>Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
+                         </li>
+
+                         <li class="nav-item dropdown">
+                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                 Foods
+                             </a>
+                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                 <a class="dropdown-item" href="{{ route('foods-index') }}">Foods</a>
+                                 <a class="dropdown-item" href="{{ route('category-index') }}">Category</a>
+
+
+                             </div>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                 Restaurant
+                             </a>
+                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                 <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants</a>
+                                 <a class="dropdown-item" href="{{ route('city-index') }}">City</a>
+                                 <a class="dropdown-item" href="{{ route('foods-rest_title') }}">Copy Restaurant title</a>
+
+
+                             </div>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                 Ovners
+                             </a>
+                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                 <a class="dropdown-item" href="{{ route('ovner-create') }}">Add new</a>
+                                 <a class="dropdown-item" href="{{ route('ovner-index') }}">List</a>
+                             </div>
+                         </li>
+
+
                          @endif
+
+                         <!-- Authentication Links -->
+                         @guest
+                         @if (Route::has('login'))
+                         <li class="nav-item">
+                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                         </li>
+                         @endif
+
+                         @if (Route::has('register'))
+                         <li class="nav-item">
+                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                         </li>
+                         @endif
+                         @else
+                         <li class="nav-item dropdown">
+                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                 {{ Auth::user()->name }}
+                             </a>
+
+                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                     {{ __('Logout') }}
+                                 </a>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                     @csrf
+                                 </form>
+                             </div>
+                         </li>
+                         @endguest
+                         <a href="{{route('view-basket')}}">
+                             <svg class="cart">
+                                 <use xlink:href="#cart"></use>
+                             </svg>
+                         </a>
+                         @if($basket->count!=0)
+                         <div class="ithem">
+                             {{-- <span>{{$basket->test()}}</span> --}}
+                             @if($basket->count<=9) <span>{{$basket->count}}</span>
+                                 @elseif($basket->count>9) 9+
+                                 @endif
+                         </div>
+                     </ul>
+                     <span class="nav-link">Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
+                     @endif
                  </div>
              </div>
          </nav>
