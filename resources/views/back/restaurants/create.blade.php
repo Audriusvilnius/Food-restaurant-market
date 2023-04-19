@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mb-5" style="min-height: 850px">
-
+<div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow bg-body-tertiary rounded d-flex">
@@ -44,11 +43,9 @@
                                     <div class="col-md-5">
                                         <h6>Open</h6>
                                         <input type="time" class="form-control" name="restaurant_open" value="{{old('restaurant_open')}}" min="0" max="24">
-
                                     </div>
                                     <div class="col-md-2">
                                     </div>
-
                                     <div class="col-md-5">
                                         <h6>Close</h6>
                                         <input type="time" class="form-control" name="restaurant_close" value="{{old('restaurant_close')}}" min="0" max="24">

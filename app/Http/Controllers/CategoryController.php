@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Food;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -49,8 +50,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'category_title' => 'required|nullable|unique:categories,title',
+                'photo' => 'required|nullable',
+            ]);
+            
+            if ($validator->fails()) {
+                $request->flash();
+                return redirect()->back()->withErrors($validator);
+            }
+            
         $category = new Category;
-
+            
         if($request->file('photo')){
         $photo = $request->file('photo');
         $ext = $photo->getClientOriginalExtension();
@@ -101,6 +115,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+         $validator = Validator::make(
+            $request->all(),
+            [
+                'category_title' => 'required|nullable',
+            ]);
+            
+            if ($validator->fails()) {
+                $request->flash();
+                return redirect()->back()->withErrors($validator);
+            }
+            
         if($request->delete_photo){
             $category->deletePhoto();
         return redirect()->back()->with('ok', 'Photo deleted');

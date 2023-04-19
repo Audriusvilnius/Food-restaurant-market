@@ -65,7 +65,7 @@
                                      Foods
                                  </a>
                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('foods-index') }}">Foods list</a>
+                                     <a class="dropdown-item" href="{{ route('foods-index') }}">Foods</a>
                                      <a class="dropdown-item" href="{{ route('category-index') }}">Category</a>
 
 
@@ -76,7 +76,8 @@
                                      Restaurant
                                  </a>
                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants list</a>
+                                     <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants</a>
+                                     <a class="dropdown-item" href="{{ route('city-index') }}">City</a>
                                      <a class="dropdown-item" href="{{ route('foods-rest_title') }}">Copy Restaurant title</a>
 
 

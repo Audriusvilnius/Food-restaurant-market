@@ -36,7 +36,7 @@
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-3 g-3">
             @forelse($foods as $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
-                <div class="card g-0 shadow p-2 bg-body-tertiary rounded">
+                <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary " alt=" hotel">
 
                     <div class=" card-body ">
