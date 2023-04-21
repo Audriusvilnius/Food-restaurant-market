@@ -1,5 +1,7 @@
  @inject('basket', 'App\Services\BasketService')
  @inject('restaurant', 'App\Services\RestaurantService')
+ @inject('city', 'App\Services\CityService')
+ @inject('category', 'App\Services\CategoryService')
 
  <!doctype html>
  <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -27,7 +29,6 @@
  </head>
 
  <body class="mystyle">
-
      <div id="app ">
          <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">{{--fixed-top--}}
              <div class="container">
@@ -43,12 +44,16 @@
                      <!-- Left Side Of Navbar -->
 
                      {{-- @include('front.home.common.restaurant') --}}
-                     <ul class="navbar-nav me-auto">
-
+                     <ul class="navbar-nav me-5">
+                         Languege
                      </ul>
-
+                     <ul class="navbar-nav me-auto">
+                         @include('front.home.common.city')
+                     </ul>
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ms-auto">
+                         <!--  style="background-color:skyblue; padding:10px;border-radius:10px; color:black;" -->
+
                          @if(Auth::user()?->role == 'admin')
                          <li class="nav-item dropdown">
                              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -78,8 +83,6 @@
                                  <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants</a>
                                  <a class="dropdown-item" href="{{ route('city-index') }}">City</a>
                                  <a class="dropdown-item" href="{{ route('foods-rest_title') }}">Copy Restaurant title</a>
-
-
                              </div>
                          </li>
                          <li class="nav-item dropdown">
@@ -137,16 +140,18 @@
                                  @elseif($basket->count>9) 9+
                                  @endif
                          </div>
+                         <span class="nav-link">Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
+                         @endif
                      </ul>
-                     <span class="nav-link">Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
-                     @endif
                  </div>
              </div>
          </nav>
-         @include('layouts.svg')
-         <main class="py-4 mystyle">
-             @yield('content')
-         </main>
+     </div>
+
+     @include('layouts.svg')
+     <main class="py-4 mystyle">
+         @yield('content')
+     </main>
      </div>
      <footer class="py-4">
 

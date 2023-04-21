@@ -27,17 +27,39 @@ use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
-      
-    public function home(Request $request)
+    public $citySelect;
+    
+    public function __construct()
     {
+        $this->citySelect = session()->get('citySelect',[]);
+    }
+    //     public function __get($citySelect)
+    // {
+    //     return match($citySelect){
+    //         'citySelect'=>$this->citySelect,
+    //         default=>null
+    //     };
+    // }
+
+    public function home(Request $request, City $city, FrontController $citySelect)
+    {   
+   
+
+
         $categories=Category::all()->sortBy('title');
         $ovners=Ovner::all()->sortBy('title');
         $cities=City::all()->sortBy('title');
-        // $cities=City::where('id', 1);
-        //    dd($cities);
+        // $cities=City::where('id', 4);
+        // $cities->citySelect;
+        foreach ( $this->citySelect as $key => $value) {
+             dump($value);
+             $value=$value;
+        }
+        // dump($citySelect);
+        
         $foods=Food::all()->sortBy('title');
-        // $foods=Food::where('food_city_no', 1);
-        //    dd($foods);
+        // $foods=Food::where('food_city_no', 4);
+        //    dump($foods);
 
 
         $restaurants=Restaurant::all()->sortBy('title');
@@ -51,7 +73,7 @@ class FrontController extends Controller
             $foods = Food::where('rest_id', $request->restaurant_id);
             }else {
             $foods = Food::where('id', '>', 0);
-            //  $foods=Food::where('food_city_no', 2);
+            $foods=Food::where('food_city_no', $value);
             
         }
             
@@ -254,6 +276,7 @@ class FrontController extends Controller
             // 'restaurants'=>$restaurants,
             'foods'=> $foods,
             'cities'=>$cities,
+            'city'=>$city,
             // 'categories'=>$categories,
             'category'=>$category,
             'ovners'=> $ovners,
@@ -266,4 +289,11 @@ class FrontController extends Controller
             's' => $request->s ?? ''
         ]);
     } 
+
+        public function city(Request $request)
+    {     
+        $this->citySelect=$request->city_id;
+        session()->put('citySelect',$this->citySelect);
+        return redirect()->route('start'); 
+    }
 }

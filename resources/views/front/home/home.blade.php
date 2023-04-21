@@ -95,10 +95,7 @@
                                         {{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
                         <h6>City: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
-
                         <h6>Category: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
-
-
                         {{-- <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6> --}}
                         <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                         <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
@@ -154,10 +151,6 @@
                                 </div>
                                 @csrf
                         </form>
-                    </div>
-                    <div class=" col-md-12 d-flex">
-                        <div class="col-md-4">
-                        </div>
                     </div>
                 </div>
             </div>

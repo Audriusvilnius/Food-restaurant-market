@@ -117,7 +117,7 @@ class DatabaseSeeder extends Seeder
             $photo_rest=rand(1,21);
         DB::table('restaurants')->insert([
                 'title' => $faker->company,
-                'city' => $cities[rand(0,4)],
+                // 'city' => $cities[rand(0,4)],
                 'addres' => $faker->streetAddress,
                 'open' => $faker->time($format='H:i',$max='now'),
                 'close' => $faker->time($format='H:i',$max='now'),

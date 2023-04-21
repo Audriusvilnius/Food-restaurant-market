@@ -15,7 +15,7 @@
                 @forelse($restaurant->getService() as $restaurant)
                 <div class=" card-body ">
 
-                    <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$restaurant)}}">{{$restaurant->city}}</a>
+                    <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$restaurant)}}">{{$restaurant->title}}</a>
                     {{-- {{$restaurant->food_Restaurant()->count()}} --}}
                 </div>
                 @empty
