@@ -15,21 +15,21 @@
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
+
 <section class="py-1 text-center container shadow_new">
-    <a class="navbar-brand" href="{{ url('/') }}">
-        <h1 class="m-5">Back to Restaurants offers</h1>
-        {{-- <button type="submit" class="btn btn-ligt" style="width:auto;">
-            <h1 class="m-5">Back to Restaurants </h1>
-        </button> --}}
-        <hr class="border border-second border-0 opacity-75">
+    <a class="list-group-item list-group-item-action" href="{{ url('/') }}">
+        <div class="btn btn-dark">
+            <h1 class="m-3 shadow_new">Back to Restaurants offers</h1>
+        </div>
     </a>
+    <hr class=" border border-second border-0 opacity-75">
 </section>
+
 <section class="container shadow_new">
-    <h3 class=" mb-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
+    <h3 class=" mt-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
     <hr class="border border-second border-1 opacity-75">
 </section>
 
-{{-- @include('front.home.common.category') --}}
 
 <div class="page">
     <div class="container ">

@@ -154,7 +154,6 @@
      </main>
      </div>
      <footer class="py-4">
-
          {{-- <a href="#" class="text-decoration-none" style="color:black;"> --}}
          <a href="#" class="text-decoration-none" style="color:white;">
              <div class="up sticky-bottom">
@@ -204,20 +203,16 @@
                          </div>
                      </div>
                  </div>
-                 <div class="container ">
-                     <hr class=" border border-second border-1 opacity-50 m-1">
-                 </div>
+
              </div>
              @empty
              <h5>Oops! Something went wrong, missing contacts info</h5>
              @endforelse
-         </div>
+             @forelse($ovners as $ovner)
+             <span class="text-center">{{$ovner->title}} &copy 2023</span>
+             @empty
+             @endforelse
          </div>
      </footer>
-     @forelse($ovners as $ovner)
-     <span class="text-center">{{$ovner->title}} - </span>
-     @empty
-     @endforelse
-     <span class="text-center"> © 2023</span>
  </body>
  </html>

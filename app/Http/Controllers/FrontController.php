@@ -28,12 +28,12 @@ use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
 {
-    public $citySelect;
+    // public $citySelect;
 
-    public function __construct()
-    {
-        $this->citySelect = session()->get('citySelect', []);
-    }
+    // public function __construct()
+    // {
+    //     $this->citySelect = session()->get('citySelect', []);
+    // }
     //     public function __get($citySelect)
     // {
     //     return match($citySelect){
@@ -45,20 +45,16 @@ class FrontController extends Controller
     public function home(Request $request, City $city, FrontController $citySelect)
     {
 
-
-
         $categories = Category::all()->sortBy('title');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
-        // $cities=City::where('id', 4);
-        // $cities->citySelect;
-        //  Sesion::get('citySelect');
-        dump(Session::get('citySelect'));
+
+        // dump(Session::get('citySelect'));
 
         $foods = Food::all()->sortBy('title');
-        // $foods=Food::where('food_city_no', 4);
-        //    dump($foods);
 
+        $sess = Session::get('citySelect');
+        // dd($sess);
 
         $restaurants = Restaurant::all()->sortBy('title');
 
@@ -70,8 +66,11 @@ class FrontController extends Controller
             if ($request->restaurant_id && $request->restaurant_id != 'all') {
                 $foods = Food::where('rest_id', $request->restaurant_id);
             } else {
-                $foods = Food::where('id', '>', 0);
+                // $foods = Food::where('id', '>', 0);
                 $foods = Food::where('food_city_no', Session::get('citySelect'));
+                if ($sess == null) {
+                    $foods = Food::where('id', '>', 0);
+                }
             }
 
             $foods = match ($request->sort ?? '') {
@@ -265,7 +264,10 @@ class FrontController extends Controller
 
         $cities = City::all()->sortBy('title');
 
-        $foods = Food::where('food_category_no', $category->id)->get();
+        $foods = Food::where('food_category_no', $category->id)
+            ->where('food_city_no', Session::get('citySelect'))
+            ->get();
+
         $foods = $foods->sortBy('title');
         $category = $category->title;
 
@@ -289,8 +291,8 @@ class FrontController extends Controller
 
     public function city(Request $request)
     {
-        $this->citySelect = $request->city_id;
-        Session::put('citySelect', $this->citySelect);
-        return redirect()->route('start');
+        $citySelect = $request->city_id;
+        Session::put('citySelect', $citySelect);
+        return redirect()->back();
     }
 }

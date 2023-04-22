@@ -6,7 +6,6 @@
         @forelse($category->getCategory() as $category)
         <div class="col d-flex justify-content-md-between">
             <div class="card g-0 shadow bg-body-tertiary rounded">
-
                 <div class="col-md-12 container_pic">
                     <a class="list-group-item list-group-item-action" href="{{route('list-category',$category->id)}}">
                         <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="imageset">

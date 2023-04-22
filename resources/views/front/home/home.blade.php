@@ -9,14 +9,13 @@
 </div>
 </section> --}}
 
-<a href="#" class="text-decoration-none" style="color:black;">
-    <div class="up sticky-bottom">
-        <i class="bi bi-chevron-up"></i>
-    </div>
-</a>
+
 <section class="py-1 text-center container shadow_new">
-    <h1 class="m-5">All Restaurants near me</h1>
-    {{-- <h2 class="m-5 fs-3"><i>text</i></h2> --}}
+    <a class="list-group-item list-group-item-action" href="{{route('start')}}">
+        <div class="btn btn-dark">
+            <h1 class="m-3 shadow_new">All Restaurants offer near me</h1>
+        </div>
+    </a>
     <hr class=" border border-second border-0 opacity-75">
 </section>
 
