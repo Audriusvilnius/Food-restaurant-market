@@ -10,9 +10,10 @@
 </section> --}}
 
 
-<section class="py-1 text-center container shadow_new">
+<section class="py-1 text-center container shadow_new btnFront">
     <a class="list-group-item list-group-item-action" href="{{route('start')}}">
         <div class="btn btn-dark">
+
             <h1 class="m-3 shadow_new">All Restaurants offer near me</h1>
         </div>
     </a>

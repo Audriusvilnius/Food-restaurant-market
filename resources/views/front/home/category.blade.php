@@ -16,8 +16,8 @@
     </div>
 </a>
 
-<section class="py-1 text-center container shadow_new">
-    <a class="list-group-item list-group-item-action" href="{{ url('/') }}">
+<section class="py-1 text-center container shadow_new btnFront">
+    <a class="list-group-item list-group-item-action" href="{{route('start')}}">
         <div class="btn btn-dark">
             <h1 class="m-3 shadow_new">Back to Restaurants offers</h1>
         </div>
@@ -37,9 +37,8 @@
             @forelse($foods as $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
-                    <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary " alt=" hotel">
-
-                    <div class=" card-body ">
+                    <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary " alt=" food_pic">
+                    <div class="card-body ">
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
                             <h6>Restaurant: <b style="font-size:17px;"><i>
                                         {{$food->foodReataurants_name->title}}</b></i></h6>
