@@ -9,7 +9,7 @@ use App\Models\Ovner;
 
 class BasketService
 {
-    private $basket, $basketList, $total=0, $count=0;
+    private $basket, $basketList, $total=0, $count=0, $dfee=4.99, $dcount=0;
 
     public function __construct()
     {
@@ -32,6 +32,7 @@ class BasketService
             'total'=>$this->total,
             'count'=>$this->count,
             'list'=>$this->basketList,
+            'fee'=>$this->dfee,
             default=>null
         };
     }
@@ -82,6 +83,7 @@ class BasketService
         session()->put('basket', []);
         $this->total = 0;
         $this->count = 0;
+        $this->dcount = 0;
         $this->cartList = collect();
         $this->cart = [];
     }

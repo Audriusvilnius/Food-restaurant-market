@@ -38,6 +38,7 @@
                             <div class="card-body">
                                 <h5><b><i>{{$food->title}}</b></i></h5>
                                 <h6>Price: <b><i>{{number_format($food->price, 2, '.', '') }} &euro;</b></i></h6>
+                                <h6>Delivery Fee: <b><i>{{$basket->fee}} &euro;</i></b></h6>
                                 <div class="gap-3 align-items-center d-flex justify-content-center">
                                     Quantity:
                                     {{-- <h6>Raiting: <b><i>{{$food->rating}}</b></i></h6>
@@ -53,7 +54,7 @@
                         </div>
                         {{-- sekciaj padalinta i dvus pradzia--}}
                         <div class="col-md-3 d-flex">
-                            <div class="card-body align-items-center justify-content-center">
+                             <div class="card-body align-items-center justify-content-center">
 
                                 <h6>Restaurant: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                                 <div class="col-md-12 d-flex">
