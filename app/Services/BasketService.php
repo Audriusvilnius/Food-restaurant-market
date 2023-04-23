@@ -9,7 +9,7 @@ use App\Models\Ovner;
 
 class BasketService
 {
-    private $basket, $basketList, $total=0, $count=0, $dfee=4.99, $dcount=0;
+    private $basket, $basketList, $total=0, $count=0, $dfee = 4.99, $freeshipping = [], $entries = 0, $flag = 0;
 
     public function __construct()
     {
@@ -83,7 +83,7 @@ class BasketService
         session()->put('basket', []);
         $this->total = 0;
         $this->count = 0;
-        $this->dcount = 0;
+        $this->freeshipping = [];
         $this->cartList = collect();
         $this->cart = [];
     }
@@ -93,4 +93,28 @@ class BasketService
         return 'Test from service';
     }   
  
+    public function delivery($data){
+        $this->entries ++;
+        $this->freeshipping[$this->entries-1] = $data;
+        $temp = 0;
+        for ($i = 0 ; $i < $this->entries ; $i ++){
+            if ($data == $this->freeshipping[$i]) {
+                $temp ++;    }         
+              };
+        if ($temp < 2) { 
+                $this->flag = 1;
+                $this->total += $this->dfee;
+                return $this->dfee . ' €'; 
+                
+             }
+        else { 
+            $this->flag = 0;
+            return 'Already Included!'; 
+       
+        } 
+    }
+
+    public function getFlag(){
+        return $this->flag;
+    }
 }
