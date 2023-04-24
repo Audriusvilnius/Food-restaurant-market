@@ -17,14 +17,16 @@ return new class extends Migration
             $table->id();
             // $table->unsignedBigInteger('food_id')->unsigned();
             // $table->unsignedBigInteger('rest_city_id')->unsigned();
-            $table->string('title',100);
-            $table->string('city',100)->nullable();
-            $table->text('addres',500)->nullable();
-            $table->string('photo',500)->nullable();
-            $table->time('open')->nullable();
-            $table->time('close')->nullable();
-            $table->string('phone',500)->nullable();
-            $table->text('des',500)->nullable();
+            $table->string('title', 100);
+            // $table->string('city',100)->nullable();
+            $table->text('addres', 500)->nullable();
+            $table->string('photo', 500)->nullable();
+            // $table->time('open')->nullable();
+            // $table->time('close')->nullable();
+            $table->string('open', 100)->nullable();
+            $table->string('close', 100)->nullable();
+            $table->string('phone', 500)->nullable();
+            $table->text('des', 500)->nullable();
             $table->timestamps();
         });
     }
