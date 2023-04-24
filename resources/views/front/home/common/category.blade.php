@@ -1,6 +1,6 @@
 @inject('category', 'App\Services\CategoryService')
 <section class="container shadow_new">
-    <h3 class="mb-4 text-start"><i>Categories<i></h3>
+    <h3 class="mb-4 text-start"><i>{{__('Categories')  }}<i></h3>
     <hr class=" border border-second border-1 opacity-75">
     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-7 g-3">
         @forelse($category->getCategory() as $category)
@@ -19,7 +19,7 @@
             </div>
         </div>
         @empty
-        <h2 class="list-group-item">List empty</h2>
+        <h2 class="list-group-item">{{__('List empty')  }}</h2>
         @endforelse
     </div>
 </section>

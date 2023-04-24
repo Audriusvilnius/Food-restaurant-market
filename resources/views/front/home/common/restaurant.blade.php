@@ -19,7 +19,7 @@
                     {{-- {{$restaurant->food_Restaurant()->count()}} --}}
                 </div>
                 @empty
-                <h3 class="list-group-item">List empty</h3>
+                <h3 class="list-group-item">{{__('List empty')  }}</h3>
                 @endforelse
             </div>
         </li>

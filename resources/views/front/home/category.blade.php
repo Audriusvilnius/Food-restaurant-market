@@ -17,15 +17,15 @@
 </a>
 <section class="py-1 text-center container shadow_new">
     <a class="navbar-brand" href="{{ url('/') }}">
-        <h1 class="m-5">Back to Restaurants offers</h1>
-        {{-- <button type="submit" class="btn btn-ligt" style="width:auto;">
+        <h1 class="m-5">{{__('Back to Restaurants offers')  }}</h1>
+        {{-- <button type="submit" class="btn btn-light" style="width:auto;">
             <h1 class="m-5">Back to Restaurants </h1>
         </button> --}}
         <hr class="border border-second border-0 opacity-75">
     </a>
 </section>
 <section class="container shadow_new">
-    <h3 class=" mb-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
+    <h3 class=" mb-4 text-start"><i>{{__('Restaurants offer to you')  }}: {{$category}}</i></h3>
     <hr class="border border-second border-1 opacity-75">
 </section>
 
@@ -41,29 +41,29 @@
 
                     <div class=" card-body ">
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
-                            <h6>Restaurant: <b style="font-size:17px;"><i>
+                            <h6>{{__('Restaurant')  }}: <b style="font-size:17px;"><i>
                                         {{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
-                        <h6>City: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
-                        <h6>Category: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
+                        <h6>{{__('City')  }}: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
+                        <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
                         {{-- <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6> --}}
-                        <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
-                        <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
-                        <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
+                        <h6>{{__('Address')  }}: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
+                        <h6>{{__('Open')  }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
+                        <h6>{{__('Close')  }}: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
                         <hr class="border border-second border-2 opacity-50">
                         <h4><b><i>{{$food->title}}</b></i></h4>
                         <span class="text-muted">{{$food->add}}</span>
-                        <h4 @if($food->price<20) style="color:crimson;" @endif>Price: <b><i>{{$food->price}} &euro;</b></i></h4>
+                        <h4 @if($food->price<20) style="color:crimson;" @endif>{{__('Price')  }}: <b><i>{{$food->price}} &euro;</b></i></h4>
                         <hr class="border border-second border-2 opacity-50">
                         {{-- <form action="{{route('update-rate')}}" method="post"> --}}
                         <div class="gap-3 align-items-center d-flex justify-content-center">
-                            Rating:<b><i>{{$food->rating}}</i></b>
+                        {{__('Rating')  }}:<b><i>{{$food->rating}}</i></b>
                             {{-- Rate:
                             <input type="hidden" name="product" value="{{$food->id}}">
                             <input type="hidden" name="user_name" value="{{$name}}">
                             <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber"> --}}
                             {{-- <div class="btn-group">
-                                <button type="submit" class="btn btn-outline-secondary">RATE</button>
+                                <button type="submit" class="btn btn-outline-secondary">{{__('RATE')  }}</button>
                             </div> --}}
                         </div>
                         {{-- @csrf --}}
@@ -74,7 +74,7 @@
                                 <input type="hidden" name="product" value="{{$food->id}}">
                                 {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
                                 <div class="btn-group">
-                                    <button type="submit" class="btn btn-outline-secondary" style="width:200px;">Rating & Reviews</button>
+                                    <button type="submit" class="btn btn-outline-secondary" style="width:200px;">{{__('Rating & Reviews')  }}</button>
                                 </div>
                             </div>
                             @csrf
@@ -84,7 +84,7 @@
                         <form action="{{route('add-basket')}}" method="post">
                             <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
                                 <div class="col-md-2">
-                                    Qty:
+                                {{__('Qty')  }}:
                                 </div>
                                 <div class="col-md-2">
                                     <input type="number" class="form-control" name="count" value="1" min="1">
@@ -111,10 +111,10 @@
         <div class="col-xxl-12 col-xl-12 col-lg-12">
             <div class="card shadow bg-body-tertiary rounded d-flex ">
                 <div class="card-header justify-content-md-between align-items-center">
-                    <h1>Oops! No match found. Try again</h1>
+                    <h1>{{__('Oops! No match found. Try again')  }}</h1>
                 </div>
                 <div class="card-header justify-content-md-between align-items-center">
-                    <a href="{{route('start')}}" class="btn btn-secondary">BACK</a>
+                    <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK')  }}</a>
                 </div>
             </div>
         </div>

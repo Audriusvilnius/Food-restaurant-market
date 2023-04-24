@@ -166,12 +166,21 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
+        if (app()->getLocale() == "lt") {
+            $message1 = "Trynimas baigtas";
+            $message2 = "Negalima ištrinti restorano. Pirmiausia ištrinkite restorano patiekalus";
+        }
+        else {
+            $message1 = "Delete complete";
+            $message2 = "Can\'t Delete Restaurant, first delete food from restaurant";
+        }
         if(!$restaurant->food_Restaurant()->count()){
             $restaurant->deletePhoto();
             $restaurant->delete();
-        return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('ok', 'Delete complete');
+            
+            return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('ok', $message1);
         }else{
-            return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('not', ' Can\'t Delete Restaurants, firs delete food from restaurant');
+            return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('not', $message2);
         }
     }
 }

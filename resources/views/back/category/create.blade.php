@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1>Create Food Catagories</h1>
+                    <h1>{{__('Create Food Catagories')  }}</h1>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="list-table__buttons">
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" name="save">Create</button>
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" name="save">{{__('Create')  }}</button>
                                 </div>
                             </div>
                         </div>

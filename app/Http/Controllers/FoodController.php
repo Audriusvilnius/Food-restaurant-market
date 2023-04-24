@@ -31,13 +31,21 @@ class FoodController extends Controller
     }
     public function copyRestTitle()
     {
+        if (app()->getLocale() == "lt") {
+            $message1 = "Restorano pavadinimas sėkmingai nukopijuotas";
+            
+        }
+        else {
+            $message1 = "Restaurant\'s title succesfully copied";
+
+        }
         $foods=food::all();
         foreach ($foods as $food) {
         $foo=Restaurant::where('id','=', $food->rest_id)->first();
         $food->rest_title=$foo->title;
         $food->save();
         }
-        return redirect()->back()->with('ok', 'Rrestaurant title copy succses');
+        return redirect()->back()->with('ok', $message1);
     }
 
     /**
@@ -156,7 +164,15 @@ class FoodController extends Controller
     {
         if($request->delete_photo){
             $food->deletePhoto();
-        return redirect()->back()->with('ok', 'Photo deleted');
+            if (app()->getLocale() == "lt") {
+                $message1 = "Nutrauka ištrinta";
+                
+            }
+            else {
+                $message1 = "Photo deleted";
+    
+            }
+        return redirect()->back()->with('ok', $message1);
         }
 
         $validator = Validator::make(
@@ -202,8 +218,15 @@ class FoodController extends Controller
         $food->add=$request->food_add;
         
         $food->save();
+        if (app()->getLocale() == "lt") {
+            $message1 = "Redagavimas baigtas";
+            
+        }
+        else {
+            $message1 = "Edit complete";
 
-        return redirect()->route('foods-index', ['#'.$food->id])->with('ok', 'Edit complete');
+        }
+        return redirect()->route('foods-index', ['#'.$food->id])->with('ok', $message1);
     }
 
     /**
@@ -214,8 +237,16 @@ class FoodController extends Controller
      */
     public function destroy(Food $food)
     {
+        if (app()->getLocale() == "lt") {
+            $message1 = "Trynimas baigtas";
+            
+        }
+        else {
+            $message1 = "Delete complete";
+
+        }
         $food->deletePhoto();
         $food->delete();
-        return redirect()->route('foods-index', ['#'.$food->id])->with('ok', 'Delete complete');
+        return redirect()->route('foods-index', ['#'.$food->id])->with('ok', $message1);
     }
 }
