@@ -24,27 +24,11 @@ use App\Mail\OrderReceived;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
-// use Illuminate\Support\Facades\Hash;
-
 class FrontController extends Controller
 {
-    // public $citySelect;
-
-    // public function __construct()
-    // {
-    //     $this->citySelect = session()->get('citySelect', []);
-    // }
-    //     public function __get($citySelect)
-    // {
-    //     return match($citySelect){
-    //         'citySelect'=>$this->citySelect,
-    //         default=>null
-    //     };
-    // }
-
     public function home(Request $request, City $city, FrontController $citySelect)
     {
-
+        // dump(Session::get('citySelect'));
         $restaurants = Restaurant::all()->sortBy('title');
         $categories = Category::all()->sortBy('title');
         $sessionCity = Session::get('citySelect');
@@ -239,7 +223,6 @@ class FrontController extends Controller
         $cities = City::all()->sortBy('title');
         $restaurants = Restaurant::all();
         $foods = $foods->sortBy('title');
-
 
         $restaurants = $restaurants->map(function ($status) {
             $status->openStatus = Carbon::parse($status->open)->format('H:i');
