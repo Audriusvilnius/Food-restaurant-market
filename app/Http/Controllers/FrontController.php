@@ -45,18 +45,22 @@ class FrontController extends Controller
     public function home(Request $request, City $city, FrontController $citySelect)
     {
 
+        $restaurants = Restaurant::all()->sortBy('title');
         $categories = Category::all()->sortBy('title');
+        $sessionCity = Session::get('citySelect');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
-
-        // dump(Session::get('citySelect'));
-
         $foods = Food::all()->sortBy('title');
 
-        $sess = Session::get('citySelect');
-        // dd($sess);
-
-        $restaurants = Restaurant::all()->sortBy('title');
+        if ($sessionCity == null) {
+            $faker = Faker::create();
+            $text = $faker->realText(300, 5);
+            return view('front.home.city', [
+                'cities' => $cities,
+                'ovners' => $ovners,
+                'text' => $text,
+            ]);
+        }
 
         $restaurants = $restaurants->map(function ($status) {
             $status->openStatus = Carbon::parse($status->open)->format('H:i');
@@ -71,20 +75,15 @@ class FrontController extends Controller
             return $status;
         });
 
-        // dump(Carbon::parse(now('Europe/Vilnius'))->format('H:i'));
-        // dump($restaurants);
-
         $perPageShow = in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All';
 
-
         if (!$request->s) {
-
             if ($request->restaurant_id && $request->restaurant_id != 'all') {
                 $foods = Food::where('rest_id', $request->restaurant_id);
             } else {
                 // $foods = Food::where('id', '>', 0);
-                $foods = Food::where('food_city_no', Session::get('citySelect'));
-                if ($sess == null) {
+                $foods = Food::where('food_city_no', $sessionCity);
+                if ($sessionCity == null) {
                     $foods = Food::where('id', '>', 0);
                 }
             }
@@ -99,7 +98,7 @@ class FrontController extends Controller
                 default => $foods
             };
             if ($perPageShow == 'All') {
-                $foods = $foods->get();
+                $foods = $foods->where('food_city_no', $sessionCity)->get();
             } else {
                 $foods = $foods->paginate($perPageShow)->withQueryString();
             }
@@ -199,21 +198,8 @@ class FrontController extends Controller
 
     public function viewBasket(Request $request, BasketService $basket)
     {
-        // $ovners=Ovner::all();
-
-        // $restaurants=Restaurant::all()->sortBy('title');
-        // $faker = Faker::create();
-        // $text1 = $faker->realText(600,5);
-        // $text2 = $faker->realText(500,5);
-        // $text3 = $faker->realText(20,2);
-
-
         return view('front.home.basket', [
             'basketList' => $basket->list,
-            // 'ovners'=>$ovners,
-            // 'text1' => $text1,
-            // 'text2' => $text2,
-            // 'text3' => $text3,
         ]);
     }
 
@@ -240,7 +226,6 @@ class FrontController extends Controller
         Mail::to($to)->send(new OrderReceived($order));
 
         $basket->empty();
-
         return redirect()->route('start');
     }
 
@@ -248,12 +233,13 @@ class FrontController extends Controller
     public function listRestaurants(Request $request, Restaurant $restaurant)
     {
         // dump(Carbon::parse(now('Europe/Vilnius'))->format('H:i'));
-
-
+        $foods = Food::where('rest_id', $restaurant->id)->get();
         $categories = Category::all()->sortBy('title');
         $ovners = Ovner::all()->sortBy('title');
-
+        $cities = City::all()->sortBy('title');
         $restaurants = Restaurant::all();
+        $foods = $foods->sortBy('title');
+
 
         $restaurants = $restaurants->map(function ($status) {
             $status->openStatus = Carbon::parse($status->open)->format('H:i');
@@ -267,11 +253,6 @@ class FrontController extends Controller
             } else $status->works = 'false';
             return $status;
         });
-
-        $cities = City::all()->sortBy('title');
-
-        $foods = Food::where('rest_id', $restaurant->id)->get();
-        $foods = $foods->sortBy('title');
 
         return view('front.home.home', [
             'restaurants' => $restaurants,
@@ -291,8 +272,18 @@ class FrontController extends Controller
 
     public function listCategory(Request $request, Category $category, City $city)
     {
+        // dump(Session::get('citySelect'));
         // $categories=Category::all()->sortBy('title');
+        $ovners = Ovner::all()->sortBy('title');
+        $cities = City::all()->sortBy('title');
         $restaurants = Restaurant::all();
+
+        $foods = Food::where('food_category_no', $category->id)
+            ->where('food_city_no', Session::get('citySelect'))
+            ->get();
+        $foods = $foods->sortBy('title');
+
+        $category = $category->title;
 
         $restaurants = $restaurants->map(function ($status) {
             $status->openStatus = Carbon::parse($status->open)->format('H:i');
@@ -307,15 +298,7 @@ class FrontController extends Controller
             return $status;
         });
 
-        $ovners = Ovner::all()->sortBy('title');
-        $cities = City::all()->sortBy('title');
 
-        $foods = Food::where('food_category_no', $category->id)
-            ->where('food_city_no', Session::get('citySelect'))
-            ->get();
-
-        $foods = $foods->sortBy('title');
-        $category = $category->title;
 
         return view('front.home.category', [
             'restaurants' => $restaurants,
@@ -340,5 +323,9 @@ class FrontController extends Controller
         $citySelect = $request->city_id;
         Session::put('citySelect', $citySelect);
         return redirect()->back();
+    }
+    public function getCity(Request $request)
+    {
+        return "redirect()->back()";
     }
 }
