@@ -1,45 +1,48 @@
 @extends('layouts.front')
 @section('content')
 <section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1 fixed-top py-2">
+    <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
         @if(Session::has('ok'))
         <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </h6>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
         @endif
     </div>
 </section>
 
-<a href="#" class="text-decoration-none" style="color:black;">
-    <div class="up sticky-bottom">
-        <i class="bi bi-chevron-up"></i>
-    </div>
-</a>
-<section class="py-1 text-center container shadow_new">
-    <a class="navbar-brand" href="{{ url('/') }}">
-        <h1 class="m-5">Back to Restaurants offers</h1>
-        {{-- <button type="submit" class="btn btn-ligt" style="width:auto;">
-            <h1 class="m-5">Back to Restaurants </h1>
-        </button> --}}
-        <hr class="border border-second border-0 opacity-75">
+
+<section class="py-1 text-center container shadow_new btnFront">
+    <a class="list-group-item list-group-item-action" href="{{route('start')}}">
+        <div class="btn btn-dark">
+            <h1 class="m-3 shadow_new">Back to Restaurants offers</h1>
+        </div>
     </a>
-</section>
-<section class="container shadow_new">
-    <h3 class=" mb-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
-    <hr class="border border-second border-1 opacity-75">
+    <hr class=" border border-second border-0 opacity-75">
 </section>
 
-{{-- @include('front.home.common.category') --}}
+<section class="container shadow_new">
+    <h3 class=" mt-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
+    <hr class="border border-second border-1 opacity-75">
+</section>
 
 <div class="page">
     <div class="container ">
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-3 g-3">
             @forelse($foods as $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
-                <div class="card g-0 shadow p-2 bg-body-tertiary rounded">
-                    <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary " alt=" hotel">
+                <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
+                    <div class="container_pic">
+                        <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
+                        @foreach($restaurants as $restaurant)
+                        @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
+                        <div class="centered shadow_new justify-content-center text-block">
+                            <h1>CLOSE</h1>
+                            <p>open from {{$restaurant->open}}</p>
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
 
-                    <div class=" card-body ">
+                    <div class="card-body ">
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
                             <h6>Restaurant: <b style="font-size:17px;"><i>
                                         {{$food->foodReataurants_name->title}}</b></i></h6>

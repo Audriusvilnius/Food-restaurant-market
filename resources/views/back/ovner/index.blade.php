@@ -18,8 +18,7 @@
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
-<div class="container mb-5" style="min-height: 850px">
-
+<div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -60,15 +59,12 @@
                             <h6>Country: <b><i>{{$ovner->country}}</b></i></h6>
                         </div>
                     </div>
-
-
                     {{-- sekciaj padalinta i dvus pabaiga--}}
                     <div class="col-md-4">
                         <div class="card-body">
                             <h6>Bank: <b><i>{{$ovner->bank}}</b></i></h6>
                             <h6>Account: <b><i>{{$ovner->account}}</b></i></h6>
                         </div>
-
                         <div class="card-body">
                             <div class="list-table__buttons">
                                 {{-- <a href="{{route('ovner-show', $ovner)}}" class="btn btn-info m-2">Show</a> --}}
@@ -97,6 +93,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection

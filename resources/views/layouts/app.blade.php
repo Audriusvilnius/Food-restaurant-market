@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="app ">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">{{--fixed-top--}}
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img class="logo" src="{{asset('/images/temp/exam.png')}}" alt="exam">
@@ -37,6 +37,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+
+                    {{-- @include('front.home.common.restaurant') --}}
                     <ul class="navbar-nav me-auto">
 
                     </ul>
@@ -58,7 +60,7 @@
                                 Foods
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('foods-index') }}">Foods list</a>
+                                <a class="dropdown-item" href="{{ route('foods-index') }}">Foods</a>
                                 <a class="dropdown-item" href="{{ route('category-index') }}">Category</a>
 
 
@@ -69,7 +71,8 @@
                                 Restaurant
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants list</a>
+                                <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants</a>
+                                <a class="dropdown-item" href="{{ route('city-index') }}">City</a>
                                 <a class="dropdown-item" href="{{ route('foods-rest_title') }}">Copy Restaurant title</a>
 
 
@@ -87,6 +90,7 @@
 
 
                         @endif
+
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
@@ -125,18 +129,21 @@
                         @if($basket->count!=0)
                         <div class="ithem">
                             {{-- <span>{{$basket->test()}}</span> --}}
-                            <span>{{$basket->count}}</span>
+                            @if($basket->count<=9) <span>{{$basket->count}}</span>
+                                @elseif($basket->count>9) 9+
+                                @endif
                         </div>
+                        <span class="nav-link">Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
+                        @endif
                     </ul>
-                    <span>Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
-                    @endif
                 </div>
             </div>
         </nav>
-        @include('layouts.svg')
-        <main class="py-4 mystyle">
-            @yield('content')
-        </main>
+    </div>
+    @include('layouts.svg')
+    <main class="py-4 mystyle">
+        @yield('content')
+    </main>
     </div>
 </body>
 </html>

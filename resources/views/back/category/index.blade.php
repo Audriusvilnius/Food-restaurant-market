@@ -1,24 +1,12 @@
 @extends('layouts.app')
 @section('content')
-<section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1 fixed-top py-2">
-        @if(Session::has('ok'))
-        <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-        @endif
-        @if(Session::has('not'))
-        <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </h6>
-        @endif
-    </div>
-</section>
+
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
-<div class="container mb-5" style="min-height: 740px">
+<div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -31,6 +19,20 @@
                 </div>
             </div>
         </div>
+        <section class="py-1 text-center container">
+            <div class="col-lg-4 col-md-8 mx-auto mt-1">
+                @if(Session::has('ok'))
+                <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+                @endif
+                @if(Session::has('not'))
+                <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </h6>
+                @endif
+            </div>
+        </section>
+
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-6 g-3">
             @forelse($categories as $category)
             <div id="{{ $category['id'] }}" class="col d-flex justify-content-md-between">
@@ -42,8 +44,9 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="card-body d-flex gap-3">
-                            <a href="{{route('category-edit', $category)}}" class="btn btn-secondary container-fluid"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <div class="card-body d-flex justify-content-md-between gap-3">
+
+                            <a href="{{route('category-edit', $category)}}" class="btn btn-secondary "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                 </svg></a>

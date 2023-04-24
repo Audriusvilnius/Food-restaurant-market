@@ -11,15 +11,15 @@ class Category extends Model
 
     public function food_Category()
     {
-        return $this->hasMany(Food::class, 'food_category_no','id');
+        return $this->hasMany(Food::class, 'food_category_no', 'id');
     }
 
     public function deletePhoto()
     {
         $fileName = $this->photo;
-        if(file_exists(public_path().$fileName) && $fileName!='/images/temp/noimage.jpg'){
-            unlink(public_path().$fileName);
-            $this->photo='/images/temp/noimage.jpg';
+        if (file_exists(public_path() . $fileName) && $fileName != '/images/temp/noimage.jpg') {
+            unlink(public_path() . $fileName);
+            $this->photo = '/images/temp/noimage.jpg';
         }
         $this->save();
     }
