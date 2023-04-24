@@ -58,6 +58,22 @@ class FrontController extends Controller
 
         $restaurants = Restaurant::all()->sortBy('title');
 
+        $restaurants = $restaurants->map(function ($status) {
+            $status->openStatus = Carbon::parse($status->open)->format('H:i');
+            $status->closeStatus = Carbon::parse($status->close)->format('H:i');
+            $check = Carbon::now('Europe/Vilnius')->between(
+                $status->openStatus,
+                $status->closeStatus,
+            );
+            if ($check == true) {
+                $status->works = 'true';
+            } else $status->works = 'false';
+            return $status;
+        });
+
+        // dump(Carbon::parse(now('Europe/Vilnius'))->format('H:i'));
+        // dump($restaurants);
+
         $perPageShow = in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All';
 
 
@@ -231,10 +247,27 @@ class FrontController extends Controller
 
     public function listRestaurants(Request $request, Restaurant $restaurant)
     {
+        // dump(Carbon::parse(now('Europe/Vilnius'))->format('H:i'));
+
+
         $categories = Category::all()->sortBy('title');
         $ovners = Ovner::all()->sortBy('title');
 
         $restaurants = Restaurant::all();
+
+        $restaurants = $restaurants->map(function ($status) {
+            $status->openStatus = Carbon::parse($status->open)->format('H:i');
+            $status->closeStatus = Carbon::parse($status->close)->format('H:i');
+            $check = Carbon::now('Europe/Vilnius')->between(
+                $status->openStatus,
+                $status->closeStatus,
+            );
+            if ($check == true) {
+                $status->works = 'true';
+            } else $status->works = 'false';
+            return $status;
+        });
+
         $cities = City::all()->sortBy('title');
 
         $foods = Food::where('rest_id', $restaurant->id)->get();
@@ -259,9 +292,22 @@ class FrontController extends Controller
     public function listCategory(Request $request, Category $category, City $city)
     {
         // $categories=Category::all()->sortBy('title');
-        // $restaurants=Restaurant::all();
-        $ovners = Ovner::all()->sortBy('title');
+        $restaurants = Restaurant::all();
 
+        $restaurants = $restaurants->map(function ($status) {
+            $status->openStatus = Carbon::parse($status->open)->format('H:i');
+            $status->closeStatus = Carbon::parse($status->close)->format('H:i');
+            $check = Carbon::now('Europe/Vilnius')->between(
+                $status->openStatus,
+                $status->closeStatus,
+            );
+            if ($check == true) {
+                $status->works = 'true';
+            } else $status->works = 'false';
+            return $status;
+        });
+
+        $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
 
         $foods = Food::where('food_category_no', $category->id)
@@ -272,7 +318,7 @@ class FrontController extends Controller
         $category = $category->title;
 
         return view('front.home.category', [
-            // 'restaurants'=>$restaurants,
+            'restaurants' => $restaurants,
             'foods' => $foods,
             'cities' => $cities,
             'city' => $city,

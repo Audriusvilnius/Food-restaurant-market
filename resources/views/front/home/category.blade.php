@@ -37,7 +37,18 @@
             @forelse($foods as $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
-                    <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary " alt=" food_pic">
+                    <div class="container_pic">
+                        <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
+                        {{-- <div class="centered shadow_new justify-content-center text-block mt-1"> --}}
+                        @foreach($restaurants as $restaurant)
+                        @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
+                        <div class="centered shadow_new justify-content-center text-block">
+                            <h1>CLOSE</h1>
+                            <p>open from {{$restaurant->open}}</p>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
                     <div class="card-body ">
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
                             <h6>Restaurant: <b style="font-size:17px;"><i>
