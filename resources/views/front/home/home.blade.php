@@ -19,6 +19,10 @@
     </a>
     <hr class=" border border-second border-0 opacity-75">
 </section>
+<section class="container shadow_new">
+    <h3 class=" mt-4 text-start"><i>Categories</i></h3>
+    <hr class="border border-second border-1 opacity-75">
+</section>
 
 @include('front.home.common.category')
 

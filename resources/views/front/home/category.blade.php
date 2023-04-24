@@ -1,13 +1,13 @@
 @extends('layouts.front')
 @section('content')
-<section class="py-1 text-center container">
+{{-- <section class="py-1 text-center container">
     <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
         @if(Session::has('ok'))
         <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-        @endif
-    </div>
-</section>
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+@endif
+</div>
+</section> --}}
 
 
 <section class="py-1 text-center container shadow_new btnFront">
