@@ -8,6 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Order;
+
+
 
 class OrderProcesing extends Mailable
 {
@@ -18,9 +21,9 @@ class OrderProcesing extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Order $order)
     {
-        //
+        $this->order = $order;
     }
 
     /**
@@ -31,7 +34,7 @@ class OrderProcesing extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Order Procesing',
+            subject: 'Order Completed',
         );
     }
 
@@ -43,7 +46,10 @@ class OrderProcesing extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'emails.complete',
+            with: [
+                'ID' => $this->order->id,
+            ],
         );
     }
 

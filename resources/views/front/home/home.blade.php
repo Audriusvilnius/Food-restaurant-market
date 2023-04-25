@@ -96,7 +96,6 @@
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
                         <div class=" centered shadow_new justify-content-center text-block">
                             <div onmouseover="mOver(this)" onmouseout="mOut(this)">
-
                                 CLOSED</div>
                             <script>
                                 function mOver(obj) {
@@ -131,6 +130,7 @@
                         <span class="text-muted">{{$food->add}}</span>
 
                         <h4 @if($food->price<20) style="color:crimson;" @endif>Price: <b><i>{{$food->price}} &euro;</b></i></h4>
+
 
                         <hr class="border border-second border-2 opacity-50">
                         {{-- <form action="{{route('update-rate')}}" method="post"> --}}

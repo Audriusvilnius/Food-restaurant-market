@@ -1,8 +1,7 @@
 <x-mail::message>
     # Receve you Order
 
-    Your order Number {{$ID}} is open!
-    We will inform you of the status change.
+    Your order Number {{$ID}} is on the way!
 
     Thanks,
     A Team

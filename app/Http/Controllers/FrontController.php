@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderBasket;
 use Carbon\Carbon;
 use App\Models\Food;
 use App\Models\City;
@@ -16,9 +17,6 @@ use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 use App\Services\BasketService;
-use App\Mail\OrderBasket;
-use App\Mail\OrderShipped;
-use App\Mail\OrderCompleted;
 use App\Mail\OrderReceived;
 
 use Illuminate\Support\Facades\Mail;
@@ -180,8 +178,25 @@ class FrontController extends Controller
 
     public function viewBasket(Request $request, BasketService $basket)
     {
+        $delivery = [];
+
+        foreach ($basket->list as $data) {
+
+            if ($data->rest_id) {
+                $delivery[$data->rest_id] = ['rest_id' => $data->rest_id];
+            } else {
+                $delivery = [$data->rest_id => ['rate' => $data->rest_id]];
+            }
+        }
+        $delivery = count($delivery) * 4.99;
+        $totals = $basket->total + $delivery;
+        Session::put('total', $totals);
+
+        // dd(Session::get('total', $totals));
         return view('front.home.basket', [
             'basketList' => $basket->list,
+            'delivery' => $delivery,
+            'totals' => $totals,
         ]);
     }
 
@@ -199,14 +214,16 @@ class FrontController extends Controller
     public function makeOrder(Request $request,  BasketService $basket)
     {
         $order = new Order;
+        $S = $request->delivery;
         $order->user_id = Auth::user()->id;
         $order->basket_json = json_encode($basket->order());
         $order->order_json = json_encode($basket->order());
         $order->save();
 
+        // dd($order);
         $to = User::find($order->user_id);
-        Mail::to($to)->send(new OrderReceived($order));
 
+        Mail::to($to)->send(new OrderBasket($order, $S));
         $basket->empty();
         return redirect()->route('start');
     }
