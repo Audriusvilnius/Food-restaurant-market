@@ -40,21 +40,22 @@
                      <span class="navbar-toggler-icon"></span>
                  </button>
 
-                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                      <!-- Left Side Of Navbar -->
 
                      {{-- @include('front.home.common.restaurant') --}}
-                     @include('front.home.common.city')
+                     <ul class="navbar-nav ms-5">
+                         @include('front.home.common.city')
+                     </ul>
+
 
                      <ul class="navbar-nav ms-5">
                          Languege
                      </ul>
 
-
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ms-auto">
                          <!--  style="background-color:skyblue; padding:10px;border-radius:10px; color:black;" -->
-
                          @if(Auth::user()?->role == 'admin')
                          <li class="nav-item dropdown">
                              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -72,8 +73,6 @@
                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                  <a class="dropdown-item" href="{{ route('foods-index') }}">Foods</a>
                                  <a class="dropdown-item" href="{{ route('category-index') }}">Category</a>
-
-
                              </div>
                          </li>
                          <li class="nav-item dropdown">
@@ -95,10 +94,7 @@
                                  <a class="dropdown-item" href="{{ route('ovner-index') }}">List</a>
                              </div>
                          </li>
-
-
                          @endif
-
                          <!-- Authentication Links -->
                          @guest
                          @if (Route::has('login'))
@@ -149,22 +145,24 @@
          </nav>
      </div>
      @include('layouts.svg')
-     <div class=" d-flex align-content-center justify-content-center pt-5" style="background-color:rgb(68,68,68,.93);">
-         <div class="card mb-3" style="max-width: 540px;">
+     <div class=" d-flex align-content-center justify-content-center pt-5" style="background-color:rgb(68,68,68,.93);min-height: 91vh;">
+         <div class="card mb-3" style="max-width: 540px;max-height: 360px;">
              <div class="row g-0">
                  @foreach ($ovners as $ovner )
                  <div class="col-md-4">
-                     <img src="{{asset($ovner->photo)}}" class="img-fluid rounded-start" alt="...">
+                     <img src="{{asset($ovner->photo)}}" class="img-fluid rounded-start" alt="bascet">
                  </div>
                  <div class="col-md-8">
                      <div class="card-body">
-                         <h5 class="card-title">City selesct</h5>
+                         <h5 class="card-title" style="background-color:skyblue; padding:10px;border-radius:10px; color:black;">Customer City locate selected</h5>
                          <p class="card-text">{{$text}}</p>
                      </div>
                  </div>
                  <div class="col-md-12">
                      <div class="card-body">
-                         @include('front.home.common.city')
+                         <ul class="navbar-nav ms-5">
+                             @include('front.home.common.city')
+                         </ul>
                      </div>
                  </div>
                  @endforeach

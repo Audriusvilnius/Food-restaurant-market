@@ -44,7 +44,9 @@
                      <!-- Left Side Of Navbar -->
 
                      {{-- @include('front.home.common.restaurant') --}}
-                     @include('front.home.common.city')
+                     <ul class="navbar-nav ms-5">
+                         @include('front.home.common.city')
+                     </ul>
 
                      <ul class="navbar-nav ms-5">
                          Languege
