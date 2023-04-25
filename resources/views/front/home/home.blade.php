@@ -9,11 +9,9 @@
 </div>
 </section> --}}
 
-
 <section class="py-1 text-center container shadow_new btnFront">
     <a class="list-group-item list-group-item-action" href="{{route('start')}}">
         <div class="btn btn-dark">
-
             <h1 class="m-3 shadow_new">All Restaurants offer near me</h1>
         </div>
     </a>
@@ -96,15 +94,27 @@
                         <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
-                        <div class="centered shadow_new justify-content-center text-block">
-                            <h1>CLOSE</h1>
-                            <p>open from {{$restaurant->open}}</p>
+                        <div class=" centered shadow_new justify-content-center text-block">
+                            <div onmouseover="mOver(this)" onmouseout="mOut(this)">
+                                CLOSED</div>
+                            <script>
+                                function mOver(obj) {
+                                    obj.innerHTML = `open {{$restaurant->open}}`
+                                }
+
+                                function mOut(obj) {
+                                    obj.innerHTML = "CLOSED"
+
+                                }
+
+                            </script>
                         </div>
+
                         @endif
                         @endforeach
                     </div>
                     <div class=" card-body ">
-                        <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
+                        <a class=" list-group-item list-group-item-action " href=" {{route('list-restaurant',$food->foodReataurants_name->id)}}">
                             <h6>Restaurant: <b style="font-size:17px;"><i>
                                         {{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
@@ -120,6 +130,7 @@
                         <span class="text-muted">{{$food->add}}</span>
 
                         <h4 @if($food->price<20) style="color:crimson;" @endif>Price: <b><i>{{$food->price}} &euro;</b></i></h4>
+
 
                         <hr class="border border-second border-2 opacity-50">
                         {{-- <form action="{{route('update-rate')}}" method="post"> --}}

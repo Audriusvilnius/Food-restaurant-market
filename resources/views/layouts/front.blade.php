@@ -20,6 +20,9 @@
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
 
@@ -44,12 +47,15 @@
                      <!-- Left Side Of Navbar -->
 
                      {{-- @include('front.home.common.restaurant') --}}
-                     <ul class="navbar-nav me-5">
-                         Languege
-                     </ul>
-                     <ul class="navbar-nav me-auto">
+                     <ul class="navbar-nav ms-5">
                          @include('front.home.common.city')
                      </ul>
+
+                     <ul class="navbar-nav ms-5">
+                         Languege
+                     </ul>
+
+
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ms-auto">
                          <!--  style="background-color:skyblue; padding:10px;border-radius:10px; color:black;" -->
@@ -147,29 +153,24 @@
              </div>
          </nav>
      </div>
-
      @include('layouts.svg')
      <main class="py-4 mystyle">
          @yield('content')
      </main>
      </div>
      <footer class="py-4">
-         {{-- <a href="#" class="text-decoration-none" style="color:black;"> --}}
          <a href="#" class="text-decoration-none" style="color:white;">
              <div class="up sticky-bottom">
                  <i class="bi bi-chevron-up"></i>
              </div>
          </a>
-
          <div class="card mt-2 d-flex justify-content-md-between align-content-right">
              <div class="row g-0 shadow p-3 bg-body-tertiary ">
-
                  @forelse($ovners as $ovner)
                  <div class="container">
                      <div class="card-body text-muted">
                          <div class="container">
                              <div class="row text-start">
-
                                  <div class="col-md-12">
                                      <h4><small> {{$ovner->title}}</small></h4>
                                  </div>
@@ -179,40 +180,40 @@
                                      <small class="fw-lighter">Post: </small>&nbsp;&nbsp; {{$ovner->postcode}}<br>
                                      <small class="fw-lighter">Country:</small>&nbsp;&nbsp; {{$ovner->country}}<br>
                                  </div>
-                                 <div class="col-md-4">
+                                 <div class="col-md-5">
                                      <small class="fw-semibold"><i class="bi bi-globe"></i></small>&nbsp;&nbsp; {{$ovner->url}}<br>
                                      <small class="fw-semibold"><i class="bi bi-telephone"></i></small>&nbsp;&nbsp; {{$ovner->phone}}<br>
                                      <small class="fw-semibold"><i class="bi bi-phone"></small></i>&nbsp;&nbsp; {{$ovner->mobile}}<br>
                                      <small class="fw-semibold"><i class="bi bi-envelope-at"></i></small>&nbsp;&nbsp; {{$ovner->email}}<br>
-                                     {{-- <div class="col-md-12 d-flex"> --}}
-                                     {{-- <div class="col-md-3"> --}}
-                                     {{-- Open: <b><i>{{$ovner->open}}</b></i> --}}
-                                     {{-- </div> --}}
-                                     {{-- <div class="col-md-3"> --}}
-                                     {{-- Close: <b><i>{{$ovner->close}}</b></i> --}}
-                                     {{-- </div> --}}
-                                     {{-- </div> --}}
                                  </div>
-                                 <div class="col-md-4">
+                                 <div class="col-md-3">
                                      <small class="fw-semibold "><i class="bi bi-bank"></small></i>&nbsp;&nbsp; {{$ovner->bank}}<br>
                                      <small class="fw-semibold"><i class="bi bi-wallet-fill"></small></i>&nbsp;&nbsp; {{$ovner->account}}<br>
+                                     <div class="col-md-12 d-flex">
+                                         <div class="col-md-3">
+                                             {{-- Open: <i>{{$ovner->open}}</i> --}}
+                                         </div>
+                                         <div class="col-md-3">
+                                             {{-- Close: <i>{{$ovner->close}}</i> --}}
+                                         </div>
+                                     </div>
+
                                  </div>
-                                 {{-- <div class="col-md-3 p-5">
-                                     <img src="{{asset($ovner->photo)}}" class="img-fluid rounded" alt="imageset">
-                             </div> --}}
+                                 <div class="col-md-3">
+                                     {{-- <img src="{{asset($ovner->photo)}}" class="img-fluid rounded" alt="imageset"> --}}
+                                 </div>
+                             </div>
                          </div>
                      </div>
                  </div>
-
+                 @empty
+                 <h5>Oops! Something went wrong, missing contacts info</h5>
+                 @endforelse
+                 @forelse($ovners as $ovner)
+                 <span class="text-center">{{$ovner->title}} &copy 2023</span>
+                 @empty
+                 @endforelse
              </div>
-             @empty
-             <h5>Oops! Something went wrong, missing contacts info</h5>
-             @endforelse
-             @forelse($ovners as $ovner)
-             <span class="text-center">{{$ovner->title}} &copy 2023</span>
-             @empty
-             @endforelse
-         </div>
      </footer>
  </body>
  </html>

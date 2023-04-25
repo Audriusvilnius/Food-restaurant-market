@@ -4,7 +4,7 @@
 <div class="container" style="min-height: 900px">
 
     <div class=" row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card shadow bg-body-tertiary rounded ">
                 <div class="card-header">
                     <h1>All Orders</h1>
@@ -20,16 +20,19 @@
             <div id="{{ $order['id'] }}" class="card mt-12 mt-4" style="max-width: 1wm;">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-3">
-                        <div class="card-body align-content-center" @if($order->status == 0) style="background-color:crimson;border-radius:5px;color:white;" @elseif($order->status == 1) style="background-color:skyblue;border-radius:5px;" @elseif($order->status == 2) style="background-color:green;border-radius:5px; color:white;" @endif>
+                        <div class="card-body align-content-center" @if($order->status == 0) style="background-color:crimson;border-radius:5px;color:white;" @elseif($order->status == 1) style="background-color:skyblue;border-radius:5px;" @elseif($order->status == 2)
+                            style="background-color:grey;border-radius:5px;" @elseif($order->status == 3)
+                            style="background-color:rgba(224, 219, 219, 0.378);border-radius:5px;" @endif>
                             <h4>Order No.: <b><i>{{$order->id}}</b></i></h4>
                             @if($order->status == 0)
-                            <h5>Order open</h5>
+                            <h5>Open</h5>
                             @elseif($order->status == 1)
-                            <h5>Order confirmed</h5>
+                            <h5>Processing</h5>
                             @elseif($order->status == 2)
-                            <h5>Order complete</h5>
+                            <h5>Complete</h5>
+                            @elseif($order->status == 3)
+                            <h5>On the way</h5>
                             @endif
-
                         </div>
                     </div>
                     <div class="col-md-1">
@@ -61,30 +64,31 @@
                             <h5>Total sum.: <b><i>{{$order->baskets->total}} &euro;</b></i></h5>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                    </div>
-                    <div class="col-md-2 d-flex align-content-end">
-                        @if($order->status == 0)
-                        <div class="card-body d-flex ">
+                    {{-- <div class="col-md-3">
+                    </div> --}}
+                    <div class="col-md-9 d-flex align-content-end">
+                        <div class="card-body">
+                            @if($order->status == 0)
                             <form action="{{route('order-update', $order)}}" method="post">
-                                <button type="submit" class="btn btn-success m-1">Receive</button>
+                                <button type="submit" class="btn btn-success float-end">Processing</button>
                                 @csrf
                                 @method('put')
                             </form>
                             @endif
-                            @if($order->status > 0)
+                            @if($order->status == 1)
                             <form action="{{route('order-ticket', $order)}}" method="post">
                                 <input type="hidden" class="form-control" name="ticket" value="{{$order->id}}">
-                                <button type="submit" class="btn btn-warning m-1">Confirm</button>
+                                <button type="submit" class="btn btn-warning float-end">Complete</button>
                                 @csrf
                                 @method('post')
                             </form>
                             @endif
-                            <form action="{{route('order-delete', $order)}}" method="post">
-                                <button type="submit" class="btn btn-danger m-1" @if($order->status !=2)disabled @endif>Delete </button>
+                            @if($order->status == 3) <form action="{{route('order-delete', $order)}}" method="post">
+                                <button type="submit" class="btn btn-danger float-end" @if($order->status !=3)disabled @endif>Delete</button>
                                 @csrf
                                 @method('delete')
                             </form>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -12,10 +12,9 @@ use App\Models\City;
 
 class CityService
 {
-   
+
     public function getCity()
     {
-    return City::all()->sortBy('title');
+        return City::all()->sortBy('id');
     }
-      
 }
