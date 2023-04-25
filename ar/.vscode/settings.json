@@ -1,9 +1,0 @@
-{
-    "liveServer.settings.port": 5501,
-    "githubPullRequests.ignoredPullRequestBranches": [
-        "Dev"
-    ],
-    "github-actions.workflows.pinned.workflows": [
-        ".github/workflows/laravel.yml"
-    ]
-}

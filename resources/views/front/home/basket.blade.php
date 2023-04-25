@@ -101,9 +101,14 @@
             <div class="card mt-4">
                 <div class="card-header d-flex justify-content-md-between align-items-center">
                     <a href="{{route('start')}}" class="btn btn-secondary float-start">BACK</a>
-                    <h3 class="m-3"><i>Total basket sum: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></i></h3>
+                    <h3 class="m-3"><i>Delivery price: <b>{{number_format((float)$delivery, 2, '.', '')}} &euro;</b></i></h3>
+                    <h3 class="m-3"><i>Basket sum: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></i></h3>
+                    <h3 class="m-3"><i>Total sum: <b>{{number_format((float)$totals, 2, '.', '')}} &euro;</b></i></h3>
+
+
                     <div class="justify-content-end d-flex">
                         <form action="{{route('make-order')}}" method="post">
+                            <input type="hidden" name="delivery" value="{{$delivery}}">
                             <button type="submit" name="confirm" class="btn btn-success" style="width: 80px;">BUY</button>
                             @csrf
                         </form>
