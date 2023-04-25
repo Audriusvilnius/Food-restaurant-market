@@ -37,12 +37,10 @@ class FrontController extends Controller
         $foods = Food::all()->sortBy('title');
 
         if ($sessionCity == null) {
-            $faker = Faker::create();
-            $text = $faker->realText(300, 5);
             return view('front.home.city', [
                 'cities' => $cities,
                 'ovners' => $ovners,
-                'text' => $text,
+                'text' => Faker::create()->realText(300, 5),
             ]);
         }
 
@@ -134,7 +132,7 @@ class FrontController extends Controller
     public function rate(Request $request, Food $food)
     {
         $food = Food::where('id', '=', $request->product)->first();
-        $faker = Faker::create();
+        // $faker = Faker::create();
         $rateds = json_decode($food->rating_json, 1);
         $request->user_id = Auth::user()->id;
         $request->user_name = Auth::user()->name;
@@ -142,7 +140,7 @@ class FrontController extends Controller
 
 
         if ($request->food_review == null) {
-            $request->food_review = "The user doesn't leave a review, but..." . $faker->realText($maxNbChars = 500, $indexSize = 2);
+            $request->food_review = "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2);
         }
         if ($request->rated == null) {
             $request->rated = rand(1, 5);

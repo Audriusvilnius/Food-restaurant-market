@@ -104,9 +104,15 @@ svg.cart {
     max-width: 700px;
 }
 .text-block {
-    opacity: .95;
-    background-color: rgba(65, 65, 65);
+    opacity: 1;
+    background-color: rgb(43, 43, 43);
     color: white;
-    padding: 15% 34%;
-    border-radius: 10px;
+    border-radius: 100%;
+    font-family: $cl;
+    font-weight: 100;
+    width: 200px;        
+    height: 200px;
+    font-size: 35px;
+    line-height: 200px;
+    border: 2px solid #FFF;
 }
