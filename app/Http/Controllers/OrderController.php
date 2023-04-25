@@ -117,7 +117,6 @@ class OrderController extends Controller
             });
         $order->ticket = $request->ticket;
 
-
         return view('back.orders.ticket', [
             'order' => $order
         ]);

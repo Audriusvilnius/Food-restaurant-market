@@ -19,19 +19,20 @@
             @foreach($orders as $order)
             <div id="{{ $order['id'] }}" class="card mt-12 mt-4" style="max-width: 1wm;">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="card-body align-content-center" @if($order->status == 0) style="background-color:crimson;border-radius:5px;color:white;" @elseif($order->status == 1) style="background-color:skyblue;border-radius:5px;" @elseif($order->status == 2)
                             style="background-color:grey;border-radius:5px;" @elseif($order->status == 3)
                             style="background-color:rgba(224, 219, 219, 0.378);border-radius:5px;" @endif>
                             <h4>Order No.: <b><i>{{$order->id}}</b></i></h4>
+                            <h6>{{$order->created_at}} - {{$order->created_at}}</h6>
                             @if($order->status == 0)
-                            <h5>Open</h5>
+                            <p>Open</p>
                             @elseif($order->status == 1)
                             <h5>Processing</h5>
                             @elseif($order->status == 2)
-                            <h5>Complete</h5>
+                            <h5>Ready to ship</h5>
                             @elseif($order->status == 3)
-                            <h5>On the way</h5>
+                            <p>Completed</p>
                             @endif
                         </div>
                     </div>
@@ -39,7 +40,7 @@
                         <div class="card-body align-content-center">
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <div class="card-body align-content-center">
                             <h6>User name: <b><i>{{$order->user->name}}</b></i></h6>
                             <h6>User ID: <b><i>{{$order->user->id}}</b></i></h6>

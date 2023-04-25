@@ -16,18 +16,16 @@
                     <div class="col-md-3">
                         <div class="card-body align-content-center" @if($ticket->status == 0) style="background-color:crimson;border-radius:5px;color:white;" @elseif($ticket->status == 1) style="background-color:skyblue;border-radius:5px;" @elseif($ticket->status == 2)
                             style="background-color:skyblue;border-radius:5px;" @elseif($ticket->status == 3) style="background-color:rgba(224, 219, 219, 0.378);border-radius:5px;" @endif>
-
-
-
-                            <h4>Order No.: <b><i>{{$ticket->id}}</b></i></h4>
-                            @if($ticket->status == 0)
-                            <h5>Order open</h5>
-                            @elseif($ticket->status == 1)
-                            <h5>Order confirmed</h5>
-                            @elseif($ticket->status == 2)
-                            <h5>Order complete</h5>
-                            @elseif($ticket->status == 3)
-                            <h5>Order On the way</h5>
+                            <h4>Order No.: <b><i>{{$order->id}}</b></i></h4>
+                            <h6>{{$order->created_at}} - {{$order->created_at}}</h6>
+                            @if($order->status == 0)
+                            <p>Open</p>
+                            @elseif($order->status == 1)
+                            <h5>Processing</h5>
+                            @elseif($order->status == 2)
+                            <h5>Ready to ship</h5>
+                            @elseif($order->status == 3)
+                            <p>Completed</p>
                             @endif
                         </div>
                     </div>
@@ -63,22 +61,22 @@
                         </div>
                     </div>
 
-                    <div class="col-md-9">
-                        @if($ticket->status == 2)
-                        <div class="card-body d-flex ">
+                    <div class="col-md-9 d-flex align-content-end ">
+                        <div class="card-body">
+
                             <form action="{{route('order-ticket', $ticket)}}" method="post" class="mt-2">
                                 <input type="hidden" class="form-control" name="ticket" value="{{$ticket->id}}">
-                                <button type="submit" class="btn btn-info m-1">On the way</button>
+                                <button type="submit" class="btn btn-info float-end">On the way</button>
                                 @csrf
                                 @method('post')
                             </form>
                         </div>
-                        @endif
-                        <form action="{{route('order-delete', $ticket)}}" method="post" class="mt-2">
-                            <button type="submit" class="btn btn-danger float-end">Delete </button>
-                            @csrf
-                            @method('delete')
-                        </form>
+                        {{-- @endif --}}
+                        {{-- <form action="{{route('order-delete', $ticket)}}" method="post" class="mt-2">
+                        <button type="submit" class="btn btn-danger float-end">Delete </button>
+                        @csrf
+                        @method('delete')
+                        </form> --}}
                     </div>
                 </div>
             </div>
