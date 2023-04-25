@@ -9,7 +9,7 @@
                         <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="imageset">
                         <div class="centered shadow_new justify-content-center">
                             <h1 class="shadow_new"><b><i>{{$category->title}}</i></b></h1>
-                            <h4 class="shadow_new"><b><i>{{$category->food_Category()->count()}} dishes</i></b></h4>
+                            {{-- <h4 class="shadow_new"><b><i>{{$category->food_Category()->count()}} dishes</i></b></h4> --}}
                         </div>
                     </a>
                 </div>

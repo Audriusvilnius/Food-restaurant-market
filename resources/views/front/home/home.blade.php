@@ -94,9 +94,23 @@
                         <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
-                        <div class="centered shadow_new justify-content-center text-block">
-                            <p><i>CLOSED</i></p>
+                        <div class=" centered shadow_new justify-content-center text-block">
+                            <div onmouseover="mOver(this)" onmouseout="mOut(this)">
+
+                                CLOSED</div>
+                            <script>
+                                function mOver(obj) {
+                                    obj.innerHTML = `open {{$restaurant->open}}`
+                                }
+
+                                function mOut(obj) {
+                                    obj.innerHTML = "CLOSED"
+
+                                }
+
+                            </script>
                         </div>
+
                         @endif
                         @endforeach
                     </div>

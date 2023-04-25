@@ -35,13 +35,22 @@
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
                         <div class="centered shadow_new justify-content-center text-block">
-                            <h1>CLOSE</h1>
-                            <p>open from {{$restaurant->open}}</p>
+                            <div onmouseover="mOver(this)" onmouseout="mOut(this)">
+                                CLOSED</div>
+                            <script>
+                                function mOver(obj) {
+                                    obj.innerHTML = `open {{$restaurant->open}}`
+                                }
+
+                                function mOut(obj) {
+                                    obj.innerHTML = "CLOSED"
+                                }
+
+                            </script>
                         </div>
                         @endif
                         @endforeach
                     </div>
-
                     <div class="card-body ">
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
                             <h6>Restaurant: <b style="font-size:17px;"><i>
