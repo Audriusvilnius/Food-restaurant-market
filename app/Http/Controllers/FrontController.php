@@ -214,7 +214,6 @@ class FrontController extends Controller
     public function makeOrder(Request $request,  BasketService $basket)
     {
         $order = new Order;
-        $S = $request->delivery;
         $order->user_id = Auth::user()->id;
         $order->basket_json = json_encode($basket->order());
         $order->order_json = json_encode($basket->order());
@@ -223,7 +222,7 @@ class FrontController extends Controller
         // dd($order);
         $to = User::find($order->user_id);
 
-        Mail::to($to)->send(new OrderBasket($order, $S));
+        // Mail::to($to)->send(new OrderBasket($order));
         $basket->empty();
         return redirect()->route('start');
     }

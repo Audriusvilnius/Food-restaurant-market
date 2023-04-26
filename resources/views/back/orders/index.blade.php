@@ -17,6 +17,8 @@
                 @endif
             </div>
             @foreach($orders as $order)
+            {{-- @if($order->status != 3) --}}
+
             <div id="{{ $order['id'] }}" class="card mt-12 mt-4" style="max-width: 1wm;">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-6">
@@ -24,16 +26,18 @@
                             style="background-color:grey;border-radius:5px;" @elseif($order->status == 3)
                             style="background-color:rgba(224, 219, 219, 0.378);border-radius:5px;" @endif>
                             <h4>Order No.: <b><i>{{$order->id}}</b></i></h4>
-                            <h6>{{$order->created_at}} - {{$order->created_at}}</h6>
+                            <h6 class="mb-2">Open - {{$order->created_at}}</h6>
                             @if($order->status == 0)
-                            <p>Open</p>
+                            <h5>Open</h5>
                             @elseif($order->status == 1)
                             <h5>Processing</h5>
                             @elseif($order->status == 2)
                             <h5>Ready to ship</h5>
                             @elseif($order->status == 3)
-                            <p>Completed</p>
+                            <h5>Completed</h5>
                             @endif
+                            - {{$order->created_at}}
+
                         </div>
                     </div>
                     <div class="col-md-1">
@@ -71,17 +75,25 @@
                         <div class="card-body">
                             @if($order->status == 0)
                             <form action="{{route('order-update', $order)}}" method="post">
-                                <button type="submit" class="btn btn-success float-end">Processing</button>
+                                <button type="submit" class="btn btn-danger float-end">Processing</button>
                                 @csrf
                                 @method('put')
                             </form>
                             @endif
                             @if($order->status == 1)
-                            <form action="{{route('order-ticket', $order)}}" method="post">
-                                <input type="hidden" class="form-control" name="ticket" value="{{$order->id}}">
+                            <form action="{{route('order-update', $order)}}" method="post">
                                 <button type="submit" class="btn btn-warning float-end">Complete</button>
                                 @csrf
+                                @method('put')
+                            </form>
+                            @endif
+                            @if($order->status == 2)
+                            <form action="{{route('order-status', $order)}}" method="post">
+                                <input type="hidden" class="form-control" name="ticket" value="{{$order->id}}">
+                                <button type="submit" class="btn btn-success float-end">To shep</button>
+                                @csrf
                                 @method('post')
+
                             </form>
                             @endif
                             @if($order->status == 3) <form action="{{route('order-delete', $order)}}" method="post">
@@ -94,11 +106,11 @@
                     </div>
                 </div>
             </div>
-            <div>
-                @endforeach
-            </div>
+            {{-- @endif --}}
+            @endforeach
         </div>
     </div>
+</div>
 </div>
 
 @endsection
