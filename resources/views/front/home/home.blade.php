@@ -24,6 +24,15 @@
 
 @include('front.home.common.category')
 
+<section class="container shadow_new">
+    <h3 class=" mt-4 text-start"><i>Restaurants</i></h3>
+    <hr class="border border-second border-1 opacity-75">
+</section>
+
+
+@include('front.home.common.restaurant')
+
+
 <div class="page">
     <div class="container ">
         <hr class="border border-second border-0 opacity-50">
@@ -90,6 +99,7 @@
             @forelse($foods as $food)
 
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
+
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
                         <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">

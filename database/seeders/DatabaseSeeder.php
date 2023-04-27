@@ -113,19 +113,19 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (range(1, 60) as $_) {
+        foreach (range(1, 30) as $_) {
             $photo_rest = rand(1, 21);
             DB::table('restaurants')->insert([
                 'title' => $faker->company,
-                // 'city' => $cities[rand(0,4)],
                 'addres' => $faker->streetAddress,
-                // 'open' => $faker->time($format='H:i',$max='now'),
-                // 'close' => $faker->time($format='H:i',$max='now'),                
                 'open' => rand(7, 11) . ':00',
                 'close' => rand(18, 23) . ':00',
                 'photo' => '/images/temp/' . $photo_rest . '.jpg',
                 'phone' => $faker->e164PhoneNumber,
                 'des' => $faker->paragraph($nbSentences = rand(5, 10), $variableNbSentences = true),
+                // 'city' => $cities[rand(0,4)],
+                // 'open' => $faker->time($format='H:i',$max='now'),
+                // 'close' => $faker->time($format='H:i',$max='now'),                
             ]);
         }
 

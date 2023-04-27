@@ -27,12 +27,14 @@ class FrontController extends Controller
     public function home(Request $request, City $city, FrontController $citySelect)
     {
         // dump(Session::get('citySelect'));
+
         $restaurants = Restaurant::all()->sortBy('title');
         $categories = Category::all()->sortBy('title');
         $sessionCity = Session::get('citySelect');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
         $foods = Food::all()->sortBy('title');
+
 
         if ($sessionCity == null) {
             return view('front.home.city', [
