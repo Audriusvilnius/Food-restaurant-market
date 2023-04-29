@@ -21,18 +21,22 @@
      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
+
+
+     <link href="{{asset('assets/css/owl.carousel.min.css')}}" rel="stylesheet">
+     <link href="{{asset('assets/css/owl.theme.default.min.css')}}" rel="stylesheet">
+
+
+     {{-- <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+     <link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet"> --}}
+
      <!-- Scripts -->
-
-     {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script> --}}
-
-
-
-     {{-- <script src="{{ asset('resources/js/front/app.js') }}"></script>
-     @vite(['resources/sass/front/app.scss']) --}}
+     <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
+     <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+     {{-- <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script> --}}
 
 
      @vite(['resources/sass/front/app.scss', 'resources/js/front/app.js'])
