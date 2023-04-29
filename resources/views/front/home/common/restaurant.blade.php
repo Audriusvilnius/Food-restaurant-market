@@ -6,7 +6,7 @@
                 <div class="owl-carousel owl-theme">
                     @foreach($restaurant->getService() as $restaurant)
                     <div class="item">
-                        <div class="card ">
+                        <div class="card">
                             <a class="list-group-item list-group-item-action" href="{{route('list-restaurant',$restaurant)}}">
                                 <img src="{{asset($restaurant->photo)}}" class="img-fluid rounded-top" alt="{{$restaurant->title}}">
                                 <p class="fw-lighter text-start text-body-secondary m-1 ms-3"><i><b>{{$restaurant->title}}</b></i>
