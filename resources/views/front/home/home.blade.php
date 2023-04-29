@@ -8,29 +8,31 @@
 @endif
 </div>
 </section> --}}
+<div class="conteiner-blue">
 
-<section class="py-1 text-center container shadow_new btnFront">
-    <a class="list-group-item list-group-item-action" href="{{route('start')}}">
-        <div class="btn btn-dark">
-            <h1 class="m-3 shadow_new">All Restaurants offer near me</h1>
-        </div>
-    </a>
-    <hr class=" border border-second border-0 opacity-75">
-</section>
-<section class="container shadow_new">
-    <h3 class="mt-4 text-start"><i>Categories</i></h3>
-    <hr class="border border-second border-1 opacity-75">
-</section>
-
-@include('front.home.common.category')
-
-<section class="container shadow_new">
-    <h3 class="text-start"><i>Restaurants</i></h3>
-    <hr class="border border-second border-1 opacity-75">
-</section>
+    <section class="py-1 text-center container shadow_new btnFront">
+        <a class="list-group-item list-group-item-action" href="{{route('start')}}">
+            <div class="btn btn-dark">
+                <h1 class="m-3 shadow_new">All Restaurants offer near me</h1>
+            </div>
+        </a>
+        <hr class=" border border-second border-0 opacity-75">
+    </section>
+    <section class="container shadow_new">
+        <h3 class="mt-4 text-end"><i>Categories</i></h3>
+        {{-- <hr class="border border-second border-1 opacity-75"> --}}
+    </section>
+    @include('front.home.common.category')
 
 
-@include('front.home.common.restaurant')
+    <section class="container shadow_new">
+        <h3 class="text-start"><i>Restaurants</i></h3>
+        {{-- <hr class="border border-second border-1 opacity-75"> --}}
+    </section>
+    @include('front.home.common.restaurant')
+
+</div>
+
 
 
 <div class="page">

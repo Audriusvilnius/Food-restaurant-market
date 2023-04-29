@@ -24,20 +24,12 @@
 
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-
-
      <link href="{{asset('assets/css/owl.carousel.min.css')}}" rel="stylesheet">
      <link href="{{asset('assets/css/owl.theme.default.min.css')}}" rel="stylesheet">
-
-
-     {{-- <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-     <link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet"> --}}
 
      <!-- Scripts -->
      <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
      <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
-     {{-- <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script> --}}
-
 
      @vite(['resources/sass/front/app.scss', 'resources/js/front/app.js'])
 
@@ -169,7 +161,7 @@
          </nav>
      </div>
      @include('layouts.svg')
-     <main class="py-4 mystyle">
+     <main class="mystyle">
          @yield('content')
      </main>
      </div>
