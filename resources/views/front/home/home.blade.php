@@ -12,14 +12,14 @@
 
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
-            <div class="btn btn-dark">
+            <div class="btn btn-dark mt-5">
                 <h1 class="m-3 shadow_new">All Restaurants offer near me</h1>
             </div>
         </a>
         <hr class=" border border-second border-0 opacity-75">
     </section>
     <section class="container shadow_new">
-        <h3 class="mt-4 text-end"><i>Categories</i></h3>
+        <h3 class="mt-1 text-end"><i>Categories</i></h3>
         {{-- <hr class="border border-second border-1 opacity-75"> --}}
     </section>
     @include('front.home.common.category')
@@ -30,7 +30,6 @@
         {{-- <hr class="border border-second border-1 opacity-75"> --}}
     </section>
     @include('front.home.common.restaurant')
-
 </div>
 
 
@@ -97,7 +96,7 @@
         <hr class="border border-second border-0 opacity-50">
 
         {{-- CIA keiciam steilpeliu skaiciu  --}}
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-3 g-3">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-3">
             @forelse($foods as $food)
 
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
@@ -107,7 +106,7 @@
                         <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
-                        <div class=" centered shadow_new justify-content-center text-block">
+                        <div style="transform: translateX(-100px) translateY(-20px) rotate({{$restaurant->deg}}deg)" class="centered shadow_new justify-content-center text-block-sm">
                             <div onmouseover="mOver(this)" onmouseout="mOut(this)">
                                 CLOSED
                             </div>

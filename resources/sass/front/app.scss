@@ -46,7 +46,7 @@ svg.cart {
 }
 
 .mystyle {
-    background-image: url("/public/images/temp/tomatoes-5365186.jpg");
+    background-image: url("/public/images/temp/table.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -125,6 +125,23 @@ svg.cart {
     transform: translateX(-12px) translateY(-100px) rotate(30deg);
 }
 
+.text-block-sm{
+    opacity: .95;
+    background-color: rgba(220, 20, 60, 0.95);
+    color: white;
+    border-radius: 15px;
+    font-family: $cl;
+    font-weight: 100;
+    width: 250px;
+    height: 80px;
+    font-size: 35px;
+    line-height: 80px;
+    border: 2px solid rgba(0, 0, 0);
+    z-index: 10;
+    // transform: translateX(100px) translateY(450px);
+    // transform: rotate(30deg);
+}
+
 .owl-carousel .nav-btn {
     height: 47px;
     position: absolute;
@@ -140,13 +157,13 @@ svg.cart {
 }
 
 .owl-carousel .prev-slide {
-    background: url(nav-icon.png) no-repeat scroll 0 0;
-    left: -33px;
+    // background: url(nav-icon.png) no-repeat scroll 0 0;
+    left: -40px;
 }
 
 .owl-carousel .next-slide {
-    background: url(nav-icon.png) no-repeat scroll -24px 0px;
-    right: -33px;
+    // background: url(nav-icon.png) no-repeat scroll -24px 0px;
+    right: -30px;
 }
 
 .owl-carousel .prev-slide:hover {
