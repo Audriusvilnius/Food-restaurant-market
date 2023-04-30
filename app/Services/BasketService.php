@@ -23,6 +23,7 @@ class BasketService
             $this->total += $food->sum ;
             return $food;
         });
+        $this-> total += updatePrice($ids);
         $this->count = $this->basketList->count(); 
     }
     
@@ -103,7 +104,8 @@ class BasketService
               };
         if ($temp < 2) { 
                 $this->flag = 1;
-                $this->total += $this->dfee;
+              //  $this->total += $this->dfee;  not required after fix
+            // $this->total2 += $this ->dfee;   not required after fix
                 return $this->dfee . ' €'; 
                 
              }
@@ -117,4 +119,24 @@ class BasketService
     public function getFlag(){
         return $this->flag;
     }
+
 }
+
+    function updatePrice($data){
+
+    $names = [];
+    $temp = Food::all();
+    $temporary = [];
+
+    for ($i=0; $i < count($data); $i++){
+    
+        $temporary[$i] = $temp->whereIn('id', $data[$i]);
+        $index = $data[$i];
+        $names[$i] = $temporary[$i][$index-1]['rest_title'];
+    }
+
+        $newunique = array_unique($names);
+        
+        return count($newunique) * 4.99;
+        
+    };
