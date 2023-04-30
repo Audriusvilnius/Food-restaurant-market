@@ -1,18 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1 fixed-top py-2">
-        @if(Session::has('ok'))
-        <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-        @endif
-        @if(Session::has('not'))
-        <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </h6>
-        @endif
-    </div>
-</section>
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">
         <i class="bi bi-chevron-up"></i>
@@ -79,6 +66,19 @@
                     </form>
                 </div>
             </div>
+            <section class="py-1 text-center container">
+                <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
+                    @if(Session::has('ok'))
+                    <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+                    @endif
+                    @if(Session::has('not'))
+                    <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </h6>
+                    @endif
+                </div>
+            </section>
             @if($rateds)
             @foreach($rateds as $id => $reviews)
             <div id={{$id}} class="card mt-2 d-flex justify-content-md-between">

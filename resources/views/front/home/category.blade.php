@@ -1,14 +1,14 @@
 @extends('layouts.front')
 @section('content')
-<section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1 fixed-top py-2">
+{{-- <section class="py-1 text-center container">
+    <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
         @if(Session::has('ok'))
         <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </h6>
-        @endif
-    </div>
-</section>
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+@endif
+</div>
+</section> --}}
+
 
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">
@@ -29,7 +29,12 @@
     <hr class="border border-second border-1 opacity-75">
 </section>
 
-{{-- @include('front.home.common.category') --}}
+
+    <section class="container shadow_new">
+        <h3 class=" mt-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
+    </section>
+    <hr class="border border-second border-1 opacity-75">
+</div>
 
 <div class="page">
     <div class="container ">
@@ -37,9 +42,29 @@
             @forelse($foods as $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
-                    <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary " alt=" hotel">
+                    <div class="container_pic">
+                        <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
+                        @foreach($restaurants as $restaurant)
+                        @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
+                        <div class="centered shadow_new justify-content-center text-block" style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg)">
 
-                    <div class=" card-body ">
+                            <div onmouseover="mOver(this)" onmouseout="mOut(this)">
+                                CLOSED</div>
+                            <script>
+                                function mOver(obj) {
+                                    obj.innerHTML = `open {{$restaurant->open}}`
+                                }
+
+                                function mOut(obj) {
+                                    obj.innerHTML = "CLOSED"
+                                }
+
+                            </script>
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
+                    <div class="card-body ">
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
                             <h6>{{__('Restaurant')  }}: <b style="font-size:17px;"><i>
                                         {{$food->foodReataurants_name->title}}</b></i></h6>
@@ -93,7 +118,8 @@
                                 <div class="col-md-1 ">
                                     <div class="form-contro">
                                         <button type="submit" class="btn btn-dark">
-                                            <i class="bi bi-cart-check-fill"></i>
+                                            <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
+
                                         </button>
                                     </div>
                                 </div>

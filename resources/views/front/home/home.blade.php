@@ -1,13 +1,15 @@
 @extends('layouts.front')
 @section('content')
-<section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1 fixed-top py-2">
+{{-- <section class="py-1 text-center container">
+    <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
         @if(Session::has('ok'))
         <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-        @endif
-    </div>
-</section>
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+@endif
+</div>
+</section> --}}
+<div class="conteiner-blue">
+
 
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">
@@ -20,17 +22,25 @@
     <hr class=" border border-second border-0 opacity-75">
 </section>
 
-@include('front.home.common.category')
 
-<div class="page">
+
+    <section class="container shadow_new">
+        <h3 class="text-start"><i>Restaurants</i></h3>
+        {{-- <hr class="border border-second border-1 opacity-75"> --}}
+    </section>
+    @include('front.home.common.restaurant')
+</div>
+
+<section class="page conteiner-blue pb-3">
     <div class="container ">
-        <hr class="border border-second border-0 opacity-50">
-        <div class="row ">
+        <div class="row">
             <div class="col-md-4 d-flex ">
                 <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
                     <div class="card-body align-content-center gap-3 d-flex mb-2">
+
                         <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="{{__('Search...')  }}  " aria-label="Search" name="s" value="{{$s}}">
                         <button type="submit" class="btn btn-info"><i class="bi bi-search"></i></button>
+
                     </div>
                 </form>
             </div>
@@ -72,7 +82,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="col-md-2">
                 <div class="card-body align-content-end gap-1 d-flex float-end">
                     <button type="submit" class="btn btn-secondary mb-2">{{__('SHOW')  }}</button>
@@ -81,13 +90,27 @@
                 </div>
             </div>
         </div>
-        <hr class="border border-second border-0 opacity-50">
+    </div>
+</section>
+
+
+
+<hr class="border border-second border-0 opacity-50">
+<div class="page" id="food-lists">
+    <div class="container ">
         {{-- CIA keiciam steilpeliu skaiciu  --}}
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-3 g-3">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-3">
             @forelse($foods as $food)
+
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
+
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
-                    <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary " alt=" hotel">
+                    <div class="container_pic">
+                        <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
+                        @foreach($restaurants as $restaurant)
+                        @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
+                        <div style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg);" class="centered shadow_new justify-content-center text-block-sm">
+
 
                     <div class=" card-body ">
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
@@ -152,17 +175,52 @@
                                         <button type="submit" class="btn btn-dark">
                                             <i class="bi bi-cart-check-fill"></i>
                                         </button>
+
                                     </div>
+                                    <form action="{{route('update-reviews')}}" method="get">
+                                        <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
+                                            <input type="hidden" name="product" value="{{$food->id}}">
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn btn-outline-secondary" style="width:200px;">Rating & Reviews</button>
+                                            </div>
+                                        </div>
+                                        @csrf
+                                    </form>
+                                    <hr class="border border-second border-2 opacity-0">
+                                    <form action="{{route('add-basket')}}" method="post">
+                                        <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
+                                            <div class="col-md-2">
+                                                Qty:
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="number" class="form-control" name="count" value="1" min="1">
+                                                <input type="hidden" name="id" value="{{$food->id}}">
+                                            </div>
+                                            <div class="col-md-1 ">
+                                                <div class="form-contro">
+                                                    <button type="submit" class="btn btn-dark">
+                                                        <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            @csrf
+                                        </div>
+                                    </form>
+                                    <hr class="border border-second border-2 opacity-0">
                                 </div>
-                                @csrf
-                        </form>
-                    </div>
-                    <div class=" col-md-12 d-flex">
-                        <div class="col-md-4">
+                            </div>
+                            <h4 class="mt-3"><b><i>{{$food->title}}</b></i></h4>
+                            <span class="text-muted">{{$food->add}}</span>
+                            <hr class="border border-second border-1 opacity-75">
+                            <div class="justify-content-center align-bottom">
+                                <h3 @if($food->price<20) style="color:crimson;" @endif><b><i>{{$food->price}} &euro;</b></i></h3>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+
         </div>
         @empty
         <div class="col-xxl-12 col-xl-12 col-lg-12">
@@ -172,17 +230,16 @@
                 </div>
                 <div class="card-header justify-content-md-between align-items-center">
                     <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK')  }}</a>
+
                 </div>
             </div>
+            @endforelse
         </div>
-        @endforelse
+        <div class="mt-4">
+            @if($perPageShow!='All')
+            {{$foods->links()}}
+            @endif
+        </div>
     </div>
-    <div class="mt-4">
-        @if($perPageShow!='All')
-        {{$foods->links()}}
-        @endif
-    </div>
-</div>
-<hr class="border border-second border-0 opacity-50 m-1">
-
-@endsection
+    <hr class="border border-second border-0 opacity-50 m-1">
+    @endsection

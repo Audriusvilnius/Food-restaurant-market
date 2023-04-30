@@ -1,4 +1,5 @@
 @inject('city', 'App\Services\CityService')
+
 <section class="container shadow_new">
     <h3 class="mb-4 text-start"><i>{{__('Categories')  }}<i></h3>
     <hr class=" border border-second border-1 opacity-75">
@@ -10,17 +11,19 @@
                     <a class="list-group-item list-group-item-action" href="{{route('list-category',$category->id)}}">
                         <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="imageset">
 
-                        <div class="centered shadow_new justify-content-center">
-                            <h1 class="shadow_new"><b><i>{{$category->title}}</i></b></h1>
-                            <h4 class="shadow_new"><b><i>{{$category->food_Category()->count()}} dishes</i></b></h4>
-                        </div>
-                    </a>
-                </div>
-            </div>
+
+        @endforeach
+    </select>
+    <div class="card-body d-flex">
+        <div class="list-table__buttons ms-3">
+            <button type="submit" class="btn btn-info">OK</button>
         </div>
+
         @empty
         <h2 class="list-group-item">{{__('List empty')  }}</h2>
         @endforelse
+
     </div>
-</section>
-{{-- <hr class=" border border-second border-1 opacity-75"> --}}
+    @csrf
+    @method('post')
+</form>
