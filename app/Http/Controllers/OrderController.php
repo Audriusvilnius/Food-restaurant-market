@@ -9,20 +9,18 @@ use App\Models\Order;
 use App\Models\Ovner;
 use App\Mail\OrderBasket;
 use App\Mail\OrderShipped;
-use App\Mail\OrderCompleted;
 use App\Mail\OrderProcesing;
-use App\Models\User;
+use App\Mail\OrderCompleted;
 use App\Mail\OrderReceived;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Mail;
-
+use LogicException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $orders = Order::orderBy('created_at', 'desc')
@@ -36,80 +34,38 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreOrderRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreOrderRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateOrderRequest  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Order $order)
     {
-        $order->status = 1;
-        $order->save();
         $to = User::find($order->user_id);
-        Mail::to($to)->send(new OrderReceived($order));
-
-        return redirect()->route('order-index', ['#' . $order->id]);
-        //redirect()->route('index', ['#'.$order->id])
-    }
-    public function ticket(Request $request, Order $order)
-    {
-        $to = User::find($order->user_id);
-        if ($order->status == 1) {
-            Mail::to($to)->send(new OrderProcesing($order));
+        if ($order->status == 0) {
+            // Mail::to($to)->send(new OrderReceived($order));
+            $order->status = 1;
+            $order->save();
+        } elseif ($order->status == 1) {
+            // Mail::to($to)->send(new OrderProcesing($order));
             $order->status = 2;
             $order->save();
-        } else {
-            Mail::to($to)->send(new OrderCompleted($order));
+        }
+
+        return redirect()->route('order-index', ['#' . $order->id]);
+    }
+
+    public function destroy(Order $order)
+    {
+        $order->delete();
+        return redirect()->route('order-index', ['#' . $order->id]);
+    }
+
+    public function status(Request $request, Order $order)
+    {
+        $to = User::find($order->user_id);
+        if ($order->status == 2) {
+            // Mail::to($to)->send(new OrderCompleted($order));
             $order->status = 3;
             $order->save();
         }
 
-        $order = Order::where('id', '=', $request->ticket)
+        $orders = Order::orderBy('created_at', 'desc')
             ->get()
             ->map(function ($food) {
                 $food->baskets = json_decode($food->order_json);
@@ -117,21 +73,21 @@ class OrderController extends Controller
             });
         $order->ticket = $request->ticket;
 
-
-        return view('back.orders.ticket', [
-            'order' => $order
+        return view('back.orders.index', [
+            'orders' => $orders
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
+    public function shiped(Request $request, Order $order)
     {
-        $order->delete();
-        return redirect()->route('order-index', ['#' . $order->id]);
+        $orders = Order::orderBy('updated_at', 'desc')
+            ->get()
+            ->map(function ($food) {
+                $food->baskets = json_decode($food->order_json);
+                return $food;
+            });
+        return view('back.orders.ticket', [
+            'orders' => $orders
+        ]);
     }
 }

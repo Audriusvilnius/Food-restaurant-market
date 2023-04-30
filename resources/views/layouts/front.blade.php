@@ -22,11 +22,15 @@
      <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 
-
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
+     <link href="{{asset('assets/css/owl.carousel.min.css')}}" rel="stylesheet">
+     <link href="{{asset('assets/css/owl.theme.default.min.css')}}" rel="stylesheet">
 
      <!-- Scripts -->
+     <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
+     <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+
      @vite(['resources/sass/front/app.scss', 'resources/js/front/app.js'])
 
  </head>
@@ -46,7 +50,7 @@
                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <!-- Left Side Of Navbar -->
 
-                     {{-- @include('front.home.common.restaurant') --}}
+
                      <ul class="navbar-nav ms-5">
                          @include('front.home.common.city')
                      </ul>
@@ -67,6 +71,9 @@
                              </a>
                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                  <a class="dropdown-item" href="{{ route('order-index') }}">Order list</a>
+                                 <a class="dropdown-item" href="{{ route('order-shiped') }}">Shiped list</a>
+
+
                              </div>
                          </li>
 
@@ -154,14 +161,14 @@
          </nav>
      </div>
      @include('layouts.svg')
-     <main class="py-4 mystyle">
+     <main class="mystyle">
          @yield('content')
      </main>
      </div>
      <footer class="py-4">
          <a href="#" class="text-decoration-none" style="color:white;">
              <div class="up sticky-bottom">
-                 <i class="bi bi-chevron-up"></i>
+                 <i class="bi bi-chevron-up" style="font-size:1.5rem;"></i>
              </div>
          </a>
          <div class="card mt-2 d-flex justify-content-md-between align-content-right">
@@ -181,14 +188,21 @@
                                      <small class="fw-lighter">Country:</small>&nbsp;&nbsp; {{$ovner->country}}<br>
                                  </div>
                                  <div class="col-md-5">
-                                     <small class="fw-semibold"><i class="bi bi-globe"></i></small>&nbsp;&nbsp; {{$ovner->url}}<br>
-                                     <small class="fw-semibold"><i class="bi bi-telephone"></i></small>&nbsp;&nbsp; {{$ovner->phone}}<br>
-                                     <small class="fw-semibold"><i class="bi bi-phone"></small></i>&nbsp;&nbsp; {{$ovner->mobile}}<br>
-                                     <small class="fw-semibold"><i class="bi bi-envelope-at"></i></small>&nbsp;&nbsp; {{$ovner->email}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-globe" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->url}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-telephone" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->phone}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-phone" style="font-size: 1rem"></small></i>&nbsp;&nbsp; {{$ovner->mobile}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-envelope-at" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->email}}<br>
+
                                  </div>
                                  <div class="col-md-3">
-                                     <small class="fw-semibold "><i class="bi bi-bank"></small></i>&nbsp;&nbsp; {{$ovner->bank}}<br>
-                                     <small class="fw-semibold"><i class="bi bi-wallet-fill"></small></i>&nbsp;&nbsp; {{$ovner->account}}<br>
+                                     <small class="fw-semibold "><i class="bi bi-bank" style="font-size: 1rem"></small></i>&nbsp;&nbsp; {{$ovner->bank}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-wallet-fill" style="font-size: 1rem"></small></i>&nbsp;&nbsp; {{$ovner->account}}<br>
+
                                      <div class="col-md-12 d-flex">
                                          <div class="col-md-3">
                                              {{-- Open: <i>{{$ovner->open}}</i> --}}
