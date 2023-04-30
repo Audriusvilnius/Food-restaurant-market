@@ -168,7 +168,7 @@
      <footer class="py-4">
          <a href="#" class="text-decoration-none" style="color:white;">
              <div class="up sticky-bottom">
-                 <i class="bi bi-chevron-up"></i>
+                 <i class="bi bi-chevron-up" style="font-size:1.5rem;"></i>
              </div>
          </a>
          <div class="card mt-2 d-flex justify-content-md-between align-content-right">
@@ -188,14 +188,21 @@
                                      <small class="fw-lighter">Country:</small>&nbsp;&nbsp; {{$ovner->country}}<br>
                                  </div>
                                  <div class="col-md-5">
-                                     <small class="fw-semibold"><i class="bi bi-globe"></i></small>&nbsp;&nbsp; {{$ovner->url}}<br>
-                                     <small class="fw-semibold"><i class="bi bi-telephone"></i></small>&nbsp;&nbsp; {{$ovner->phone}}<br>
-                                     <small class="fw-semibold"><i class="bi bi-phone"></small></i>&nbsp;&nbsp; {{$ovner->mobile}}<br>
-                                     <small class="fw-semibold"><i class="bi bi-envelope-at"></i></small>&nbsp;&nbsp; {{$ovner->email}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-globe" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->url}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-telephone" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->phone}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-phone" style="font-size: 1rem"></small></i>&nbsp;&nbsp; {{$ovner->mobile}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-envelope-at" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->email}}<br>
+
                                  </div>
                                  <div class="col-md-3">
-                                     <small class="fw-semibold "><i class="bi bi-bank"></small></i>&nbsp;&nbsp; {{$ovner->bank}}<br>
-                                     <small class="fw-semibold"><i class="bi bi-wallet-fill"></small></i>&nbsp;&nbsp; {{$ovner->account}}<br>
+                                     <small class="fw-semibold "><i class="bi bi-bank" style="font-size: 1rem"></small></i>&nbsp;&nbsp; {{$ovner->bank}}<br>
+
+                                     <small class="fw-semibold"><i class="bi bi-wallet-fill" style="font-size: 1rem"></small></i>&nbsp;&nbsp; {{$ovner->account}}<br>
+
                                      <div class="col-md-12 d-flex">
                                          <div class="col-md-3">
                                              {{-- Open: <i>{{$ovner->open}}</i> --}}

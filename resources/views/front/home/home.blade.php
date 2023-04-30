@@ -32,17 +32,14 @@
     @include('front.home.common.restaurant')
 </div>
 
-
-
-<div class="page">
+<section class="page conteiner-blue pb-3">
     <div class="container ">
-        <hr class="border border-second border-0 opacity-50">
-        <div class="row ">
+        <div class="row">
             <div class="col-md-4 d-flex ">
                 <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
                     <div class="card-body align-content-center gap-3 d-flex mb-2">
                         <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search...  " aria-label="Search" name="s" value="{{$s}}">
-                        <button type="submit" class="btn btn-info"><i class="bi bi-search"></i></button>
+                        <button type="submit" class="btn btn-info"><i class="bi bi-search" style="font-size: 1rem"> </i></button>
                     </div>
                 </form>
             </div>
@@ -84,7 +81,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="col-md-2">
                 <div class="card-body align-content-end gap-1 d-flex float-end">
                     <button type="submit" class="btn btn-secondary mb-2">SHOW</button>
@@ -93,8 +89,14 @@
                 </div>
             </div>
         </div>
-        <hr class="border border-second border-0 opacity-50">
+    </div>
+</section>
 
+
+
+<hr class="border border-second border-0 opacity-50">
+<div class="page" id="food-lists">
+    <div class="container ">
         {{-- CIA keiciam steilpeliu skaiciu  --}}
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-3">
             @forelse($foods as $food)
@@ -106,13 +108,16 @@
                         <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
-                        <div style="transform: translateX(-100px) translateY(-20px) rotate({{$restaurant->deg}}deg)" class="centered shadow_new justify-content-center text-block-sm">
+                        <div style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg);" class="centered shadow_new justify-content-center text-block-sm">
+
                             <div onmouseover="mOver(this)" onmouseout="mOut(this)">
+
                                 CLOSED
                             </div>
                             <script>
                                 function mOver(obj) {
                                     obj.innerHTML = `open {{$restaurant->open}}`
+
                                 }
 
                                 function mOut(obj) {
@@ -171,7 +176,7 @@
                                             <div class="col-md-1 ">
                                                 <div class="form-contro">
                                                     <button type="submit" class="btn btn-dark">
-                                                        <i class="bi bi-cart-check-fill"></i>
+                                                        <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -183,9 +188,12 @@
                             </div>
                             <h4 class="mt-3"><b><i>{{$food->title}}</b></i></h4>
                             <span class="text-muted">{{$food->add}}</span>
-
-                            <h4 @if($food->price<20) style="color:crimson;" @endif>Price: <b><i>{{$food->price}} &euro;</b></i></h4>
+                            <hr class="border border-second border-1 opacity-75">
+                            <div class="justify-content-center align-bottom">
+                                <h3 @if($food->price<20) style="color:crimson;" @endif><b><i>{{$food->price}} &euro;</b></i></h3>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>

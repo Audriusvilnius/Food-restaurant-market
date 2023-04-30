@@ -30,6 +30,8 @@ class FrontController extends Controller
         $restaurants = Restaurant::all()
             ->map(function ($temp) {
                 $temp->deg = rand(-45, 45);
+                $temp->translateX = rand(-70, -160);
+                $temp->translateY = rand(-45, -45);
                 return $temp;
             })->sortBy('title');
         // $restaurants = $restaurants->sortBy('title');
@@ -246,6 +248,8 @@ class FrontController extends Controller
 
         $restaurants = $restaurants->map(function ($status) {
             $status->deg = rand(-45, 45);
+            $status->translateX = rand(-70, -160);
+            $status->translateY = rand(-45, -45);
             $status->openStatus = Carbon::parse($status->open)->format('H:i');
             $status->closeStatus = Carbon::parse($status->close)->format('H:i');
             $check = Carbon::now('Europe/Vilnius')->between(
