@@ -165,16 +165,14 @@
          @yield('content')
      </main>
      </div>
-     <footer class="py-4">
-         <a href="#" class="text-decoration-none" style="color:white;">
-             <div class="up sticky-bottom">
-                 <i class="bi bi-chevron-up" style="font-size:1.5rem;"></i>
-             </div>
-         </a>
-         <div class="card mt-2 d-flex justify-content-md-between align-content-right conteiner-yellow">
-
-             <div class="row g-0 shadow p-3 bg-body-tertiary conteiner-yellow">
-
+     <a href="#" class="text-decoration-none" style="color:white;">
+         <div class="up sticky-bottom">
+             <i class="bi bi-chevron-up" style="font-size:1.5rem;"></i>
+         </div>
+     </a>
+     <footer>
+         <div class="card mt-2 d-flex justify-content-md-between align-content-right">
+             <div class="row g-0 shadow p-3 bg-body-tertiary conteiner-black">
                  @forelse($ovners as $ovner)
                  <div class="container">
                      <div class="card-body text-muted">
