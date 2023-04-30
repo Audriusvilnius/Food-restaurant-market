@@ -186,12 +186,12 @@
                                     <hr class="border border-second border-2 opacity-0">
                                 </div>
                             </div>
-                            <h4 class="mt-3"><b><i>{{$food->title}}</b></i></h4>
-                            <span class="text-muted">{{$food->add}}</span>
-                            <hr class="border border-second border-1 opacity-75">
                             <div class="justify-content-center align-bottom">
+                                <h4 class="mt-3"><b><i>{{$food->title}}</b></i></h4>
                                 <h3 @if($food->price<20) style="color:crimson;" @endif><b><i>{{$food->price}} &euro;</b></i></h3>
                             </div>
+                            <hr class="border border-second border-1 opacity-75">
+                            <span class="text-muted">{{$food->add}}</span>
                         </div>
 
                     </div>
