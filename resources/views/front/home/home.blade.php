@@ -169,7 +169,7 @@
                                             <div class="col-md-2">
                                                 Qty:
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <input type="number" class="form-control" name="count" value="1" min="1">
                                                 <input type="hidden" name="id" value="{{$food->id}}">
                                             </div>
