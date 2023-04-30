@@ -19,13 +19,24 @@
         <hr class=" border border-second border-0 opacity-75">
     </section>
 
-    <section class="container shadow_new">
+    {{-- <section class="container shadow_new">
         <h3 class=" mt-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
+    </section> --}}
+
+    {{-- <hr class="border border-second border-1 opacity-75"> --}}
+    <section class="container shadow_new">
+        <h3 class="mt-1 text-end"><i>Categories</i></h3>
+        {{-- <hr class="border border-second border-1 opacity-75"> --}}
+        @include('front.home.common.category')
     </section>
-    <hr class="border border-second border-1 opacity-75">
+    <section class="container shadow_new">
+        <h2 class=" pb-5 text-start"><i>{{$category}} offer to you</i></h2>
+
+    </section>
+
 </div>
 
-<div class="page">
+<div class="page mt-5">
     <div class="container ">
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-3 g-3">
             @forelse($foods as $food)

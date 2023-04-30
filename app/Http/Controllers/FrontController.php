@@ -263,9 +263,9 @@ class FrontController extends Controller
         });
 
         $restaurants->sortBy('city');
-
-        return view('front.home.home', [
+        return view('front.home.restaurant', [
             'restaurants' => $restaurants,
+            'restaurant' => $restaurant->title,
             'foods' => $foods,
             'cities' => $cities,
             'categories' => $categories,
@@ -296,6 +296,9 @@ class FrontController extends Controller
         $category = $category->title;
 
         $restaurants = $restaurants->map(function ($status) {
+            $status->deg = rand(-45, 45);
+            $status->translateX = rand(-70, -160);
+            $status->translateY = rand(-45, -45);
             $status->openStatus = Carbon::parse($status->open)->format('H:i');
             $status->closeStatus = Carbon::parse($status->close)->format('H:i');
             $check = Carbon::now('Europe/Vilnius')->between(

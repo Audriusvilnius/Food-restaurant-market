@@ -164,15 +164,15 @@
      <main class="mystyle">
          @yield('content')
      </main>
-     </div>
+
      <a href="#" class="text-decoration-none" style="color:white;">
          <div class="up sticky-bottom">
              <i class="bi bi-chevron-up" style="font-size:1.5rem;"></i>
          </div>
      </a>
      <footer>
-         <div class="card mt-2 d-flex justify-content-md-between align-content-right">
-             <div class="row g-0 shadow p-3 bg-body-tertiary conteiner-black">
+         <div class="card d-flex justify-content-md-between align-content-right">
+             <div class="row shadow bg-body-tertiary conteiner-black">
                  @forelse($ovners as $ovner)
                  <div class="container">
                      <div class="card-body text-muted">
@@ -188,19 +188,13 @@
                                      <small class="fw-lighter">Country:</small>&nbsp;&nbsp; {{$ovner->country}}<br>
                                  </div>
                                  <div class="col-md-5">
-
                                      <small class="fw-semibold"><i class="bi bi-globe" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->url}}<br>
-
                                      <small class="fw-semibold"><i class="bi bi-telephone" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->phone}}<br>
-
                                      <small class="fw-semibold"><i class="bi bi-phone" style="font-size: 1rem"></small></i>&nbsp;&nbsp; {{$ovner->mobile}}<br>
-
                                      <small class="fw-semibold"><i class="bi bi-envelope-at" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->email}}<br>
-
                                  </div>
                                  <div class="col-md-3">
                                      <small class="fw-semibold "><i class="bi bi-bank" style="font-size: 1rem"></small></i>&nbsp;&nbsp; {{$ovner->bank}}<br>
-
                                      <small class="fw-semibold"><i class="bi bi-wallet-fill" style="font-size: 1rem"></small></i>&nbsp;&nbsp; {{$ovner->account}}<br>
 
                                      <div class="col-md-12 d-flex">
@@ -211,7 +205,6 @@
                                              {{-- Close: <i>{{$ovner->close}}</i> --}}
                                          </div>
                                      </div>
-
                                  </div>
                                  <div class="col-md-3">
                                      {{-- <img src="{{asset($ovner->photo)}}" class="img-fluid rounded" alt="imageset"> --}}
@@ -228,6 +221,7 @@
                  @empty
                  @endforelse
              </div>
+         </div>
      </footer>
  </body>
  </html>
