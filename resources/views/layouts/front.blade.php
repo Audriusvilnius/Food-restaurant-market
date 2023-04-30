@@ -171,8 +171,10 @@
                  <i class="bi bi-chevron-up" style="font-size:1.5rem;"></i>
              </div>
          </a>
-         <div class="card mt-2 d-flex justify-content-md-between align-content-right">
-             <div class="row g-0 shadow p-3 bg-body-tertiary ">
+         <div class="card mt-2 d-flex justify-content-md-between align-content-right conteiner-yellow">
+
+             <div class="row g-0 shadow p-3 bg-body-tertiary conteiner-yellow">
+
                  @forelse($ovners as $ovner)
                  <div class="container">
                      <div class="card-body text-muted">
