@@ -23,9 +23,10 @@ use Illuminate\Support\Facades\Auth;
 
 Route::prefix('admin/order')->name('order-')->group(function () {
     Route::get('/', [B::class, 'index'])->name('index')->middleware('roles:A|M');
+    Route::get('/shiped', [B::class, 'shiped'])->name('shiped')->middleware('roles:A|M');
     Route::put('/edit/{order}', [B::class, 'update'])->name('update')->middleware('roles:A|M');
     Route::delete('/delete/{order}', [B::class, 'destroy'])->name('delete')->middleware('roles:A|M');
-    Route::post('/ticket/{order}', [B::class, 'ticket'])->name('ticket')->middleware('roles:A|M');
+    Route::post('/staus/{order}', [B::class, 'status'])->name('status')->middleware('roles:A|M');
 });
 
 Route::get('/', [F::class, 'home'])->name('start');

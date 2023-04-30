@@ -9,20 +9,21 @@
 </div>
 </section> --}}
 
+<div class="conteiner-blue">
+    <section class="py-1 text-center container shadow_new btnFront">
+        <a class="list-group-item list-group-item-action" href="{{route('start')}}">
+            <div class="btn btn-dark mt-5">
+                <h1 class="m-3 shadow_new">Back to Restaurants offers</h1>
+            </div>
+        </a>
+        <hr class=" border border-second border-0 opacity-75">
+    </section>
 
-<section class="py-1 text-center container shadow_new btnFront">
-    <a class="list-group-item list-group-item-action" href="{{route('start')}}">
-        <div class="btn btn-dark">
-            <h1 class="m-3 shadow_new">Back to Restaurants offers</h1>
-        </div>
-    </a>
-    <hr class=" border border-second border-0 opacity-75">
-</section>
-
-<section class="container shadow_new">
-    <h3 class=" mt-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
+    <section class="container shadow_new">
+        <h3 class=" mt-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
+    </section>
     <hr class="border border-second border-1 opacity-75">
-</section>
+</div>
 
 <div class="page">
     <div class="container ">
@@ -34,7 +35,8 @@
                         <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
-                        <div class="centered shadow_new justify-content-center text-block">
+                        <div class="centered shadow_new justify-content-center text-block" style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg)">
+
                             <div onmouseover="mOver(this)" onmouseout="mOut(this)">
                                 CLOSED</div>
                             <script>
@@ -105,7 +107,8 @@
                                 <div class="col-md-1 ">
                                     <div class="form-contro">
                                         <button type="submit" class="btn btn-dark">
-                                            <i class="bi bi-cart-check-fill"></i>
+                                            <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
+
                                         </button>
                                     </div>
                                 </div>

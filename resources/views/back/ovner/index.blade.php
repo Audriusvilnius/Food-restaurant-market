@@ -20,7 +20,7 @@
 </a>
 <div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header justify-content-center">
                     <h1>Owner</h1>

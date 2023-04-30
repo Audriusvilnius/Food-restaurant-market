@@ -27,12 +27,20 @@ class FrontController extends Controller
     public function home(Request $request, City $city, FrontController $citySelect)
     {
         // dump(Session::get('citySelect'));
-        $restaurants = Restaurant::all()->sortBy('title');
+        $restaurants = Restaurant::all()
+            ->map(function ($temp) {
+                $temp->deg = rand(-45, 45);
+                $temp->translateX = rand(-70, -160);
+                $temp->translateY = rand(-45, -45);
+                return $temp;
+            })->sortBy('title');
+        // $restaurants = $restaurants->sortBy('title');
         $categories = Category::all()->sortBy('title');
         $sessionCity = Session::get('citySelect');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
         $foods = Food::all()->sortBy('title');
+
 
         if ($sessionCity == null) {
             return view('front.home.city', [
@@ -214,7 +222,6 @@ class FrontController extends Controller
     public function makeOrder(Request $request,  BasketService $basket)
     {
         $order = new Order;
-        $S = $request->delivery;
         $order->user_id = Auth::user()->id;
         $order->basket_json = json_encode($basket->order());
         $order->order_json = json_encode($basket->order());
@@ -223,7 +230,7 @@ class FrontController extends Controller
         // dd($order);
         $to = User::find($order->user_id);
 
-        Mail::to($to)->send(new OrderBasket($order, $S));
+        // Mail::to($to)->send(new OrderBasket($order));
         $basket->empty();
         return redirect()->route('start');
     }
@@ -240,6 +247,9 @@ class FrontController extends Controller
         $foods = $foods->sortBy('title');
 
         $restaurants = $restaurants->map(function ($status) {
+            $status->deg = rand(-45, 45);
+            $status->translateX = rand(-70, -160);
+            $status->translateY = rand(-45, -45);
             $status->openStatus = Carbon::parse($status->open)->format('H:i');
             $status->closeStatus = Carbon::parse($status->close)->format('H:i');
             $check = Carbon::now('Europe/Vilnius')->between(
@@ -251,6 +261,8 @@ class FrontController extends Controller
             } else $status->works = 'false';
             return $status;
         });
+
+        $restaurants->sortBy('city');
 
         return view('front.home.home', [
             'restaurants' => $restaurants,
