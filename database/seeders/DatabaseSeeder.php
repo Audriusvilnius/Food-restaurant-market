@@ -63,8 +63,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $faker = Faker::create();
-        // $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
-        $faker->addProvider(new \FakerRestaurant\Provider\lt_LT\Restaurant($faker));
+        $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
+        // $faker->addProvider(new \FakerRestaurant\Provider\lt_LT\Restaurant($faker));
         // https://github.com/jzonta/FakerRestaurant
         // composer require jzonta/faker-restaurant
 
