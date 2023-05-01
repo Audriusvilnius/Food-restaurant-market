@@ -15,11 +15,6 @@
                     </div>
                     @endforeach
                 </div>
-
-                @empty
-                <h3 class="list-group-item">{{__('List empty')  }}</h3>
-                @endforelse
-
             </div>
         </div>
     </div>

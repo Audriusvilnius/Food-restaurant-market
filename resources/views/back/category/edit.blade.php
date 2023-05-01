@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1>{{__('Edit Food Catagories')  }}</h1>
+                    <h1>Edit Food Catagories</h1>
                 </div>
             </div>
             <form action="{{route('category-update',$category)}}" method="post" enctype="multipart/form-data">
@@ -56,8 +56,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="list-table__buttons">
-                                    <button type="submit" class="btn btn-danger" name="delete_photo" value="1">{{__('Delete photo')  }}</button>
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" style="width: 80px;" name="save">{{__('Update')  }}</button>
+                                    <button type="submit" class="btn btn-danger" name="delete_photo" value="1">Delete photo</button>
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" style="width: 80px;" name="save">Update</button>
                                 </div>
                             </div>
                         </div>

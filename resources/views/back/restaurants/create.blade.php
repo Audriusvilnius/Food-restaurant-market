@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card shadow bg-body-tertiary rounded d-flex">
                 <div class="card-header">
-                    <h1>{{__('Add new Restaurant')  }}</h1>
+                    <h1>Add new Restaurants</h1>
                 </div>
             </div>
             <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded">
@@ -29,11 +29,11 @@
                     <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h6>{{__("Restaurant's title")  }}</h6>
+                                <h6>Restaurants title</h6>
                                 <input type="text" class="form-control" name="restaurant_title" value="{{old('restaurant_title')}}">
-                                <h6>{{__('City')  }}</h6>
+                                <h6>City</h6>
                                 <input type="text" class="form-control" name="restaurant_city" value="{{old('restaurant_city')}}">
-                                <h6>{{__('Address')  }}</h6>
+                                <h6>Addres</h6>
                                 <input type="text" class="form-control" name="restaurant_addres" value="{{old('restaurant_addres')}}">
                             </div>
                         </div>
@@ -41,33 +41,33 @@
                             <div class="card-body">
                                 <div class="col-md-12 d-flex">
                                     <div class="col-md-5">
-                                        <h6>{{__('Open')  }}</h6>
+                                        <h6>Open</h6>
                                         <input type="time" class="form-control" name="restaurant_open" value="{{old('restaurant_open')}}" min="0" max="24">
                                     </div>
                                     <div class="col-md-2">
                                     </div>
                                     <div class="col-md-5">
-                                        <h6>{{__('Close')  }}</h6>
+                                        <h6>Close</h6>
                                         <input type="time" class="form-control" name="restaurant_close" value="{{old('restaurant_close')}}" min="0" max="24">
                                     </div>
                                 </div>
-                                <h6 class="card-title text-muted">{{__('Phone')  }}:</h6>
+                                <h6 class="card-title text-muted">Phone:</h6>
                                 <input type="text" class="form-control" name="restaurant_add" value="{{old('restaurant_phone')}}">
-                                <h6>{{__('Photo')  }}</h6>
+                                <h6>Photo</h6>
                                 <input type="file" class="form-control" name="photo">
                             </div>
                         </div>
 
                         <div class="col-md-5">
                             <div class="card-body">
-                                <h6>{{__('Description')  }}:</h6>
-                                <textarea class="form-control" placeholder="{{__('Leave a comment here')  }}" name="restaurant_des" rows="6" cols="130" value="{{old('restaurant_des')}}"></textarea>
+                                <h6>Description:</h6>
+                                <textarea class="form-control" placeholder="Restaurant description leave a comment here" name="restaurant_des" rows="6" cols="130" value="{{old('restaurant_des')}}"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="card-body">
                                 <div class="list-table__buttons ">
-                                    <button type="submit" class="btn btn-danger" style="width: 80px;">{{__('Create')  }}</button>
+                                    <button type="submit" class="btn btn-danger" style="width: 80px;">Cteate</button>
 
                                 </div>
                             </div>

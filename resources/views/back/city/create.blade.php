@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1>{{__('Create City')  }}</h1>
+                    <h1>Create City</h1>
                 </div>
             </div>
             <form action="{{route('city-create')}}" method="post" enctype="multipart/form-data">
@@ -53,7 +53,7 @@
                         <div class="col-md-2">
                             <div class="card-body">
                                 <div class="list-table__buttons">
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" name="save">{{__('Create')  }}</button>
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" name="save">Create</button>
                                 </div>
                             </div>
                         </div>

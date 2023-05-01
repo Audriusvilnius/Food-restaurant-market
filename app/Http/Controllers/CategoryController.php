@@ -128,15 +128,7 @@ class CategoryController extends Controller
             
         if($request->delete_photo){
             $category->deletePhoto();
-            if (app()->getLocale() == "lt") {
-                $message1 = "Nuotrauka ištrinta";
-                
-            }
-            else {
-                $message1 = "Photo deleted";
-    
-            }
-        return redirect()->back()->with('ok', $message1);
+        return redirect()->back()->with('ok', 'Photo deleted');
         }
         if($request->file('photo')){
             $photo = $request->file('photo');
@@ -153,15 +145,7 @@ class CategoryController extends Controller
 
         $category->title=$request->category_title;
         $category->save();
-        if (app()->getLocale() == "lt") {
-            $message1 = "Redagavimas baigtas";
-            
-        }
-        else {
-            $message1 = "Edit complete";
-
-        }
-        return redirect()->route('category-index', ['#'.$category->id])->with('ok', $message1);
+        return redirect()->route('category-index', ['#'.$category->id])->with('ok', 'Edit complete');
 
     }
 
@@ -172,23 +156,13 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
-    {  
-        if (app()->getLocale() == "lt") {
-            $message1 = "Trynimas baigtas";
-            $message2 = "Negalima ištrinti kategorijos. Pimiausiai ištrinkite kategorijai priklausantį maistą";
-            
-        }
-        else {
-            $message1 = "Delete complete";
-            $message2 = "Can\'t delete Category, first delete food from Category";
-
-        }
+    { 
         if(!$category->food_Category()->count()){
             $category->deletePhoto();
             $category->delete();
-        return redirect()->route('category-index', ['#'.$category->id])->with('ok', $message1);
+        return redirect()->route('category-index', ['#'.$category->id])->with('ok', 'Delete complete');
         }else{
-            return redirect()->route('category-index', ['#'.$category->id])->with('not', $message2);
+            return redirect()->route('category-index', ['#'.$category->id])->with('not', ' Can\'t Delete Category, firs delete food from category');
         }
     }
 }

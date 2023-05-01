@@ -180,17 +180,8 @@ class FrontController extends Controller
         $id = (int)$request->id;
         $count = (int)$request->count;
         $basket->add($id, $count);
-        if (app()->getLocale() == "lt") {
-            $message1 = "Pirkinys sėkmingai įdėtas į krepšelį";
-            
-        }
-        else {
-            $message1 = "Item\'s succesfully added to the basket";
 
-
-        }
-        return redirect(url()->previous().'#'.$request->id)->with('ok', $message1);
-
+        return redirect(url()->previous() . '#' . $request->id)->with('ok', 'Add to basket succses');
     }
 
     public function viewBasket(Request $request, BasketService $basket)
@@ -219,7 +210,6 @@ class FrontController extends Controller
 
     public function updateBasket(Request $request, BasketService $basket)
     {
-        
         if ($request->delete) {
             $basket->delete($request->delete);
         } else {
