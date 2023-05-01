@@ -30,6 +30,8 @@
      <!-- Scripts -->
      <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
      <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+     <script src="{{asset('assets/js/time.js')}}"></script>
+
 
      @vite(['resources/sass/front/app.scss', 'resources/js/front/app.js'])
 
@@ -37,7 +39,8 @@
 
  <body class="mystyle">
      <div id="app ">
-         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">{{--fixed-top--}}
+         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">{{--fixed-top--}}
+
              <div class="container">
                  <a class="navbar-brand" href="{{ url('/') }}">
                      <img class="logo" src="{{asset('/images/temp/exam.png')}}" alt="exam">

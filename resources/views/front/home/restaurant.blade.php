@@ -9,7 +9,6 @@
 </div>
 </section> --}}
 <div class="conteiner-blue">
-
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
             <div class="btn btn-dark mt-5">
@@ -21,7 +20,6 @@
 
     <section class="container shadow_new">
         <h3 class="mt-1 text-start"><i>Restaurants</i></h3>
-        {{-- <hr class="border border-second border-1 opacity-75"> --}}
     </section>
     @include('front.home.common.restaurant')
 
@@ -36,7 +34,7 @@
     <div class="container ">
         {{-- CIA keiciam steilpeliu skaiciu  --}}
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-3">
-            @forelse($foods as $food)
+            @forelse($foods as $key => $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
@@ -44,21 +42,12 @@
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
                         <div style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg);" class="centered shadow_new justify-content-center text-block-sm">
-                            <div onmouseover="mOver(this)" onmouseout="mOut(this)">
-                                CLOSED
+                            <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
+                                <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
+                                <div class="appBannerB{{$key}}" style="display: inline;">close</div>
                             </div>
-                            <script>
-                                function mOver(obj) {
-                                    obj.innerHTML = `open {{$restaurant->open}}`
 
-                                }
 
-                                function mOut(obj) {
-                                    obj.innerHTML = "CLOSED"
-
-                                }
-
-                            </script>
                         </div>
 
                         @endif
@@ -150,4 +139,5 @@
         </div>
     </div>
     <hr class="border border-second border-0 opacity-50 m-1">
-    @endsection
+</div>
+@endsection
