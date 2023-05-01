@@ -18,10 +18,9 @@
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
-<div class="container mb-5" style="min-height: 850px">
-
+<div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header justify-content-center">
                     <h1>Owner</h1>
@@ -30,8 +29,11 @@
             @forelse($ovners as $ovner)
             <div id="{{$ovner['id'] }}" class="card mt-2 d-flex justify-content-md-between">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <img src="{{asset($ovner->photo)}}" class="img-fluid rounded" alt="imageset">
+                    </div>
+                    {{-- sekciaj padalinta i dvus pabaiga--}}
+                    <div class="col-md-6">
                         <div class="card-body">
                             <h5><b><i> {{$ovner->title}}</b></i></h5>
                             Addres:
@@ -59,16 +61,11 @@
                             </div>
                             <h6>Country: <b><i>{{$ovner->country}}</b></i></h6>
                         </div>
-                    </div>
 
-
-                    {{-- sekciaj padalinta i dvus pabaiga--}}
-                    <div class="col-md-4">
                         <div class="card-body">
                             <h6>Bank: <b><i>{{$ovner->bank}}</b></i></h6>
                             <h6>Account: <b><i>{{$ovner->account}}</b></i></h6>
                         </div>
-
                         <div class="card-body">
                             <div class="list-table__buttons">
                                 {{-- <a href="{{route('ovner-show', $ovner)}}" class="btn btn-info m-2">Show</a> --}}
@@ -97,6 +94,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection

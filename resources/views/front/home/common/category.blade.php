@@ -1,0 +1,66 @@
+@inject('category', 'App\Services\CategoryService')
+<section class="container ">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="owl-carousel owl-theme">
+                    @forelse($category->getCategory() as $category)
+                    <div class="item">
+                        <div class="card ">
+                            <a class="list-group-item list-group-item-action" href="{{route('list-category',$category->id)}}">
+                                <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="{{$category->title}}">
+                                <div class="card-body centered ">
+                                    <h3 class="shadow_new text-body-secondary"><b><i>{{$category->title}}</i></b></h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    @empty
+                    <h5>Oops! Something went wrong, missing category info</h5>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            loop: true
+            , nav: true
+            , margin: 10
+            , autoplay: true
+            , autoplayTimeout: 5000
+            , autoplayHoverPause: true
+            , navText: [
+                    `<div class="nav-btn prev-slide"><i class="bi bi-chevron-compact-left"></i></div>`
+                    , `<div class="nav-btn next-slide"><i class="bi bi-chevron-compact-right"></i></div>`
+                ]
+
+            , responsive: {
+                0: {
+                    items: 3
+                }
+                , 576: {
+                    items: 3
+                }
+                , 768: {
+                    items: 5
+                }
+                , 992: {
+                    items: 5
+                }
+                , 1200: {
+                    items: 7
+                }
+            }
+        });
+        $('.play').on('click', function() {
+            owl.trigger('play.owl.autoplay', [1000])
+        })
+        $('.stop').on('click', function() {
+            owl.trigger('stop.owl.autoplay')
+        })
+
+    </script>
+</section>

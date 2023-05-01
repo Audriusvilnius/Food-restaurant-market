@@ -1,25 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1 fixed-top py-2">
-        @if(Session::has('ok'))
-        <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-        @endif
-        @if(Session::has('not'))
-        <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </h6>
-        @endif
-    </div>
-</section>
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
 <div class="container mb-5" style="min-height: 850px">
-
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -60,7 +46,7 @@
                             <div class="col-md-12 d-flex">
                                 <div class="card-body d-flex">
                                     <input type="hidden" name="product" value="{{$food->id}}">
-                                    <input type="number" min="1" max="5" name="rated" value="3" placeholder="1 - 5" class="form-control imputnumber">
+                                    <input type="number" min="1" max="5" name="rated" placeholder="1 - 5" class="form-control imputnumber">
 
                                 </div>
                             </div>
@@ -80,6 +66,19 @@
                     </form>
                 </div>
             </div>
+            <section class="py-1 text-center container">
+                <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
+                    @if(Session::has('ok'))
+                    <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+                    @endif
+                    @if(Session::has('not'))
+                    <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </h6>
+                    @endif
+                </div>
+            </section>
             @if($rateds)
             @foreach($rateds as $id => $reviews)
             <div id={{$id}} class="card mt-2 d-flex justify-content-md-between">
@@ -92,8 +91,7 @@
                     </div>
                     <div class="col-md-12 d-flex">
                         <div class="card-body ms-5 me-5">
-                            <h4 class="float-end fw-light">{{$reviews['review']}}</h4>
-
+                            <h4 class="float-start fw-light">{{$reviews['review']}}</h4>
                         </div>
                     </div>
                     <div class="col-md-12 d-flex">

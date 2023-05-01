@@ -5,5 +5,5 @@
     We will inform you of the status change.
 
     Thanks,
-    Funy Team
+    A Team
 </x-mail::message>

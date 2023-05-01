@@ -17,6 +17,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
 
@@ -25,7 +28,7 @@
 </head>
 <body>
     <div id="app ">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">{{--fixed-top--}}
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img class="logo" src="{{asset('/images/temp/exam.png')}}" alt="exam">
@@ -37,6 +40,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+
+                    {{-- @include('front.home.common.restaurant') --}}
                     <ul class="navbar-nav me-auto">
 
                     </ul>
@@ -50,16 +55,20 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('order-index') }}">Order list</a>
+                                <a class="dropdown-item" href="{{ route('order-shiped') }}">Shiped list</a>
+
+
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Menu
+                                Foods
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('foods-create') }}">New Dish</a>
-                                <a class="dropdown-item" href="{{ route('foods-index') }}">Dish list</a>
+                                <a class="dropdown-item" href="{{ route('foods-index') }}">Foods</a>
+                                <a class="dropdown-item" href="{{ route('category-index') }}">Category</a>
+
 
                             </div>
                         </li>
@@ -68,8 +77,8 @@
                                 Restaurant
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('restaurants-create') }}">Add new Restaurant</a>
-                                <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants list</a>
+                                <a class="dropdown-item" href="{{ route('restaurants-index') }}">Restaurants</a>
+                                <a class="dropdown-item" href="{{ route('city-index') }}">City</a>
                                 <a class="dropdown-item" href="{{ route('foods-rest_title') }}">Copy Restaurant title</a>
 
 
@@ -87,6 +96,7 @@
 
 
                         @endif
+
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
@@ -125,18 +135,21 @@
                         @if($basket->count!=0)
                         <div class="ithem">
                             {{-- <span>{{$basket->test()}}</span> --}}
-                            <span>{{$basket->count}}</span>
+                            @if($basket->count<=9) <span>{{$basket->count}}</span>
+                                @elseif($basket->count>9) 9+
+                                @endif
                         </div>
+                        <span class="nav-link">Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
+                        @endif
                     </ul>
-                    <span>Total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
-                    @endif
                 </div>
             </div>
         </nav>
-        @include('layouts.svg')
-        <main class="py-4 mystyle">
-            @yield('content')
-        </main>
+    </div>
+    @include('layouts.svg')
+    <main class="py-4 mystyle">
+        @yield('content')
+    </main>
     </div>
 </body>
 </html>

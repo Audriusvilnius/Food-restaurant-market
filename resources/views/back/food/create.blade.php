@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mb-5" style="min-height: 850px">
-
+<div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow bg-body-tertiary rounded d-flex">
@@ -39,6 +38,20 @@
                                 <option value="{{$restaurant->id}}" @if($restaurant->id == old('restaurant_id')) selected @endif>{{$restaurant->title}}</option>
                                 @endforeach
                             </select>
+                            <h6>City</h6>
+                            <select class="form-select" name="city_id">
+                                @foreach($cities as $city)
+                                <option value="{{$city->id}}" @if($city->id == old('city_id')) selected @endif>{{$city->title}}</option>
+                                @endforeach
+                            </select>
+                            <h6>Category</h6>
+                            <select class="form-select" name="category_id">
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->title}}</option>
+                                @endforeach
+                            </select>
+
+
                             {{-- <h6>Restaurant: <b><i>{{$food->restoranFood_name->title}}</b></i></h6> --}}
                             {{-- <input type="text" class="form-control" name="food_rest_id" value="{{old('food_rest_id')}}"> --}}
                             <h6>Additional info</h6>

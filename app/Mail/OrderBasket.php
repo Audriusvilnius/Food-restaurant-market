@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Order;
-use App\Models\Front;
+
 
 class OrderBasket extends Mailable
 {
@@ -22,7 +22,7 @@ class OrderBasket extends Mailable
      */
     public function __construct(Order $order)
     {
-        $this->order=$order;
+        $this->order = $order;
     }
 
 
@@ -46,10 +46,10 @@ class OrderBasket extends Mailable
     public function content()
     {
         return new Content(
-           markdown:'emails.processing',
-           with:[
-            'ID'=>$this->order->id,
-           ],
+            markdown: 'emails.basket',
+            with: [
+                'ID' => $this->order->id,
+            ],
         );
     }
 
