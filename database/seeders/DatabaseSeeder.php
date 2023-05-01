@@ -63,8 +63,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $faker = Faker::create();
-        $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
-        // $faker->addProvider(new \FakerRestaurant\Provider\lt_LT\Restaurant($faker));
+        // $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
+        $faker->addProvider(new \FakerRestaurant\Provider\lt_LT\Restaurant($faker));
         // https://github.com/jzonta/FakerRestaurant
         // composer require jzonta/faker-restaurant
 
@@ -74,7 +74,7 @@ class DatabaseSeeder extends Seeder
         $category = [
             'Pasta', 'Pica', 'Breakfast', 'Salad', 'Soup', 'BBQ', 'Asian', 'Vegetarian', 'Sushi', 'Fish'
         ];
-        $food_qty = 500;
+        $food_qty = 1500;
 
         foreach ($cities as $_) {
             DB::table('cities')->insert([
@@ -133,7 +133,7 @@ class DatabaseSeeder extends Seeder
             $photo_food = rand(22, 49);
             DB::table('food')->insert([
                 'rest_id' => rand(1, 30),
-                'food_city_no' => rand(1, 5),
+                'food_city_no' => rand(1, count($cities)),
                 'food_category_no' => rand(1, count($category)),
                 'title' => $faker->foodName,
                 'counts' => 0,

@@ -167,7 +167,6 @@
      <main class="mystyle">
          @yield('content')
      </main>
-
      <a href="#" class="text-decoration-none" style="color:white;">
          <div class="up sticky-bottom">
              <i class="bi bi-chevron-up" style="font-size:1.5rem;"></i>
