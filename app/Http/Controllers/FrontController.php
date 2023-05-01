@@ -239,7 +239,12 @@ class FrontController extends Controller
     public function listRestaurants(Request $request, Restaurant $restaurant)
     {
         // dump(Carbon::parse(now('Europe/Vilnius'))->format('H:i'));
-        $foods = Food::where('rest_id', $restaurant->id)->get();
+        $foods = Food::where('rest_id', $restaurant->id)
+            ->where('food_city_no', Session::get('citySelect'))
+            ->get();
+
+        // $foods = Food::where('food_city_no', Session::get('citySelect'))->get();
+
         $categories = Category::all()->sortBy('title');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
