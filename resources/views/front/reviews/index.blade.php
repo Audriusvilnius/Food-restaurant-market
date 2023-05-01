@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1>Hello {{$name}}! You can rate & reviews {{$food->title}}. Now is <b><i>{{$food->rating}}</h1>
+                    <h1>{{__('Hello')  }}, {{$name}}! {{__('You can rate & review')  }} {{$food->title}}</h1>
                 </div>
             </div>
             <div class="card mt-2 d-flex justify-content-md-between">
@@ -22,22 +22,22 @@
                     </div>
                     <div class="col-md-6 d-flex">
                         <div class="card-body">
-                            <h6>Food: <b><i>{{$food->title}}</b></i></h6>
-                            <h6>Price: <b><i>{{$food->price}} &euro;</b></i></h6>
-                            <h6>Raiting: <b><i>{{$food->rating}}</b></i></h6>
-                            <h6>Voted: <b><i>{{$food->counts}}</b></i></h6>
+                            <h6>{{__('Food')  }}: <b><i>{{$food->title}}</b></i></h6>
+                            <h6>{{__('Price')  }}: <b><i>{{$food->price}} &euro;</b></i></h6>
+                            <h6>{{__('Rating')  }}: <b><i>{{$food->rating}}</b></i></h6>
+                            <h6>{{__('Voted')  }}: <b><i>{{$food->counts}}</b></i></h6>
                             <hr class="border border-second border-2 opacity-50">
-                            <h6>City: <b><i>{{$food->foodReataurants_name->city}}</b></i></h6>
-                            <h6>Restaurant: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
+                            <h6>{{__('City')  }}: <b><i>{{$food->foodReataurants_name->city}}</b></i></h6>
+                            <h6>{{__('Restaurant')  }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-6">
-                                    <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
+                                    <h6>{{__('Open')  }}: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
                                 </div>
                                 <div class="col-md-6">
-                                    <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
+                                    <h6>{{__('Close')  }}: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
                                 </div>
                             </div>
-                            <h6 class="card-title text-muted">Additional info:</h6>
+                            <h6 class="card-title text-muted">{{__('Additional info')  }}:</h6>
                             <p class="card-text"><small class="text-muted">{{$food->add}}</small></p>
                         </div>
                     </div>
@@ -52,13 +52,13 @@
                             </div>
                             <div class="col-md-12 d-flex">
                                 <div class="card-body">
-                                    <textarea class="form-control" placeholder="Reviews leave a here" name="food_review" rows="5" cols="50"></textarea>
+                                    <textarea class="form-control" placeholder="{{__('Leave Review here')  }}" name="food_review" rows="5" cols="50"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex">
                                 <div class="card-body">
-                                    <a href="{{route('start')}}" class="btn btn-secondary float-start">HOME</a>
-                                    <button type="submit" class="btn btn-outline-secondary float-end">RATE & REVIEW</button>
+                                    <a href="{{route('start')}}" class="btn btn-secondary float-start">{{__('HOME')  }}</a>
+                                    <button type="submit" class="btn btn-outline-secondary float-end">{{__('RATE & REVIEW')  }}</button>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                         <h4>{{$reviews['user_name']}}</h4>
                     </div>
                     <div class="col-md-8">
-                        <h4 class="float-end "> Raited {{$reviews['rate']}}</h4>
+                        <h4 class="float-end "> {{__('Rated')  }} {{$reviews['rate']}}</h4>
                     </div>
                     <div class="col-md-12 d-flex">
                         <div class="card-body ms-5 me-5">

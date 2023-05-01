@@ -111,7 +111,13 @@ class CityController extends Controller
             }
         $city->title=$request->city_title;
         $city->save();
-        return redirect()->route('city-index', ['#'.$city->id])->with('ok', 'Edit complete');
+        if (app()->getLocale() == "lt") {
+            $message1 = "Redagavimas baigtas";
+        }
+        else {
+            $message1 = "Edit complete";
+        }
+        return redirect()->route('city-index', ['#'.$city->id])->with('ok', $message1);
     }
 
     /**
@@ -121,12 +127,19 @@ class CityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(City $city)
-    {
+    {if (app()->getLocale() == "lt") {
+        $message1 = "Trynimas baigtas";
+        $message2 = "Negalima ištrinti miesto. Pirmiausia ištrinkite patiekalus";
+    }
+    else {
+        $message1 = "Delete complete";
+        $message2 = "Can\'t Delete city, firs delete food from city";
+    }
         if(!$city->food_City()->count()){
             $city->delete();
-        return redirect()->route('city-index', ['#'.$city->id])->with('ok', 'Delete complete');
+        return redirect()->route('city-index', ['#'.$city->id])->with('ok', $message1);
         }else{
-            return redirect()->route('city-index', ['#'.$city->id])->with('not', ' Can\'t Delete city, firs delete food from city');
+            return redirect()->route('city-index', ['#'.$city->id])->with('not', $message2);
         }
     }
 }
