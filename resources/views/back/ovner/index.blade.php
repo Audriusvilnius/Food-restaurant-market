@@ -20,7 +20,7 @@
 </a>
 <div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header justify-content-center">
                     <h1>{{__('Owner')  }}</h1>
@@ -29,8 +29,11 @@
             @forelse($ovners as $ovner)
             <div id="{{$ovner['id'] }}" class="card mt-2 d-flex justify-content-md-between">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <img src="{{asset($ovner->photo)}}" class="img-fluid rounded" alt="imageset">
+                    </div>
+                    {{-- sekciaj padalinta i dvus pabaiga--}}
+                    <div class="col-md-6">
                         <div class="card-body">
                             <h5><b><i> {{$ovner->title}}</b></i></h5>
                             {{__('Address')  }}:
@@ -58,9 +61,7 @@
                             </div>
                             <h6>{{__('Country')  }}: <b><i>{{$ovner->country}}</b></i></h6>
                         </div>
-                    </div>
-                    {{-- sekciaj padalinta i dvus pabaiga--}}
-                    <div class="col-md-4">
+
                         <div class="card-body">
                             <h6>{{__('Bank')  }}: <b><i>{{$ovner->bank}}</b></i></h6>
                             <h6>{{__('Account')  }}: <b><i>{{$ovner->account}}</b></i></h6>

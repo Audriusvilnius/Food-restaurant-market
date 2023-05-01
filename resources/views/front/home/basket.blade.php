@@ -100,11 +100,13 @@
             @if($basketList->count())
             <div class="card mt-4">
                 <div class="card-header d-flex justify-content-md-between align-items-center">
+
                     <a href="{{route('start')}}" class="btn btn-secondary float-start">{{__('BACK')  }}</a>
                     <h3 class="m-3"><i>{{__('Total basket sum')  }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></i></h3>
                     <div class="justify-content-end d-flex">
                         <form action="{{route('make-order')}}" method="post">
                             <button type="submit" name="confirm" class="btn btn-success" style="width: 80px;">{{__('BUY')  }}</button>
+
                             @csrf
                         </form>
                     </div>

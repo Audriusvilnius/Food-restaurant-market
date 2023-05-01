@@ -12,7 +12,12 @@
     // filter: invert(70%);
     
 }
-h1 {
+.conteiner-blue{
+  min-height: auto;
+  background-color: rgb(27, 176, 235);  
+}
+
+h1, h3 {
     font-family: $sa;
     font-weight: 900;
     //color: skyblue;
@@ -41,19 +46,21 @@ svg.cart {
 }
 
 .mystyle {
-    background-image: url("/public/images/temp/tomatoes-5365186.jpg");
+    // background-image: url("/public/images/temp/table.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    opacity: 0.97;
+    // opacity: 0.97;
     border-radius: 41px;
     text-align: center;
+    background-color: #D6D6D6;
 }
 
 .shadow_new {
     color: rgba(254, 254, 254, 0.95);
     text-shadow: 10px 10px 20px black, 10px 10px 15px rgb(50, 50, 52), 0 0 5px rgb(19, 19, 21);
+    
     
 }
 
@@ -83,6 +90,7 @@ svg.cart {
     position: relative;
     text-align: center;
     color: white;
+    
 }
 
 .pagination>li>a,
@@ -98,4 +106,82 @@ svg.cart {
 .pagination>.active>span:hover {
     background-color:rgb(65, 65, 65);
     border-color: rgb(65, 65, 65);
+}
+
+.btnFront {
+    max-width: 700px;
+}
+.text-block {
+    opacity: .95;
+    background-color: rgba(109, 108, 108, 1);
+    color: white;
+    border-radius: 15px;
+    font-family: $cl;
+    font-weight: 100;
+    width: 230px;        
+    height: 100px;
+    font-size: 35px;
+    line-height: 100px;
+    border: 1px solid rgb(41, 41, 41);
+}
+
+.text-block-sm{
+    opacity: .95;
+    background-color: crimson;
+    color: white;
+    border-radius: 15px;
+    font-family: $cl;
+    font-weight: 100;
+    width: 250px;
+    height: 80px;
+    font-size: 35px;
+    line-height: 80px;
+    border: solid 2px  #869791;
+    z-index: 10;
+    transition: 0.9s;
+}
+.text-block-sm:hover{
+
+        background-color: rgb(27, 176, 235);
+        transition: 0.3s;
+    }
+
+
+.owl-carousel .nav-btn {
+    height: 47px;
+    position: absolute;
+    width: 26px;
+    cursor: pointer;
+    top: 15%;
+    // top: 100px !important;
+}
+
+.owl-carousel .owl-prev.disabled,
+.owl-carousel .owl-next.disabled {
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+.owl-carousel .prev-slide {
+    // background: url(nav-icon.png) no-repeat scroll 0 0;
+    left: -40px;
+}
+.owl-carousel .next-slide {
+    // background: url(nav-icon.png) no-repeat scroll -24px 0px;
+    right: -30px;
+}
+
+.owl-carousel .prev-slide:hover {
+    background-position: 0px -53px;
+}
+
+.owl-carousel .next-slide:hover {
+    background-position: -24px -53px;
+}
+.bi{
+    color: #D6D6D6;
+    font-size: 2rem;
+}
+.bi:hover {
+    color: #869791;
 }

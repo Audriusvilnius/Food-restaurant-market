@@ -8,6 +8,7 @@ use App\Http\Controllers\RestaurantController as R;
 use App\Http\Controllers\OrderController as B;
 use App\Http\Controllers\CityController as City;
 use App\Http\Controllers\CategoryController as Category;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,21 +23,24 @@ use App\Http\Controllers\CategoryController as Category;
 
 Route::prefix('admin/order')->name('order-')->group(function () {
     Route::get('/', [B::class, 'index'])->name('index')->middleware('roles:A|M');
+    Route::get('/shiped', [B::class, 'shiped'])->name('shiped')->middleware('roles:A|M');
     Route::put('/edit/{order}', [B::class, 'update'])->name('update')->middleware('roles:A|M');
     Route::delete('/delete/{order}', [B::class, 'destroy'])->name('delete')->middleware('roles:A|M');
-    Route::post('/ticket/{order}', [B::class, 'ticket'])->name('ticket')->middleware('roles:A|M');
+    Route::post('/staus/{order}', [B::class, 'status'])->name('status')->middleware('roles:A|M');
 });
 
 Route::get('/', [F::class, 'home'])->name('start');
-    Route::post('/rate', [F::class, 'rate'])->name('update-rate')->middleware('roles:A|M|C');
-    Route::get('/reviews', [F::class, 'reviews'])->name('update-reviews')->middleware('roles:A|M|C');
-    Route::post('/add-basket', [F::class, 'addToBasket'])->name('add-basket');
-    Route::get('/basket', [F::class, 'viewBasket'])->name('view-basket');
-    Route::post('/basket', [F::class, 'updateBasket'])->name('update-basket');
-    Route::get('/confirm', [F::class, 'confirmBasket'])->name('confirm-basket')->middleware('roles:A|M|C');
-    Route::post('/make-order', [F::class, 'makeOrder'])->name('make-order')->middleware('roles:A|M|C');
-    Route::get('/list/{restaurant}', [F::class, 'listRestaurants'])->name('list-restaurant');
-    Route::get('/list/category/{category}', [F::class, 'listCategory'])->name('list-category');
+Route::post('/rate', [F::class, 'rate'])->name('update-rate')->middleware('roles:A|M|C');
+Route::post('/city', [F::class, 'city'])->name('select-city');
+Route::get('/city', [F::class, 'getCity'])->name('get-city');
+Route::get('/reviews', [F::class, 'reviews'])->name('update-reviews')->middleware('roles:A|M|C');
+Route::post('/add-basket', [F::class, 'addToBasket'])->name('add-basket');
+Route::get('/basket', [F::class, 'viewBasket'])->name('view-basket');
+Route::post('/basket', [F::class, 'updateBasket'])->name('update-basket');
+Route::get('/confirm', [F::class, 'confirmBasket'])->name('confirm-basket')->middleware('roles:A|M|C');
+Route::post('/make-order', [F::class, 'makeOrder'])->name('make-order')->middleware('roles:A|M|C');
+Route::get('/list/{restaurant}', [F::class, 'listRestaurants'])->name('list-restaurant');
+Route::get('/list/category/{category}', [F::class, 'listCategory'])->name('list-category');
 
 Route::prefix('admin/ovner')->name('ovner-')->group(function () {
     Route::get('/', [O::class, 'index'])->name('index')->middleware('roles:A|M');
@@ -91,6 +95,7 @@ Route::prefix('admin/category')->name('category-')->group(function () {
 Auth::routes();
 //Auth::routes(['register'=> false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
@@ -165,3 +170,4 @@ Route::prefix('admin') -> group(function() {
         return redirect()->back();
     });
 });
+

@@ -1,4 +1,5 @@
 @inject('category', 'App\Services\CategoryService')
+
 <section class="container shadow_new">
     <h3 class="mb-4 text-start"><i>{{__('Categories')  }}<i></h3>
     <hr class=" border border-second border-1 opacity-75">
@@ -16,15 +17,62 @@
                             @else
                                 <h1 class="shadow_new"><b><i>{{$category->title_en}}</i></b></h1>
                             @endif
+
                             <h4 class="shadow_new"><b><i>{{$category->food_Category()->count()}} {{__('dishes')  }}</i></b></h4>
+
                         </div>
-                    </a>
+                    </div>
+                    @empty
+                    <h5>Oops! Something went wrong, missing category info</h5>
+                    @endforelse
                 </div>
             </div>
         </div>
+
         @empty
         <h2 class="list-group-item">{{__('List empty')  }}</h2>
         @endforelse
+
     </div>
+
+    <script>
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            loop: true
+            , nav: true
+            , margin: 10
+            , autoplay: true
+            , autoplayTimeout: 5000
+            , autoplayHoverPause: true
+            , navText: [
+                    `<div class="nav-btn prev-slide"><i class="bi bi-chevron-compact-left"></i></div>`
+                    , `<div class="nav-btn next-slide"><i class="bi bi-chevron-compact-right"></i></div>`
+                ]
+
+            , responsive: {
+                0: {
+                    items: 3
+                }
+                , 576: {
+                    items: 3
+                }
+                , 768: {
+                    items: 5
+                }
+                , 992: {
+                    items: 5
+                }
+                , 1200: {
+                    items: 7
+                }
+            }
+        });
+        $('.play').on('click', function() {
+            owl.trigger('play.owl.autoplay', [1000])
+        })
+        $('.stop').on('click', function() {
+            owl.trigger('stop.owl.autoplay')
+        })
+
+    </script>
 </section>
-{{-- <hr class=" border border-second border-1 opacity-75"> --}}
