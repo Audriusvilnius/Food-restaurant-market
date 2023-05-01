@@ -138,10 +138,11 @@ class BasketService
     
         $temporary[$i] = $temp->whereIn('id', $data[$i]);
         $index = $data[$i];
-        $names[$i] = $temporary[$i][$index-1]['rest_title'];
+        $names[$i] = $temporary[$i][$index-1]['rest_id'];
     }
-
+        
         $newunique = array_unique($names);
+    
         
         return count($newunique) * 4.99;
         
