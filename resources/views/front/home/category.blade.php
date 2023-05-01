@@ -70,7 +70,11 @@
                                         {{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
                         <h6>{{__('City')  }}: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
-                        <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
+                        @if (app()->getLocale() == "lt")
+                        <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title_lt}}</i></b></h6>
+                        @else
+                        <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title_en}}</i></b></h6>
+                        @endif
                         {{-- <h6>City: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6> --}}
                         <h6>{{__('Address')  }}: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                         <h6>{{__('Open')  }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
