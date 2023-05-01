@@ -97,6 +97,12 @@ Route::get('language/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
 });
+
+Route::get('list/category/language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
 Route::prefix('admin') -> group(function() {
     Route::get('/language/{locale}', function ($locale) {
         app()->setLocale($locale);
@@ -109,6 +115,11 @@ Route::prefix('admin') -> group(function() {
         return redirect()->back();
     });
     Route::get('/foods/language/{locale}', function ($locale) {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
+    });
+    Route::get('/category/language/{locale}', function ($locale) {
         app()->setLocale($locale);
         session()->put('locale', $locale);
         return redirect()->back();

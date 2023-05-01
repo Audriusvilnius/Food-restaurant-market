@@ -136,7 +136,8 @@
     "Create City": "Sukurti miestą",
     "Edit City": "Keisti miesto duomenis",
     "Cities": "Miestai",
-    "Create Food Catagories": "Kurti patiekalų kategorijas",
-    "Edit Food Catagories": "Keisti maisto kategorijas",
-    "Food Catagories": "Maisto kategorijos"
+    "Create Food Category": "Kurti patiekalų kategoriją",
+    "Edit Food Category": "Keisti maisto kategoriją",
+    "Food Catagories": "Maisto kategorijos",
+    "dishes": "patiekalai"
 }

@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         
-        $categories=Category::all()->sortBy('title');
+        $categories=Category::all()->sortBy('title_'.app()->getLocale());
         $foods = Food::orderBy('created_at', 'desc')->get();
 
         return view('back.category.index',[
@@ -35,7 +35,7 @@ class CategoryController extends Controller
     public function create()
     {
 
-        $categories=Category::all()->sortBy('title');
+        $categories=Category::all()->sortBy('title_'.app()->getLocale());
 
         return view('back.category.create',[
             'categories'=> $categories,
@@ -54,7 +54,8 @@ class CategoryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'category_title' => 'required|nullable|unique:categories,title',
+                'category_title_en' => 'required|nullable|unique:categories,title_en',
+                'category_title_lt' => 'required|nullable|unique:categories,title_lt',
                 'photo' => 'required|nullable',
             ]);
             
@@ -76,7 +77,8 @@ class CategoryController extends Controller
         $category->photo='/images/temp/noimage.jpg';
         }
         
-        $category->title=$request->category_title;
+        $category->title_en=$request->category_title_en;
+        $category->title_lt=$request->category_title_lt;
         $category->save();
         return redirect()->route('category-index');  
     }
@@ -100,7 +102,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $categories=Category::all()->sortBy('title');
+        $categories=Category::all()->sortBy('title_'.app()->getLocale());
         return view('back.category.edit',[
             'category'=> $category,
         ]);
@@ -118,7 +120,8 @@ class CategoryController extends Controller
          $validator = Validator::make(
             $request->all(),
             [
-                'category_title' => 'required|nullable',
+                'category_title_en' => 'required|nullable',
+                
             ]);
             
             if ($validator->fails()) {
@@ -151,7 +154,8 @@ class CategoryController extends Controller
             $category->photo='/'.'images/'.$file;
         }
 
-        $category->title=$request->category_title;
+        $category->title_en=$request->category_title_en;
+        $category->title_lt=$request->category_title_lt;
         $category->save();
         if (app()->getLocale() == "lt") {
             $message1 = "Redagavimas baigtas";

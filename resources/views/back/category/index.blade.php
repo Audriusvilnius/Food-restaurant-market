@@ -39,8 +39,14 @@
                 <div class="card g-0 shadow p-1 bg-body-tertiary rounded">
                     <div class="col-md-12 container_pic">
                         <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="imageset">
-                        <div class="centered shadow_new justify-content-center">
-                            <h1><b><i>{{$category->title}} {{$category->food_Category()->count()}}</i></b></h1>
+                        <div class="centered shadow_new justify-content-center"> 
+                        <h1><b><i>
+                            @if (app()->getLocale() == "lt")
+                                {{$category->title_lt}}
+                            @else
+                                {{$category->title_en}}
+                            @endif
+                            {{$category->food_Category()->count()}}</i></b></h1>
                         </div>
                     </div>
                     <div class="col-md-12">

@@ -98,7 +98,7 @@
                         @if (app()->getLocale() == "lt")
                         <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title_lt}}</i></b></h6>
                         @else
-                        <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
+                        <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title_en}}</i></b></h6>
                         @endif
 
                         {{-- <h6>{{__('City')  }}: <b><i>{{$food->foodReataurants_name->city}}</i></b></h6> --}}
@@ -120,7 +120,7 @@
                             <input type="hidden" name="user_name" value="{{$name}}">
                             <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber"> --}}
                             {{-- <div class="btn-group">
-                                <button type="submit" class="btn btn-outline-secondary">RATE</button>
+                                <button type="submit" class="btn btn-outline-secondary">{{__('RATE')  }}</button>
                             </div> --}}
                         </div>
                         {{-- @csrf --}}
