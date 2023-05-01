@@ -114,7 +114,7 @@
                 <div class="card-header d-flex justify-content-md-between align-items-center">
                     <a href="{{route('start')}}" class="btn btn-secondary float-start">BACK</a>
                     <h3 class="m-3"><i>Delivery total: <b>{{number_format((float)$delivery, 2, '.', '')}} &euro;</b></i></h3>
-                    <h3 class="m-3"><i>Total sum: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></i></h3>
+                    <h3 class="m-3"><i>Sum total: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></i></h3>
 
 
                     <div class="justify-content-end d-flex">
