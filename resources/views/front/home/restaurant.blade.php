@@ -44,7 +44,9 @@
                         <div style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg);" class="centered shadow_new justify-content-center text-block-sm">
                             <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
                                 <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
+
                                 <div class="appBannerB{{$key}}" style="display: inline;">close</div>
+
                             </div>
 
 

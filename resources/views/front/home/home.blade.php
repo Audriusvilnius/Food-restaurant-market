@@ -9,7 +9,6 @@
 </div>
 </section> --}}
 <div class="conteiner-blue">
-
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
             <div class="btn btn-dark mt-5">

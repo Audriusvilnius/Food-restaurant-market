@@ -131,11 +131,13 @@ svg.cart {
     border-radius: 15px;
     font-family: $cl;
     font-weight: 100;
-    width: 230px;
+    width: 250px;
     height: 100px;
-    font-size: 35px;
+    font-size: 31px;
+    z-index: 10;
     line-height: 100px;
     border: solid 2px #869791;
+    transition: 2s;
 }
 
 .text-block-sm {
@@ -147,20 +149,42 @@ svg.cart {
     font-weight: 100;
     width: 250px;
     height: 80px;
-    font-size: 35px;
     line-height: 80px;
     border: solid 2px #869791;
     z-index: 10;
-    transition: 0.9s;
+    transition: 2s;
+    font-size: 31px;    
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 .text-block-sm:hover {
     background-color: rgb(27, 176, 235);
-    transition: .7s;
+    transition: .5s;
+    font-size: 36px;
+    width: 263px;
+    height: 84px;
+    line-height: 84px;
+    animation: fadein 2s;
 }
+
+
+
 .text-block:hover {
     background-color: rgb(27, 176, 235);
-    transition: 0.7s;
+    transition: 0.5s;
+    font-size: 36px;
+    width: 263px;
+    height: 105px;
+    line-height: 105px;
+    animation: fadein 2s;
 }
 
 .owl-carousel .nav-btn {
