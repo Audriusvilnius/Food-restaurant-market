@@ -19,16 +19,27 @@
         <hr class=" border border-second border-0 opacity-75">
     </section>
 
-    <section class="container shadow_new">
+    {{-- <section class="container shadow_new">
         <h3 class=" mt-4 text-start"><i>Restaurants offer {{$category}} to you</i></h3>
+    </section> --}}
+
+    {{-- <hr class="border border-second border-1 opacity-75"> --}}
+    <section class="container shadow_new">
+        <h3 class="mt-1 text-end"><i>Categories</i></h3>
+        {{-- <hr class="border border-second border-1 opacity-75"> --}}
+        @include('front.home.common.category')
     </section>
-    <hr class="border border-second border-1 opacity-75">
+    <section class="container shadow_new">
+        <h2 class=" pb-5 text-start"><i>{{$category}} offer to you</i></h2>
+
+    </section>
+
 </div>
 
-<div class="page">
+<div class="page mt-5">
     <div class="container ">
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-3 g-3">
-            @forelse($foods as $food)
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-4 g-3">
+            @forelse($foods as $key=> $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
@@ -36,19 +47,10 @@
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
                         <div class="centered shadow_new justify-content-center text-block" style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg)">
-
-                            <div onmouseover="mOver(this)" onmouseout="mOut(this)">
-                                CLOSED</div>
-                            <script>
-                                function mOver(obj) {
-                                    obj.innerHTML = `open {{$restaurant->open}}`
-                                }
-
-                                function mOut(obj) {
-                                    obj.innerHTML = "CLOSED"
-                                }
-
-                            </script>
+                            <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
+                                <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
+                                <div class="appBannerB{{$key}}" style="display: inline;">close</div>
+                            </div>
                         </div>
                         @endif
                         @endforeach
@@ -140,7 +142,6 @@
         {{$foods->links()}}
         @endif
     </div>
+    <hr class="border border-second border-0 opacity-50 m-1">
 </div>
-<hr class="border border-second border-0 opacity-50 m-1">
-
 @endsection

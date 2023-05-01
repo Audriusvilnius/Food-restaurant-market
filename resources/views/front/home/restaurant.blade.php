@@ -12,93 +12,29 @@
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
             <div class="btn btn-dark mt-5">
-                <h1 class="m-3 shadow_new">All Restaurants offer near me</h1>
+                <h1 class="m-3 shadow_new">Back to Restaurants offers</h1>
             </div>
         </a>
         <hr class=" border border-second border-0 opacity-75">
     </section>
-    <section class="container shadow_new">
-        <h3 class="mt-1 text-end"><i>Categories</i></h3>
-        {{-- <hr class="border border-second border-1 opacity-75"> --}}
-    </section>
-    @include('front.home.common.category')
-
 
     <section class="container shadow_new">
-        <h3 class="text-start"><i>Restaurants</i></h3>
-        {{-- <hr class="border border-second border-1 opacity-75"> --}}
+        <h3 class="mt-1 text-start"><i>Restaurants</i></h3>
     </section>
     @include('front.home.common.restaurant')
+
+
+    <section class="container shadow_new">
+        <h2 class=" pb-5 text-start"><i>Restaurants {{$restaurant}} offers to you</i></h2>
+    </section>
 </div>
 
-<section class="page conteiner-blue pb-3">
-    <div class="container ">
-        <div class="row">
-            <div class="col-md-4 d-flex ">
-                <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
-                    <div class="card-body align-content-center gap-3 d-flex mb-2">
-                        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search...  " aria-label="Search" name="s" value="{{$s}}">
-                        <button type="submit" class="btn btn-info"><i class="bi bi-search" style="font-size: 1rem"> </i></button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-2 ">
-                {{-- <form action="{{url('/')}}" method="get">
-                <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
-                    <option value="all">All City</option>
-                    @foreach($restaurants as $restaurant)
-                    <option value="{{$restaurant->id}}" @if($restaurant->id == $cityShow) selected @endif>{{$restaurant->city}}</option>
-                    @endforeach
-                </select> --}}
-            </div>
-            <div class="col-md-2 ">
-                <form action="{{url('/')}}" method="get">
-                    <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
-                        <option value="all">All Restaurants</option>
-                        @foreach($restaurants as $restaurant)
-                        <option value="{{$restaurant->id}}" @if($restaurant->id == $typeShow) selected @endif>{{$restaurant->title}}</option>
-                        @endforeach
-                    </select>
-            </div>
-
-            <div class="col-md-1 btnsort">
-                <div class="card-body align-content-center mb-2">
-                    <select class="form-select bg-dark text-white " name="sort">
-                        <option>Sort</option>
-                        @foreach($sortSelect as $value => $name)
-                        <option value="{{$value}}" @if($sortShow==$value) selected @endif>{{$name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-1 ">
-                <div class="card-body align-content-center d-flex mb-2">
-                    <select class="form-select bg-dark text-white d-flex" name="per_page">
-                        @foreach($perPageSelect as $value)
-                        <option value="{{$value}}" @if($perPageShow==$value) selected @endif>{{$value}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card-body align-content-end gap-1 d-flex float-end">
-                    <button type="submit" class="btn btn-secondary mb-2">SHOW</button>
-                    </form>
-                    <a href=" {{url('/')}}" class="btn btn-danger mb-2" style="">RESET</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr class="border border-second border-0 opacity-50">
-</section>
 
 <div class="page pt-5" id="food-lists">
     <div class="container ">
-        {{-- container-fluid --}}
-
         {{-- CIA keiciam steilpeliu skaiciu  --}}
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-3">
-            @forelse($foods as $key=> $food)
+            @forelse($foods as $key => $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
@@ -201,4 +137,5 @@
         </div>
     </div>
     <hr class="border border-second border-0 opacity-50 m-1">
-    @endsection
+</div>
+@endsection
