@@ -38,11 +38,12 @@
             <div class="col-md-4 d-flex ">
                 <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
                     <div class="card-body align-content-center gap-3 d-flex mb-2">
-                        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="{{__('Search...')  }}  " aria-label="Search" name="s" value="{{$s}}">
-                        <button type="submit" class="btn btn-info"><i class="bi bi-search"></i></button>
+                        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search...  " aria-label="Search" name="s" value="{{$s}}">
+                        <button type="submit" class="btn btn-info"><i class="bi bi-search" style="font-size: 1rem"> </i></button>
                     </div>
                 </form>
             </div>
+
             <div class="col-md-2 ">
                 {{-- <form action="{{url('/')}}" method="get">
                 <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
