@@ -71,17 +71,15 @@ class DatabaseSeeder extends Seeder
         $cities = [
             'Vilnius', 'Kaunas', 'Klaipėda', 'Panevėžys', 'Šiauliai'
         ];
-        $category = [
+        $category_en = [
             'Pasta', 'Pica', 'Breakfast', 'Salad', 'Soup', 'BBQ', 'Asian', 'Vegetarian', 'Sushi', 'Fish'
         ];
-
 
         $category_lt = [
             'Makaronai', 'Picos', 'Pusryčiai', 'Salotos', 'Sriubos', 'BBQ', 'Azijietiški', 'Vegetariški',
             'Sušiai', 'Žuvis'
         ];
-        $food_qty = 500;
-
+        $food_qty = 1500;
 
         foreach ($cities as $_) {
             DB::table('cities')->insert([
@@ -98,10 +96,10 @@ class DatabaseSeeder extends Seeder
         //]);
         // }
 
-        for ($i = 0; $i < count($category); $i++) {
+        for ($i = 0; $i < count($category_en); $i++) {
             $photo_food = rand(22, 49);
             DB::table('categories')->insert([
-                'title_en' => $category[$i],
+                'title_en' => $category_en[$i],
                 'title_lt' => $category_lt[$i],
                 'photo' => '/images/temp/' . $photo_food . '.jpeg',
 
@@ -152,7 +150,7 @@ class DatabaseSeeder extends Seeder
             DB::table('food')->insert([
                 'rest_id' => rand(1, 30),
                 'food_city_no' => rand(1, count($cities)),
-                'food_category_no' => rand(1, count($category)),
+                'food_category_no' => rand(1, count($category_en)),
                 'title' => $faker->foodName,
                 'counts' => 0,
                 'price' => rand(499, 2999) / 100,

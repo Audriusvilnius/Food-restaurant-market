@@ -19,13 +19,14 @@
     </section>
 
     <section class="container shadow_new">
-        <h3 class="mt-1 text-start"><i>Restaurants</i></h3>
+        <h3 class="mt-1 text-start"><i>{{__('Restaurants')}}</i></h3>
     </section>
     @include('front.home.common.restaurant')
 
+    @include('layouts.find')
 
     <section class="container shadow_new">
-        <h2 class=" pb-5 text-start"><i>Restaurants {{$restaurant}} offers to you</i></h2>
+        <h2 class=" pb-5 text-start"><i>{{__('Restaurants')}} {{$restaurant}} offers to you</i></h2>
     </section>
 </div>
 
