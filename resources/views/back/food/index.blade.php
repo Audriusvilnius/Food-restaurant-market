@@ -74,7 +74,11 @@
                             <h6 class="card-title text-muted">{{__('Additional info')  }}:</h6>
                             <p class="card-text"><small class="text-muted">{{$food->add}}</small></p>
                             <h6 class="card-title">{{__('Description') }}:</h6>
-                            <textarea class="form-control" placeholder="{{$food->des}}" rows="3" cols="auto"></textarea>
+                            @if (app()->getLocale() == "lt")
+                            <textarea class="form-control" placeholder="{{$food->des_lt}}" rows="3" cols="auto"></textarea>
+                            @else
+                            <textarea class="form-control" placeholder="{{$food->des_en}}" rows="3" cols="auto"></textarea>
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="list-table__buttons gap-3">

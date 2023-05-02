@@ -159,7 +159,8 @@ class DatabaseSeeder extends Seeder
                 'rating' => rand(100, 500) / 100,
                 'add' => $faker->realText(100, 5),
                 'photo' => '/images/temp/' . $photo_food . '.jpeg',
-                'des' => $faker->paragraph($nbSentences = rand(5, 10), $variableNbSentences = true),
+                'des_en' => $faker->realText(600, 5),
+                'des_lt' => 'Lietuviškas tekstas - ' . $faker->realText(600, 5),
             ]);
         }
     }

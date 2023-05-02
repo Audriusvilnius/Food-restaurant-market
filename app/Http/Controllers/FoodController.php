@@ -157,7 +157,8 @@ class FoodController extends Controller
         $food->title_en = $request->food_title_en;
         $food->title_lt = $request->food_title_lt;
         $food->price = $request->food_price;
-        $food->des = $request->food_des;
+        $food->des_en = $request->food_des_en;
+        $food->des_lt = $request->food_des_lt;
         $food->add = $request->food_add;
         $food->rating = 0;
         $food->counts = 0;
@@ -279,7 +280,8 @@ class FoodController extends Controller
         $food->cate_json = json_encode($catetObj, JSON_FORCE_OBJECT);
 
         $food->rest_title = $foo->title;
-        $food->des = $request->food_des;
+        $food->des_en = $request->food_des_en;
+        $food->des_lt = $request->food_des_lt;
         $food->add = $request->food_add;
 
         $food->save();

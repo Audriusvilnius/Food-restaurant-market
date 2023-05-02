@@ -34,7 +34,6 @@
                             <h5>Ready to ship</h5>
                             @elseif($order->status == 3)
                             <h5>{{__('Order complete')  }}</h5>
-
                             @endif
                             - {{$order->created_at}}
 

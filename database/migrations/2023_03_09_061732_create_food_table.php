@@ -29,7 +29,8 @@ return new class extends Migration
             $table->decimal('counts', 4, 0)->unsigned()->default(0);
             $table->string('photo', 500)->nullable()->nullable();
             $table->string('add', 500)->nullable();
-            $table->text('des')->nullable();
+            $table->text('des_en')->nullable();
+            $table->text('des_lt')->nullable();
             $table->foreign('rest_id')->references('id')->on('restaurants');
             $table->foreign('food_city_no')->references('id')->on('cities');
             $table->foreign('food_category_no')->references('id')->on('categories');

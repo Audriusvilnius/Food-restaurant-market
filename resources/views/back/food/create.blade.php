@@ -73,8 +73,10 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h6>{{__('Description') }}</h6>
-                                <textarea class="form-control" placeholder="{{__('Food description leave a comment here')  }}" name="food_des" rows="11" cols="50" value="{{old('food_des')}}"></textarea>
+                                <h6>{{__('Description') }} - LT</h6>
+                                <textarea class="form-control" placeholder="{{__('Food description leave a comment here')  }}" name="food_des" rows="9" cols="50" value="{{old('food_des_lt')}}"></textarea>
+                                <h6>{{__('Description') }} - EN</h6>
+                                <textarea class="form-control" placeholder="{{__('Food description leave a comment here')  }}" name="food_des" rows="9" cols="50" value="{{old('food_des_en')}}"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
