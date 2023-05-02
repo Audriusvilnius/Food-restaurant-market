@@ -28,8 +28,10 @@
                 <div class="card mt-2" style="max-width: 1wm;">
                     <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                         <div class="col-md-3">
-                            <h6>{{__('Title') }}</h6>
-                            <input type="text" class="form-control" name="food_title" value="{{old('food_title')}}">
+                            <h6>{{__('Title') }} - LT</h6>
+                            <input type="text" class="form-control" name="food_title_lt" value="{{old('food_title_lt')}}">
+                            <h6>{{__('Title') }} - EN</h6>
+                            <input type="text" class="form-control" name="food_title_en" value="{{old('food_title_en')}}">
                             <h6>{{__('Price') }} &euro;</h6>
                             <input type="text" class="form-control" name="food_price" value="{{old('food_price')}}">
                             <h6>{{__('Restaurant') }}</h6>

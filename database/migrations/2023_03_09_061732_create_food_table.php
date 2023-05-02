@@ -18,7 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('rest_id')->unsigned();
             $table->unsignedBigInteger('food_city_no')->unsigned();
             $table->unsignedBigInteger('food_category_no')->unsigned();
-            $table->string('title', 100);
+            $table->string('title_en', 100);
+            $table->string('title_lt', 100);
             $table->string('rest_title', 100)->nullable();
             $table->decimal('price', 5, 2)->unsigned()->nullable();
             $table->decimal('rating', 4, 2)->unsigned()->default(0);

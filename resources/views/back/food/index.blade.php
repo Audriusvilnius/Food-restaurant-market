@@ -42,7 +42,11 @@
                     {{-- sekciaj padalinta i dvus pradzia--}}
                     <div class="col-md-3 d-flex">
                         <div class="card-body ms-2">
-                            <h6>{{__('Food') }}: <b><i>{{$food->title}}</b></i></h6>
+                            @if (app()->getLocale() == "lt")
+                            <h6>{{__('Food') }}: <b><i>{{$food->title_lt}}</b></i></h6>
+                            @else
+                            <h6>{{__('Food') }}: <b><i>{{$food->title_en}}</b></i></h6>
+                            @endif
                             <h6>{{__('Price') }}: <b><i>{{$food->price}} &euro;</b></i></h6>
                             <h6>{{__('Rating') }}: <b><i>{{$food->rating}}</b></i></h6>
                             <h6>{{__('Voted') }}: <b><i>{{$food->counts}}</b></i></h6>
