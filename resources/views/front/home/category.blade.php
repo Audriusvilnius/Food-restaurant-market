@@ -25,8 +25,10 @@
         {{-- <hr class="border border-second border-1 opacity-75"> --}}
         @include('front.home.common.category')
     </section>
+
+    @include('layouts.find')
+
     <section class="container shadow_new">
-        @include('layouts.find')
         @if (app()->getLocale() == "lt")
         <h2 class=" pb-5 text-start"><i>{{$category_lt}} offer to you</i></h2>
         @else

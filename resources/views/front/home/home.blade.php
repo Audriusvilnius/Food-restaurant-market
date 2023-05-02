@@ -35,7 +35,8 @@
 @include('layouts.find')
 
 <div class="page pt-5" id="food-lists">
-    <div class="container ">
+    <div class="container">
+
         {{-- container-fluid --}}
         {{-- CIA keiciam steilpeliu skaiciu  --}}
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-3">

@@ -36,8 +36,9 @@
             , nav: true
             , margin: 10
             , autoplay: true
-            , autoplayTimeout: 5000
+            , autoplayTimeout: 10000
             , autoplayHoverPause: true
+            , smartSpeed: 6000
             , navText: [
                 `<div class="nav-btn prev-slide"><i class="bi bi-chevron-compact-left"></i></div>`
                 , `<div class="nav-btn next-slide"><i class="bi bi-chevron-compact-right"></i></div>`
@@ -46,22 +47,22 @@
                 0: {
                     items: 3
                 }
-                , 576: {
+                , 540: {
                     items: 3
                 }
-                , 768: {
+                , 720: {
                     items: 5
                 }
-                , 992: {
+                , 960: {
                     items: 5
                 }
-                , 1200: {
+                , 1440: {
                     items: 7
                 }
             }
         });
         $('.play').on('click', function() {
-            owl.trigger('play.owl.autoplay', [1000])
+            owl.trigger('play.owl.autoplay', [15000])
         })
         $('.stop').on('click', function() {
             owl.trigger('stop.owl.autoplay')
