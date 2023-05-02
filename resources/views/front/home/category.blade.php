@@ -25,9 +25,12 @@
         @include('front.home.common.category')
     </section>
     <section class="container shadow_new">
+        @if (app()->getLocale() == "lt")
+        <h2 class=" pb-5 text-start"><i>{{$category_lt}} offer to you</i></h2>
+        @else
         <h2 class=" pb-5 text-start"><i>{{$category_en}} offer to you</i></h2>
+        @endif
     </section>
-
 </div>
 
 <div class="page mt-5">

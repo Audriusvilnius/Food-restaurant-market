@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container" style="min-height: 900px">
-
     <div class=" row justify-content-center">
         <div class="col-md-9">
             <div class="card shadow bg-body-tertiary rounded ">
@@ -54,10 +53,10 @@
                     </div>
                     <div class="col-md-10">
                         <hr class="border border-1 opacity-50">
-                        {{__('Title')  }}: <b><i>{{$food->title}}</b></i>,
-                        <p>{{__('price')  }}: <b><i>{{$food->price}} &euro;</b></i>
-                        {{__('qty')  }}: <b><i>{{$food->count}}</b></i>
-                        {{__('Sum')  }}: <b><i>{{$food->price*$food->count}} &euro;</b></i></p>
+                        {{__('Title') }}: <b><i>{{$food->title}}</b></i>,
+                        <p>{{__('price') }}: <b><i>{{$food->price}} &euro;</b></i>
+                            {{__('qty') }}: <b><i>{{$food->count}}</b></i>
+                            {{__('Sum') }}: <b><i>{{$food->price*$food->count}} &euro;</b></i></p>
                     </div>
                     @endforeach
 
@@ -73,7 +72,7 @@
                             @if($order->status == 0)
                             <form action="{{route('order-update', $order)}}" method="post">
 
-                                <button type="submit" class="btn btn-success m-1">{{__('Receive')  }}</button>
+                                <button type="submit" class="btn btn-success m-1">{{__('Receive') }}</button>
 
                                 @csrf
                                 @method('put')
@@ -90,7 +89,7 @@
                             <form action="{{route('order-status', $order)}}" method="post">
                                 <input type="hidden" class="form-control" name="ticket" value="{{$order->id}}">
 
-                                <button type="submit" class="btn btn-warning m-1">{{__('Confirm')  }}</button>
+                                <button type="submit" class="btn btn-warning m-1">{{__('Confirm') }}</button>
 
                                 @csrf
                                 @method('post')
@@ -99,12 +98,12 @@
                             @endif
 
                             <form action="{{route('order-delete', $order)}}" method="post">
-                                <button type="submit" class="btn btn-danger m-1" @if($order->status !=2)disabled @endif>{{__('Delete')  }}</button>
+                                <button type="submit" class="btn btn-danger m-1" @if($order->status !=2)disabled @endif>{{__('Delete') }}</button>
 
                                 @csrf
                                 @method('delete')
                             </form>
-                            @endif
+                            {{-- @endif --}}
                         </div>
                     </div>
                 </div>

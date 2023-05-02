@@ -42,20 +42,24 @@
                     {{-- sekciaj padalinta i dvus pradzia--}}
                     <div class="col-md-3 d-flex">
                         <div class="card-body ms-2">
-                            <h6>{{__('Food')  }}: <b><i>{{$food->title}}</b></i></h6>
-                            <h6>{{__('Price')  }}: <b><i>{{$food->price}} &euro;</b></i></h6>
-                            <h6>{{__('Rating')  }}: <b><i>{{$food->rating}}</b></i></h6>
-                            <h6>{{__('Voted')  }}: <b><i>{{$food->counts}}</b></i></h6>
-                            <h6>{{__('City')  }}: <b><i>{{$food->foodCities_no->title}}</b></i></h6>
-                            <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title}}</b></i></h6>
+                            <h6>{{__('Food') }}: <b><i>{{$food->title}}</b></i></h6>
+                            <h6>{{__('Price') }}: <b><i>{{$food->price}} &euro;</b></i></h6>
+                            <h6>{{__('Rating') }}: <b><i>{{$food->rating}}</b></i></h6>
+                            <h6>{{__('Voted') }}: <b><i>{{$food->counts}}</b></i></h6>
+                            <h6>{{__('City') }}: <b><i>{{$food->foodCities_no->title}}</b></i></h6>
+                            @if (app()->getLocale() == "lt")
+                            <h6>{{__('Category') }}: <b><i>{{$food->foodCategory_no->title_lt}}</b></i></h6>
+                            @else
+                            <h6>{{__('Category') }}: <b><i>{{$food->foodCategory_no->title_en}}</b></i></h6>
+                            @endif
                             <hr class="border border-second border-2 opacity-50">
-                            <h6>{{__('Restaurant')  }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
+                            <h6>{{__('Restaurant') }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-6">
-                                    <h6>{{__('Open')  }}: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
+                                    <h6>{{__('Open') }}: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
                                 </div>
                                 <div class="col-md-6">
-                                    <h6>{{__('Close')  }}: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
+                                    <h6>{{__('Close') }}: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +69,7 @@
                         <div class="card-body">
                             <h6 class="card-title text-muted">{{__('Additional info')  }}:</h6>
                             <p class="card-text"><small class="text-muted">{{$food->add}}</small></p>
-                            <h6 class="card-title">{{__('Description')  }}:</h6>
+                            <h6 class="card-title">{{__('Description') }}:</h6>
                             <textarea class="form-control" placeholder="{{$food->des}}" rows="3" cols="auto"></textarea>
                         </div>
                         <div class="card-body">

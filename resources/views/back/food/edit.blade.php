@@ -21,24 +21,29 @@
                     <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h6>{{__('Category')  }}</h6>
+                                <h6>{{__('Category') }}</h6>
                                 <select class="form-select" name="category_id">
+
                                     @foreach($categories as $category)
-                                    <option value="{{$category->id}}" @if($category->id == old('category_id',$food->food_category_no)) selected @endif>{{$category->title}}</option>
+                                    @if (app()->getLocale() == "lt")
+                                    <option value="{{$category->id}}" @if($category->id == old('category_id',$food->food_category_no)) selected @endif>{{$category->title_lt}}</option>
+                                    @else
+                                    <option value="{{$category->id}}" @if($category->id == old('category_id',$food->food_category_no)) selected @endif>{{$category->title_en}}</option>
+                                    @endif
                                     @endforeach
                                 </select>
-                                <h6>{{__('Title')  }}: </h6>
+                                <h6>{{__('Title') }}: </h6>
                                 <input type="text" class="form-control" name="food_title" value="{{old('food_title',$food->title)}}">
-                                <h6>{{__('Price')  }}: </h6>
+                                <h6>{{__('Price') }}: </h6>
                                 <input type="text" class="form-control" name="food_price" value="{{old('food_price',$food->price)}}">
-                                <h6>{{__('Restaurant')  }}</h6>
+                                <h6>{{__('Restaurant') }}</h6>
                                 <select class="form-select" name="restaurant_id">
                                     @foreach($restaurants as $restaurant)
                                     <option value="{{$restaurant->id}}" @if($restaurant->id == old('restaurant_id',$food->rest_id)) selected @endif>{{$restaurant->title}}</option>
 
                                     @endforeach
                                 </select>
-                                <h6>{{__('City')  }}</h6>
+                                <h6>{{__('City') }}</h6>
                                 <select class="form-select" name="city_id">
                                     @foreach($cities as $city)
                                     <option value="{{$city->id}}" @if($city->id == old('city_id',$food->food_city_no)) selected @endif>{{$city->title}}</option>
@@ -53,7 +58,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h6 class="card-title">{{__('Description')  }}:</h6>
+                                <h6 class="card-title">{{__('Description') }}:</h6>
                                 <textarea class="form-control" placeholder="{{__('Food description leave a comment here')  }}" name="food_des" rows="11" cols="30" value="{{old('food_des',$food->des)}}">{{$food->des}}</textarea>
                             </div>
                         </div>
@@ -72,7 +77,7 @@
                             <div class="card-body">
                                 <div class="list-table__buttons ">
                                     <button type="submit" class="btn btn-danger" name="delete_photo" value="1">{{__('Delete photo')  }}</button>
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end m-2 " style="width: 80px;" name="save">{{__('Update')  }}</button>
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end m-2 " style="width: 80px;" name="save">{{__('Update') }}</button>
                                 </div>
                             </div>
                         </div>

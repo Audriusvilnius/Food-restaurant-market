@@ -28,35 +28,41 @@
                 <div class="card mt-2" style="max-width: 1wm;">
                     <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                         <div class="col-md-3">
-                            <h6>{{__('Title')  }}</h6>
+                            <h6>{{__('Title') }}</h6>
                             <input type="text" class="form-control" name="food_title" value="{{old('food_title')}}">
-                            <h6>{{__('Price')  }} &euro;</h6>
+                            <h6>{{__('Price') }} &euro;</h6>
                             <input type="text" class="form-control" name="food_price" value="{{old('food_price')}}">
-                            <h6>{{__('Restaurant')  }}</h6>
+                            <h6>{{__('Restaurant') }}</h6>
                             <select class="form-select" name="restaurant_id">
                                 @foreach($restaurants as $restaurant)
                                 <option value="{{$restaurant->id}}" @if($restaurant->id == old('restaurant_id')) selected @endif>{{$restaurant->title}}</option>
                                 @endforeach
                             </select>
-                            <h6>{{__('City')  }}</h6>
+                            <h6>{{__('City') }}</h6>
                             <select class="form-select" name="city_id">
                                 @foreach($cities as $city)
                                 <option value="{{$city->id}}" @if($city->id == old('city_id')) selected @endif>{{$city->title}}</option>
                                 @endforeach
                             </select>
-                            <h6>{{__('Category')  }}</h6>
+                            <h6>{{__('Category') }}</h6>
+                            @if (app()->getLocale() == "lt")
                             <select class="form-select" name="category_id">
                                 @foreach($categories as $category)
-                                <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->title}}</option>
+                                <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->title_lt}}</option>
                                 @endforeach
                             </select>
-
-
+                            @else
+                            <select class="form-select" name="category_id">
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->title_en}}</option>
+                                @endforeach
+                            </select>
+                            @endif
                             {{-- <h6>Restaurant: <b><i>{{$food->restoranFood_name->title}}</b></i></h6> --}}
                             {{-- <input type="text" class="form-control" name="food_rest_id" value="{{old('food_rest_id')}}"> --}}
                             <h6>{{__('Additional info')  }}</h6>
                             <input type="text" class="form-control" name="food_add" value="{{old('food_add"')}}">
-                            <h6>{{__('Photo')  }}</h6>
+                            <h6>{{__('Photo') }}</h6>
                             <input type="file" class="form-control" name="photo">
                         </div>
                         <div class="col-md-1">
@@ -65,14 +71,14 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h6>{{__('Description')  }}</h6>
+                                <h6>{{__('Description') }}</h6>
                                 <textarea class="form-control" placeholder="{{__('Food description leave a comment here')  }}" name="food_des" rows="11" cols="50" value="{{old('food_des')}}"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="card-body">
                                 <div class="list-table__buttons ">
-                                    <button type="submit" class="btn btn-danger m-2" style="width: 80px;">{{__('Create')  }}</button>
+                                    <button type="submit" class="btn btn-danger m-2" style="width: 80px;">{{__('Create') }}</button>
 
                                 </div>
                             </div>
