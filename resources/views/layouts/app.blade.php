@@ -143,20 +143,18 @@
                         <div class="ithem">
                             {{-- <span>{{$basket->test()}}</span> --}}
                             @if($basket->count<=9) <span>{{$basket->count}}</span>
-                                @elseif($basket->count>9) 9+
-                                @endif
+                                @elseif($basket->count>9) 9+@endif
                         </div>
-                        <span>{{__('Total') }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
-                        @endif
+                        <li class="nav-link">{{__('Total') }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></li>
                     </ul>
+                    @endif
                 </div>
             </div>
         </nav>
     </div>
     @include('layouts.svg')
-    <main class="py-4 mystyle">
+    <main class=" py-4 mystyle">
         @yield('content')
     </main>
-    </div>
 </body>
 </html>

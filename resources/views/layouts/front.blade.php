@@ -123,11 +123,6 @@
                                 {{ Auth::user()->name }}
                             </a>
 
-
-
-
-
-
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -148,13 +143,11 @@
                         <div class="ithem">
                             {{-- <span>{{$basket->test()}}</span> --}}
                             @if($basket->count<=9) <span>{{$basket->count}}</span>
-                                @elseif($basket->count>9) 9+
-                                @endif
+                                @elseif($basket->count>9) 9+@endif
                         </div>
-                        <span>{{__('Total') }}: <b>{{number_format((float)$basket->total, 2, '.', '')}}
-                                &euro;</b></span>
-                        @endif
+                        <li class="nav-link">{{__('Total') }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></li>
                     </ul>
+                    @endif
                 </div>
             </div>
         </nav>
@@ -224,8 +217,6 @@
                 @endforelse
             </div>
         </div>
-        </div>
     </footer>
 </body>
-
 </html>
