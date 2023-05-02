@@ -172,9 +172,9 @@
                  </div>
                  <div class="col-12">
                      <div class="card-body">
-
-                         @include('front.home.common.city')
-
+                         <ul class="navbar-nav ms-auto">
+                             @include('front.home.common.city')
+                         </ul>
                      </div>
                  </div>
                  @endforeach
