@@ -65,14 +65,10 @@
                          @include('front.home.common.city')
                      </ul>
 
-                     <ul class="navbar-nav ms-5">
-                         Languege
-                     </ul>
 
 
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ms-auto">
-                         ]
                          <ul class="navbar-nav ms-auto">
                              @if(Auth::user()?->role == 'admin')
                              <li class="nav-item dropdown">
@@ -183,7 +179,7 @@
      </div>
      @include('layouts.svg')
      <main class="mystyle">
-         {{-- @yield('content') --}}
+         @yield('content')
      </main>
      <a href="#" class="text-decoration-none" style="color:white;">
          <div class="up sticky-bottom">
