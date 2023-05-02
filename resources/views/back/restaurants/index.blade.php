@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header justify-content-between align-content-between d-flex ">
-                    <h1>All Restourants</h1>
+                    <h1>{{__('All Restaurants')  }}</h1>
                     <a href="{{route('restaurants-create')}}" class="btn btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
 
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -41,26 +41,26 @@
                     {{-- sekciaj padalinta i dvus pradzia--}}
                     <div class="col-md-4">
                         <div class="card-body ms-2">
-                            <h6>Restaurant: <b><i>{{$restaurant->title}}</i></b></h6>
-                            <h6>City: <b><i>{{$restaurant->city}}</i></b></h6>
-                            <h6>Addres: <b><i>{{$restaurant->addres}}</i></b></h6>
+                            <h6>{{__('Restaurant')  }}: <b><i>{{$restaurant->title}}</i></b></h6>
+                            <h6>{{__('City')  }}: <b><i>{{$restaurant->city}}</i></b></h6>
+                            <h6>{{__('Address')  }}: <b><i>{{$restaurant->addres}}</i></b></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-3">
-                                    <h6>Open: <b><i>{{$restaurant->open}}</i></b></h6>
+                                    <h6>{{__('Open')  }}: <b><i>{{$restaurant->open}}</i></b></h6>
                                 </div>
                                 <div class="col-md-3">
-                                    <h6>Close: <b><i>{{$restaurant->close}}</i></b></h6>
+                                    <h6>{{__('Close')  }}: <b><i>{{$restaurant->close}}</i></b></h6>
                                 </div>
                             </div>
-                            <h6>Dish qty.: <b><i>{{$restaurant->food_Restaurant()->count()}}</i></b></h6>
-                            <h6 class="card-title text-muted">Phone:</h6>
+                            <h6>{{__('Dish qty.')  }}': <b><i>{{$restaurant->food_Restaurant()->count()}}</i></b></h6>
+                            <h6 class="card-title text-muted">{{__('Phone')  }}:</h6>
                             <p class="card-text"><small class="text-muted">{{$restaurant->phone}}</small></p>
                         </div>
                     </div>
                     {{-- sekciaj padalinta i dvus pabaiga--}}
                     <div class="col-md-4">
                         <div class="card-body">
-                            <h6 class="card-title">Description:</h6>
+                            <h6 class="card-title">{{__('Description')  }}:</h6>
                             <textarea class="form-control" placeholder="{{$restaurant->des}}" rows="5" cols="auto"></textarea>
 
                             <div class="list-table__buttons gap-3 mt-3">
@@ -81,7 +81,7 @@
                 </div>
             </div>
             @empty
-            <h2 class="list-group-item">No types yet</h2>
+            <h2 class="list-group-item">{{_('No types yet')  }}</h2>
             @endforelse
         </div>
     </div>

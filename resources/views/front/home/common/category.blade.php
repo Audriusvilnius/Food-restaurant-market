@@ -8,15 +8,21 @@
                     <div class="item">
                         <div class="card ">
                             <a class="list-group-item list-group-item-action" href="{{route('list-category',$category->id)}}">
-                                <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="{{$category->title}}">
+                                <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="{{$category->title_en}}">
                                 <div class="card-body centered ">
-                                    <h3 class="shadow_new text-body-secondary"><b><i>{{$category->title}}</i></b></h3>
+
+                                    @if (app()->getLocale()=="lt")
+                                    <h3 class="shadow_new"><b><i>{{$category->title_lt}}</i></b></h3>
+                                    @else
+                                    <h3 class="shadow_new"><b><i>{{$category->title_en}}</i></b></h3>
+                                    @endif
                                 </div>
                             </a>
                         </div>
                     </div>
                     @empty
                     <h5>Oops! Something went wrong, missing category info</h5>
+                    <h2 class="list-group-item">{{__('List empty')  }}</h2>
                     @endforelse
                 </div>
             </div>
@@ -33,10 +39,9 @@
             , autoplayTimeout: 5000
             , autoplayHoverPause: true
             , navText: [
-                    `<div class="nav-btn prev-slide"><i class="bi bi-chevron-compact-left"></i></div>`
-                    , `<div class="nav-btn next-slide"><i class="bi bi-chevron-compact-right"></i></div>`
-                ]
-
+                `<div class="nav-btn prev-slide"><i class="bi bi-chevron-compact-left"></i></div>`
+                , `<div class="nav-btn next-slide"><i class="bi bi-chevron-compact-right"></i></div>`
+            ]
             , responsive: {
                 0: {
                     items: 3

@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1>Create Food Catagories</h1>
+                    <h1>{{__('Create Food Category')  }}</h1>
                 </div>
             </div>
 
@@ -37,7 +37,12 @@
                     <div class="row g-0 shadow bg-body-tertiary rounded align-content-center">
                         <div class="col-md-12">
                             <div class="card-body d-flex">
-                                <input type="text" class="form-control" name="category_title" value="{{old('category_title',)}}">
+                                <label for="category_title_en" class="mx-2 text-secondary">EN</label><br>
+                                <input type="text" class="form-control" name="category_title_en" value="{{old('category_title_en',)}}">
+                            </div>
+                            <div class="card-body d-flex">
+                                <label for="category_title_lt" class="mx-2 text-secondary">LT</label><br>
+                                <input type="text" class="form-control" name="category_title_lt" value="{{old('category_title_lt',)}}">
                             </div>
 
                             <div class="card-body">
@@ -46,7 +51,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="list-table__buttons">
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" name="save">Create</button>
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" name="save">{{__('Create')  }}</button>
                                 </div>
                             </div>
                         </div>

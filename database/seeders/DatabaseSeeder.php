@@ -74,7 +74,14 @@ class DatabaseSeeder extends Seeder
         $category = [
             'Pasta', 'Pica', 'Breakfast', 'Salad', 'Soup', 'BBQ', 'Asian', 'Vegetarian', 'Sushi', 'Fish'
         ];
-        $food_qty = 1500;
+
+
+        $category_lt = [
+            'Makaronai', 'Picos', 'Pusryčiai', 'Salotos', 'Sriubos', 'BBQ', 'Azijietiški', 'Vegetariški',
+            'Sušiai', 'Žuvis'
+        ];
+        $food_qty = 500;
+
 
         foreach ($cities as $_) {
             DB::table('cities')->insert([
@@ -82,11 +89,22 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach ($category as $_) {
+
+        //foreach ($category as $_) {
+        // $photo_food=rand(22,49);
+        //DB::table('categories')->insert([
+        //'title_en' => $_,
+        //'photo' => '/images/temp/'.$photo_food.'.jpeg',
+        //]);
+        // }
+
+        for ($i = 0; $i < count($category); $i++) {
             $photo_food = rand(22, 49);
             DB::table('categories')->insert([
-                'title' => $_,
+                'title_en' => $category[$i],
+                'title_lt' => $category_lt[$i],
                 'photo' => '/images/temp/' . $photo_food . '.jpeg',
+
             ]);
         }
 

@@ -180,8 +180,12 @@ class FrontController extends Controller
         $id = (int)$request->id;
         $count = (int)$request->count;
         $basket->add($id, $count);
-
-        return redirect(url()->previous() . '#' . $request->id)->with('ok', 'Add to basket succses');
+        if (app()->getLocale() == "lt") {
+            $message1 = "Pirkinys sėkmingai įdėtas į krepšelį";
+        } else {
+            $message1 = "Item\'s succesfully added to the basket";
+        }
+        return redirect(url()->previous() . '#' . $request->id)->with('ok', $message1);
     }
 
     public function viewBasket(Request $request, BasketService $basket)
@@ -210,6 +214,7 @@ class FrontController extends Controller
 
     public function updateBasket(Request $request, BasketService $basket)
     {
+
         if ($request->delete) {
             $basket->delete($request->delete);
         } else {
@@ -298,7 +303,8 @@ class FrontController extends Controller
             ->get();
         $foods = $foods->sortBy('title');
 
-        $category = $category->title;
+        $category_en = $category->title_en;
+        $category_lt = $category->title_lt;
 
         $restaurants = $restaurants->map(function ($status) {
             $status->deg = rand(-45, 45);
@@ -324,7 +330,8 @@ class FrontController extends Controller
             'cities' => $cities,
             'city' => $city,
             // 'categories'=>$categories,
-            'category' => $category,
+            'category_en' => $category_en,
+            'category_lt' => $category_lt,
             'ovners' => $ovners,
             'sortSelect' => Food::SORT,
             'sortShow' => isset(Food::SORT[$request->sort]) ? $request->sort : '',
