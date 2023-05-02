@@ -153,6 +153,7 @@
         </nav>
     </div>
     @include('layouts.svg')
+
     <main class="mystyle">
         @yield('content')
     </main>
