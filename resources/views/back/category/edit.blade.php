@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1>Edit Food Catagories</h1>
+                    <h1>{{__('Edit Food Category')  }}</h1>
                 </div>
             </div>
             <form action="{{route('category-update',$category)}}" method="post" enctype="multipart/form-data">
@@ -47,8 +47,14 @@
                                 @endif
                             </section>
 
+                            
                             <div class="card-body d-flex">
-                                <input type="text" class="form-control" name="category_title" value="{{old('category_title',$category->title)}}">
+                                <label for="category_title_en" class="mx-2 text-secondary">EN</label>
+                                <input type="text" class="form-control" name="category_title_en" value="{{old('category_title_en', $category->title_en)}}">
+                            </div>
+                            <div class="card-body d-flex">
+                                <label for="category_title_lt" class="mx-2 text-secondary">LT</label>
+                                <input type="text" class="form-control" name="category_title_lt" value="{{old('category_title_lt', $category->title_lt)}}">
                             </div>
                             <div class="card-body">
                                 <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="imageset">
@@ -56,8 +62,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="list-table__buttons">
-                                    <button type="submit" class="btn btn-danger" name="delete_photo" value="1">Delete photo</button>
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" style="width: 80px;" name="save">Update</button>
+                                    <button type="submit" class="btn btn-danger" name="delete_photo" value="1">{{__('Delete photo')  }}</button>
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" style="width: 80px;" name="save">{{__('Update')  }}</button>
                                 </div>
                             </div>
                         </div>

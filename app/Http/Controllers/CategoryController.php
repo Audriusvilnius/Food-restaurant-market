@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         
-        $categories=Category::all()->sortBy('title');
+        $categories=Category::all()->sortBy('title_'.app()->getLocale());
         $foods = Food::orderBy('created_at', 'desc')->get();
 
         return view('back.category.index',[
@@ -35,7 +35,7 @@ class CategoryController extends Controller
     public function create()
     {
 
-        $categories=Category::all()->sortBy('title');
+        $categories=Category::all()->sortBy('title_'.app()->getLocale());
 
         return view('back.category.create',[
             'categories'=> $categories,
@@ -54,7 +54,8 @@ class CategoryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'category_title' => 'required|nullable|unique:categories,title',
+                'category_title_en' => 'required|nullable|unique:categories,title_en',
+                'category_title_lt' => 'required|nullable|unique:categories,title_lt',
                 'photo' => 'required|nullable',
             ]);
             
@@ -76,7 +77,8 @@ class CategoryController extends Controller
         $category->photo='/images/temp/noimage.jpg';
         }
         
-        $category->title=$request->category_title;
+        $category->title_en=$request->category_title_en;
+        $category->title_lt=$request->category_title_lt;
         $category->save();
         return redirect()->route('category-index');  
     }
@@ -100,7 +102,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $categories=Category::all()->sortBy('title');
+        $categories=Category::all()->sortBy('title_'.app()->getLocale());
         return view('back.category.edit',[
             'category'=> $category,
         ]);
@@ -118,7 +120,8 @@ class CategoryController extends Controller
          $validator = Validator::make(
             $request->all(),
             [
-                'category_title' => 'required|nullable',
+                'category_title_en' => 'required|nullable',
+                
             ]);
             
             if ($validator->fails()) {
@@ -128,7 +131,15 @@ class CategoryController extends Controller
             
         if($request->delete_photo){
             $category->deletePhoto();
-        return redirect()->back()->with('ok', 'Photo deleted');
+            if (app()->getLocale() == "lt") {
+                $message1 = "Nuotrauka ištrinta";
+                
+            }
+            else {
+                $message1 = "Photo deleted";
+    
+            }
+        return redirect()->back()->with('ok', $message1);
         }
         if($request->file('photo')){
             $photo = $request->file('photo');
@@ -143,9 +154,18 @@ class CategoryController extends Controller
             $category->photo='/'.'images/'.$file;
         }
 
-        $category->title=$request->category_title;
+        $category->title_en=$request->category_title_en;
+        $category->title_lt=$request->category_title_lt;
         $category->save();
-        return redirect()->route('category-index', ['#'.$category->id])->with('ok', 'Edit complete');
+        if (app()->getLocale() == "lt") {
+            $message1 = "Redagavimas baigtas";
+            
+        }
+        else {
+            $message1 = "Edit complete";
+
+        }
+        return redirect()->route('category-index', ['#'.$category->id])->with('ok', $message1);
 
     }
 
@@ -156,13 +176,23 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
-    { 
+    {  
+        if (app()->getLocale() == "lt") {
+            $message1 = "Trynimas baigtas";
+            $message2 = "Negalima ištrinti kategorijos. Pimiausiai ištrinkite kategorijai priklausantį maistą";
+            
+        }
+        else {
+            $message1 = "Delete complete";
+            $message2 = "Can\'t delete Category, first delete food from Category";
+
+        }
         if(!$category->food_Category()->count()){
             $category->deletePhoto();
             $category->delete();
-        return redirect()->route('category-index', ['#'.$category->id])->with('ok', 'Delete complete');
+        return redirect()->route('category-index', ['#'.$category->id])->with('ok', $message1);
         }else{
-            return redirect()->route('category-index', ['#'.$category->id])->with('not', ' Can\'t Delete Category, firs delete food from category');
+            return redirect()->route('category-index', ['#'.$category->id])->with('not', $message2);
         }
     }
 }
