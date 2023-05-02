@@ -64,7 +64,8 @@ class DatabaseSeeder extends Seeder
 
         $faker = Faker::create();
         $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
-        // $faker->addProvider(new \FakerRestaurant\Provider\lt_LT\Restaurant($faker));
+        $faker_lt = Faker::create();
+        $faker_lt->addProvider(new \FakerRestaurant\Provider\lt_LT\Restaurant($faker_lt));
         // https://github.com/jzonta/FakerRestaurant
         // composer require jzonta/faker-restaurant
 
@@ -151,13 +152,15 @@ class DatabaseSeeder extends Seeder
                 'rest_id' => rand(1, 30),
                 'food_city_no' => rand(1, count($cities)),
                 'food_category_no' => rand(1, count($category_en)),
-                'title' => $faker->foodName,
+                'title_en' => $faker->foodName,
+                'title_lt' => $faker_lt->foodName,
                 'counts' => 0,
                 'price' => rand(499, 2999) / 100,
                 'rating' => rand(100, 500) / 100,
                 'add' => $faker->realText(100, 5),
                 'photo' => '/images/temp/' . $photo_food . '.jpeg',
-                'des' => $faker->paragraph($nbSentences = rand(5, 10), $variableNbSentences = true),
+                'des_en' => $faker->realText(600, 5),
+                'des_lt' => 'Lietuviškas tekstas - ' . $faker->realText(600, 5),
             ]);
         }
     }

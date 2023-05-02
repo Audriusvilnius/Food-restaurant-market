@@ -25,18 +25,15 @@
                             style="background-color:grey;border-radius:5px;" @elseif($order->status == 3)
                             style="background-color:rgba(224, 219, 219, 0.378);border-radius:5px;" @endif>
                             <h4>{{__('Order No.')  }}: <b><i>{{$order->id}}</b></i></h4>
-
                             <h6 class="mb-2">Open - {{$order->created_at}}</h6>
                             @if($order->status == 0)
                             <h5>{{__('Order open')  }}</h5>
-
                             @elseif($order->status == 1)
                             <h5>Processing</h5>
                             @elseif($order->status == 2)
                             <h5>Ready to ship</h5>
                             @elseif($order->status == 3)
                             <h5>{{__('Order complete')  }}</h5>
-
                             @endif
                             - {{$order->created_at}}
 
@@ -61,7 +58,8 @@
                     </div>
                     <div class="col-md-10">
                         <hr class="border border-1 opacity-50">
-                        {{__('Title') }}: <b><i>{{$food->title}}</b></i>,
+                        {{__('Title') }}: <b><i>{{$food->title_en}}</b></i>,
+
                         <p>{{__('price') }}: <b><i>{{$food->price}} &euro;</b></i>
                             {{__('qty') }}: <b><i>{{$food->count}}</b></i>
                             {{__('Sum') }}: <b><i>{{$food->price*$food->count}} &euro;</b></i></p>

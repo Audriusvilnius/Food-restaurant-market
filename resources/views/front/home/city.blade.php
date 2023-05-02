@@ -38,8 +38,10 @@
 
  </head>
 
+
  <body class="mystyle">
-     <div id="app " disable>
+
+     <div id="app">
          <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">{{--fixed-top--}}
              <div class="container">
                  <a class="navbar-brand" href="{{ url('/') }}">
@@ -155,24 +157,24 @@
      </div>
      @include('layouts.svg')
 
-     <div class=" d-flex align-content-center justify-content-center pt-5" style="background-color:rgb(68,68,68,.93);min-height: 91vh;">
-         <div class="card mb-3" style="max-width: 540px;max-height: 360px;">
+
+     <div class="d-flex align-content-center justify-content-center position-absolute top-50 start-50 translate-middle">
+
+         <div class="card" style="max-width: 540px;max-height: 540px">
              <div class="row g-0">
                  @foreach ($ovners as $ovner )
-                 <div class="col-md-4">
-                     <img src="{{asset($ovner->photo)}}" class="img-fluid rounded-start" alt="bascet">
-                 </div>
-                 <div class="col-md-8">
+                 <div class="col-12">
                      <div class="card-body">
                          <h5 class="card-title" style="background-color:skyblue; padding:10px;border-radius:10px; color:black;">Customer City locate selected</h5>
                          <p class="card-text">{{$text}}</p>
+                         <img src="{{asset($ovner->photo)}}" class="img-fluid rounded-start" style="width:50%" alt=" bascet">
                      </div>
                  </div>
-                 <div class="col-md-12">
+                 <div class="col-12">
                      <div class="card-body">
-                         <ul class="navbar-nav ms-5">
-                             @include('front.home.common.city')
-                         </ul>
+
+                         @include('front.home.common.city')
+
                      </div>
                  </div>
                  @endforeach
