@@ -75,6 +75,7 @@ class DatabaseSeeder extends Seeder
             'Pasta', 'Pica', 'Breakfast', 'Salad', 'Soup', 'BBQ', 'Asian', 'Vegetarian', 'Sushi', 'Fish'
         ];
 
+
         $category_lt = [
             'Makaronai', 'Picos', 'Pusryčiai', 'Salotos', 'Sriubos', 'BBQ', 'Azijietiški', 'Vegetariški',
             'Sušiai', 'Žuvis'
@@ -151,7 +152,7 @@ class DatabaseSeeder extends Seeder
             $photo_food = rand(22, 49);
             DB::table('food')->insert([
                 'rest_id' => rand(1, 30),
-                'food_city_no' => rand(1, 5),
+                'food_city_no' => rand(1, count($cities)),
                 'food_category_no' => rand(1, count($category)),
                 'title' => $faker->foodName,
                 'counts' => 0,

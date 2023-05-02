@@ -10,17 +10,19 @@
 </section> --}}
 <div class="conteiner-blue">
 
-
-<a href="#" class="text-decoration-none" style="color:black;">
-    <div class="up sticky-bottom">
-        <i class="bi bi-chevron-up"></i>
-    </div>
-</a>
-<section class="py-1 text-center container shadow_new">
-    <h1 class="m-5">{{__('All Restaurants near me')  }}</h1>
-    {{-- <h2 class="m-5 fs-3"><i>text</i></h2> --}}
-    <hr class=" border border-second border-0 opacity-75">
-</section>
+    <section class="py-1 text-center container shadow_new btnFront">
+        <a class="list-group-item list-group-item-action" href="{{route('start')}}">
+            <div class="btn btn-dark mt-5">
+             <h1 class="m-3 shadow_new>{{__('All Restaurants near me')  }}</h1>
+            </div>
+        </a>
+        <hr class=" border border-second border-0 opacity-75">
+    </section>
+    <section class="container shadow_new">
+        <h3 class="mt-1 text-end"><i>Categories</i></h3>
+        {{-- <hr class="border border-second border-1 opacity-75"> --}}
+    </section>
+    @include('front.home.common.category')
 
 
 
@@ -91,25 +93,29 @@
             </div>
         </div>
     </div>
+    <hr class="border border-second border-0 opacity-50">
 </section>
 
-
-
-<hr class="border border-second border-0 opacity-50">
-<div class="page" id="food-lists">
+<div class="page pt-5" id="food-lists">
     <div class="container ">
+        {{-- container-fluid --}}
+
         {{-- CIA keiciam steilpeliu skaiciu  --}}
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-3">
-            @forelse($foods as $food)
-
+            @forelse($foods as $key=> $food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
-
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
                         <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
                         <div style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg);" class="centered shadow_new justify-content-center text-block-sm">
+
+                            <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
+                                <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
+                                <div class="appBannerB{{$key}}" style="display: inline;">close</div>
+                            </div>
+
 
 
                     <div class=" card-body ">
@@ -176,6 +182,37 @@
                                             <i class="bi bi-cart-check-fill"></i>
                                         </button>
 
+
+                        @endif
+                        @endforeach
+                    </div>
+                    <div class="justify-content-center align-bottom">
+                        <h4 class="mt-3"><b><i>{{$food->title}}</b></i></h4>
+                        <h3 @if($food->price<20) style="color:crimson;" @endif><b><i>{{$food->price}} &euro;</b></i></h3>
+                    </div>
+                    <div class=" card-body ">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h6 class="accordion-header " id="flush-headingOne">
+                                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        {{-- <a class=" list-group-item list-group-item-action " href=" {{route('list-restaurant',$food->foodReataurants_name->id)}}"> --}}
+                                        <div style="font-size:17px;">
+                                            <i>{{$food->foodReataurants_name->title}}</i>
+                                        </div>
+                                        {{-- </a> --}}
+                                        <div class="ms-5">
+                                            Rating:<b><i> {{$food->rating}}</i></b>
+                                        </div>
+                                    </button>
+                                </h6>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body ">
+                                        <h6>City: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
+                                        <h6>Category: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
+                                        <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
+                                        <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
+                                        <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
+
                                     </div>
                                     <form action="{{route('update-reviews')}}" method="get">
                                         <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
@@ -192,7 +229,7 @@
                                             <div class="col-md-2">
                                                 Qty:
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <input type="number" class="form-control" name="count" value="1" min="1">
                                                 <input type="hidden" name="id" value="{{$food->id}}">
                                             </div>
@@ -209,12 +246,8 @@
                                     <hr class="border border-second border-2 opacity-0">
                                 </div>
                             </div>
-                            <h4 class="mt-3"><b><i>{{$food->title}}</b></i></h4>
+                            {{-- <hr class="border border-second border-1 opacity-75"> --}}
                             <span class="text-muted">{{$food->add}}</span>
-                            <hr class="border border-second border-1 opacity-75">
-                            <div class="justify-content-center align-bottom">
-                                <h3 @if($food->price<20) style="color:crimson;" @endif><b><i>{{$food->price}} &euro;</b></i></h3>
-                            </div>
                         </div>
 
                     </div>
