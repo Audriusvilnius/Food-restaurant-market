@@ -38,14 +38,9 @@
                         <div class="col-md-3">
                             <div class="card-body">
                                 <h5><b><i>{{$food->title}}</b></i></h5>
-
                                 <h6>{{__('Price') }}: <b><i>{{number_format($food->price, 2, '.', '') }} &euro;</b></i></h6>
-
-
-                               
                                 <h6>Delivery Fee: <b class="text-success"><i>{{$basket->delivery($food->foodReataurants_name->title)}} </i></b></h6>
                                 <br>
-
                                 <div class="gap-3 align-items-center d-flex justify-content-center">
                                     {{__('Quantity') }}:
                                     {{-- <h6>{{__('Rating')  }}: <b><i>{{$food->rating}}</b></i></h6>
@@ -54,19 +49,17 @@
                                     <input type="hidden" class="form-control" name="ids[]" value="{{$food->id}}">
                                     {{-- <input type="hidden" class="form-control" name="id" value="{{$food->id}}"> --}}
 
-                                 @if ( $basket->getFlag() == 0 )
+                                    @if ( $basket->getFlag() == 0 )
                                     <h6> {{__('Sum') }}: <b><i>{{number_format($food->count*$food->price, 2, '.', '')}} &euro;</b></i></h6>
-                                 @else
+                                    @else
                                     <h6>{{__('Sum') }}: <b><i>{{number_format(($food->count*$food->price)+4.99, 2, '.', '')}} &euro;</b></i></h6>
-                                 @endif
+                                    @endif
                                 </div>
                             </div>
-
-
                         </div>
                         {{-- sekciaj padalinta i dvus pradzia--}}
                         <div class="col-md-3 d-flex">
-                             <div class="card-body align-items-center justify-content-center">
+                            <div class="card-body align-items-center justify-content-center">
 
                                 <h6>{{__('Restaurant') }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                                 <div class="col-md-12 d-flex">
