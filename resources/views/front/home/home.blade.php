@@ -57,7 +57,11 @@
                         @endforeach
                     </div>
                     <div class="justify-content-center align-bottom">
-                        <h4 class="mt-3"><b><i>{{$food->title}}</b></i></h4>
+                        @if (app()->getLocale() == "lt")
+                        <h4 class="mt-3"><b><i>{{$food->title_lt}}</b></i></h4>
+                        @else
+                        <h4 class="mt-3"><b><i>{{$food->title_en}}</b></i></h4>
+                        @endif
                         <h3 @if($food->price<20) style="color:crimson;" @endif><b>{{__('Price') }}: <i>{{$food->price}} &euro;</b></i></h3>
 
                     </div>
@@ -90,6 +94,12 @@
                                     <h6>{{__('Address') }}: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                                     <h6>{{__('Open') }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                                     <h6>{{__('Close') }}: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
+                                    @if (app()->getLocale() == "lt")
+                                    <span class="text-muted">{{$food->des_lt}}</span>
+                                    @else
+                                    <span class="text-muted">{{$food->des_en}}</span>
+                                    @endif
+
                                 </div>
                                 <form action="{{route('update-reviews')}}" method="get">
                                     <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
@@ -102,30 +112,33 @@
                                     @csrf
                                 </form>
                                 <hr class="border border-second border-2 opacity-0">
-                                <form action="{{route('add-basket')}}" method="post">
-                                    <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
-                                        <div class="col-md-2">
-                                            {{__('Qty') }}:
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="number" class="form-control" name="count" value="1" min="1">
-                                            <input type="hidden" name="id" value="{{$food->id}}">
-                                        </div>
-                                        <div class="col-md-1 ">
-                                            <div class="form-contro">
-                                                <button type="submit" class="btn btn-dark">
-                                                    <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        @csrf
-                                    </div>
-                                </form>
+
                                 <hr class="border border-second border-2 opacity-0">
                             </div>
                         </div>
                         {{-- <hr class="border border-second border-1 opacity-75"> --}}
-                        <span class="text-muted">{{$food->add}}</span>
+                        <hr class="border border-second border-2 opacity-0">
+
+                        <form action="{{route('add-basket')}}" method="post">
+                            <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
+                                <div class="col-md-2">
+                                    {{__('Qty') }}:
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control" name="count" value="1" min="1">
+                                    <input type="hidden" name="id" value="{{$food->id}}">
+                                </div>
+                                <div class="col-md-1 ">
+                                    <div class="form-contro">
+                                        <button type="submit" class="btn btn-dark">
+                                            <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @csrf
+                            </div>
+                        </form>
+
                     </div>
 
                 </div>

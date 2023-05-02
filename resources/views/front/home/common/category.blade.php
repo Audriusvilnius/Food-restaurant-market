@@ -51,11 +51,15 @@
                     items: 3
                 }
                 , 720: {
-                    items: 5
+                    items: 4
                 }
                 , 960: {
                     items: 5
                 }
+                , 1220: {
+                    items: 6
+                }
+
                 , 1440: {
                     items: 7
                 }

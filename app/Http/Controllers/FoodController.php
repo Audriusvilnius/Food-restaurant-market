@@ -34,13 +34,10 @@ class FoodController extends Controller
 
         if (app()->getLocale() == "lt") {
             $message1 = "Restorano pavadinimas sėkmingai nukopijuotas";
-            
-        }
-        else {
+        } else {
             $message1 = "Restaurant\'s title succesfully copied";
-
         }
-        $foods=food::all();
+        $foods = food::all();
 
         foreach ($foods as $food) {
             $fooR = Restaurant::where('id', '=', $food->rest_id)->first();
@@ -106,7 +103,8 @@ class FoodController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'food_title' => 'required|nullable',
+                'food_title_en' => 'required|nullable',
+                'food_title_lt' => 'required|nullable',
                 'food_price' => 'required|decimal:0,2|min:0|max:999',
                 'photo' => 'required|nullable',
             ]
@@ -156,9 +154,11 @@ class FoodController extends Controller
         $food->cate_json = json_encode($catetObj, JSON_FORCE_OBJECT);
 
         $food->rest_title = $foo->title;
-        $food->title = $request->food_title;
+        $food->title_en = $request->food_title_en;
+        $food->title_lt = $request->food_title_lt;
         $food->price = $request->food_price;
-        $food->des = $request->food_des;
+        $food->des_en = $request->food_des_en;
+        $food->des_lt = $request->food_des_lt;
         $food->add = $request->food_add;
         $food->rating = 0;
         $food->counts = 0;
@@ -214,20 +214,17 @@ class FoodController extends Controller
 
             if (app()->getLocale() == "lt") {
                 $message1 = "Nutrauka ištrinta";
-                
-            }
-            else {
+            } else {
                 $message1 = "Photo deleted";
-    
             }
-        return redirect()->back()->with('ok', $message1);
-
+            return redirect()->back()->with('ok', $message1);
         }
 
         $validator = Validator::make(
             $request->all(),
             [
-                'food_title' => 'required|nullable',
+                'food_title_lt' => 'required|nullable',
+                'food_title_en' => 'required|nullable',
                 'food_price' => 'required|decimal:0,2|min:0|max:999',
                 // 'photo' => 'required|nullable',
             ]
@@ -254,7 +251,8 @@ class FoodController extends Controller
             $food->photo = '/' . 'images/' . $file;
         }
 
-        $food->title = $request->food_title;
+        $food->title_lt = $request->food_title_lt;
+        $food->title_en = $request->food_title_en;
         $food->price = $request->food_price;
 
         $food->rest_id = $request->restaurant_id;
@@ -282,21 +280,17 @@ class FoodController extends Controller
         $food->cate_json = json_encode($catetObj, JSON_FORCE_OBJECT);
 
         $food->rest_title = $foo->title;
-        $food->des = $request->food_des;
+        $food->des_en = $request->food_des_en;
+        $food->des_lt = $request->food_des_lt;
         $food->add = $request->food_add;
 
         $food->save();
         if (app()->getLocale() == "lt") {
             $message1 = "Redagavimas baigtas";
-            
-        }
-        else {
+        } else {
             $message1 = "Edit complete";
-
-
         }
-        return redirect()->route('foods-index', ['#'.$food->id])->with('ok', $message1);
-
+        return redirect()->route('foods-index', ['#' . $food->id])->with('ok', $message1);
     }
 
     /**
@@ -309,16 +303,12 @@ class FoodController extends Controller
     {
         if (app()->getLocale() == "lt") {
             $message1 = "Trynimas baigtas";
-            
-        }
-        else {
+        } else {
             $message1 = "Delete complete";
-
         }
         $food->deletePhoto();
         $food->delete();
 
-        return redirect()->route('foods-index', ['#'.$food->id])->with('ok', $message1);
-
+        return redirect()->route('foods-index', ['#' . $food->id])->with('ok', $message1);
     }
 }

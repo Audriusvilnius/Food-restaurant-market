@@ -23,7 +23,6 @@
                             <div class="card-body">
                                 <h6>{{__('Category') }}</h6>
                                 <select class="form-select" name="category_id">
-
                                     @foreach($categories as $category)
                                     @if (app()->getLocale() == "lt")
                                     <option value="{{$category->id}}" @if($category->id == old('category_id',$food->food_category_no)) selected @endif>{{$category->title_lt}}</option>
@@ -33,7 +32,17 @@
                                     @endforeach
                                 </select>
                                 <h6>{{__('Title') }}: </h6>
-                                <input type="text" class="form-control" name="food_title" value="{{old('food_title',$food->title)}}">
+                                @if (app()->getLocale() == "lt")
+                                <input type="text" class="form-control" name="food_title_lt" value="{{old('food_title_lt',$food->title_lt)}}">
+                                <input type="hidden" name="food_title_en" value="{{$food->title_en}}">
+
+
+                                @else
+                                <input type="text" class="form-control" name="food_title_en" value="{{old('food_title_en',$food->title_en)}}">
+                                <input type="hidden" name="food_title_lt" value="{{$food->title_lt}}">
+
+
+                                @endif
                                 <h6>{{__('Price') }}: </h6>
                                 <input type="text" class="form-control" name="food_price" value="{{old('food_price',$food->price)}}">
                                 <h6>{{__('Restaurant') }}</h6>
@@ -58,8 +67,11 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h6 class="card-title">{{__('Description') }}:</h6>
-                                <textarea class="form-control" placeholder="{{__('Food description leave a comment here')  }}" name="food_des" rows="11" cols="30" value="{{old('food_des',$food->des)}}">{{$food->des}}</textarea>
+                                <h6 class="card-title">{{__('Description') }} - LT:</h6>
+                                <textarea class="form-control" placeholder="{{__('Food description leave a comment here')  }}" name="food_des_lt" rows="11" cols="30" value="{{old('food_des_lt',$food->des_lt)}}">{{$food->des_lt}}</textarea>
+                                <h6 class="card-title">{{__('Description') }} - EN:</h6>
+                                <textarea class="form-control" placeholder="{{__('Food description leave a comment here')  }}" name="food_des_en" rows="11" cols="30" value="{{old('food_des_en',$food->des_en)}}">{{$food->des_en}}</textarea>
+
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -77,7 +89,7 @@
                             <div class="card-body">
                                 <div class="list-table__buttons ">
                                     <button type="submit" class="btn btn-danger" name="delete_photo" value="1">{{__('Delete photo')  }}</button>
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end m-2 " style="width: 80px;" name="save">{{__('Update') }}</button>
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end m-2 " name="save">{{__('Update') }}</button>
                                 </div>
                             </div>
                         </div>
