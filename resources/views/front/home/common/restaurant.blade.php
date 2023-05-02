@@ -43,7 +43,10 @@
                     items: 3
                 }
                 , 960: {
-                    items: 5
+                    items: 3
+                }
+                , 1220: {
+                    items: 4
                 }
                 , 1440: {
                     items: 5
