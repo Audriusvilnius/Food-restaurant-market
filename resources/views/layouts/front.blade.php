@@ -49,13 +49,13 @@
                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                      <span class="navbar-toggler-icon"></span>
                  </button>
-                     <!--Lang-->
-                    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-                        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                            @include('partials/language_switcher')
-                        </div>
-                    </div>
-                    <!--Lang-->
+                 <!--Lang-->
+                 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+                     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                         @include('partials/language_switcher')
+                     </div>
+                 </div>
+                 <!--Lang-->
 
                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <!-- Left Side Of Navbar -->
@@ -72,12 +72,12 @@
 
                      <!-- Right Side Of Navbar -->
                      <ul class="navbar-nav ms-auto">
-]
+                         ]
                          <ul class="navbar-nav ms-auto">
                              @if(Auth::user()?->role == 'admin')
                              <li class="nav-item dropdown">
                                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                 {{ __('Orders') }}
+                                     {{ __('Orders') }}
                                  </a>
                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                      <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
@@ -86,22 +86,22 @@
 
                              <li class="nav-item dropdown">
                                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     {{__('Foods')  }}
+                                     {{__('Foods') }}
                                  </a>
                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('foods-index') }}">{{__('Foods')  }}</a>
-                                     <a class="dropdown-item" href="{{ route('category-index') }}">{{__('Categories')  }}</a>
+                                     <a class="dropdown-item" href="{{ route('foods-index') }}">{{__('Foods') }}</a>
+                                     <a class="dropdown-item" href="{{ route('category-index') }}">{{__('Categories') }}</a>
 
 
                                  </div>
                              </li>
                              <li class="nav-item dropdown">
                                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                 {{__('Restaurant')  }}
+                                     {{__('Restaurant') }}
                                  </a>
                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('restaurants-index') }}">{{__('Restaurants')  }}</a>
-                                     <a class="dropdown-item" href="{{ route('city-index') }}">{{__('City')  }}</a>
+                                     <a class="dropdown-item" href="{{ route('restaurants-index') }}">{{__('Restaurants') }}</a>
+                                     <a class="dropdown-item" href="{{ route('city-index') }}">{{__('City') }}</a>
                                      <a class="dropdown-item" href="{{ route('foods-rest_title') }}">{{__('Copy Restaurant title')  }}</a>
 
 
@@ -109,11 +109,11 @@
                              </li>
                              <li class="nav-item dropdown">
                                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{__('Owners')  }}
+                                     {{__('Owners') }}
                                  </a>
                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                      <a class="dropdown-item" href="{{ route('ovner-create') }}">{{__('Add new')  }}</a>
-                                     <a class="dropdown-item" href="{{ route('ovner-index') }}">{{__('List')  }}</a>
+                                     <a class="dropdown-item" href="{{ route('ovner-index') }}">{{__('List') }}</a>
                                  </div>
                              </li>
 
@@ -141,39 +141,39 @@
 
 
 
-                         @endif
+                                 @endif
 
-                         <!-- Authentication Links -->
-                         @guest
-                         @if (Route::has('login'))
-                         <li class="nav-item">
-                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                         </li>
-                         @endif
+                                 <!-- Authentication Links -->
+                                 @guest
+                                 @if (Route::has('login'))
+                             <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                             </li>
+                             @endif
 
-                         @if (Route::has('register'))
-                         <li class="nav-item">
-                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                         </li>
-                         @endif
-                         @else
-                         <li class="nav-item dropdown">
-                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                 {{ Auth::user()->name }}
-                             </a>
-
-                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                     {{ __('Logout') }}
+                             @if (Route::has('register'))
+                             <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                             </li>
+                             @endif
+                             @else
+                             <li class="nav-item dropdown">
+                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     {{ Auth::user()->name }}
                                  </a>
-                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                     @csrf
-                                 </form>
-                             </div>
+
+                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                         {{ __('Logout') }}
+                                     </a>
+                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                         @csrf
+                                     </form>
+                                 </div>
 
                          </ul>
-                         <span>{{__('Total')  }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
+                         <span>{{__('Total') }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></span>
 
                          @endif
                      </ul>
@@ -183,7 +183,7 @@
      </div>
      @include('layouts.svg')
      <main class="mystyle">
-         @yield('content')
+         {{-- @yield('content') --}}
      </main>
      <a href="#" class="text-decoration-none" style="color:white;">
          <div class="up sticky-bottom">
@@ -202,10 +202,10 @@
                                      <h4><small> {{$ovner->title}}</small></h4>
                                  </div>
                                  <div class="col-md-4">
-                                     <small class="fw-lighter">{{__('Street')  }}:</small>&nbsp;&nbsp; {{$ovner->street}} {{$ovner->build}}<br>
-                                     <small class="fw-lighter">{{__('City')  }}:</small>&nbsp;&nbsp; {{$ovner->city}}<br>
-                                     <small class="fw-lighter">{{__('Post')  }}: </small>&nbsp;&nbsp; {{$ovner->postcode}}<br>
-                                     <small class="fw-lighter">{{__('Country')  }}:</small>&nbsp;&nbsp; {{$ovner->country}}<br>
+                                     <small class="fw-lighter">{{__('Street') }}:</small>&nbsp;&nbsp; {{$ovner->street}} {{$ovner->build}}<br>
+                                     <small class="fw-lighter">{{__('City') }}:</small>&nbsp;&nbsp; {{$ovner->city}}<br>
+                                     <small class="fw-lighter">{{__('Post') }}: </small>&nbsp;&nbsp; {{$ovner->postcode}}<br>
+                                     <small class="fw-lighter">{{__('Country') }}:</small>&nbsp;&nbsp; {{$ovner->country}}<br>
                                  </div>
                                  <div class="col-md-5">
                                      <small class="fw-semibold"><i class="bi bi-globe" style="font-size: 1rem"></i></small>&nbsp;&nbsp; {{$ovner->url}}<br>
@@ -235,17 +235,13 @@
                  </div>
                  @empty
                  <h5>Oops! Something went wrong, missing contacts info</h5>
+                 <h5>{{__('Oops! Something went wrong, missing contacts info')  }}</h5>
                  @endforelse
                  @forelse($ovners as $ovner)
                  <span class="text-center">{{$ovner->title}} &copy 2023</span>
                  @empty
                  @endforelse
              </div>
-
-
-             @empty
-             <h5>{{__('Oops! Something went wrong, missing contacts info')  }}</h5>
-             @endforelse
          </div>
          </div>
      </footer>
