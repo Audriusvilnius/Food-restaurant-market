@@ -15,11 +15,6 @@
                     </div>
                     @endforeach
                 </div>
-
-                @empty
-                <h3 class="list-group-item">{{__('List empty')  }}</h3>
-                @endforelse
-
             </div>
         </div>
     </div>
@@ -33,10 +28,9 @@
             , autoplayTimeout: 3000
             , autoplayHoverPause: true
             , navText: [
-                    `<div class="nav-btn prev-slide mt-3"><i class="bi bi-chevron-compact-left"></i></div>`
-                    , `<div class="nav-btn next-slide mt-3"><i class="bi bi-chevron-compact-right"></i></div>`
-                ]
-
+                `<div class="nav-btn prev-slide mt-3"><i class="bi bi-chevron-compact-left"></i></div>`
+                , `<div class="nav-btn next-slide mt-3"><i class="bi bi-chevron-compact-right"></i></div>`
+            ]
             , responsive: {
                 0: {
                     items: 2
@@ -54,7 +48,6 @@
                     items: 5
                 }
             }
-
         });
         $('.play').on('click', function() {
             owl.trigger('play.owl.autoplay', [1000])

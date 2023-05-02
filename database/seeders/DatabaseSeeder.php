@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
             'Makaronai', 'Picos', 'Pusryčiai', 'Salotos', 'Sriubos', 'BBQ', 'Azijietiški', 'Vegetariški',
             'Sušiai', 'Žuvis'
         ];
-        $food_qty=500;
+        $food_qty = 500;
 
 
         foreach ($cities as $_) {
@@ -89,24 +89,23 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        
+
         //foreach ($category as $_) {
-           // $photo_food=rand(22,49);
+        // $photo_food=rand(22,49);
         //DB::table('categories')->insert([
-                //'title_en' => $_,
-                //'photo' => '/images/temp/'.$photo_food.'.jpeg',
-            //]);
-       // }
+        //'title_en' => $_,
+        //'photo' => '/images/temp/'.$photo_food.'.jpeg',
+        //]);
+        // }
 
         for ($i = 0; $i < count($category); $i++) {
-            $photo_food=rand(22,49);
-        DB::table('categories')->insert([
+            $photo_food = rand(22, 49);
+            DB::table('categories')->insert([
                 'title_en' => $category[$i],
                 'title_lt' => $category_lt[$i],
-                'photo' => '/images/temp/'.$photo_food.'.jpeg',
+                'photo' => '/images/temp/' . $photo_food . '.jpeg',
 
             ]);
-
         }
 
         foreach (range(1, 1) as $_) {

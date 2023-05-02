@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('title_lt',100)->nullable();
-            $table->renameColumn('title', 'title_en');
-        });
+        // Schema::table('categories', function (Blueprint $table) {
+        //     $table->string('title_lt',100)->nullable();
+        //     $table->renameColumn('title', 'title_en');
+        // });
     }
 
     /**

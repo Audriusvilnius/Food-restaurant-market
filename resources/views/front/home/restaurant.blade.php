@@ -73,7 +73,7 @@
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body ">
                                         <h6>City: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
-                                        <h6>Category: <b><i>{{$food->foodCategory_no->title}}</i></b></h6>
+                                        <h6>Category: <b><i>{{$food->foodCategory_no->title_en}}</i></b></h6>
                                         <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                                         <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                                         <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
