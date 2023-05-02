@@ -12,7 +12,7 @@
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
             <div class="btn btn-dark mt-5">
-                <h1 class="m-5">{{__('All Restaurants near me')  }}</h1>
+                <h1 class="m-3 shadow_new">{{__('All Restaurants near me')  }}</h1>
             </div>
         </a>
         <hr class=" border border-second border-0 opacity-75">
@@ -38,10 +38,8 @@
             <div class="col-md-4 d-flex ">
                 <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
                     <div class="card-body align-content-center gap-3 d-flex mb-2">
-
                         <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="{{__('Search...')  }}  " aria-label="Search" name="s" value="{{$s}}">
                         <button type="submit" class="btn btn-info"><i class="bi bi-search"></i></button>
-
                     </div>
                 </form>
             </div>
