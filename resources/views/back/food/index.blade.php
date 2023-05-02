@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header justify-content-between align-content-between d-flex ">
-                    <h1>Food list</h1>
+                    <h1>{{__('Food list')  }}</h1>
 
                     <a href="{{route('foods-create')}}" class="btn btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -42,20 +42,24 @@
                     {{-- sekciaj padalinta i dvus pradzia--}}
                     <div class="col-md-3 d-flex">
                         <div class="card-body ms-2">
-                            <h6>Food: <b><i>{{$food->title}}</b></i></h6>
-                            <h6>Price: <b><i>{{$food->price}} &euro;</b></i></h6>
-                            <h6>Raiting: <b><i>{{$food->rating}}</b></i></h6>
-                            <h6>Voted: <b><i>{{$food->counts}}</b></i></h6>
-                            <h6>City: <b><i>{{$food->foodCities_no->title}}</b></i></h6>
-                            <h6>Category: <b><i>{{$food->foodCategory_no->title}}</b></i></h6>
+                            <h6>{{__('Food') }}: <b><i>{{$food->title}}</b></i></h6>
+                            <h6>{{__('Price') }}: <b><i>{{$food->price}} &euro;</b></i></h6>
+                            <h6>{{__('Rating') }}: <b><i>{{$food->rating}}</b></i></h6>
+                            <h6>{{__('Voted') }}: <b><i>{{$food->counts}}</b></i></h6>
+                            <h6>{{__('City') }}: <b><i>{{$food->foodCities_no->title}}</b></i></h6>
+                            @if (app()->getLocale() == "lt")
+                            <h6>{{__('Category') }}: <b><i>{{$food->foodCategory_no->title_lt}}</b></i></h6>
+                            @else
+                            <h6>{{__('Category') }}: <b><i>{{$food->foodCategory_no->title_en}}</b></i></h6>
+                            @endif
                             <hr class="border border-second border-2 opacity-50">
-                            <h6>Restaurant: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
+                            <h6>{{__('Restaurant') }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-6">
-                                    <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
+                                    <h6>{{__('Open') }}: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
                                 </div>
                                 <div class="col-md-6">
-                                    <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
+                                    <h6>{{__('Close') }}: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
                                 </div>
                             </div>
                         </div>
@@ -63,9 +67,9 @@
                     {{-- sekciaj padalinta i dvus pabaiga--}}
                     <div class="col-md-4">
                         <div class="card-body">
-                            <h6 class="card-title text-muted">Additional info:</h6>
+                            <h6 class="card-title text-muted">{{__('Additional info')  }}:</h6>
                             <p class="card-text"><small class="text-muted">{{$food->add}}</small></p>
-                            <h6 class="card-title">Description:</h6>
+                            <h6 class="card-title">{{__('Description') }}:</h6>
                             <textarea class="form-control" placeholder="{{$food->des}}" rows="3" cols="auto"></textarea>
                         </div>
                         <div class="card-body">
@@ -89,7 +93,7 @@
                 </div>
             </div>
             @empty
-            <h2 class="list-group-item">No types yet</h2>
+            <h2 class="list-group-item">{{__('No types yet')  }}</h2>
             @endforelse
         </div>
     </div>

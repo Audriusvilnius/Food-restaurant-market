@@ -226,6 +226,14 @@ class OvnerController extends Controller
     {
         $ovner->deletePhoto();
         $ovner->delete();
-        return redirect()->route('ovner-index')->with('ok', 'Delete complete');
+
+        if (app()->getLocale() == "lt") {
+            $message1 = "Trynimas baigtas";
+        }
+        else {
+            $message1 = "Delete complete";
+        }
+        return redirect()->route('ovner-index')->with('ok', $message1);  
+
     }
 }

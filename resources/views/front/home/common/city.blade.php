@@ -1,4 +1,6 @@
 @inject('city', 'App\Services\CityService')
+
+
 <form action="{{route('select-city')}}" method="post" class="d-flex">
     <select class="form-select border border-0 bg-dots-darker" name="city_id">
         <option value="{{ null }}" selected>Select City</option>

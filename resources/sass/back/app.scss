@@ -12,6 +12,20 @@
     // filter: invert(70%);
     // transform: scaleX(-1);
 }
+.conteiner-blue {
+    min-height: auto;
+    background-color: rgb(27, 176, 235);
+}
+
+.conteiner-black {
+    min-height: auto;
+    background-color: black;
+}
+
+.conteiner-lemon {
+    min-height: auto;
+    background-color: #FAFA33;
+}
 label {
     font-size: 1.4em;
     user-select: none;
@@ -100,7 +114,7 @@ h1 {
     text-align: center;
 }
 .mystyle {
-    background-image: url("/public/images/temp/tomatoes-5365186.jpg");
+    // background-image: url("/public/images/temp/tomatoes-5365186.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -146,17 +160,109 @@ svg.cart {
 .btnFront {
     max-width: 700px;
 }
+
 .text-block {
     opacity: .95;
-    background-color: rgba(220, 20, 60, 0.95);
+    background-color: crimson;
     color: white;
     border-radius: 15px;
     font-family: $cl;
     font-weight: 100;
-    width: 230px;
+    width: 250px;
     height: 100px;
-    font-size: 35px;
+    font-size: 31px;
+    z-index: 10;
     line-height: 100px;
-    border: 2px solid rgba(0, 0, 0);
-    transform: translateX(-12px) translateY(-100px) rotate(30deg);
+    border: solid 2px #869791;
+    transition: 2s;
+}
+
+.text-block-sm {
+    opacity: .95;
+    background-color: crimson;
+    color: white;
+    border-radius: 15px;
+    font-family: $cl;
+    font-weight: 100;
+    width: 250px;
+    height: 80px;
+    line-height: 80px;
+    border: solid 2px #869791;
+    z-index: 10;
+    transition: 2s;
+    font-size: 31px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.text-block-sm:hover {
+    background-color: rgb(27, 176, 235);
+    transition: .5s;
+    font-size: 36px;
+    width: 263px;
+    height: 84px;
+    line-height: 84px;
+    animation: fadein 2s;
+}
+
+
+
+.text-block:hover {
+    background-color: rgb(27, 176, 235);
+    transition: 0.5s;
+    font-size: 36px;
+    width: 263px;
+    height: 105px;
+    line-height: 105px;
+    animation: fadein 2s;
+}
+
+.owl-carousel .nav-btn {
+    height: 47px;
+    position: absolute;
+    width: 26px;
+    cursor: pointer;
+    top: 15%;
+    // top: 100px !important;
+}
+
+.owl-carousel .owl-prev.disabled,
+.owl-carousel .owl-next.disabled {
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+.owl-carousel .prev-slide {
+    // background: url(nav-icon.png) no-repeat scroll 0 0;
+    left: -40px;
+}
+
+.owl-carousel .next-slide {
+    // background: url(nav-icon.png) no-repeat scroll -24px 0px;
+    right: -30px;
+}
+
+.owl-carousel .prev-slide:hover {
+    background-position: 0px -53px;
+}
+
+.owl-carousel .next-slide:hover {
+    background-position: -24px -53px;
+}
+
+.bi {
+    color: rgb(214, 214, 214);
+    font-size: 2rem;
+}
+
+.bi:hover {
+    color: #869791;
 }
