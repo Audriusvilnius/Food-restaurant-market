@@ -26,22 +26,9 @@ class FrontController extends Controller
 {
     public function home(Request $request, City $city, FrontController $citySelect)
     {
-        // dump(Session::get('citySelect'));
-        $restaurants = Restaurant::all()
-            ->map(function ($temp) {
-                $temp->deg = rand(-45, 45);
-                $temp->translateX = rand(-70, -160);
-                $temp->translateY = rand(-45, -45);
-                return $temp;
-            })->sortBy('title');
-        // $restaurants = $restaurants->sortBy('title');
-        $categories = Category::all()->sortBy('title_' . app()->getLocale());
         $sessionCity = Session::get('citySelect');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
-        $foods = Food::all()->sortBy('title_' . app()->getLocale());
-
-
         if ($sessionCity == null) {
             return view('front.home.city', [
                 'cities' => $cities,
@@ -49,6 +36,14 @@ class FrontController extends Controller
                 'text' => Faker::create()->realText(300, 5),
             ]);
         }
+
+        $restaurants = Restaurant::all()
+            ->map(function ($temp) {
+                $temp->deg = rand(-45, 45);
+                $temp->translateX = rand(-70, -160);
+                $temp->translateY = rand(-45, -45);
+                return $temp;
+            })->sortBy('title');
 
         $restaurants = $restaurants->map(function ($status) {
             $status->openStatus = Carbon::parse($status->open)->format('H:i');
@@ -63,11 +58,19 @@ class FrontController extends Controller
             return $status;
         });
 
+        $categories = Category::all()->sortBy('title_' . app()->getLocale());
+        $foods = Food::all()->sortBy('title_' . app()->getLocale());
+
+
         $perPageShow = in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All';
 
         if (!$request->s) {
             if ($request->restaurant_id && $request->restaurant_id != 'all') {
+
                 $foods = Food::where('rest_id', $request->restaurant_id);
+                // ->where('food_city_no', $sessionCity)
+                // ->get();
+                // $foods = Food::where('rest_id', $request->restaurant_id);
             } else {
                 // $foods = Food::where('id', '>', 0);
                 $foods = Food::where('food_city_no', $sessionCity);
