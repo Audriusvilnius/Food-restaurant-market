@@ -26,22 +26,9 @@ class FrontController extends Controller
 {
     public function home(Request $request, City $city, FrontController $citySelect)
     {
-        // dump(Session::get('citySelect'));
-        $restaurants = Restaurant::all()
-            ->map(function ($temp) {
-                $temp->deg = rand(-45, 45);
-                $temp->translateX = rand(-70, -160);
-                $temp->translateY = rand(-45, -45);
-                return $temp;
-            })->sortBy('title');
-        // $restaurants = $restaurants->sortBy('title');
-        $categories = Category::all()->sortBy('title');
         $sessionCity = Session::get('citySelect');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
-        $foods = Food::all()->sortBy('title');
-
-
         if ($sessionCity == null) {
             return view('front.home.city', [
                 'cities' => $cities,
@@ -49,6 +36,14 @@ class FrontController extends Controller
                 'text' => Faker::create()->realText(300, 5),
             ]);
         }
+
+        $restaurants = Restaurant::all()
+            ->map(function ($temp) {
+                $temp->deg = rand(-45, 45);
+                $temp->translateX = rand(-70, -160);
+                $temp->translateY = rand(-45, -45);
+                return $temp;
+            })->sortBy('title');
 
         $restaurants = $restaurants->map(function ($status) {
             $status->openStatus = Carbon::parse($status->open)->format('H:i');
@@ -63,11 +58,19 @@ class FrontController extends Controller
             return $status;
         });
 
+        $categories = Category::all()->sortBy('title_' . app()->getLocale());
+        $foods = Food::all()->sortBy('title_' . app()->getLocale());
+
+
         $perPageShow = in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All';
 
         if (!$request->s) {
             if ($request->restaurant_id && $request->restaurant_id != 'all') {
+
                 $foods = Food::where('rest_id', $request->restaurant_id);
+                // ->where('food_city_no', $sessionCity)
+                // ->get();
+                // $foods = Food::where('rest_id', $request->restaurant_id);
             } else {
                 // $foods = Food::where('id', '>', 0);
                 $foods = Food::where('food_city_no', $sessionCity);
@@ -79,8 +82,8 @@ class FrontController extends Controller
             $foods = match ($request->sort ?? '') {
                 'asc_price' => $foods->orderBy('price'),
                 'dessc_price' => $foods->orderBy('price', 'desc'),
-                'asc_name' => $foods->orderBy('title'),
-                'desc_name' => $foods->orderBy('title', 'desc'),
+                'asc_name' => $foods->orderBy('title_' . app()->getLocale()),
+                'desc_name' => $foods->orderBy('title_' . app()->getLocale(), 'desc'),
                 'desc_rate' => $foods->orderBy('rating', 'desc'),
                     // 'desc_rest'=>Food::orderBy('title'),
                 default => $foods
@@ -93,13 +96,13 @@ class FrontController extends Controller
         } else {
             $s = explode(' ', $request->s);
             if (count($s) == 1) {
-                $foods = Food::where('title', 'like', '%' . $request->s . '%')
+                $foods = Food::where('title_' . app()->getLocale(), 'like', '%' . $request->s . '%')
                     ->orWhere('rest_title', 'like', '%' . $request->s . '%')
                     ->orWhere('price', 'like', '%' . $request->s . '%')
                     ->get();
             } else {
-                $foods = Food::where('title', 'like', '%' . $s[0] . '%' . $s[1] . '%')
-                    ->orWhere('title', 'like', '%' . $s[1] . '%' . $s[0] . '%')
+                $foods = Food::where('title_' . app()->getLocale(), 'like', '%' . $s[0] . '%' . $s[1] . '%')
+                    ->orWhere('title_' . app()->getLocale(), 'like', '%' . $s[1] . '%' . $s[0] . '%')
                     ->orWhere('rest_title', 'like', '%' . $s[1] . '%' . $s[0] . '%')
                     ->orWhere('rest_title', 'like', '%' . $s[0] . '%' . $s[1] . '%')
                     ->get();
@@ -254,7 +257,7 @@ class FrontController extends Controller
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
         $restaurants = Restaurant::all();
-        $foods = $foods->sortBy('title');
+        $foods = $foods->sortBy('title_' . app()->getLocale());
 
         $restaurants = $restaurants->map(function ($status) {
             $status->deg = rand(-45, 45);
@@ -301,7 +304,7 @@ class FrontController extends Controller
         $foods = Food::where('food_category_no', $category->id)
             ->where('food_city_no', Session::get('citySelect'))
             ->get();
-        $foods = $foods->sortBy('title');
+        $foods = $foods->sortBy('title_' . app()->getLocale());
 
         $category_en = $category->title_en;
         $category_lt = $category->title_lt;

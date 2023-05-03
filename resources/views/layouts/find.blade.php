@@ -1,7 +1,7 @@
 <section class="page conteiner-blue pb-3">
     <div class="container ">
         <div class="row d-flex justify-content-evenly">
-            <div class="col-md-auto">
+            <div class="col-md-5">
                 <form class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-10" role="search" action="{{url('/')}}" method="get">
                     <div class="card-body align-content-center gap-3 d-flex mb-2">
                         <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search...  " aria-label="Search" name="s" value="{{$s}}">
