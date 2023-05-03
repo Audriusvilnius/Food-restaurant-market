@@ -52,7 +52,6 @@
                                 <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
                                 <div class="appBannerB{{$key}}" style="display: inline;">close</div>
                             </div>
-
                         </div>
                         @endif
                         @endforeach
