@@ -4,15 +4,15 @@ window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
-// document.querySelectorAll('button')
-//     .forEach(b => {
-//         b.addEventListener('click', () => {
-//             b.closest('.js--form').querySelectorAll('[name]')
-//                 .forEach(d => {
-//                     console.log('d');
-//                 });
-//         });
-//     });
+document.querySelectorAll('button')
+    .forEach(b => {
+        b.addEventListener('click', () => {
+            b.closest('.js--form').querySelectorAll('[name]')
+                .forEach(d => {
+                    console.log('d');
+                });
+        });
+    });
 
 // const multipleItemCarousel = document.querySelector('#myCarousel')
 // const carousel = new bootstrap.Carousel(myCarouselElement, {
