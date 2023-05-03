@@ -35,7 +35,7 @@ class FrontController extends Controller
                 return $temp;
             })->sortBy('title');
         // $restaurants = $restaurants->sortBy('title');
-        $categories = Category::all()->sortBy('title_en');
+        $categories = Category::all()->sortBy('title_' . app()->getLocale());
         $sessionCity = Session::get('citySelect');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
@@ -254,7 +254,7 @@ class FrontController extends Controller
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
         $restaurants = Restaurant::all();
-        $foods = $foods->sortBy('title');
+        $foods = $foods->sortBy('title_' . app()->getLocale());
 
         $restaurants = $restaurants->map(function ($status) {
             $status->deg = rand(-45, 45);
@@ -301,7 +301,7 @@ class FrontController extends Controller
         $foods = Food::where('food_category_no', $category->id)
             ->where('food_city_no', Session::get('citySelect'))
             ->get();
-        $foods = $foods->sortBy('title_en');
+        $foods = $foods->sortBy('title_' . app()->getLocale());
 
         $category_en = $category->title_en;
         $category_lt = $category->title_lt;

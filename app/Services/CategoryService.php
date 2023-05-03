@@ -10,10 +10,6 @@ class CategoryService
 
     public function getCategory()
     {
-
-        
-
-    return Category::all()->sortBy('title_'.app()->getLocale());
-
+        return Category::all()->sortBy('title_' . app()->getLocale());
     }
 }
