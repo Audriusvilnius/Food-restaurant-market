@@ -156,6 +156,9 @@ svg.cart {
     transition: 2s;
     font-size: 31px;    
 }
+.message{
+z-index: 9;
+}
 
 @keyframes fadeIn {
     from {
