@@ -61,7 +61,6 @@ class FrontController extends Controller
         $categories = Category::all()->sortBy('title_' . app()->getLocale());
         $foods = Food::all()->sortBy('title_' . app()->getLocale());
 
-
         $perPageShow = in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All';
 
         if (!$request->s) {
@@ -176,7 +175,7 @@ class FrontController extends Controller
         DB::table('food')->where('id', $request->product)->update(['rating' => $rating]);
         DB::table('food')->where('id', $request->product)->update(['counts' => $count]);
 
-        return redirect(url()->previous() . '#' . $request->user_id)->with('ok', 'You rate ' . $food->title . ' ' . $request->rated . ' points');
+        return redirect(url()->previous() . '#' . Auth::user()->id)->with('ok', 'You rate ' . $food->title . ' ' . $food->rated . ' points');
     }
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)
@@ -216,7 +215,7 @@ class FrontController extends Controller
             if ($data->rest_id) {
                 $delivery[$data->rest_id] = ['rest_id' => $data->rest_id];
             } else {
-                $delivery = [$data->rest_id => ['rate' => $data->rest_id]];
+                $delivery = [$data->rest_id => ['rest_id' => $data->rest_id]];
             }
         }
         $delivery = count($delivery) * 4.99;
