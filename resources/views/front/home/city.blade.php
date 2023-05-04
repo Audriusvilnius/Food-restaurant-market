@@ -159,7 +159,6 @@
 
 
      <div class="d-flex align-content-center justify-content-center position-absolute top-50 start-50 translate-middle">
-
          <div class="card" style="max-width: 540px;max-height: 540px">
              <div class="row g-0">
                  @foreach ($ovners as $ovner )
@@ -171,8 +170,8 @@
                      </div>
                  </div>
                  <div class="col-12">
-                     <div class="card-body">
-                         <ul class="navbar-nav ms-auto">
+                     <div class="dropdown ">
+                         <ul class="navbar-nav p-3">
                              @include('front.home.common.city')
                          </ul>
                      </div>

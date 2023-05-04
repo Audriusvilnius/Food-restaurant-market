@@ -14,10 +14,7 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->singleton(CategoryService::class, function ($app){
-        // return new CategoryService();
-        // });
-
+        //
     }
 
     /**
@@ -27,8 +24,8 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(CategoryService::class, function ($app){
-        return new CategoryService();
+        $this->app->singleton(CategoryService::class, function ($app) {
+            return new CategoryService();
         });
     }
 }

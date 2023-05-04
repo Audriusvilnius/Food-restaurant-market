@@ -53,9 +53,14 @@
                         @endforeach
                     </div>
                     <div class="justify-content-center align-bottom">
-                        <h4 class="mt-3"><b><i>{{$food->title}}</b></i></h4>
-                        <h3 @if($food->price<20) style="color:crimson;" @endif><b><i>{{$food->price}} &euro;</b></i></h3>
+                        @if (app()->getLocale() == "lt")
+                        <h4 class="mt-3"><b><i>{{$food->title_lt}}</b></i></h4>
+                        @else
+                        <h4 class="mt-3"><b><i>{{$food->title_en}}</b></i></h4>
+                        @endif
+                        <h3 @if($food->price<20) style="color:crimson;" @endif><b>{{__('Price') }}: <i>{{$food->price}} &euro;</b></i></h3>
                     </div>
+
                     <div class=" card-body ">
                         <div class="accordion accordion-flush" id="accordionFlushExample">
                             <div class="accordion-item">
@@ -79,6 +84,7 @@
                                         <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                                         <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
                                     </div>
+
                                     <form action="{{route('update-reviews')}}" method="get">
                                         <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
                                             <input type="hidden" name="product" value="{{$food->id}}">

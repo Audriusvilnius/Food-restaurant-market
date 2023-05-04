@@ -65,7 +65,6 @@
                         <h4 class="mt-3"><b><i>{{$food->title_en}}</b></i></h4>
                         @endif
                         <h3 @if($food->price<20) style="color:crimson;" @endif><b>{{__('Price') }}: <i>{{$food->price}} &euro;</b></i></h3>
-
                     </div>
                     <div class=" card-body ">
                         <div class="accordion accordion-flush" id="accordionFlushExample">

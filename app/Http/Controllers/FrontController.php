@@ -67,8 +67,8 @@ class FrontController extends Controller
         if (!$request->s) {
             if ($request->restaurant_id && $request->restaurant_id != 'all') {
 
-                $foods = Food::where('rest_id', $request->restaurant_id);
-                // ->where('food_city_no', $sessionCity)
+                $foods = Food::where('rest_id', $request->restaurant_id)
+                    ->where('food_city_no', $sessionCity);
                 // ->get();
                 // $foods = Food::where('rest_id', $request->restaurant_id);
             } else {

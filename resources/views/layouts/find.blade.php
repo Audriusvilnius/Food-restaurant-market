@@ -9,15 +9,6 @@
                     </div>
                 </form>
             </div>
-            {{-- <div class="col-md-1 "> --}}
-            {{-- <form action="{{url('/')}}" method="get">
-            <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
-                <option value="all">All City</option>
-                @foreach($restaurants as $restaurant)
-                <option value="{{$restaurant->id}}" @if($restaurant->id == $cityShow) selected @endif>{{$restaurant->city}}</option>
-                @endforeach
-            </select> --}}
-            {{-- </div> --}}
             <div class="col-md-auto ">
                 <form action="{{url('/')}}" method="get">
                     <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
@@ -27,7 +18,6 @@
                         @endforeach
                     </select>
             </div>
-
             <div class="col-md-auto btnsort">
                 <div class="card-body align-content-center mb-2">
                     <select class="form-select bg-dark text-white " name="sort">
@@ -48,8 +38,8 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <div class="card-body align-content-end gap-1 d-flex">
-                    <button type="submit" class="btn btn-secondary ">SHOW</button>
+                <div class="card-body align-content-end gap-1 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-secondary">SHOW</button>
                     </form>
                     <a href=" {{url('/')}}" class="btn btn-danger " style="">RESET</a>
                 </div>

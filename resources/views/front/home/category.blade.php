@@ -71,10 +71,16 @@
                         <h6>{{__('Address') }}: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                         <h6>{{__('Open') }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                         <h6>{{__('Close') }}: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
-                        <hr class="border border-second border-2 opacity-50">
-                        <h4><b><i>{{$food->title}}</b></i></h4>
+
+                        <div class="justify-content-center align-bottom">
+                            @if (app()->getLocale() == "lt")
+                            <h4 class="mt-3"><b><i>{{$food->title_lt}}</b></i></h4>
+                            @else
+                            <h4 class="mt-3"><b><i>{{$food->title_en}}</b></i></h4>
+                            @endif
+                            <h3 @if($food->price<20) style="color:crimson;" @endif><b>{{__('Price') }}: <i>{{$food->price}} &euro;</b></i></h3>
+                        </div>
                         <span class="text-muted">{{$food->add}}</span>
-                        <h4 @if($food->price<20) style="color:crimson;" @endif>{{__('Price') }}: <b><i>{{$food->price}} &euro;</b></i></h4>
                         <hr class="border border-second border-2 opacity-50">
                         {{-- <form action="{{route('update-rate')}}" method="post"> --}}
                         <div class="gap-3 align-items-center d-flex justify-content-center">

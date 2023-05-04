@@ -57,7 +57,7 @@
                 <!--Lang-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <div class="navbar-nav ms-5">
+                    <div class="dropdown ms-5">
                         @include('front.home.common.city')
                     </div>
                     <!-- Right Side Of Navbar -->
