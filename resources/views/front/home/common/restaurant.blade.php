@@ -1,5 +1,5 @@
 @inject('restaurant', 'App\Services\RestaurantService')
-<section class="container  ">
+<section class="container">
     <div class="container-fluid pb-4">
         <div class="row">
             <div class="col-sm-12">
@@ -55,7 +55,6 @@
         });
         $('.play').on('click', function() {
             owl.trigger('play.owl.autoplay', [15000])
-
         })
         $('.stop').on('click', function() {
             owl.trigger('stop.owl.autoplay')

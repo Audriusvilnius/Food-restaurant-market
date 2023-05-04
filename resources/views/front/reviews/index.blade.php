@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1>{{__('Hello')  }}, {{$name}}! {{__('You can rate & review')  }} {{$food->title}}</h1>
+                    <h1>{{__('Hello') }}, {{$name}}! {{__('You can rate & review')  }} {{$food->title}}</h1>
                 </div>
             </div>
             <div class="card mt-2 d-flex justify-content-md-between">
@@ -22,19 +22,19 @@
                     </div>
                     <div class="col-md-6 d-flex">
                         <div class="card-body">
-                            <h6>{{__('Food')  }}: <b><i>{{$food->title}}</b></i></h6>
-                            <h6>{{__('Price')  }}: <b><i>{{$food->price}} &euro;</b></i></h6>
-                            <h6>{{__('Rating')  }}: <b><i>{{$food->rating}}</b></i></h6>
-                            <h6>{{__('Voted')  }}: <b><i>{{$food->counts}}</b></i></h6>
+                            <h6>{{__('Food') }}: <b><i>{{$food->title}}</b></i></h6>
+                            <h6>{{__('Price') }}: <b><i>{{$food->price}} &euro;</b></i></h6>
+                            <h6>{{__('Rating') }}: <b><i>{{$food->rating}}</b></i></h6>
+                            <h6>{{__('Voted') }}: <b><i>{{$food->counts}}</b></i></h6>
                             <hr class="border border-second border-2 opacity-50">
-                            <h6>{{__('City')  }}: <b><i>{{$food->foodReataurants_name->city}}</b></i></h6>
-                            <h6>{{__('Restaurant')  }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
+                            <h6>{{__('City') }}: <b><i>{{$food->foodReataurants_name->city}}</b></i></h6>
+                            <h6>{{__('Restaurant') }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-6">
-                                    <h6>{{__('Open')  }}: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
+                                    <h6>{{__('Open') }}: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
                                 </div>
                                 <div class="col-md-6">
-                                    <h6>{{__('Close')  }}: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
+                                    <h6>{{__('Close') }}: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
                                 </div>
                             </div>
                             <h6 class="card-title text-muted">{{__('Additional info')  }}:</h6>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="col-md-12 d-flex">
                                 <div class="card-body">
-                                    <a href="{{route('start')}}" class="btn btn-secondary float-start">{{__('HOME')  }}</a>
+                                    <a href="{{route('start')}}" class="btn btn-secondary float-start">{{__('HOME') }}</a>
                                     <button type="submit" class="btn btn-outline-secondary float-end">{{__('RATE & REVIEW')  }}</button>
                                 </div>
                             </div>
@@ -66,19 +66,9 @@
                     </form>
                 </div>
             </div>
-            <section class="py-1 text-center container">
-                <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
-                    @if(Session::has('ok'))
-                    <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-                    @endif
-                    @if(Session::has('not'))
-                    <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </h6>
-                    @endif
-                </div>
-            </section>
+
+            @include('alerts.alert')
+
             @if($rateds)
             @foreach($rateds as $id => $reviews)
             <div id={{$id}} class="card mt-2 d-flex justify-content-md-between">
@@ -87,7 +77,7 @@
                         <h4>{{$reviews['user_name']}}</h4>
                     </div>
                     <div class="col-md-8">
-                        <h4 class="float-end "> {{__('Rated')  }} {{$reviews['rate']}}</h4>
+                        <h4 class="float-end "> {{__('Rated') }} {{$reviews['rate']}}</h4>
                     </div>
                     <div class="col-md-12 d-flex">
                         <div class="card-body ms-5 me-5">

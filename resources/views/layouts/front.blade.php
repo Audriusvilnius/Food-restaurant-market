@@ -35,9 +35,15 @@
 
     @vite(['resources/sass/front/app.scss', 'resources/js/front/app.js'])
 
+
+
+
+
 </head>
 
-<body class="mystyle">
+<body class="mystyle" onload="owl();">
+
+
     <div id="app ">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">{{--fixed-top--}}
             <div class="container">

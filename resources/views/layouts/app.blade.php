@@ -24,6 +24,10 @@
 
 
     <!-- Scripts -->
+    <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
+    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/time.js')}}"></script>
+
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
 </head>
 <body>
@@ -154,6 +158,11 @@
     </div>
     @include('layouts.svg')
     <main class=" py-4 mystyle">
+        <a href="#" class="text-decoration-none" style="color:black;">
+            <div class="up sticky-bottom">
+                <i class="bi bi-chevron-up"></i>
+            </div>
+        </a>
         @yield('content')
     </main>
 </body>

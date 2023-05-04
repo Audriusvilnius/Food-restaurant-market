@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
+@include('alerts.alert')
+
 <div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -9,13 +10,9 @@
                     <h1>{{__('Edit Food')  }}</h1>
                 </div>
             </div>
-            <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded d-flex justify-content-md-between">
 
-                @if(Session::has('ok'))
-                <h6 class=" alert alert-success alert-dismissible fade show" role="alert">{{Session::get('ok')}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-                @endif
-            </div>
+            @include('alerts.alert')
+
             <form action="{{route('foods-update',$food)}}" method="post" enctype="multipart/form-data">
                 <div class="card mt-2" style="max-width: 1wm;">
                     <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
@@ -79,17 +76,10 @@
                                 <h6>{{__('Change Photo')  }}:</h6>
                                 <img src="{{asset($food->photo)}}" class="img-fluid rounded" alt="imageset">
                                 <input type="file" class="form-control mt-3" name="photo">
-                            </div>
-                            {{-- <div class=" card-body">
-                                <div class="list-table__buttons">
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="col-md-12 ">
-                            <div class="card-body">
+
                                 <div class="list-table__buttons ">
-                                    <button type="submit" class="btn btn-danger" name="delete_photo" value="1">{{__('Delete photo')  }}</button>
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end m-2 " name="save">{{__('Update') }}</button>
+                                    <button type="submit" class="btn btn-danger" name="delete_photo" value="1" onclick="setTimeout()">{{__('Delete photo')  }}</button>
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end m-2 " name="save" onclick="setTimeout()">{{__('Update') }}</button>
                                 </div>
                             </div>
                         </div>

@@ -1,17 +1,8 @@
 @extends('layouts.front')
 @section('content')
-<section id="alert" class="text-center fixed-top m-2 conteiner">
-    <div class="col-lg-12 mx-auto d-flex justify-content-center align-content-center">
-        @if(Session::has('ok'))
-        <h6 class="alert alert-success alert-dismissible fade show border border-dark border-2 position-fixed message" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-        @endif
-        @if(Session::has('not'))
-        <h6 class="alert alert-danger alert-dismissible fade show border border-dark border-2 position-fixed message" role="alert">{{Session::get('not')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-        @endif
-    </div>
-</section>
+
+@include('alerts.alert')
+
 <div class="conteiner-blue">
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
@@ -24,7 +15,6 @@
 
     <section class="container shadow_new">
         <h3 class="mt-1 text-end"><i>{{__('Categories') }}</i></h3>
-
         {{-- <hr class="border border-second border-1 opacity-75"> --}}
     </section>
     @include('front.home.common.category')
@@ -40,7 +30,6 @@
 
 <div class="page pt-5" id="food-lists">
     <div class="container">
-
         {{-- container-fluid --}}
         {{-- CIA keiciam steilpeliu skaiciu  --}}
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-3">
@@ -61,7 +50,6 @@
                         @endforeach
                     </div>
                     <h6 class="mt-3"><i>{{$food->foodReataurants_name->title}}</i></h6>
-
                     <div class="justify-content-center align-bottom">
                         @if (app()->getLocale() == "lt")
                         <h4 class="mt-3"><b><i>{{$food->title_lt}}</b></i></h4>
@@ -110,7 +98,6 @@
                                         <input type="hidden" name="product" value="{{$food->id}}">
                                         <div class="btn-group">
                                             <button type="submit" class="btn btn-outline-secondary" style="width:200px;">{{__('Rating & Reviews')  }}</button>
-
                                         </div>
                                     </div>
                                     @csrf
@@ -122,7 +109,6 @@
                         </div>
                         {{-- <hr class="border border-second border-1 opacity-75"> --}}
                         <hr class="border border-second border-2 opacity-0">
-
                         <form action="{{route('add-basket')}}" method="post">
                             <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
                                 <div class="col-md-2">
@@ -143,9 +129,7 @@
                                 @csrf
                             </div>
                         </form>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -154,7 +138,6 @@
             <div class="card shadow bg-body-tertiary rounded d-flex ">
                 <div class="card-header justify-content-md-between align-items-center">
                     <h1>{{__('Oops! No match found. Try again')  }}</h1>
-
                 </div>
                 <div class="card-header justify-content-md-between align-items-center">
                     <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK') }}</a>
