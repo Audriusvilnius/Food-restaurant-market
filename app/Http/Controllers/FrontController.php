@@ -130,12 +130,12 @@ class FrontController extends Controller
         $food = Food::where('id', '=', $request->product)->first();
 
         $rateds = json_decode($food->rating_json, 1);
-        $request->user_name = Auth::user()->name;
+        // $request->user_name = Auth::user()->name;
         return view('front.reviews.index', [
             'rateds' => $rateds,
             'food' => $food,
             'id' => $request->product,
-            'name' => $request->user_name,
+            'name' => Auth::user()->name,
         ]);
     }
     public function rate(Request $request, Food $food)
@@ -143,22 +143,23 @@ class FrontController extends Controller
         $food = Food::where('id', '=', $request->product)->first();
         // $faker = Faker::create();
         $rateds = json_decode($food->rating_json, 1);
-        $request->user_id = Auth::user()->id;
-        $request->user_name = Auth::user()->name;
+        // $request->user_id = Auth::user()->id;
+        // $request->user_name = Auth::user()->name;
         $date = date('Y-m-d H:i', time());
 
 
-        if ($request->food_review == null) {
-            $request->food_review = "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2);
-        }
-        if ($request->rated == null) {
-            $request->rated = rand(1, 5);
-        }
+        // if ($request->food_review == null) {
+        //     $request->food_review = "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2);
+        // }
+        // if ($request->rated == null) {
+        //     $request->rated = rand(1, 5);
+        // }
 
         if ($rateds) {
-            $rateds[$request->user_id] = ['rate' => $request->rated, 'user_name' => $request->user_name, 'review' => $request->food_review, 'date' => $date];
-        } else {
-            $rateds = [$request->user_id => ['rate' => $request->rated, 'user_name' => $request->user_name, 'review' => $request->food_review, 'date' => $date]];
+            $rateds[Auth::user()->id] = ['rate' => $request->rated, 'user_name' => Auth::user()->name, 'review' => $request->food_review, 'date' => $date];
+        }
+        if ($request->food_review == null && $request->rated == null) {
+            $rateds = [Auth::user()->id => ['rate' => rand(1, 5), 'user_name' => Auth::user()->name, 'review' => "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2), 'date' => $date]];
         }
 
         $arrysum = 0;
@@ -186,7 +187,7 @@ class FrontController extends Controller
             $local = City::where('id', '=', Session::get('citySelect'))->first();
             $food = Food::where('id', '=', $request->id)->first();
             if (app()->getLocale() == "lt") {
-                $message = 'Pasirinkimas ' . $food->title_lt . ' yra ' . $city->title . ' mieste . Jūsų pasirinktas miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
+                $message = 'Pasirinkimas ' . $food->title_lt . ' yra ' . $city->title . ' mieste . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
             } else {
                 $message = 'The selected dish is not in ' . $city->title . ' city. You choose ' . $local->title . '. Choose another dish or change city';
             }
