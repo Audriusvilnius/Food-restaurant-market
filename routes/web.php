@@ -108,7 +108,14 @@ Route::get('list/category/language/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
 });
-Route::prefix('admin') -> group(function() {
+//--- Audrius start --//
+Route::get('list/language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
+//--- Audrius ebd --//
+Route::prefix('admin')->group(function () {
     Route::get('/language/{locale}', function ($locale) {
         app()->setLocale($locale);
         session()->put('locale', $locale);
@@ -170,4 +177,3 @@ Route::prefix('admin') -> group(function() {
         return redirect()->back();
     });
 });
-
