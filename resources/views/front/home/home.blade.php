@@ -1,6 +1,5 @@
 @extends('layouts.front')
 @section('content')
-
 @include('alerts.alert')
 
 <div class="conteiner-blue">
@@ -15,13 +14,11 @@
 
     <section class="container shadow_new">
         <h3 class="mt-1 text-end"><i>{{__('Categories') }}</i></h3>
-        {{-- <hr class="border border-second border-1 opacity-75"> --}}
     </section>
     @include('front.home.common.category')
 
     <section class="container shadow_new">
         <h3 class="text-start"><i>{{__('Restaurants')}}</i></h3>
-        {{-- <hr class="border border-second border-1 opacity-75"> --}}
     </section>
     @include('front.home.common.restaurant')
 </div>
@@ -96,6 +93,7 @@
                                 <form action="{{route('update-reviews')}}" method="get">
                                     <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
                                         <input type="hidden" name="product" value="{{$food->id}}">
+                                        <input type="hidden" name="food_city_no" value="{{$food->food_city_no}}">
                                         <div class="btn-group">
                                             <button type="submit" class="btn btn-outline-secondary" style="width:200px;">{{__('Rating & Reviews')  }}</button>
                                         </div>

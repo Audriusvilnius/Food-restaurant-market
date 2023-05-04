@@ -180,24 +180,27 @@ class FrontController extends Controller
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)
     {
+
         if ($request->food_city_no != Session::get('citySelect')) {
             $city = City::where('id', '=', $request->food_city_no)->first();
             $local = City::where('id', '=', Session::get('citySelect'))->first();
-
+            $food = Food::where('id', '=', $request->id)->first();
             if (app()->getLocale() == "lt") {
-                $message = "Pasirinkts patiekalas mieste " . $city->title . ". Jusu miestas " . $local->title .  ". Pasirunkit kita patiekalą arba miestą";
+                $message = 'Pasirinkimas ' . $food->title_lt . ' yra ' . $city->title . ' mieste . Jūsų pasirinktas miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
             } else {
-                $message = "The selected dish is not in " . $city->title . " city. You choose " . $local->title .  " Choose another dish or city";
+                $message = 'The selected dish is not in ' . $city->title . ' city. You choose ' . $local->title . '. Choose another dish or change city';
             }
             return redirect(url()->previous() . '#' . $request->id)->with('not', $message);
         } else {
+            $food = Food::where('id', '=', $request->id)->first();
             $id = (int)$request->id;
             $count = (int)$request->count;
             $basket->add($id, $count);
+
             if (app()->getLocale() == "lt") {
-                $message1 = "Pirkinys sėkmingai įdėtas į krepšelį";
+                $message1 = $food->title_lt . ' ' . $request->count . 'vnt. sėkmingai įdėta į krepšelį';
             } else {
-                $message1 = "Item\'s succesfully added to the basket";
+                $message1 = $food->title_en . ' ' . $request->count . 'pcs. succesfully added to the basket';
             }
             return redirect(url()->previous() . '#' . $request->id)->with('ok', $message1);
         }

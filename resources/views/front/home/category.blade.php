@@ -1,14 +1,7 @@
 @extends('layouts.front')
-
 @section('content')
-{{-- <section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
-        @if(Session::has('ok'))
-        <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-@endif
-</div>
-</section> --}}
+@include('alerts.alert')
+
 <div class="conteiner-blue">
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
@@ -116,12 +109,12 @@
                             <div class="col-md-2">
                                 <input type="number" class="form-control" name="count" value="1" min="1">
                                 <input type="hidden" name="id" value="{{$food->id}}">
+                                <input type="hidden" name="food_city_no" value="{{$food->food_city_no}}">
                             </div>
                             <div class="col-md-1 ">
                                 <div class="form-contro">
                                     <button type="submit" class="btn btn-dark">
                                         <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
-
                                     </button>
                                 </div>
                             </div>
