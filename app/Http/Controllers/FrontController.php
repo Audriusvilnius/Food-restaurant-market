@@ -146,7 +146,6 @@ class FrontController extends Controller
         // $request->user_name = Auth::user()->name;
         $date = date('Y-m-d H:i', time());
 
-
         // if ($request->food_review == null) {
         //     $request->food_review = "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2);
         // }
@@ -339,8 +338,6 @@ class FrontController extends Controller
             } else $status->works = 'false';
             return $status;
         });
-
-
 
         return view('front.home.category', [
             'restaurants' => $restaurants,
