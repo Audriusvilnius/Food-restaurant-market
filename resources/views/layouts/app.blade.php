@@ -90,19 +90,13 @@
         }
 
         .average-rating::before {
-                {
-                    {
-                    -- --percent: calc( {
-                                {
-                                $food->rating
-                            }
-                        }
-
-                        /5*100%);
-                    --
+            --percent: calc( {
+                        {
+                        $food->rating
+                    }
                 }
-            }
 
+                /5*100%);
             content: '★★★★★';
             position: absolute;
             top: 0;
