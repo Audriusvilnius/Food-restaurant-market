@@ -12,6 +12,7 @@
     // filter: invert(70%);
     // transform: scaleX(-1);
 }
+
 label {
     font-size: 1.4em;
     user-select: none;
@@ -67,7 +68,7 @@ h1 {
         .alk {
             svg {
                 width: 30px;
-                height:30px;
+                height: 30px;
                 //fill: rgba(19, 139, 0, 0.249);
             }
         }
@@ -90,7 +91,7 @@ h1 {
             width: 10%;
             text-align: center;
             font-weight: 100;
-            color:crimson;
+            color: crimson;
             font-style: italic;
         }
 
@@ -125,6 +126,7 @@ h1 {
 
     text-align: center;
 }
+
 .mystyle {
     background-image: url("/public/images/temp/tomatoes-5365186.jpg");
     background-repeat: no-repeat;
@@ -133,26 +135,110 @@ h1 {
     background-attachment: fixed;
     opacity: 0.95;
 }
+
 svg.cart {
     width: 45px;
     height: 45px;
     fill: $second;
     // transform: scaleX(-1);
 }
+
 .ithem {
     background-color: rgba(255, 0, 0);
-        padding: 5px;
-        height: 20px;
-        line-height: 10px;
-        border-radius: 20px;
-        color: white;
-        transform: translateX(-25px) translateY(-6px);
+    padding: 5px;
+    height: 20px;
+    line-height: 10px;
+    border-radius: 20px;
+    color: white;
+    transform: translateX(-25px) translateY(-6px);
 }
+
 .imputnumber {
     width: 80px;
     align-items: center;
     justify-content: center;
 }
+
 // .btn {
 //     width: 80px;
+// }
+
+#rating-score {
+    display: flex;
+    justify-content: center;
+    width: 12.5%;
+}
+
+/*    Select rate      */
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.radio-input {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.radio-label {
+    cursor: pointer;
+    font-size: 0;
+    color: rgba(0, 0, 0, 0.2);
+    transition: color 0.1s ease-in-out;
+}
+
+.radio-label:before {
+    content: "★";
+    display: inline-block;
+    font-size: 32px;
+}
+
+.radio-input:checked~.radio-label {
+    color: #ffc700;
+    color: gold;
+}
+
+.radio-label:hover,
+.radio-label:hover~.radio-label {
+    color: goldenrod;
+}
+
+.radio-input:checked+.radio-label:hover,
+.radio-input:checked+.radio-label:hover~.radio-label,
+.radio-input:checked~.radio-label:hover,
+.radio-input:checked~.radio-label:hover~.radio-label,
+.radio-label:hover~.radio-input:checked~.radio-label {
+    color: darkgoldenrod;
+}
+
+
+// .average-rating {
+//     position: relative;
+//     appearance: none;
+//     color: transparent;
+//     width: auto;
+//     display: inline-block;
+//     vertical-align: baseline;
+//     font-size: 25px;
+// }
+
+// .average-rating::before {
+//     --percent: calc({
+//             {
+//             $reviews['rate']
+//         }
+//     }
+
+//     / 5 * 100%);
+// content: '★★★★★';
+// position: absolute;
+// top: 0;
+// left: 0;
+// color: rgba(0, 0, 0, 0.2);
+// background: linear-gradient(90deg, gold var(--percent), rgba(0, 0, 0, 0.2) var(--percent));
+// -webkit-background-clip: text;
+// -webkit-text-fill-color: transparent;
 // }

@@ -29,13 +29,11 @@
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
 
     <style>
-        #rating-score {
+        /* #rating-score {
             display: flex;
             justify-content: center;
             width: 12.5%;
         }
-
-        /*    Select rate      */
 
         .star-rating {
             display: flex;
@@ -78,7 +76,7 @@
         .radio-input:checked~.radio-label:hover~.radio-label,
         .radio-label:hover~.radio-input:checked~.radio-label {
             color: darkgoldenrod;
-        }
+        } */
 
 
         .average-rating {
