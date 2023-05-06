@@ -1,5 +1,6 @@
 @extends('layouts.front')
 @section('content')
+
 {{-- <section class="py-1 text-center container">
     <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
         @if(Session::has('ok'))
@@ -80,7 +81,14 @@
                             </div>
                             {{-- </a> --}}
                             <div class="ms-5">
-                                {{__('Rating') }}:<b><i> {{$food->rating}}</i></b>
+                                {{__('Rating') }}:
+                                                                    <div id="rating-score">
+                                        <script>
+                                            for (let i = 0; i < Math.round({{ $food->rating }}); i++) {
+                                                document.write('<div class="star"></div>');
+                                            }
+                                        </script>
+                                    </div>
                             </div>
                             </button>
                             </h6>
@@ -135,7 +143,34 @@
                                             <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
                                         </button>
                                     </div>
+                                    @csrf
+                                </form>
+
+                                <hr class="border border-second border-2 opacity-50">
+                                <form action="{{ route('add-basket') }}" method="post">
+                                    <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
+                                        <div class="col-md-2">
+                                            Qty:
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" name="count" value="1"
+                                                min="1">
+                                            <input type="hidden" name="id" value="{{ $food->id }}">
+                                        </div>
+                                        <div class="col-md-1 ">
+                                            <div class="form-contro">
+                                                <button type="submit" class="btn btn-dark">
+                                                    <i class="bi bi-cart-check-fill"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        @csrf
+                                </form>
+                            </div>
+                            <div class=" col-md-12 d-flex">
+                                <div class="col-md-4">
                                 </div>
+
                                 @csrf
                             </div>
                         </form>
@@ -144,8 +179,8 @@
 
                 </div>
             </div>
-        </div>
         @empty
+
         <div class="col-xxl-12 col-xl-12 col-lg-12">
             <div class="card shadow bg-body-tertiary rounded d-flex ">
                 <div class="card-header justify-content-md-between align-items-center">
@@ -156,13 +191,15 @@
                     <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK') }}</a>
                 </div>
             </div>
+            @endforelse
         </div>
-        @endforelse
+        <div class="mt-4">
+            @if ($perPageShow != 'All')
+                {{ $foods->links() }}
+            @endif
+        </div>
     </div>
-    <div class="mt-4">
-        @if($perPageShow!='All')
-        {{$foods->links()}}
-        @endif
+    <hr class="border border-second border-0 opacity-50 m-1">
     </div>
 </div>
 <hr class="border border-second border-0 opacity-50 m-1">
