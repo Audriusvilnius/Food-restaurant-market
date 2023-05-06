@@ -15,15 +15,19 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            $table->string('title',100);
-            $table->string('city',100)->nullable();
-            $table->text('addres',500)->nullable();
-            $table->string('photo',500)->nullable();
-            $table->time('open')->nullable();
-            $table->time('close')->nullable();
-            $table->string('phone',500)->nullable();
-            $table->text('des',500)->nullable();
+            $table->string('title', 100);
+            $table->text('addres', 500)->nullable();
+            $table->string('photo', 500)->nullable();
+            $table->string('open', 100)->nullable();
+            $table->string('close', 100)->nullable();
+            $table->string('phone', 500)->nullable();
+            $table->text('des', 500)->nullable();
             $table->timestamps();
+            // $table->unsignedBigInteger('food_id')->unsigned();
+            // $table->unsignedBigInteger('rest_city_id')->unsigned();
+            // $table->time('open')->nullable();
+            // $table->time('close')->nullable();
+            // $table->string('city',100)->nullable();
         });
     }
 
