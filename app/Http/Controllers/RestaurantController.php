@@ -16,9 +16,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants=Restaurant::all();
-        return view('back.restaurants.index',[
-            'restaurants'=> $restaurants
+        $restaurants = Restaurant::all();
+        return view('back.restaurants.index', [
+            'restaurants' => $restaurants
         ]);
     }
 
@@ -43,37 +43,38 @@ class RestaurantController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-            'restaurant_title' => 'required|nullable',
-            'restaurant_city' => 'required|nullable',
-            'restaurant_addres' => 'required|nullable',
-            'photo' => 'required|nullable',
-        ]);
+                'restaurant_title' => 'required|nullable',
+                'restaurant_city' => 'required|nullable',
+                'restaurant_addres' => 'required|nullable',
+                'photo' => 'required|nullable',
+            ]
+        );
 
-            if ($validator->fails()) {
-                $request->flash();
-                return redirect()->back()->withErrors($validator);
-            }
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
 
         $restaurant = new Restaurant;
 
-        if($request->file('photo')){
+        if ($request->file('photo')) {
             $photo = $request->file('photo');
             $ext = $photo->getClientOriginalExtension();
-            $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);            
-            $file = $name.'-'.time().'.'.$ext;
-            $photo->move(public_path().'/images',$file);
-            $restaurant->photo='/'.'images/'.$file;
-        }else{
-            $restaurant->photo='/images/temp/noimage.jpg';
+            $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+            $file = $name . '-' . time() . '.' . $ext;
+            $photo->move(public_path() . '/images', $file);
+            $restaurant->photo = '/' . 'images/' . $file;
+        } else {
+            $restaurant->photo = '/images/temp/noimage.jpg';
         }
 
-        $restaurant->title=$request->restaurant_title;
-        $restaurant->city=$request->restaurant_city;
-        $restaurant->addres=$request->restaurant_addres;
-        $restaurant->open=$request->restaurant_open;
-        $restaurant->close=$request->restaurant_close;
-        $restaurant->des=$request->restaurant_add;
-        $restaurant->des=$request->restaurant_des;
+        $restaurant->title = $request->restaurant_title;
+        $restaurant->city = $request->restaurant_city;
+        $restaurant->addres = $request->restaurant_addres;
+        $restaurant->open = $request->restaurant_open;
+        $restaurant->close = $request->restaurant_close;
+        $restaurant->des = $request->restaurant_add;
+        $restaurant->des = $request->restaurant_des;
         $restaurant->save();
 
         return redirect()->route('restaurants-index');
@@ -98,8 +99,8 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        return view('back.restaurants.edit',[
-            'restaurant'=> $restaurant
+        return view('back.restaurants.edit', [
+            'restaurant' => $restaurant
         ]);
     }
 
@@ -112,50 +113,52 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        if($request->delete_photo){
-        $restaurant->deletePhoto();
-        return redirect()->back()->with('ok', 'Photo deleted');}
+        if ($request->delete_photo) {
+            $restaurant->deletePhoto();
+            return redirect()->back()->with('ok', 'Photo deleted');
+        }
 
         $validator = Validator::make(
             $request->all(),
             [
-            'restaurant_title' => 'required|nullable',
-            'restaurant_city' => 'required|nullable',
-            'restaurant_addres' => 'required|nullable',
-            'photo' => 'required|nullable',
-        ]);
+                'restaurant_title' => 'required|nullable',
+                'restaurant_city' => 'required|nullable',
+                'restaurant_addres' => 'required|nullable',
+                'photo' => 'required|nullable',
+            ]
+        );
 
-            if ($validator->fails()) {
-                $request->flash();
-                return redirect()->back()->withErrors($validator);
-            }
-
-            
-        if($request->file('photo')){
-            $photo = $request->file('photo');
-            $ext = $photo->getClientOriginalExtension();
-            $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);            
-            $file = $name.'-'.time().'.'.$ext;
- 
-        if($restaurant->photo){
-                $restaurant->deletePhoto();
-            }
-        
-            $photo->move(public_path().'/images',$file);
-            //$country->photo=asset('/images').'/'.$file;
-            $restaurant->photo='/'.'images/'.$file;
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
         }
 
-        $restaurant->title=$request->restaurant_title;
-        $restaurant->city=$request->restaurant_city;
-        $restaurant->addres=$request->restaurant_addres;
-        $restaurant->open=$request->restaurant_open;
-        $restaurant->close=$request->restaurant_close;
-        $restaurant->des=$request->restaurant_des;
+
+        if ($request->file('photo')) {
+            $photo = $request->file('photo');
+            $ext = $photo->getClientOriginalExtension();
+            $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+            $file = $name . '-' . time() . '.' . $ext;
+
+            if ($restaurant->photo) {
+                $restaurant->deletePhoto();
+            }
+
+            $photo->move(public_path() . '/images', $file);
+            //$country->photo=asset('/images').'/'.$file;
+            $restaurant->photo = '/' . 'images/' . $file;
+        }
+
+        $restaurant->title = $request->restaurant_title;
+        $restaurant->city = $request->restaurant_city;
+        $restaurant->addres = $request->restaurant_addres;
+        $restaurant->open = $request->restaurant_open;
+        $restaurant->close = $request->restaurant_close;
+        $restaurant->des = $request->restaurant_des;
 
         $restaurant->save();
-        
-        return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('ok', 'Edit complete');
+
+        return redirect()->route('restaurants-index', ['#' . $restaurant->id])->with('ok', 'Edit complete');
     }
 
     /**
@@ -166,12 +169,23 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
+
+        if (app()->getLocale() == "lt") {
+            $message1 = "Trynimas baigtas";
+            $message2 = "Negalima ištrinti restorano. Pirmiausia ištrinkite restorano patiekalus";
+        }
+        else {
+            $message1 = "Delete complete";
+            $message2 = "Can\'t Delete Restaurant, first delete food from restaurant";
+        }
         if(!$restaurant->food_Restaurant()->count()){
             $restaurant->deletePhoto();
             $restaurant->delete();
-        return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('ok', 'Delete complete');
+            
+            return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('ok', $message1);
         }else{
-            return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('not', ' Can\'t Delete Restaurants, firs delete food from restaurant');
+            return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('not', $message2);
+
         }
     }
 }

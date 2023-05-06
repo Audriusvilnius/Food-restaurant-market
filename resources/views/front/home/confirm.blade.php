@@ -14,7 +14,7 @@
             @if($basketList->count())
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1>Delivery date and time</h1>
+                    <h1>{{__('Delivery date and time')  }}</h1>
                 </div>
             </div>
             <section class="py-1 text-center container">
@@ -50,10 +50,10 @@
                         <div class="card-body">
                             <h5><b><i>{{$food->title}}</b></i></h5>
                             <div class="card-body">
-                                <h6>Price: <b><i>{{$food->price}} &euro;</b></i></h6>
-                                <h6>Qty: <b><i>{{$food->count}}</b></i></h6>
+                                <h6>{{__('Price')  }}: <b><i>{{$food->price}} &euro;</b></i></h6>
+                                <h6>{{__('Qty')  }}: <b><i>{{$food->count}}</b></i></h6>
                             </div>
-                            <h6>Sum: <b><i>{{$food->count*$food->price}} &euro;</b></i></h6>
+                            <h6>{{__('Sum')  }}: <b><i>{{$food->count*$food->price}} &euro;</b></i></h6>
                         </div>
                     </div>
 
@@ -61,19 +61,19 @@
                     <div class="col-md-3 d-flex">
                         <div class="col-md-12 ">
                             {{-- <div class="card-body">
-                                    <h6>Restaurant: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
+                                    <h6>{{__('Restaurant')  }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-6">
-                                    <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
+                                    <h6>{{_('Open')  }}: <b><i>{{$food->foodReataurants_name->open}}</b></i></h6>
                                 </div>
                                 <div class="col-md-6">
-                                    <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
+                                    <h6>{{__('Close')  }}: <b><i>{{$food->foodReataurants_name->close}}</b></i></h6>
                                 </div>
                             </div>
                         </div> --}}
                         <div class="col-md-12 d-flex">
                             <div class="card-body">
-                                Delivery date
+                            {{__('Delivery date')  }}
                                 <input type="date" class="form-control" name="date" value="{{$date}}" min="{{ $date }}">
 
 
@@ -83,13 +83,13 @@
                         <div class="col-md-12 d-flex">
                             <div class="col-md-6">
                                 <div class="card-body">
-                                    Delivery from
+                                {{__('Delivery from')  }}
                                     <input type="time" class="form-control" name="delivary_start" value="{{$from}}" min="{{$from}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
-                                    up to
+                                {{__('up to')  }}
                                     <input type="time" class="form-control" name="delivary_end" value="{{$up}}" min="{{$up}}">
 
                                 </div>
@@ -101,21 +101,21 @@
                 {{-- sekciaj padalinta i dvus pabaiga--}}
                 <div class="col-md-3">
                     <div class="card-body">
-                        <h6 class="card-title">Coments:</h6>
+                        <h6 class="card-title">{{__('Comments')  }}:</h6>
                         <textarea class="form-control" placeholder="Leave a comment here" name="comment_des" rows="4" cols="130" value=""></textarea>
-                        <button type="submit" name="delete" class="btn btn-danger m-2 float-end" value="{{$food->id}}">Delete</button>
-                        <button type="submit" name="update" value="{{$food->id}}" class="btn btn-info m-2 float-end">Update</button>
+                        <button type="submit" name="delete" class="btn btn-danger m-2 float-end" value="{{$food->id}}">{{__('Delete')  }}</button>
+                        <button type="submit" name="update" value="{{$food->id}}" class="btn btn-info m-2 float-end">{{__('Update')  }}</button>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success m-2">BUY</button>
+            <button type="submit" class="btn btn-success m-2">{{__('BUY')  }}</button>
 
         </div>
         @empty
         <div class="col-md-12 ">
             <div class="card shadow bg-body-tertiary rounded ">
                 <div class="card-header">
-                    <h1>Basket empty</h1>
+                    <h1>{{__('Basket empty')  }}</h1>
                 </div>
             </div>
         </div>
@@ -127,13 +127,13 @@
         @if($basketList->count())
         <div class="card mt-4">
             <div class="card-header justify-content-center ">
-                <h3 class="m-3"><i>Total basket sum: <b>{{$basket->total}} &euro;</b></i></h3>
+                <h3 class="m-3"><i>{{_('Total basket sum')  }}: <b>{{$basket->total}} &euro;</b></i></h3>
                 <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar" style="width: 66%"></div>
                 </div>
                 {{-- <form action="{{route('confirm-basket')}}" method="post"> --}}
-                <a href="{{route('update-basket')}}" class="btn btn-secondary m-2 float-start">BACK</a>
-                <button type="submit" name="confirm" value="{{$food->id}}" class="btn btn-primary m-2 float-end">Next</button>
+                <a href="{{route('update-basket')}}" class="btn btn-secondary m-2 float-start">{{__('BACK')  }}</a>
+                <button type="submit" name="confirm" value="{{$food->id}}" class="btn btn-primary m-2 float-end">{{_('Next')  }}</button>
                 @csrf
                 @method('post')
                 </form>

@@ -4,5 +4,5 @@
     Your order Number {{$ID}} is complete!
 
     Thanks,
-    LOST-Vacation Team
+    A Team
 </x-mail::message>

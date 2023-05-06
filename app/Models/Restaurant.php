@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model
 {
     use HasFactory;
-    
+
+    // protected $cast = [
+    //     'open' = 'time',
+    //     'close' = 'time',
+    // ];
+
     public function food_Restaurant()
     {
         return $this->hasMany(Food::class, 'rest_id', 'id');
@@ -17,11 +22,10 @@ class Restaurant extends Model
     public function deletePhoto()
     {
         $fileName = $this->photo;
-        if(file_exists(public_path().$fileName) && $fileName!='/images/temp/noimage.jpg'){
-            unlink(public_path().$fileName);
-            $this->photo='/images/temp/noimage.jpg';
+        if (file_exists(public_path() . $fileName) && $fileName != '/images/temp/noimage.jpg') {
+            unlink(public_path() . $fileName);
+            $this->photo = '/images/temp/noimage.jpg';
         }
         $this->save();
     }
-
 }

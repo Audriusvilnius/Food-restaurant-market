@@ -11,23 +11,41 @@ class Food extends Model
 
     const SORT = [
         'asc_price'=>'Price A-Z',
-        'dessc_price'=>'Price Z-A',
+        'desc_price'=>'Price Z-A',
         'asc_name'=> 'Title A-Z',
         'desc_name'=>'Title Z-A',
         'desc_rate'=>'Rating',
     ];
+
+    const SORT_LT = [
+        'asc_price'=>'Kaina A-Ž',
+        'dessc_price'=>'Kaina Ž-A',
+        'asc_name'=> 'Vardas A-Ž',
+        'desc_name'=>'Vardas Ž-A',
+        'desc_rate'=>'Įvertis',
+    ];
     const PER_PAGE = [
         6 , 12, 24, 48,'All',
+    ];
+    const PER_PAGE_LT = [
+        6 , 12, 24, 48,'Visi',
     ];
 
     public function foodReataurants_name()
     {
         return $this->belongsTo(Restaurant::class, 'rest_id','id');
     }
-    //     public function foodReataurants_city()
-    // {
-    //     return $this->belongsTo(Restaurant::class, 'rest_id','id');
-    // }
+
+    public function foodCities_no()
+    {
+        return $this->belongsTo(City::class, 'food_city_no','id');
+    }
+
+    public function foodCategory_no()
+    {
+        return $this->belongsTo(Category::class, 'food_category_no','id');
+    }
+
 
     public function deletePhoto()
     {
