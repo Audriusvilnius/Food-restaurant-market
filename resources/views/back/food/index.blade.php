@@ -43,7 +43,6 @@
                             <h6>Voted: <b><i>{{$food->counts}}</b></i></h6>
                             <hr class="border border-second border-2 opacity-50">
 
-
                             <h6>Restaurant: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-6">
