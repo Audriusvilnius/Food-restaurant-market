@@ -40,6 +40,11 @@
                             <h6>Price: <b><i>{{$food->price}} &euro;</b></i></h6>
                             <h6>Raiting: <b><i>{{$food->rating}}</b></i></h6>
                             <h6>Voted: <b><i>{{$food->counts}}</b></i></h6>
+                            <h1>{{$title}}</h1>
+                            <script>
+                                document.write("Sveikas");
+                            </script>
+                            <img src="{{asset($food->photo)}}" alt="">
                             <hr class="border border-second border-2 opacity-50">
                             <h6>City: <b><i>{{$food->foodReataurants_name->city}}</b></i></h6>
                             <h6>Restaurant: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
