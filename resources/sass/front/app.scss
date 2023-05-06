@@ -25,7 +25,7 @@
 
 .conteiner-lemon {
     min-height: auto;
-    background-color:   #FAFA33;
+    background-color: #FAFA33;
 }
 
 
@@ -176,6 +176,7 @@ svg.cart {
 #rating-score {
     display: flex;
     overflow: hidden;
+}
 
 .btnFront {
     max-width: 700px;
@@ -210,7 +211,7 @@ svg.cart {
     border: solid 2px #869791;
     z-index: 10;
     transition: 2s;
-    font-size: 31px;    
+    font-size: 31px;
 }
 
 @keyframes fadeIn {
@@ -222,6 +223,7 @@ svg.cart {
         opacity: 1;
     }
 }
+
 .text-block-sm:hover {
     background-color: rgb(27, 176, 235);
     transition: .5s;
