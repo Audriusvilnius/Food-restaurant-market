@@ -103,11 +103,19 @@ Route::get('language/{locale}', function ($locale) {
     return redirect()->back();
 });
 
-Route::get('list/category/language/{locale}', function ($locale) {
-    app()->setLocale($locale);
-    session()->put('locale', $locale);
-    return redirect()->back();
+Route::prefix('list') -> group(function() {
+    Route::get('/category/language/{locale}', function ($locale) {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
+    });
+    Route::get('/language/{locale}', function ($locale) {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
+    });
 });
+
 Route::prefix('admin') -> group(function() {
     Route::get('/language/{locale}', function ($locale) {
         app()->setLocale($locale);

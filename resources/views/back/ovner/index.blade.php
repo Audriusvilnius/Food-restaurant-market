@@ -56,7 +56,7 @@
                                 {{-- <div class="col-md-1"> --}}
                                 {{-- </div> --}}
                                 <div class="col-md-4">
-                                    <h6>{{_('Postcode')  }}: <b><i>{{$ovner->postcode}}</b></i></h6>
+                                    <h6>{{__('Postcode')  }}: <b><i>{{$ovner->postcode}}</b></i></h6>
                                 </div>
                             </div>
                             <h6>{{__('Country')  }}: <b><i>{{$ovner->country}}</b></i></h6>

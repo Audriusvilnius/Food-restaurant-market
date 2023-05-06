@@ -30,9 +30,9 @@
 
     <section class="container shadow_new">
         @if (app()->getLocale() == "lt")
-        <h2 class=" pb-5 text-start"><i>{{$category_lt}} offer to you</i></h2>
+        <h2 class=" pb-5 text-start"><i>{{$category_lt}} {{__('offers to you')  }}</i></h2>
         @else
-        <h2 class=" pb-5 text-start"><i>{{$category_en}} offer to you</i></h2>
+        <h2 class=" pb-5 text-start"><i>{{$category_en}} {{__('offers to you')  }}</i></h2>
         @endif
     </section>
 </div>
@@ -50,7 +50,7 @@
                         <div class="centered shadow_new justify-content-center text-block" style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg)">
                             <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
                                 <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
-                                <div class="appBannerB{{$key}}" style="display: inline;">close</div>
+                                <div class="appBannerB{{$key}}" style="display: inline;">closed</div>
                             </div>
                         </div>
                         @endif

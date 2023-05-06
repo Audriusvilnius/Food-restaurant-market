@@ -12,7 +12,7 @@
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
             <div class="btn btn-dark mt-5">
-                <h1 class="m-3 shadow_new">Back to Restaurants offers</h1>
+                <h1 class="m-3 shadow_new">{{__('Back to Restaurants offers')  }}</h1>
             </div>
         </a>
         <hr class=" border border-second border-0 opacity-75">
@@ -26,7 +26,7 @@
     @include('layouts.find')
 
     <section class="container shadow_new">
-        <h2 class=" pb-5 text-start"><i>{{__('Restaurants')}} {{$restaurant}} offers to you</i></h2>
+        <h2 class=" pb-5 text-start"><i>{{__('Restaurant')}} {{$restaurant}} {{__('offers to you')  }}</i></h2>
     </section>
 </div>
 
@@ -45,7 +45,7 @@
                         <div style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg);" class="centered shadow_new justify-content-center text-block-sm">
                             <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
                                 <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
-                                <div class="appBannerB{{$key}}" style="display: inline;">close</div>
+                                <div class="appBannerB{{$key}}" style="display: inline;">closed</div>
                             </div>
                         </div>
 
@@ -67,23 +67,23 @@
                                         </div>
                                         {{-- </a> --}}
                                         <div class="ms-5">
-                                            Rating:<b><i> {{$food->rating}}</i></b>
+                                            {{__('Rating')  }}:<b><i> {{$food->rating}}</i></b>
                                         </div>
                                     </button>
                                 </h6>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body ">
-                                        <h6>City: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
-                                        <h6>Category: <b><i>{{$food->foodCategory_no->title_en}}</i></b></h6>
-                                        <h6>Addres: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
-                                        <h6>Open: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
-                                        <h6>Close: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
+                                        <h6>{{__('City')  }}: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
+                                        <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title_en}}</i></b></h6>
+                                        <h6>{{__('Address')  }}: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
+                                        <h6>{{__('Open')  }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
+                                        <h6>{{__('Close')  }}: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
                                     </div>
                                     <form action="{{route('update-reviews')}}" method="get">
                                         <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
                                             <input type="hidden" name="product" value="{{$food->id}}">
                                             <div class="btn-group">
-                                                <button type="submit" class="btn btn-outline-secondary" style="width:200px;">Rating & Reviews</button>
+                                                <button type="submit" class="btn btn-outline-secondary" style="width:200px;">{{__('Rating & Reviews')  }}</button>
                                             </div>
                                         </div>
                                         @csrf
@@ -92,7 +92,7 @@
                                     <form action="{{route('add-basket')}}" method="post">
                                         <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
                                             <div class="col-md-2">
-                                                Qty:
+                                                {{__('Qty')  }}:
                                             </div>
                                             <div class="col-md-3">
                                                 <input type="number" class="form-control" name="count" value="1" min="1">
@@ -122,10 +122,10 @@
             <div class="col-xxl-12 col-xl-12 col-lg-12">
                 <div class="card shadow bg-body-tertiary rounded d-flex ">
                     <div class="card-header justify-content-md-between align-items-center">
-                        <h1>Oops! No match found. Try again</h1>
+                        <h1>{{__('Oops! No match found. Try again')  }}</h1>
                     </div>
                     <div class="card-header justify-content-md-between align-items-center">
-                        <a href="{{route('start')}}" class="btn btn-secondary">BACK</a>
+                        <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK')  }}</a>
                     </div>
                 </div>
             </div>

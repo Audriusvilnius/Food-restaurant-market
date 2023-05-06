@@ -85,7 +85,7 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                                 <a class="dropdown-item" href="{{ route('restaurants-index') }}">{{__('Restaurants') }}</a>
-                                <a class="dropdown-item" href="{{ route('city-index') }}">{{__('City') }}</a>
+                                <a class="dropdown-item" href="{{ route('city-index') }}">{{__('Cities') }}</a>
                                 <a class="dropdown-item" href="{{ route('foods-rest_title') }}">{{__('Copy Restaurant title')  }}</a>
 
 

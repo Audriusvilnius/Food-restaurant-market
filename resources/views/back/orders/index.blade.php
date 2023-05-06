@@ -6,7 +6,7 @@
         <div class="col-md-9">
             <div class="card shadow bg-body-tertiary rounded ">
                 <div class="card-header">
-                    <h1>All Orders</h1>
+                    <h1>{{__('All Orders')  }}</h1>
                 </div>
             </div>
             <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded">
@@ -29,9 +29,9 @@
                             @if($order->status == 0)
                             <h5>{{__('Order open')  }}</h5>
                             @elseif($order->status == 1)
-                            <h5>Processing</h5>
+                            <h5>{{__('Processing')  }}</h5>
                             @elseif($order->status == 2)
-                            <h5>Ready to ship</h5>
+                            <h5>{{__('Ready to ship')  }}</h5>
                             @elseif($order->status == 3)
                             <h5>{{__('Order complete')  }}</h5>
                             @endif

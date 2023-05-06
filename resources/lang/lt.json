@@ -138,6 +138,13 @@
     "Cities": "Miestai",
     "Create Food Category": "Kurti patiekalų kategoriją",
     "Edit Food Category": "Keisti maisto kategoriją",
-    "Food Catagories": "Maisto kategorijos",
-    "dishes": "patiekalai"
+    "Food Categories": "Maisto kategorijos",
+    "dishes": "patiekalai",
+    "Processing": "Apdorojimas",
+    "Ready to ship": "Paruošta išsiuntimui",
+    "Shipped": "Iųsiųstas",
+    "closed": "Uždaryta",
+    "offers to you": "Jums siūlo",
+    "Delivery Fee": "Pristatymo mokestis",
+    "Oops! Something went wrong, missing category info": "Oi! Kažkas ne taip, trūksta kategorijų informacijos"
 }
