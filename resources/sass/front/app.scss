@@ -122,9 +122,9 @@ svg.cart {
 }
 
 
-.btn {
-    width: 80px;
-}
+// .btn {
+//     width: 80px;
+// }
 
 .star {
     --star-color: orange;
@@ -176,6 +176,7 @@ svg.cart {
 #rating-score {
     display: flex;
     overflow: hidden;
+}
 
 .btnFront {
     max-width: 700px;
