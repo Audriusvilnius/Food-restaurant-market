@@ -33,7 +33,7 @@ function Yeezy_en(x){
     }
     
     function Yeezy_en_rest(x){
-        var data = x
+        var data = x;
         document.getElementById("ModalTitle").innerHTML = x['title_en'];
         document.getElementById("photopop").innerHTML = "<img src=.."+x['photo']+" class="+"img-fluid"+" >";
         document.getElementById("desc").innerHTML = x['des_en'];

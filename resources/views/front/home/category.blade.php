@@ -1,6 +1,21 @@
 @extends('layouts.front')
-
 @section('content')
+<script>
+     function Yeezy_en_test(x){
+            let data = x;
+            document.getElementById("ModalTitle").innerHTML = x['title_en'];
+            document.getElementById("photopop").innerHTML = "<img src={{URL::to('/')}}"+data['photo']+" class="+"img-fluid"+" >";
+            document.getElementById("desc").innerHTML = x['des_en'];
+            document.getElementById("bttn").innerHTML = "Close"
+            }
+            function Yeezy_lt_test(x){
+                let data = x;
+                document.getElementById("ModalTitle").innerHTML = x['title_lt'];
+                document.getElementById("photopop").innerHTML = "<img src={{URL::to('/')}}"+data['photo']+" class="+"img-fluid"+" >";
+                document.getElementById("desc").innerHTML = x['des_lt'];
+                document.getElementById("bttn").innerHTML = "Uždaryti"
+            }
+</script>
 {{-- <section class="py-1 text-center container">
     <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
         @if(Session::has('ok'))
@@ -45,9 +60,9 @@
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
                     @if (app()->getLocale() == "lt")
-                    <button type="button" class="btn btn-link" onclick="Yeezy_lt_rest({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-link" onclick="Yeezy_lt_test({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     @else
-                    <button type="button" class="btn btn-link" onclick="Yeezy_en_rest({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-link" onclick="Yeezy_en_test({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     @endif
                         <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" food-item">
                         </button>
@@ -155,8 +170,8 @@
 </div>
 <hr class="border border-second border-0 opacity-50 m-1">
 </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
