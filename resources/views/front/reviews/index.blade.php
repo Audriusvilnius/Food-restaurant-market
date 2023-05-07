@@ -183,7 +183,5 @@
             @endforeach
         @endif
     </div>
-    @endforeach
-    @endif
-</div>
+    </div>
 @endsection

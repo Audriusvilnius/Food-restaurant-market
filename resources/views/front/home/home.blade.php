@@ -149,10 +149,10 @@
                                                         <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
                                                     </button>
                                                 </div>
-                                                
-{{ --
 
-Dev buvo toks: 
+                                                {{--
+
+Dev buvo toks:
 
 <div class="conteiner-blue">
     <section class="py-1 text-center container shadow_new btnFront">
@@ -167,13 +167,11 @@ Dev buvo toks:
     <section class="container shadow_new">
         <h3 class="mt-1 text-end"><i>{{__('Categories') }}</i></h3>
 
-        {{-- <hr class="border border-second border-1 opacity-75"> --}}
     </section>
     @include('front.home.common.category')
 
     <section class="container shadow_new">
-        <h3 class="text-start"><i>{{__('Restaurants')}}</i></h3>
-        {{-- <hr class="border border-second border-1 opacity-75"> --}}
+        <h3 class="text-start"><i>{{__('Restaurants')}}</i></h3>}
     </section>
     @include('front.home.common.restaurant')
 </div>
@@ -183,16 +181,17 @@ Dev buvo toks:
 <div class="page pt-5" id="food-lists">
     <div class="container">
 
-        {{-- container-fluid --}}
-        {{-- CIA keiciam steilpeliu skaiciu  --}}
+        /* container-fluid */
+        /* CIA keiciam steilpeliu skaiciu  */
+
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-3">
             @forelse($foods as $key=>$food)
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
                         <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
-                        @foreach($restaurants as $restaurant)
-                        @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
+                        @foreach ($restaurants as $restaurant)
+                        @if ($restaurant->id == $food->rest_id && $restaurant->works == 'false')
                         <div style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg);" class="centered shadow_new justify-content-center text-block-sm">
                             <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
                                 <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
@@ -205,12 +204,12 @@ Dev buvo toks:
                     <h6 class="mt-3"><i>{{$food->foodReataurants_name->title}}</i></h6>
 
                     <div class="justify-content-center align-bottom">
-                        @if (app()->getLocale() == "lt")
+                        @if (app()->getLocale() == 'lt')
                         <h4 class="mt-3"><b><i>{{$food->title_lt}}</b></i></h4>
                         @else
                         <h4 class="mt-3"><b><i>{{$food->title_en}}</b></i></h4>
                         @endif
-                        <h3 @if($food->price<20) style="color:crimson;" @endif><b>{{__('Price') }}: <i>{{$food->price}} &euro;</b></i></h3>
+                        <h3 @if ($food->price < 20) style="color:crimson;" @endif><b>{{__('Price') }}: <i>{{$food->price}} &euro;</b></i></h3>
                     </div>
                     <div class=" card-body ">
                         <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -240,7 +239,7 @@ Dev buvo toks:
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body ">
                                         <h6>{{__('City') }}: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
-                                        @if (app()->getLocale() == "lt")
+                                        @if (app()->getLocale() == 'lt')
                                         <h6>{{__('Category') }}: <b><i>{{$food->foodCategory_no->title_lt}}</i></b></h6>
                                         @else
                                         <h6>{{__('Category') }}: <b><i>{{$food->foodCategory_no->title_en}}</i></b></h6>
@@ -248,7 +247,7 @@ Dev buvo toks:
                                         <h6>{{__('Address') }}: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                                         <h6>{{__('Open') }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                                         <h6>{{__('Close') }}: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
-                                        @if (app()->getLocale() == "lt")
+                                        @if (app()->getLocale() == 'lt')
                                         <span class="text-muted">{{$food->des_lt}}</span>
                                         @else
                                         <span class="text-muted">{{$food->des_en}}</span>
@@ -260,7 +259,7 @@ Dev buvo toks:
                                             <input type="hidden" name="product" value="{{$food->id}}">
                                             <div class="btn-group">
                                                 <button type="submit" class="btn btn-outline-secondary" style="width:200px;">{{__('Rating & Reviews')  }}</button>
-                                                --}}
+--}}
 
                                             </div>
                                         </div>
@@ -296,14 +295,14 @@ Dev buvo toks:
                 @endif
             </div>
 
-{{ -- 
+            {{--
 
-Dev buvo toks: 
+Dev buvo toks:
 
                                     <hr class="border border-second border-2 opacity-0">
                                 </div>
                             </div>
-                            {{-- <hr class="border border-second border-1 opacity-75"> --}}
+                            /*  <hr class="border border-second border-1 opacity-75"> */
                             <hr class="border border-second border-2 opacity-0">
 
                             <form action="{{route('add-basket')}}" method="post">
@@ -354,7 +353,7 @@ Dev buvo toks:
                 {{ $foods->links() }}
                 @endif
             </div>
--- }}
+--}}
 
         </div>
         <hr class="border border-second border-0 opacity-50 m-1">
