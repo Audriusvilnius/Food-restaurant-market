@@ -366,6 +366,15 @@ class FrontController extends Controller
     }
     public function getCity(Request $request)
     {
-        return "redirect()->back()";
+        $sessionCity = Session::get('citySelect');
+        $ovners = Ovner::all()->sortBy('title');
+        $cities = City::all()->sortBy('title');
+        if ($sessionCity == null) {
+            return view('front.home.city', [
+                'cities' => $cities,
+                'ovners' => $ovners,
+                'text' => Faker::create()->realText(300, 5),
+            ]);
+        }
     }
 }

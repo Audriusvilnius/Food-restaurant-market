@@ -47,7 +47,7 @@
                         @endforeach
                     </div>
                     <h6 class="mt-3"><i>{{$food->foodReataurants_name->title}}</i></h6>
-                    <div class="justify-content-center align-bottom">
+                    <div class="justify-content-center align-bottom ">
                         @if (app()->getLocale() == "lt")
                         <h4 class="mt-3"><b><i>{{$food->title_lt}}</b></i></h4>
                         @else
@@ -84,11 +84,12 @@
                                     <h6>{{__('Open') }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                                     <h6>{{__('Close') }}: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
                                     @if (app()->getLocale() == "lt")
-                                    <span class="text-muted">{{$food->des_lt}}</span>
+                                    <span>{{$food->des_lt}}</span>
                                     @else
-                                    <span class="text-muted">{{$food->des_en}}</span>
+                                    <div class="col-12 text-truncate d-inline-block">
+                                        <span class="text-muted">{{$food->des_en}}</span>
+                                    </div>
                                     @endif
-
                                 </div>
                                 <form action="{{route('update-reviews')}}" method="get">
                                     <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
