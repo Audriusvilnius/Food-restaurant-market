@@ -131,7 +131,8 @@ svg.cart {
     margin: 1em auto;
     font-size: 0.5em;
     position: relative;
-    display: block;
+    display: inline-block;
+    /* add this line */
     width: 0px;
     height: 0px;
     border-right: 1em solid transparent;
@@ -173,10 +174,9 @@ svg.cart {
 
 
 
-#rating-score {
-    display: flex;
-    overflow: hidden;
-}
+// #rating-score {
+//     display: flex;
+// }
 
 .btnFront {
     max-width: 700px;
