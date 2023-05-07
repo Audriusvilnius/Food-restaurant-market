@@ -1,7 +1,6 @@
 @extends('layouts.front')
 @section('content')
 
-
 <div class="conteiner-blue">
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
@@ -38,8 +37,12 @@
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
-                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
+                    @if (app()->getLocale() == "lt")
+                    <button type="button" class="btn btn-link" onclick="Yeezy_lt({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    @else
+                    <button type="button" class="btn btn-link" onclick="Yeezy_en({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    @endif
+                        <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" food-item">
                         </button>
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
@@ -58,7 +61,7 @@
                         @if (app()->getLocale() == "lt")
                         <h4 class="mt-3"><b><i>{{$food->title_lt}}</b></i></h4>
                         @else
-                        <h4 class="mt-3"><b><i>{{$food->title_en}}</b></i></h4>
+                        <h4 class="mt-3"><b><i id="heree">{{$food->title_en}}</b></i></h4>
                         @endif
                         <h3 @if($food->price<20) style="color:crimson;" @endif><b>{{__('Price') }}: <i>{{$food->price}} &euro;</b></i></h3>
                     </div>
@@ -177,15 +180,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="ModalTitle"></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        ...
+        <div class="modal-body"> 
+      <div id="photopop"></div>
+      <br>
+      <p><div id="desc"> </div></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button  type="button" class="btn btn-primary" data-bs-dismiss="modal"><div id="bttn"></div></button>
       </div>
     </div>
   </div>

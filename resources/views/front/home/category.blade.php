@@ -44,7 +44,13 @@
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
-                        <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
+                    @if (app()->getLocale() == "lt")
+                    <button type="button" class="btn btn-link" onclick="Yeezy_lt_rest({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    @else
+                    <button type="button" class="btn btn-link" onclick="Yeezy_en_rest({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    @endif
+                        <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" food-item">
+                        </button>
                         @foreach($restaurants as $restaurant)
                         @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
                         <div class="centered shadow_new justify-content-center text-block" style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg)">
@@ -148,5 +154,24 @@
     @endif
 </div>
 <hr class="border border-second border-0 opacity-50 m-1">
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalTitle"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body"> 
+      <div id="photopop"></div>
+      <br>
+      <p><div id="desc"> </div></p>
+      </div>
+      <div class="modal-footer">
+        <button  type="button" class="btn btn-primary" data-bs-dismiss="modal"><div id="bttn"></div></button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
