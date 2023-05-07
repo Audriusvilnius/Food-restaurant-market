@@ -72,11 +72,7 @@
                                             {{__('Rating') }}:
                                             <div id="rating-score">
                                                 <script>
-                                                    for (let i = 0; i < Math.round({
-                                                            {
-                                                                $food - > rating
-                                                            }
-                                                        }); i++) {
+                                                    for (let i = 0; i < Math.round({{$food -> rating}}); i++) {
                                                         document.write('<div class="star"></div>');
                                                     }
                                                 </script>

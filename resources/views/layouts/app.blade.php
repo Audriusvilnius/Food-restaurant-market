@@ -79,7 +79,7 @@
         } */
 
 
-        .average-rating {
+        /* .average-rating {
             position: relative;
             appearance: none;
             color: transparent;
@@ -90,7 +90,7 @@
         }
 
         .average-rating::before {
-            --percent: calc({{ $food->rating }}/5*100%);
+            --percent: calc({{ $food->rating}}/5*100%);
             content: '★★★★★';
             position: absolute;
             top: 0;
@@ -98,7 +98,7 @@
             color: rgba(0, 0, 0, 0.2);
             background: linear-gradient(90deg, gold var(--percent), rgba(0, 0, 0, 0.2) var(--percent));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-text-fill-color: transparent; */
         }
     </style>
 </head>
