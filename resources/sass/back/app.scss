@@ -83,7 +83,7 @@ h1 {
             text-align: center;
             font-weight: 300;
         }
-        
+
         .type {
             font-size: 1.6em;
             width: 30%;
@@ -200,12 +200,35 @@ svg.cart {
     color: darkgoldenrod;
 }
 
+// .average-rating {
+//     position: relative;
+//     appearance: none;
+//     color: transparent;
+//     width: auto;
+//     display: inline-block;
+//     vertical-align: baseline;
+//     font-size: 25px;
+// }
+
+// .average-rating::before {
+//     --percent: calc($food -> rating / 5*100%);
+//     content: '★★★★★';
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     color: rgba(0, 0, 0, 0.2);
+//     background: linear-gradient(90deg, gold var(--percent), rgba(0, 0, 0, 0.2) var(--percent));
+//     -webkit-background-clip: text;
+//     -webkit-text-fill-color: transparent;
+// }
+
 .centered {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .container_pic {
     position: relative;
     text-align: center;
@@ -216,6 +239,7 @@ svg.cart {
     color: white;
     text-shadow: 10px 10px 20px black, 10px 10px 15px rgb(50, 50, 52), 0 0 5px rgb(19, 19, 21);
 }
+
 .btnFront {
     max-width: 700px;
 }
