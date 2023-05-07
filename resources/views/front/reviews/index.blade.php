@@ -92,6 +92,7 @@
                                             placeholder="1 - 5" class="form-control imputnumber"> --}}
 
                                     <div class="star-rating">
+
                                         <input class="radio-input" type="radio" id="star5" name="rated"
                                             value="5" required />
                                         <label class="radio-label" class for="star5" title="5 stars">5 stars</label>
@@ -182,4 +183,7 @@
             @endforeach
         @endif
     </div>
+    @endforeach
+    @endif
+</div>
 @endsection
