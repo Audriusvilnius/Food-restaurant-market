@@ -31,40 +31,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
-
-
-    {{--
-
-
-    Style code turi buti cia, nes neiseina pasiekti kintamojo is scss failo
-
-
-
---}}
-
-    <style>
-        .average-rating {
-            position: relative;
-            appearance: none;
-            color: transparent;
-            width: auto;
-            display: inline-block;
-            vertical-align: baseline;
-            font-size: 25px;
-        }
-
-        .average-rating::before {
-            --percent: calc({{ $food->rating }} / 5*100%);
-            content: '★★★★★';
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: rgba(0, 0, 0, 0.2);
-            background: linear-gradient(90deg, gold var(--percent), rgba(0, 0, 0, 0.2) var(--percent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
+    
 </head>
 
 <body>
