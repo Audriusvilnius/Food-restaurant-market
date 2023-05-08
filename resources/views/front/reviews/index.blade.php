@@ -52,7 +52,6 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header justify-content-center">
-
                     <h1 class="fs-2">{{ __('Hello') }}, {{ $name }}! {{ __('You can rate & review') }}
                         {{ $food->title }}</h1>
                 </div>
@@ -64,6 +63,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
+
                             {{-- Reikia tvarkyti , nerodo title ir city, nes pasikeite pavadinimai kitamuju
                              --}}
                             @if (app()->getLocale() == 'lt')
@@ -90,7 +90,6 @@
                                     <h6 class="fs-5">{{ __('Close') }}:
                                         <b><i>{{ $food->foodReataurants_name->close }}</b></i>
                                     </h6>
-
                                 </div>
                             </div>
                             <hr class="border border-second border-2 opacity-50">
@@ -129,7 +128,6 @@
                             <div class="card-body">
                                 <textarea class="form-control" placeholder="{{ __('Leave Review here') }}" name="food_review" rows="5" cols="50"></textarea>
                             </div>
-
                         </div>
                         <div class="col-md-12 d-flex">
                             <div class="card-body">
@@ -141,7 +139,6 @@
                     </form>
                 </div>
             </div>
-            @include('alerts.alert')
         </div>
     </div>
     @if ($rateds)
