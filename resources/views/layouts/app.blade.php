@@ -17,12 +17,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 
 
@@ -35,7 +31,7 @@
     <script src="{{asset('assets/js/time.js')}}"></script>
 
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
-    
+
 </head>
 
 <body>
@@ -50,8 +46,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!--Lang-->
-                <div
-                    class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+                <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
                     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                         @include('partials/language_switcher')
                     </div>
@@ -70,38 +65,33 @@
                     <ul class="navbar-nav ms-auto">
 
                         @if (Auth::user()?->role == 'admin')
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('Orders') }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Orders') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item"
-                                        href="{{ route('order-index') }}">{{ __('Order list') }}</a>
+                                <a class="dropdown-item" href="{{ route('order-index') }}">{{ __('Order list') }}</a>
 
-                                </div>
-                            </li>
+                            </div>
+                        </li>
 
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('Foods') }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('foods-index') }}">{{ __('Foods') }}</a>
-                                    <a class="dropdown-item"
-                                        href="{{ route('category-index') }}">{{ __('Categories') }}</a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Foods') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('foods-index') }}">{{ __('Foods') }}</a>
+                                <a class="dropdown-item" href="{{ route('category-index') }}">{{ __('Categories') }}</a>
 
 
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('Restaurant') }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Restaurant') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                             </div>
                         </li>
@@ -114,21 +104,6 @@
                             </div>
                         </li>
 
-
-
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('Owners') }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item"
-                                        href="{{ route('ovner-create') }}">{{ __('Add new') }}</a>
-                                    <a class="dropdown-item" href="{{ route('ovner-index') }}">{{ __('List') }}</a>
-                                </div>
-                            </li>
                         @endif
 
                         <!-- Authentication Links -->
@@ -168,17 +143,16 @@
                         </a>
 
                         @if ($basket->count != 0)
-                            <div class="ithem">
-                                {{-- <span>{{$basket->test()}}</span> --}}
-                                @if ($basket->count <= 9)
-                                    <span>{{ $basket->count }}</span>
+                        <div class="ithem">
+                            {{-- <span>{{$basket->test()}}</span> --}}
+                            @if ($basket->count <= 9) <span>{{ $basket->count }}</span>
                                 @elseif($basket->count > 9)
-                                    9+
+                                9+
                                 @endif
-                            </div>
-                            <li class="nav-link">{{ __('Total') }}:
-                                <b>{{ number_format((float) $basket->total, 2, '.', '') }} &euro;</b>
-                            </li>
+                        </div>
+                        <li class="nav-link">{{ __('Total') }}:
+                            <b>{{ number_format((float) $basket->total, 2, '.', '') }} &euro;</b>
+                        </li>
                     </ul>
                     @endif
                 </div>
