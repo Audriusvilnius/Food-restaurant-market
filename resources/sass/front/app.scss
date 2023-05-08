@@ -213,6 +213,10 @@ svg.cart {
     font-size: 31px;
 }
 
+.message {
+    z-index: 9;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

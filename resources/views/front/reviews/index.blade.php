@@ -143,13 +143,25 @@
     </div>
     @if ($rateds)
     @foreach ($rateds as $id => $reviews)
-    @if ($rateds)
+
     <div id={{ $id }} class="card mt-2 d-flex justify-content-md-between">
         <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
             <div class="col-md-10">
                 <h4>{{ $reviews['user_name'] }}</h4>
             </div>
             {{-- <h4 class="float-end "> Raited {{ $reviews['rate'] }}</h4> --}}
+            <div class="ms-10">
+                <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
+                <div id="rating-score">
+                    <script>
+                        for (let i = 0; i < `${Math.round({{$food -> rating}})}`; i++) {
+                            document.write('<div class="star"></div>');
+                        }
+
+                    </script>
+                </div>
+            </div>
+
             <div id="rating-score">
                 <meter class="average-rating" min="0" max="5" value="4.3" title="ratingScore"></meter>
             </div>
@@ -166,7 +178,7 @@
             </div>
         </div>
     </div>
-    @endif
+
     @endforeach
     @endif
 </div>
