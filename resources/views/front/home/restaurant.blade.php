@@ -153,18 +153,20 @@
                     </div>
                 </div>
             </div>
-            @endforelse
         </div>
-        <div class="mt-4">
-            @if($perPageShow!='All')
-            {{$foods->links()}}
-            @endif
-        </div>
+        @endforelse
     </div>
     <hr class="border border-second border-0 opacity-50 m-1">
+    <div class="m-4">
+        @if ($perPageShow != 'All')
+        {{ $foods->links() }}
+        @endif
+    </div>
 </div>
+
+
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<section class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -185,5 +187,6 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+
 @endsection
