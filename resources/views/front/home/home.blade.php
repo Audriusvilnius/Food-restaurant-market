@@ -106,12 +106,7 @@
                                 <h6>{{ __('Close') }}:
                                     <b><i>{{ $food->foodReataurants_name->close }}</i></b>
                                 </h6>
-                                <hr class="border border-second border-2 opacity-0">
-                                @if (app()->getLocale() == 'lt')
-                                <span class="text-muted">{{ $food->des_lt }}</span>
-                                @else
-                                <span class="text-muted">{{ $food->des_en }}</span>
-                                @endif
+                            
                             </div>
                             <hr class="border border-second border-2 opacity-0">
                             <form action="{{ route('update-reviews') }}" method="get">
