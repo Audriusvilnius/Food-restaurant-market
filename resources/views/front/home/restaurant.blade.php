@@ -30,7 +30,6 @@
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
-
                         @if (app()->getLocale() == "lt")
                         <button type="button" class="btn btn-link p-0" onclick="Yeezy_lt_rest({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             @else
@@ -155,8 +154,6 @@
                 </div>
             </div>
             @endforelse
-
-
         </div>
         <div class="mt-4">
             @if($perPageShow!='All')
@@ -189,7 +186,4 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection
