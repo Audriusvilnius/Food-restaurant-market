@@ -2,41 +2,31 @@
 @section('content')
 
 <style>
-    .average-rating {
-        position: relative;
-        appearance: none;
-        color: transparent;
-        width: auto;
-        display: inline-block;
-        vertical-align: baseline;
-        font-size: 25px;
-    }
+.average-rating {
+  position: relative;
+  appearance: none;
+  color: transparent;
+  width: auto;
+  display: inline-block;
+  vertical-align: baseline;
+  font-size: 25px;
+}
 
-    .average-rating::before {
-        content: '★★★★★';
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: rgba(0, 0, 0, 0.2);
+:root {
+  --max-rating: 5;
+  --rating: calc({{$food -> rating}} / var(--max-rating) * 100%);
+}
 
-        background: linear-gradient(90deg, gold {
-                    {
-                    ($food->rating / 5) * 100
-                }
-            }
-
-            %, rgba(0, 0, 0, 0.2) {
-                    {
-                    ($food->rating / 5) * 100
-                }
-            }
-
-            %);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-
-    }
-
+.average-rating::before {
+  content: '★★★★★';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0,0,0,0.2);
+  background: linear-gradient(90deg, gold var(--rating), rgba(0,0,0,0.2) var(--rating));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
     /* Netrinti */
 
 </style>
@@ -150,20 +140,9 @@
                 <h4>{{ $reviews['user_name'] }}</h4>
             </div>
             {{-- <h4 class="float-end "> Raited {{ $reviews['rate'] }}</h4> --}}
-            <div class="ms-10">
-                <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
-                <div id="rating-score">
-                    <script>
-                        for (let i = 0; i < `${Math.round({{$food -> rating}})}`; i++) {
-                            document.write('<div class="star"></div>');
-                        }
 
-                    </script>
-                </div>
-            </div>
-
-            <div id="rating-score">
-                <meter class="average-rating" min="0" max="5" value="4.3" title="ratingScore"></meter>
+            <div class="average-rating">
+                {{-- <meter class="average-rating" min="0" max="5" value="4.3" title="ratingScore"></meter> --}}
             </div>
             <div class="col-md-12 d-flex">
                 <div class="card-body ms-5 me-5">
