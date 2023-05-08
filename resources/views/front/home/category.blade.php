@@ -108,6 +108,18 @@
 
                         <div class="gap-3 align-items-center d-flex justify-content-center">
                             {{__('Rating') }}:<b><i>{{$food->rating}}</i></b>
+                            <div class="ms-10">
+                                <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
+                                <div id="rating-score">
+                                    <script>
+                                        for (let i = 0; i < `${Math.round({{$food -> rating}})}`; i++) {
+                                            document.write('<div class="star"></div>');
+                                        }
+
+                                    </script>
+                                </div>
+                            </div>
+
 
                         </div>
                         <form action="{{route('update-reviews')}}" method="get">

@@ -65,20 +65,15 @@
                         <h3 @if ($food->price < 20) style="color:crimson;" @endif><b>{{ __('Price') }}:
                                     <i>{{ $food->price }} &euro;</b></i></h3>
                         <div class="ms-10">
-                            <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h6>
-                                <div id="rating-score">
-                                    <script>
-                                        for (let i = 0; i < Math.round({
-                                                {
-                                                    $food - > rating
-                                                }
-                                            }); i++) {
-                                            document.write('<div class="star"></div>');
-                                        }
+                            <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
+                            <div id="rating-score">
+                                <script>
+                                    for (let i = 0; i < `${Math.round({{$food -> rating}})}`; i++) {
+                                        document.write('<div class="star"></div>');
+                                    }
 
-                                    </script>
-
-                                </div>
+                                </script>
+                            </div>
                         </div>
                     </div>
                     <div class=" card-body ">
@@ -107,7 +102,7 @@
                                 <h6>{{ __('Close') }}:
                                     <b><i>{{ $food->foodReataurants_name->close }}</i></b>
                                 </h6>
-                            
+
                             </div>
                             <hr class="border border-second border-2 opacity-0">
                             <form action="{{ route('update-reviews') }}" method="get">

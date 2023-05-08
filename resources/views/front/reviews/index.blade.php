@@ -150,6 +150,18 @@
                 <h4>{{ $reviews['user_name'] }}</h4>
             </div>
             {{-- <h4 class="float-end "> Raited {{ $reviews['rate'] }}</h4> --}}
+            <div class="ms-10">
+                <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
+                <div id="rating-score">
+                    <script>
+                        for (let i = 0; i < `${Math.round({{$food -> rating}})}`; i++) {
+                            document.write('<div class="star"></div>');
+                        }
+
+                    </script>
+                </div>
+            </div>
+
             <div id="rating-score">
                 <meter class="average-rating" min="0" max="5" value="4.3" title="ratingScore"></meter>
             </div>
