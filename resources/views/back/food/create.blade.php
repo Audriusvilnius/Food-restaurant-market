@@ -1,13 +1,12 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow bg-body-tertiary rounded d-flex">
-                <div class="card">
-                    <div class="card-header justify-content-between align-content-between d-flex ">
-                        <h1>{{__('New Food') }}</h1>
-                    </div>
+                <div class="card-header">
+                    <h1>{{__('New Food') }}</h1>
                 </div>
             </div>
             <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded">
@@ -24,6 +23,7 @@
             </h6>
             @endforeach
             @endif
+
             <form action="{{route('foods-store')}}" method="post" enctype="multipart/form-data">
                 <div class="card mt-2" style="max-width: 1wm;">
                     <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
@@ -37,33 +37,31 @@
                             <h6>{{__('Restaurant') }}</h6>
                             <select class="form-select" name="restaurant_id">
                                 @foreach($restaurants as $restaurant)
-                                <option value="{{$restaurant->id}}" @if($restaurant->id == old('restaurant_id'))
-                                    selected @endif>{{$restaurant->title}}</option>
+                                <option value="{{$restaurant->id}}" @if($restaurant->id == old('restaurant_id')) selected @endif>{{$restaurant->title}}</option>
                                 @endforeach
                             </select>
                             <h6>{{__('City') }}</h6>
                             <select class="form-select" name="city_id">
                                 @foreach($cities as $city)
-                                <option value="{{$city->id}}" @if($city->id == old('city_id')) selected
-                                    @endif>{{$city->title}}</option>
+                                <option value="{{$city->id}}" @if($city->id == old('city_id')) selected @endif>{{$city->title}}</option>
                                 @endforeach
                             </select>
                             <h6>{{__('Category') }}</h6>
                             @if (app()->getLocale() == "lt")
                             <select class="form-select" name="category_id">
                                 @foreach($categories as $category)
-                                <option value="{{$category->id}}" @if($category->id == old('category_id')) selected
-                                    @endif>{{$category->title_lt}}</option>
+                                <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->title_lt}}</option>
                                 @endforeach
                             </select>
                             @else
                             <select class="form-select" name="category_id">
                                 @foreach($categories as $category)
-                                <option value="{{$category->id}}" @if($category->id == old('category_id')) selected
-                                    @endif>{{$category->title_en}}</option>
+                                <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->title_en}}</option>
                                 @endforeach
                             </select>
                             @endif
+                            {{-- <h6>Restaurant: <b><i>{{$food->restoranFood_name->title}}</b></i></h6> --}}
+                            {{-- <input type="text" class="form-control" name="food_rest_id" value="{{old('food_rest_id')}}"> --}}
                             <h6>{{__('Additional info')  }}</h6>
                             <input type="text" class="form-control" name="food_add" value="{{old('food_add"')}}">
                             <h6>{{__('Photo') }}</h6>
@@ -84,10 +82,8 @@
                         <div class="col-md-12">
                             <div class="card-body">
                                 <div class="list-table__buttons ">
-                                    <a href="{{route('city-create')}}" class="btn btn-primary m-2 float-end">{{__('Add City') }}</a>
-                                    <a href="{{route('category-create')}}" class="btn btn-primary d-flex justify-content-end align-content-center m-2 ">{{__('Add Category') }}</a>
-                                    <a href="{{route('restaurants-store')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add Restaurant') }}</a>
                                     <button type="submit" class="btn btn-danger m-2" style="width: 80px;">{{__('Create') }}</button>
+
                                 </div>
                             </div>
                         </div>
@@ -95,6 +91,7 @@
                     @csrf
                     @method('post')
                 </div>
+
             </form>
         </div>
     </div>

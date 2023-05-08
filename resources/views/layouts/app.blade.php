@@ -26,10 +26,6 @@
 
 
     <!-- Scripts -->
-    <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
-    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('assets/js/time.js')}}"></script>
-
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
 
 </head>
@@ -76,6 +72,7 @@
                             </div>
                         </li>
 
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Foods') }}
@@ -85,6 +82,7 @@
                                 <a class="dropdown-item" href="{{ route('category-index') }}">{{ __('Categories') }}</a>
 
 
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -92,6 +90,7 @@
                                 {{ __('Restaurant') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
 
                             </div>
                         </li>
@@ -103,6 +102,7 @@
                                 <a class="dropdown-item" href="{{ route('ovner-index') }}">{{__('List') }}</a>
                             </div>
                         </li>
+
 
                         @endif
 
@@ -161,11 +161,6 @@
     </div>
     @include('layouts.svg')
     <main class=" py-4 mystyle">
-        <a href="#" class="text-decoration-none" style="color:black;">
-            <div class="up sticky-bottom">
-                <i class="bi bi-chevron-up"></i>
-            </div>
-        </a>
         @yield('content')
     </main>
 </body>

@@ -1,7 +1,18 @@
 @extends('layouts.app')
 @section('content')
-@include('alerts.alert')
-
+<section class="py-1 text-center container">
+    <div class="col-lg-4 col-md-8 mx-auto mt-1 fixed-top py-2">
+        @if(Session::has('ok'))
+        <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+        @endif
+        @if(Session::has('not'))
+        <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </h6>
+        @endif
+    </div>
+</section>
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">
         <i class="bi bi-chevron-up"></i>
@@ -13,9 +24,14 @@
             <div class="card">
                 <div class="card-header justify-content-between align-content-between d-flex ">
                     <h1>{{__('All Restaurants')  }}</h1>
-                    <a href="{{route('restaurants-create')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add new') }}</a>
+                    <a href="{{route('restaurants-create')}}" class="btn btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg></a>
                 </div>
             </div>
+
             @forelse($restaurants as $restaurant)
             <div id="{{ $restaurant['id'] }}" class="card mt-2" style="max-width: 1wm;">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
@@ -25,26 +41,26 @@
                     {{-- sekciaj padalinta i dvus pradzia--}}
                     <div class="col-md-4">
                         <div class="card-body ms-2">
-                            <h6>{{__('Restaurant') }}: <b><i>{{$restaurant->title}}</i></b></h6>
-                            {{-- <h6>{{__('City')  }}: <b><i>{{$restaurant->city}}</i></b></h6> --}}
-                            <h6>{{__('Address') }}: <b><i>{{$restaurant->addres}}</i></b></h6>
+                            <h6>{{__('Restaurant')  }}: <b><i>{{$restaurant->title}}</i></b></h6>
+                            <h6>{{__('City')  }}: <b><i>{{$restaurant->city}}</i></b></h6>
+                            <h6>{{__('Address')  }}: <b><i>{{$restaurant->addres}}</i></b></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-3">
-                                    <h6>{{__('Open') }}: <b><i>{{$restaurant->open}}</i></b></h6>
+                                    <h6>{{__('Open')  }}: <b><i>{{$restaurant->open}}</i></b></h6>
                                 </div>
                                 <div class="col-md-3">
-                                    <h6>{{__('Close') }}: <b><i>{{$restaurant->close}}</i></b></h6>
+                                    <h6>{{__('Close')  }}: <b><i>{{$restaurant->close}}</i></b></h6>
                                 </div>
                             </div>
-                            <h6>{{__('Dish qty.')  }}: <b><i>{{$restaurant->food_Restaurant()->count()}}</i></b></h6>
-                            <h6 class="card-title text-muted">{{__('Phone') }}:</h6>
+                            <h6>{{__('Dish qty.')  }}': <b><i>{{$restaurant->food_Restaurant()->count()}}</i></b></h6>
+                            <h6 class="card-title text-muted">{{__('Phone')  }}:</h6>
                             <p class="card-text"><small class="text-muted">{{$restaurant->phone}}</small></p>
                         </div>
                     </div>
                     {{-- sekciaj padalinta i dvus pabaiga--}}
                     <div class="col-md-4">
                         <div class="card-body">
-                            <h6 class="card-title">{{__('Description') }}:</h6>
+                            <h6 class="card-title">{{__('Description')  }}:</h6>
                             <textarea class="form-control" placeholder="{{$restaurant->des}}" rows="5" cols="auto"></textarea>
 
                             <div class="list-table__buttons gap-3 mt-3">
