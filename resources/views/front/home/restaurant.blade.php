@@ -1,6 +1,5 @@
 @extends('layouts.front')
 @section('content')
-
 @include('alerts.alert')
 
 
