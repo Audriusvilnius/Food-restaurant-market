@@ -50,12 +50,15 @@
                             @endif
                             @endforeach
                     </div>
+
                     <h6 class="mt-3"><i>{{ $food->foodReataurants_name->title }}</i></h6>
                     <div class="justify-content-center align-bottom">
                         @if (app()->getLocale() == 'lt')
                         <h4 class="mt-3"><b><i>{{ $food->title_lt }}</b></i></h4>
                         @else
+
                         <h4 class="mt-3"><b><i>{{ $food->title_en }}</b></i></h4>
+
                         @endif
                         <h3 @if ($food->price < 20) style="color:crimson;" @endif><b>{{ __('Price') }}:
                                     <i>{{ $food->price }} &euro;</b></i></h3>
@@ -70,7 +73,6 @@
                                 </script>
                             </div>
                         </div>
-
                     </div>
                     <div class=" card-body ">
                         <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -98,12 +100,7 @@
                                 <h6>{{ __('Close') }}:
                                     <b><i>{{ $food->foodReataurants_name->close }}</i></b>
                                 </h6>
-                                <hr class="border border-second border-2 opacity-0">
-                                @if (app()->getLocale() == 'lt')
-                                <span class="text-muted">{{ $food->des_lt }}</span>
-                                @else
-                                <span class="text-muted">{{ $food->des_en }}</span>
-                                @endif
+
                             </div>
                             <hr class="border border-second border-2 opacity-0">
                             <form action="{{ route('update-reviews') }}" method="get">
@@ -125,14 +122,12 @@
                                         <input type="number" class="form-control" name="count" value="1" min="1">
                                         <input type="hidden" name="id" value="{{ $food->id }}">
                                         <input type="hidden" name="food_city_no" value="{{ $food->food_city_no }}">
-
                                     </div>
                                     <div class="col-md-1 ">
                                         <div class="form-contro">
                                             <button type="submit" class="btn btn-dark">
                                                 <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
                                             </button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -152,16 +147,15 @@
             <div class="col-xxl-12 col-xl-12 col-lg-12">
                 <div class="card shadow bg-body-tertiary rounded d-flex ">
                     <div class="card-header justify-content-md-between align-items-center">
-
                         <h1>{{ __('Oops! No match found. Try again') }}</h1>
                     </div>
                     <div class="card-header justify-content-md-between align-items-center">
                         <a href="{{ route('start') }}" class="btn btn-secondary">{{ __('BACK') }}</a>
-
                     </div>
                 </div>
             </div>
             @endforelse
+
 
         </div>
         <div class="mt-4">
