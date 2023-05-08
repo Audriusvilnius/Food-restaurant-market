@@ -11,10 +11,8 @@
             </div>
             <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded d-flex justify-content-md-between">
 
-                @if(Session::has('ok'))
-                <h6 class=" alert alert-success alert-dismissible fade show" role="alert">{{Session::get('ok')}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-                @endif
+                @include('alerts.alert')
+
             </div>
             <form action="{{route('foods-update',$food)}}" method="post" enctype="multipart/form-data">
                 <div class="card mt-2" style="max-width: 1wm;">

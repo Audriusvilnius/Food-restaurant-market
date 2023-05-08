@@ -56,9 +56,10 @@
                 <!--Lang-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav ms-5">
+                    <div class="dropdown ms-5">
                         @include('front.home.common.city')
-                    </ul>
+                    </div>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         @if(Auth::user()?->role == 'admin')
