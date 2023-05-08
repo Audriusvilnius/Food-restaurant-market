@@ -135,10 +135,9 @@
                                 <button type="submit" class="btn btn-outline-secondary float-end">{{ __('RATE & REVIEW') }}</button>
                             </div>
                         </div>
+                        @csrf
+                    </form>
                 </div>
-
-                @csrf
-                </form>
             </div>
         </div>
     </div>
