@@ -71,7 +71,8 @@
                                 <h6 class="fs-5">{{ __('City') }}: <b><i>{{ $food->foodCities_no->title }}</i></b>
                                 </h6>
                                 <h6 class="fs-5">{{ __('Restaurant') }}:
-                                    <b><i>{{ $food->foodReataurants_name->title }}</b></i></h6>
+                                    <b><i>{{ $food->foodReataurants_name->title }}</b></i>
+                                </h6>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h6 class="fs-5">{{ __('Open') }}:
