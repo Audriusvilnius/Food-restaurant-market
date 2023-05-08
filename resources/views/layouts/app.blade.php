@@ -26,10 +26,6 @@
 
 
     <!-- Scripts -->
-    <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
-    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('assets/js/time.js')}}"></script>
-
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
 
 </head>
@@ -63,36 +59,34 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-
-                        @if (Auth::user()?->role == 'admin')
+                        @if(Auth::user()?->role == 'admin')
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Orders') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item" href="{{ route('order-index') }}">{{ __('Order list') }}</a>
-
+                                <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Foods') }}
+                                {{__('Foods') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('foods-index') }}">{{ __('Foods') }}</a>
-                                <a class="dropdown-item" href="{{ route('category-index') }}">{{ __('Categories') }}</a>
-
+                                <a class="dropdown-item" href="{{ route('foods-index') }}">{{__('Foods') }}</a>
+                                <a class="dropdown-item" href="{{ route('category-index') }}">{{__('Categories') }}</a>
 
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Restaurant') }}
+                                {{__('Restaurant') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
+                                <a class="dropdown-item" href="{{ route('restaurants-index') }}">{{__('Restaurants') }}</a>
+                                <a class="dropdown-item" href="{{ route('city-index') }}">{{__('City') }}</a>
+                                <a class="dropdown-item" href="{{ route('foods-rest_title') }}">{{__('Copy Restaurant title')  }}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -100,12 +94,11 @@
                                 {{__('Owners') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('ovner-create') }}">{{__('Add new')  }}</a>
                                 <a class="dropdown-item" href="{{ route('ovner-index') }}">{{__('List') }}</a>
                             </div>
                         </li>
-
                         @endif
-
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
@@ -161,11 +154,6 @@
     </div>
     @include('layouts.svg')
     <main class=" py-4 mystyle">
-        <a href="#" class="text-decoration-none" style="color:black;">
-            <div class="up sticky-bottom">
-                <i class="bi bi-chevron-up"></i>
-            </div>
-        </a>
         @yield('content')
     </main>
 </body>
