@@ -83,7 +83,7 @@ h1 {
             text-align: center;
             font-weight: 300;
         }
-        
+
         .type {
             font-size: 1.6em;
             width: 30%;
@@ -199,13 +199,13 @@ svg.cart {
 .radio-label:hover~.radio-input:checked~.radio-label {
     color: darkgoldenrod;
 }
-
 .centered {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .container_pic {
     position: relative;
     text-align: center;
@@ -216,6 +216,7 @@ svg.cart {
     color: white;
     text-shadow: 10px 10px 20px black, 10px 10px 15px rgb(50, 50, 52), 0 0 5px rgb(19, 19, 21);
 }
+
 .btnFront {
     max-width: 700px;
 }

@@ -25,7 +25,7 @@
 
 .conteiner-lemon {
     min-height: auto;
-    background-color:   #FAFA33;
+    background-color: #FAFA33;
 }
 
 
@@ -131,7 +131,8 @@ svg.cart {
     margin: 1em auto;
     font-size: 0.5em;
     position: relative;
-    display: block;
+    display: inline-block;
+    /* add this line */
     width: 0px;
     height: 0px;
     border-right: 1em solid transparent;
@@ -171,12 +172,10 @@ svg.cart {
     content: "";
 }
 
+// #rating-score {
+//     display: flex;
+// }
 
-
-#rating-score {
-    display: flex;
-    overflow: hidden;
-}
 
 .btnFront {
     max-width: 700px;
@@ -211,7 +210,11 @@ svg.cart {
     border: solid 2px #869791;
     z-index: 10;
     transition: 2s;
-    font-size: 31px;    
+    font-size: 31px;
+}
+
+.message {
+    z-index: 9;
 }
 
 @keyframes fadeIn {
@@ -223,6 +226,7 @@ svg.cart {
         opacity: 1;
     }
 }
+
 .text-block-sm:hover {
     background-color: rgb(27, 176, 235);
     transition: .5s;
