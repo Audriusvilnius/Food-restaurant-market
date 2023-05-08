@@ -183,29 +183,34 @@
             {{$foods->links()}}
             @endif
         </div>
-        <hr class="border border-second border-0 opacity-50 m-1">
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="ModalTitle"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="photopop"></div>
-                    <br>
-                    <p>
-                        <div id="desc"> </div>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                        <div id="bttn"></div>
-                    </button>
-                </div>
+    <hr class="border border-second border-0 opacity-50 m-1">
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ModalTitle"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="photopop"></div>
+                <br>
+                <p>
+                    <div id="desc"> </div>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    <div id="bttn"></div>
+                </button>
             </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection

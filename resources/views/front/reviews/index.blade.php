@@ -143,7 +143,6 @@
     </div>
     @if ($rateds)
     @foreach ($rateds as $id => $reviews)
-
     <div id={{ $id }} class="card mt-2 d-flex justify-content-md-between">
         <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
             <div class="col-md-10">
@@ -161,7 +160,6 @@
                     </script>
                 </div>
             </div>
-
             <div id="rating-score">
                 <meter class="average-rating" min="0" max="5" value="4.3" title="ratingScore"></meter>
             </div>
@@ -178,7 +176,6 @@
             </div>
         </div>
     </div>
-
     @endforeach
     @endif
 </div>
