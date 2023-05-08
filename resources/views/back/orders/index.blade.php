@@ -9,15 +9,10 @@
                     <h1>{{__('All Orders')  }}</h1>
                 </div>
             </div>
-            <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded">
-                @if(Session::has('ok'))
-                <h6 class=" alert alert-success alert-dismissible fade show" role="alert">{{Session::get('ok')}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-                @endif
-            </div>
-            @foreach($orders as $order)
-            {{-- @if($order->status != 3) --}}
 
+            @include('alerts.alert')
+
+            @foreach($orders as $order)
             <div id="{{ $order['id'] }}" class="card mt-12 mt-4" style="max-width: 1wm;">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-6">

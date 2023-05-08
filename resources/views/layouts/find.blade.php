@@ -9,6 +9,7 @@
                     </div>
                 </form>
             </div>
+
             {{-- <div class="col-md-1 "> --}}
             {{-- <form action="{{url('/')}}" method="get">
             <select class="form-select form-select bg-dark text-white mb-2" name="restaurant_id">
@@ -27,7 +28,6 @@
                         @endforeach
                     </select>
             </div>
-
             <div class="col-md-auto btnsort">
                 <div class="card-body align-content-center mb-2">
                     <select class="form-select bg-dark text-white " name="sort">
@@ -60,8 +60,12 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <div class="card-body align-content-end gap-1 d-flex">
+
+                <div class="card-body align-content-end gap-1 d-flex justify-content-end">
+
+
                     <button type="submit" class="btn btn-secondary ">{{__('SHOW')  }}</button>
+
                     </form>
                     <a href=" {{url('/')}}" class="btn btn-danger " style="">{{__('RESET')  }}</a>
                 </div>

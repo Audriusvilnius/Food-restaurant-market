@@ -1,14 +1,7 @@
 @extends('layouts.front')
-
 @section('content')
-{{-- <section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
-        @if(Session::has('ok'))
-        <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-@endif
-</div>
-</section> --}}
+@include('alerts.alert')
+
 <div class="conteiner-blue">
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
@@ -70,11 +63,18 @@
                         <h6>{{__('Address') }}: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
                         <h6>{{__('Open') }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
                         <h6>{{__('Close') }}: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
-                        <hr class="border border-second border-2 opacity-50">
-                        <h4><b><i>{{$food->title}}</b></i></h4>
+
+                        <div class="justify-content-center align-bottom">
+                            @if (app()->getLocale() == "lt")
+                            <h4 class="mt-3"><b><i>{{$food->title_lt}}</b></i></h4>
+                            @else
+                            <h4 class="mt-3"><b><i>{{$food->title_en}}</b></i></h4>
+                            @endif
+                            <h3 @if($food->price<20) style="color:crimson;" @endif><b>{{__('Price') }}: <i>{{$food->price}} &euro;</b></i></h3>
+                        </div>
                         <span class="text-muted">{{$food->add}}</span>
-                        <h4 @if($food->price<20) style="color:crimson;" @endif>{{__('Price') }}: <b><i>{{$food->price}} &euro;</b></i></h4>
                         <hr class="border border-second border-2 opacity-50">
+
 
                         <div class="gap-3 align-items-center d-flex justify-content-center">
                             {{__('Rating') }}:<b><i>{{$food->rating}}</i></b>
@@ -100,13 +100,13 @@
                                 <div class="col-md-2">
                                     <input type="number" class="form-control" name="count" value="1" min="1">
                                     <input type="hidden" name="id" value="{{$food->id}}">
+                                    <input type="hidden" name="food_city_no" value="{{$food->food_city_no}}">
                                 </div>
                                 <div class="col-md-1 ">
                                     <div class="form-contro">
                                         <button type="submit" class="btn btn-dark">
                                             <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
-
-                                        </button>
+                        </button>
                                     </div>
                                 </div>
                                 @csrf

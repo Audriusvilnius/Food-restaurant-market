@@ -61,15 +61,14 @@ class FrontController extends Controller
         $categories = Category::all()->sortBy('title_' . app()->getLocale());
         $foods = Food::all()->sortBy('title_' . app()->getLocale());
 
-
         $perPageShow = in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All';
         $perPageShow_lt = in_array($request->per_page, Food::PER_PAGE_LT) ? $request->per_page : 'Visi';
 
         if (!$request->s) {
             if ($request->restaurant_id && $request->restaurant_id != 'all') {
 
-                $foods = Food::where('rest_id', $request->restaurant_id);
-                // ->where('food_city_no', $sessionCity)
+                $foods = Food::where('rest_id', $request->restaurant_id)
+                    ->where('food_city_no', $sessionCity);
                 // ->get();
                 // $foods = Food::where('rest_id', $request->restaurant_id);
             } else {
@@ -135,12 +134,12 @@ class FrontController extends Controller
         $food = Food::where('id', '=', $request->product)->first();
 
         $rateds = json_decode($food->rating_json, 1);
-        $request->user_name = Auth::user()->name;
+        // $request->user_name = Auth::user()->name;
         return view('front.reviews.index', [
             'rateds' => $rateds,
             'food' => $food,
             'id' => $request->product,
-            'name' => $request->user_name,
+            'name' => Auth::user()->name,
         ]);
     }
     public function rate(Request $request, Food $food)
@@ -148,22 +147,22 @@ class FrontController extends Controller
         $food = Food::where('id', '=', $request->product)->first();
         // $faker = Faker::create();
         $rateds = json_decode($food->rating_json, 1);
-        $request->user_id = Auth::user()->id;
-        $request->user_name = Auth::user()->name;
+        // $request->user_id = Auth::user()->id;
+        // $request->user_name = Auth::user()->name;
         $date = date('Y-m-d H:i', time());
 
-
-        if ($request->food_review == null) {
-            $request->food_review = "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2);
-        }
-        if ($request->rated == null) {
-            $request->rated = rand(1, 5);
-        }
+        // if ($request->food_review == null) {
+        //     $request->food_review = "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2);
+        // }
+        // if ($request->rated == null) {
+        //     $request->rated = rand(1, 5);
+        // }
 
         if ($rateds) {
-            $rateds[$request->user_id] = ['rate' => $request->rated, 'user_name' => $request->user_name, 'review' => $request->food_review, 'date' => $date];
-        } else {
-            $rateds = [$request->user_id => ['rate' => $request->rated, 'user_name' => $request->user_name, 'review' => $request->food_review, 'date' => $date]];
+            $rateds[Auth::user()->id] = ['rate' => $request->rated, 'user_name' => Auth::user()->name, 'review' => $request->food_review, 'date' => $date];
+        }
+        if ($request->food_review == null && $request->rated == null) {
+            $rateds = [Auth::user()->id => ['rate' => rand(1, 5), 'user_name' => Auth::user()->name, 'review' => "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2), 'date' => $date]];
         }
 
         $arrysum = 0;
@@ -180,20 +179,35 @@ class FrontController extends Controller
         DB::table('food')->where('id', $request->product)->update(['rating' => $rating]);
         DB::table('food')->where('id', $request->product)->update(['counts' => $count]);
 
-        return redirect(url()->previous() . '#' . $request->user_id)->with('ok', 'You rate ' . $food->title . ' ' . $request->rated . ' points');
+        return redirect(url()->previous() . '#' . Auth::user()->id)->with('ok', 'You rate ' . $food->title . ' ' . $food->rated . ' points');
     }
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)
     {
-        $id = (int)$request->id;
-        $count = (int)$request->count;
-        $basket->add($id, $count);
-        if (app()->getLocale() == "lt") {
-            $message1 = "Pirkinys sėkmingai įdėtas į krepšelį";
+
+        if ($request->food_city_no != Session::get('citySelect')) {
+            $city = City::where('id', '=', $request->food_city_no)->first();
+            $local = City::where('id', '=', Session::get('citySelect'))->first();
+            $food = Food::where('id', '=', $request->id)->first();
+            if (app()->getLocale() == "lt") {
+                $message = 'Pasirinkimas ' . $food->title_lt . ' yra ' . $city->title . ' mieste . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
+            } else {
+                $message = 'The selected dish is not in ' . $city->title . ' city. You choose ' . $local->title . '. Choose another dish or change city';
+            }
+            return redirect(url()->previous() . '#' . $request->id)->with('not', $message);
         } else {
-            $message1 = "Item\'s succesfully added to the basket";
+            $food = Food::where('id', '=', $request->id)->first();
+            $id = (int)$request->id;
+            $count = (int)$request->count;
+            $basket->add($id, $count);
+
+            if (app()->getLocale() == "lt") {
+                $message1 = $food->title_lt . ' ' . $request->count . 'vnt. sėkmingai įdėta į krepšelį';
+            } else {
+                $message1 = $food->title_en . ' ' . $request->count . 'pcs. succesfully added to the basket';
+            }
+            return redirect(url()->previous() . '#' . $request->id)->with('ok', $message1);
         }
-        return redirect(url()->previous() . '#' . $request->id)->with('ok', $message1);
     }
 
     public function viewBasket(Request $request, BasketService $basket)
@@ -205,7 +219,7 @@ class FrontController extends Controller
             if ($data->rest_id) {
                 $delivery[$data->rest_id] = ['rest_id' => $data->rest_id];
             } else {
-                $delivery = [$data->rest_id => ['rate' => $data->rest_id]];
+                $delivery = [$data->rest_id => ['rest_id' => $data->rest_id]];
             }
         }
         $delivery = count($delivery) * 4.99;
@@ -334,8 +348,6 @@ class FrontController extends Controller
             return $status;
         });
 
-
-
         return view('front.home.category', [
             'restaurants' => $restaurants,
             'foods' => $foods,
@@ -367,6 +379,15 @@ class FrontController extends Controller
     }
     public function getCity(Request $request)
     {
-        return "redirect()->back()";
+        $sessionCity = Session::get('citySelect');
+        $ovners = Ovner::all()->sortBy('title');
+        $cities = City::all()->sortBy('title');
+        if ($sessionCity == null) {
+            return view('front.home.city', [
+                'cities' => $cities,
+                'ovners' => $ovners,
+                'text' => Faker::create()->realText(300, 5),
+            ]);
+        }
     }
 }
