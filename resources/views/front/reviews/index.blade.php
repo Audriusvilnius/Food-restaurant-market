@@ -66,18 +66,20 @@
 
                             {{-- Reikia tvarkyti , nerodo title ir city, nes pasikeite pavadinimai kitamuju
                              --}}
-
-                            <h6 class="fs-5">{{ __('Food') }}: <b><i>{{ $food->title }}</i></b></h6>
+                            @if (app()->getLocale() == 'lt')
+                            <h6 class="fs-5">{{ __('Category') }}:
+                                <b><i>{{ $food->foodCategory_no->title_lt }}</i></b>
+                            </h6>
+                            @else
+                            <h6 class="fs-5">{{ __('Category') }}:
+                                <b><i>{{ $food->foodCategory_no->title_en }}</i></b>
+                            </h6>
+                            @endif
                             <h6 class="fs-5">{{ __('Price') }}: <b><i>{{ $food->price }} &euro;</i></b></h6>
                             <h6 class="fs-5">{{ __('Rating') }}: <b><i>{{ $food->rating }}</i></b></h6>
                             <h6 class="fs-5">{{ __('Voted') }}: <b><i>{{ $food->counts }}</i></b></h6>
-                            <h6 class="fs-5">{{ __('City') }}:<b><i>{{ $food->city }}</i></b></h6>
-
-                            <b><i>{{ $food->foodReataurants_name->city }}</b></i>
-                            </h6>
-                            <h6 class="fs-5">{{ __('Restaurant') }}:
-                                <b><i>{{ $food->foodReataurants_name->title }}</b></i>
-                            </h6>
+                            <h6 class="fs-5">{{__('City') }}: <b><i>{{$food->foodReataurants_name->city}}</b></i></h6>
+                            <h6 class="fs-5">{{__('Restaurant') }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="row">
                                 <div class="col-md-6">
                                     <h6 class="fs-5">{{ __('Open') }}:
