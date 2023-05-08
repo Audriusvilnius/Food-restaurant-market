@@ -79,7 +79,6 @@
                                     }
 
                                 </script>
-
                             </div>
                         </div>
                         <form action="{{route('update-reviews')}}" method="get">
