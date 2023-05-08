@@ -116,7 +116,12 @@ class BasketService
             return $this->dfee . ' €';
         } else {
             $this->flag = 0;
-            return 'Already Included!';
+            if ((app()->getLocale() == 'lt')){
+            return 'Jau įtraukta!';
+            }
+            else {
+                return 'Already Included!';
+            }
         }
     }
 
