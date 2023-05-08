@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@inject('basket', 'App\Services\BasketService')
 @inject('restaurant', 'App\Services\RestaurantService')
 @inject('city', 'App\Services\CityService')
 @inject('category', 'App\Services\CategoryService')
-@inject('basket', 'App\Services\BasketService')
 
 <head>
     <meta charset="utf-8" data-bs-theme="dark">

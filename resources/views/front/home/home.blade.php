@@ -65,8 +65,8 @@
                                             }); i++) {
                                             document.write('<div class="star"></div>');
                                         }
-
                                     </script>
+
                                 </div>
                         </div>
                     </div>
