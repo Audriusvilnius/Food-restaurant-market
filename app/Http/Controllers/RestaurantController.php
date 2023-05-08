@@ -44,9 +44,7 @@ class RestaurantController extends Controller
             $request->all(),
             [
                 'restaurant_title' => 'required|nullable',
-                'restaurant_city' => 'required|nullable',
                 'restaurant_addres' => 'required|nullable',
-                'photo' => 'required|nullable',
             ]
         );
 
@@ -69,12 +67,11 @@ class RestaurantController extends Controller
         }
 
         $restaurant->title = $request->restaurant_title;
-        $restaurant->city = $request->restaurant_city;
         $restaurant->addres = $request->restaurant_addres;
         $restaurant->open = $request->restaurant_open;
         $restaurant->close = $request->restaurant_close;
-        $restaurant->des = $request->restaurant_add;
         $restaurant->des = $request->restaurant_des;
+        $restaurant->phone = $request->restaurant_phone;
         $restaurant->save();
 
         return redirect()->route('restaurants-index');
@@ -122,9 +119,7 @@ class RestaurantController extends Controller
             $request->all(),
             [
                 'restaurant_title' => 'required|nullable',
-                'restaurant_city' => 'required|nullable',
                 'restaurant_addres' => 'required|nullable',
-                'photo' => 'required|nullable',
             ]
         );
 
@@ -150,11 +145,11 @@ class RestaurantController extends Controller
         }
 
         $restaurant->title = $request->restaurant_title;
-        $restaurant->city = $request->restaurant_city;
         $restaurant->addres = $request->restaurant_addres;
         $restaurant->open = $request->restaurant_open;
         $restaurant->close = $request->restaurant_close;
         $restaurant->des = $request->restaurant_des;
+        $restaurant->phone = $request->restaurant_phone;
 
         $restaurant->save();
 
@@ -173,19 +168,17 @@ class RestaurantController extends Controller
         if (app()->getLocale() == "lt") {
             $message1 = "Trynimas baigtas";
             $message2 = "Negalima ištrinti restorano. Pirmiausia ištrinkite restorano patiekalus";
-        }
-        else {
+        } else {
             $message1 = "Delete complete";
             $message2 = "Can\'t Delete Restaurant, first delete food from restaurant";
         }
-        if(!$restaurant->food_Restaurant()->count()){
+        if (!$restaurant->food_Restaurant()->count()) {
             $restaurant->deletePhoto();
             $restaurant->delete();
-            
-            return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('ok', $message1);
-        }else{
-            return redirect()->route('restaurants-index', ['#'.$restaurant->id])->with('not', $message2);
 
+            return redirect()->route('restaurants-index', ['#' . $restaurant->id])->with('ok', $message1);
+        } else {
+            return redirect()->route('restaurants-index', ['#' . $restaurant->id])->with('not', $message2);
         }
     }
 }

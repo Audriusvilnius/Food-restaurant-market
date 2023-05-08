@@ -1,10 +1,9 @@
-@inject('restaurant', 'App\Services\RestaurantService')
-@inject('city', 'App\Services\CityService')
-@inject('category', 'App\Services\CategoryService')
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @inject('basket', 'App\Services\BasketService')
+@inject('restaurant', 'App\Services\RestaurantService')
+@inject('city', 'App\Services\CityService')
+@inject('category', 'App\Services\CategoryService')
 
 <head>
     <meta charset="utf-8" data-bs-theme="dark">
@@ -57,9 +56,10 @@
                 <!--Lang-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav ms-5">
+                    <div class="dropdown ms-5">
                         @include('front.home.common.city')
-                    </ul>
+                    </div>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         @if(Auth::user()?->role == 'admin')

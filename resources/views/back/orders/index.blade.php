@@ -9,12 +9,7 @@
                     <h1>{{__('All Orders')  }}</h1>
                 </div>
             </div>
-            <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded">
-                @if(Session::has('ok'))
-                <h6 class=" alert alert-success alert-dismissible fade show" role="alert">{{Session::get('ok')}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-                @endif
-            </div>
+            @include('alerts.alert')
             @foreach($orders as $order)
             {{-- @if($order->status != 3) --}}
 
@@ -25,11 +20,11 @@
                             style="background-color:grey;border-radius:5px;" @elseif($order->status == 3)
                             style="background-color:rgba(224, 219, 219, 0.378);border-radius:5px;" @endif>
                             <h4>{{__('Order No.')  }}: <b><i>{{$order->id}}</b></i></h4>
-                            <h6 class="mb-2">Open - {{$order->created_at}}</h6>
+                            <h6 class="mb-2">{{__('Open')  }} - {{$order->created_at}}</h6>
                             @if($order->status == 0)
                             <h5>{{__('Order open')  }}</h5>
                             @elseif($order->status == 1)
-                            <h5>{{__('Processing')  }}</h5>
+                            <h5>{{__('Processing') }}</h5>
                             @elseif($order->status == 2)
                             <h5>{{__('Ready to ship')  }}</h5>
                             @elseif($order->status == 3)
@@ -58,7 +53,13 @@
                     </div>
                     <div class="col-md-10">
                         <hr class="border border-1 opacity-50">
-                        {{__('Title') }}: <b><i>{{$food->title_en}}</b></i>,
+                        {{__('Title') }}: <b><i>
+                        @if (app()->getLocale() == "lt")
+                            {{$food->title_lt}}
+                        @else 
+                        {{$food->title_en}}   
+                        @endif 
+                        </b></i>
 
                         <p>{{__('price') }}: <b><i>{{$food->price}} &euro;</b></i>
                             {{__('qty') }}: <b><i>{{$food->count}}</b></i>
@@ -78,14 +79,14 @@
                         <div class="card-body">
                             @if($order->status == 0)
                             <form action="{{route('order-update', $order)}}" method="post">
-                                <button type="submit" class="btn btn-danger float-end">Processing</button>
+                                <button type="submit" class="btn btn-danger float-end">{{__('Processing')  }}</button>
                                 @csrf
                                 @method('put')
                             </form>
                             @endif
                             @if($order->status == 1)
                             <form action="{{route('order-update', $order)}}" method="post">
-                                <button type="submit" class="btn btn-warning float-end">Complete</button>
+                                <button type="submit" class="btn btn-warning float-end">{{__('Complete')  }}</button>
                                 @csrf
                                 @method('put')
                             </form>
@@ -93,7 +94,7 @@
                             @if($order->status == 2)
                             <form action="{{route('order-status', $order)}}" method="post">
                                 <input type="hidden" class="form-control" name="ticket" value="{{$order->id}}">
-                                <button type="submit" class="btn btn-success float-end">To ship</button>
+                                <button type="submit" class="btn btn-success float-end">{{__('To ship')  }}</button>
                                 @csrf
                                 @method('post')
 

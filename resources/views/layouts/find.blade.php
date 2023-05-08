@@ -31,15 +31,15 @@
             <div class="col-md-auto btnsort">
                 <div class="card-body align-content-center mb-2">
                     <select class="form-select bg-dark text-white " name="sort">
-                        <option>{{__('Sort')  }}</option>
+                        <option>{{__('Sort') }}</option>
                         @if (app()->getLocale() == 'lt')
-                            @foreach($sortSelect_lt as $value => $name)
-                                <option value="{{$value}}" @if($sortShow_lt==$value) selected @endif>{{$name}}</option>
-                            @endforeach
+                        @foreach($sortSelect_lt as $value => $name)
+                        <option value="{{$value}}" @if($sortShow_lt==$value) selected @endif>{{$name}}</option>
+                        @endforeach
                         @else
-                            @foreach($sortSelect as $value => $name)
-                                <option value="{{$value}}" @if($sortShow==$value) selected @endif>{{$name}}</option>
-                            @endforeach
+                        @foreach($sortSelect as $value => $name)
+                        <option value="{{$value}}" @if($sortShow==$value) selected @endif>{{$name}}</option>
+                        @endforeach
                         @endif
                     </select>
                 </div>
@@ -48,22 +48,22 @@
                 <div class="card-body align-content-center d-flex mb-2">
                     <select class="form-select bg-dark text-white d-flex" name="per_page">
                         @if (app()->getLocale() == 'lt')
-                            @foreach($perPageSelect_lt as $value)
-                                <option value="{{$value}}" @if($perPageShow_lt==$value) selected @endif>{{$value}}</option>
-                            @endforeach
+                        @foreach($perPageSelect_lt as $value)
+                        <option value="{{$value}}" @if($perPageShow_lt==$value) selected @endif>{{$value}}</option>
+                        @endforeach
                         @else
-                            @foreach($perPageSelect as $value)
-                                <option value="{{$value}}" @if($perPageShow==$value) selected @endif>{{$value}}</option>
-                             @endforeach
+                        @foreach($perPageSelect as $value)
+                        <option value="{{$value}}" @if($perPageShow==$value) selected @endif>{{$value}}</option>
+                        @endforeach
                         @endif
                     </select>
                 </div>
             </div>
             <div class="col-md-2">
-                <div class="card-body align-content-end gap-1 d-flex">
-                    <button type="submit" class="btn btn-secondary ">{{__('SHOW')  }}</button>
+                <div class="card-body align-content-end gap-1 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-secondary ">{{__('SHOW') }}</button>
                     </form>
-                    <a href=" {{url('/')}}" class="btn btn-danger " style="">{{__('RESET')  }}</a>
+                    <a href=" {{url('/')}}" class="btn btn-danger " style="">{{__('RESET') }}</a>
                 </div>
             </div>
         </div>

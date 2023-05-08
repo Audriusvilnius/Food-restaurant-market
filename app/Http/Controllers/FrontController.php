@@ -69,7 +69,7 @@ class FrontController extends Controller
             if ($request->restaurant_id && $request->restaurant_id != 'all') {
 
                 $foods = Food::where('rest_id', $request->restaurant_id);
-                // ->where('food_city_no', $sessionCity)
+                // ->where('food_city_no', $sessionCity);
                 // ->get();
                 // $foods = Food::where('rest_id', $request->restaurant_id);
             } else {
@@ -185,15 +185,31 @@ class FrontController extends Controller
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)
     {
-        $id = (int)$request->id;
-        $count = (int)$request->count;
-        $basket->add($id, $count);
-        if (app()->getLocale() == "lt") {
-            $message1 = "Pirkinys sėkmingai įdėtas į krepšelį";
+        if ($request->food_city_no != Session::get('citySelect')) {
+            $city = City::where('id', '=', $request->food_city_no)->first();
+            $local = City::where('id', '=', Session::get('citySelect'))->first();
+            $food = Food::where('id', '=', $request->id)->first();
+
+            if (app()->getLocale() == "lt") {
+                $message = 'Pasirinkimas ' . $food->title_lt . ' yra ' . $city->title . ' mieste . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
+                // $message = 'Pasirinkimas neatitinka miesto . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
+            } else {
+                $message = 'The selected dish is not in ' . $city->title . ' city. You choose ' . $local->title . '. Choose another dish or change city';
+            }
+            return redirect(url()->previous() . '#' . $request->id)->with('not', $message);
         } else {
-            $message1 = "Item\'s succesfully added to the basket";
+            $food = Food::where('id', '=', $request->id)->first();
+            $id = (int)$request->id;
+            $count = (int)$request->count;
+            $basket->add($id, $count);
+
+            if (app()->getLocale() == "lt") {
+                $message1 = $food->title_lt . ' ' . $request->count . 'vnt. sėkmingai įdėta į krepšelį';
+            } else {
+                $message1 = $food->title_en . ' ' . $request->count . 'pcs. succesfully added to the basket';
+            }
+            return redirect(url()->previous() . '#' . $request->id)->with('ok', $message1);
         }
-        return redirect(url()->previous() . '#' . $request->id)->with('ok', $message1);
     }
 
     public function viewBasket(Request $request, BasketService $basket)
@@ -205,7 +221,7 @@ class FrontController extends Controller
             if ($data->rest_id) {
                 $delivery[$data->rest_id] = ['rest_id' => $data->rest_id];
             } else {
-                $delivery = [$data->rest_id => ['rate' => $data->rest_id]];
+                $delivery = [$data->rest_id => ['rest_id' => $data->rest_id]];
             }
         }
         $delivery = count($delivery) * 4.99;
@@ -367,6 +383,15 @@ class FrontController extends Controller
     }
     public function getCity(Request $request)
     {
-        return "redirect()->back()";
+        $sessionCity = Session::get('citySelect');
+        $ovners = Ovner::all()->sortBy('title');
+        $cities = City::all()->sortBy('title');
+        if ($sessionCity == null) {
+            return view('front.home.city', [
+                'cities' => $cities,
+                'ovners' => $ovners,
+                'text' => Faker::create()->realText(300, 5),
+            ]);
+        }
     }
 }

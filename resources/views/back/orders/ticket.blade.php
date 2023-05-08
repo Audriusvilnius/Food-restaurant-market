@@ -68,7 +68,13 @@
                     <div class="col-md-10">
                         <hr class="border border-1 opacity-50">
 
-                        {{__('Title')  }}: <b><i>{{$food->title}}</b></i>,
+                        {{__('Title')  }}: <b><i>
+                        @if (app()->getLocale() == "lt")
+                            {{$food->title_lt}}
+                        @else 
+                        {{$food->title_en}}   
+                        @endif 
+                        </b></i>,
                         <p> {{__('price')  }} : <b><i>{{$food->price}} &euro;</b></i>
                             {{__('qty')  }}: <b><i>{{$food->count}}</b></i>
                             {{__('Sum')  }}: <b><i>{{$food->price*$food->count}} &euro;</b></i></p>
@@ -91,7 +97,7 @@
                         <div class="card-body">
                             @if($order->status == 0)
                             <form action="{{route('order-update', $order)}}" method="post">
-                                <button type="submit" class="btn btn-danger float-end uppercase">Processing</button>
+                                <button type="submit" class="btn btn-danger float-end uppercase">{{__('Processing')  }}</button>
 
                                 @csrf
                                 @method('put')
@@ -100,7 +106,7 @@
                             @if($order->status == 1)
                             <form action="{{route('order-update', $order)}}" method="post">
 
-                                <button type="submit" class="btn btn-warning float-end uppercase">Complete</button>
+                                <button type="submit" class="btn btn-warning float-end uppercase">{{__('Complete')  }}</button>
 
                                 @csrf
                                 @method('put')
@@ -110,7 +116,7 @@
                             @if($order->status == 2)
                             <form action="{{route('order-status', $order)}}" method="post">
                                 <input type="hidden" class="form-control" name="ticket" value="{{$order->id}}">
-                                <button type="submit" class="btn btn-success float-end uppercase">To shep</button>
+                                <button type="submit" class="btn btn-success float-end uppercase">{{__('To ship')  }}</button>
 
 
                     </div>
