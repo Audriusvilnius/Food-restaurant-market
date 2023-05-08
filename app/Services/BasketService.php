@@ -117,7 +117,7 @@ class BasketService
         } else {
             $this->flag = 0;
             if ((app()->getLocale() == 'lt')){
-            return 'Jau įtraukta!';
+            return 'Jau įtrauktas!';
             }
             else {
                 return 'Already Included!';
