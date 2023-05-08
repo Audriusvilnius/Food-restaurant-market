@@ -68,8 +68,8 @@ class FrontController extends Controller
         if (!$request->s) {
             if ($request->restaurant_id && $request->restaurant_id != 'all') {
 
-                $foods = Food::where('rest_id', $request->restaurant_id)
-                    ->where('food_city_no', $sessionCity);
+                $foods = Food::where('rest_id', $request->restaurant_id);
+                // ->where('food_city_no', $sessionCity);
                 // ->get();
                 // $foods = Food::where('rest_id', $request->restaurant_id);
             } else {
@@ -189,9 +189,10 @@ class FrontController extends Controller
             $city = City::where('id', '=', $request->food_city_no)->first();
             $local = City::where('id', '=', Session::get('citySelect'))->first();
             $food = Food::where('id', '=', $request->id)->first();
+
             if (app()->getLocale() == "lt") {
-                // $message = 'Pasirinkimas ' . $food->title_lt . ' yra ' . $city->title . ' mieste . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
-                $message = 'Pasirinkimas neatitinka miesto . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
+                $message = 'Pasirinkimas ' . $food->title_lt . ' yra ' . $city->title . ' mieste . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
+                // $message = 'Pasirinkimas neatitinka miesto . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
             } else {
                 $message = 'The selected dish is not in ' . $city->title . ' city. You choose ' . $local->title . '. Choose another dish or change city';
             }

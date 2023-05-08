@@ -122,6 +122,8 @@
                                     <div class="col-md-3">
                                         <input type="number" class="form-control" name="count" value="1" min="1">
                                         <input type="hidden" name="id" value="{{ $food->id }}">
+                                        <input type="hidden" name="food_city_no" value="{{ $food->food_city_no }}">
+
                                     </div>
                                     <div class="col-md-1 ">
                                         <div class="form-contro">
