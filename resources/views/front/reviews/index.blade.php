@@ -78,7 +78,7 @@
                             <h6 class="fs-5">{{ __('Price') }}: <b><i>{{ $food->price }} &euro;</i></b></h6>
                             <h6 class="fs-5">{{ __('Rating') }}: <b><i>{{ $food->rating }}</i></b></h6>
                             <h6 class="fs-5">{{ __('Voted') }}: <b><i>{{ $food->counts }}</i></b></h6>
-                            <h6 class="fs-5">{{__('City') }}: <b><i>{{$food->foodReataurants_name->city}}</b></i></h6>
+                            <h6 class="fs-5">{{__('City') }}: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
                             <h6 class="fs-5">{{__('Restaurant') }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="row">
                                 <div class="col-md-6">
@@ -105,9 +105,7 @@
                                     <input type="hidden" name="product" value="{{ $food->id }}">
                                     {{-- <input type="number" min="1" max="5" name="rated" value="3"
                                             placeholder="1 - 5" class="form-control imputnumber"> --}}
-
                                     <div class="star-rating">
-
                                         <input class="radio-input" type="radio" id="star5" name="rated" value="5" required />
                                         <label class="radio-label" class for="star5" title="5 stars">5 stars</label>
                                         {{-- Jeigu ką čia ieškot --}}
