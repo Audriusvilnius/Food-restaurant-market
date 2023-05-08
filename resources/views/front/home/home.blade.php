@@ -35,11 +35,11 @@
                     <div class="container_pic">
 
                         @if (app()->getLocale() == "lt")
-                        <button type="button" class="btn btn-link" onclick="Yeezy_lt({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-link p-0" onclick="Yeezy_lt({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             @else
-                            <button type="button" class="btn btn-link" onclick="Yeezy_en({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-link p-0" onclick="Yeezy_en({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 @endif
-                                <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" food-item">
+                                <img src="{{asset($food->photo)}}" class="img-fluid rounded-top shadow bg-body-tertiary" alt=" food-item">
                             </button>
                             @foreach($restaurants as $restaurant)
                             @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
