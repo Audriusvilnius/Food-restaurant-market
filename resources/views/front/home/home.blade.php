@@ -66,12 +66,22 @@
                         <span class="text-muted">{{$food->add}}</span>
                         <h4 @if($food->price<20) style="color:crimson;" @endif>{{__('Price') }}: <b><i>{{$food->price}} &euro;</b></i></h4>
                         <hr class="border border-second border-2 opacity-50">
+                        <div class="ms-10">
+                            <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
+                            <div id="rating-score">
+                                <script>
+                                    for (let i = 0; i < Math.round({
+                                            {
+                                                $food - > rating
+                                            }
+                                        }); i++) {
+                                        document.write('<div class="star"></div>');
+                                    }
 
-                        <div class="gap-3 align-items-center d-flex justify-content-center">
-                            {{__('Rating') }}:<b><i>{{$food->rating}}</i></b>
+                                </script>
 
+                            </div>
                         </div>
-
                         <form action="{{route('update-reviews')}}" method="get">
                             <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
                                 <input type="hidden" name="product" value="{{$food->id}}">
@@ -96,7 +106,6 @@
                                     <div class="form-contro">
                                         <button type="submit" class="btn btn-dark">
                                             <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
-
                                         </button>
                                     </div>
                                 </div>

@@ -143,7 +143,7 @@
     </div>
     @if ($rateds)
     @foreach ($rateds as $id => $reviews)
-    @if ($rateds)
+
     <div id={{ $id }} class="card mt-2 d-flex justify-content-md-between">
         <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
             <div class="col-md-10">
@@ -166,7 +166,7 @@
             </div>
         </div>
     </div>
-    @endif
+
     @endforeach
     @endif
 </div>
