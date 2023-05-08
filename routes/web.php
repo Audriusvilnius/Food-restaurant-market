@@ -116,15 +116,8 @@ Route::prefix('list') -> group(function() {
         return redirect()->back();
     });
 });
-//--- Audrius start --//
-Route::get('list/language/{locale}', function ($locale) {
-    app()->setLocale($locale);
-    session()->put('locale', $locale);
-    return redirect()->back();
-});
-//--- Audrius ebd --//
-Route::prefix('admin')->group(function () {
 
+Route::prefix('admin') -> group(function() {
     Route::get('/language/{locale}', function ($locale) {
         app()->setLocale($locale);
         session()->put('locale', $locale);
