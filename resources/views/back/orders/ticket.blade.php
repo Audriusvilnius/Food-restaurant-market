@@ -33,15 +33,15 @@
                         <div class="card-body align-content-center" @if($order->status == 0) style="background-color:crimson;border-radius:5px;color:white;" @elseif($order->status == 1) style="background-color:skyblue;border-radius:5px;" @elseif($order->status == 2)
                             style="background-color:grey;border-radius:5px;" @elseif($order->status == 3)
                             style="background-color:rgba(224, 219, 219, 0.378);border-radius:5px;" @endif>
-                            <h4>Order No.: <b><i>{{$order->id}}</b></i></h4>
+                            <h4>{{__('Order No.')  }}': <b><i>{{$order->id}}</b></i></h4>
                             @if($order->status == 0)
-                            <h5>Open
+                            <h5>{{__('Open')  }}
                                 @elseif($order->status == 1)
-                                <h5>Processing
+                                <h5>{{__('Processing')  }}
                                     @elseif($order->status == 2)
-                                    <h5>Ready to ship
+                                    <h5>{{__('Ready to ship')  }}
                                         @elseif($order->status == 3)
-                                        <h5>Shipped
+                                        <h5>{{__('Shipped')  }}
                                             @endif
                                             - {{$order->updated_at}}</h5>
                         </div>

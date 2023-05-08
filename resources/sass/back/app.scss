@@ -12,6 +12,7 @@
     // filter: invert(70%);
     // transform: scaleX(-1);
 }
+
 .conteiner-blue {
     min-height: auto;
     background-color: rgb(27, 176, 235);
@@ -26,6 +27,7 @@
     min-height: auto;
     background-color: #FAFA33;
 }
+
 label {
     font-size: 1.4em;
     user-select: none;
@@ -113,6 +115,7 @@ h1 {
 
     text-align: center;
 }
+
 .mystyle {
     // background-image: url("/public/images/temp/tomatoes-5365186.jpg");
     background-repeat: no-repeat;
@@ -121,25 +124,80 @@ h1 {
     background-attachment: fixed;
     opacity: 0.95;
 }
+
 svg.cart {
     width: 45px;
     height: 45px;
     fill: $second;
     // transform: scaleX(-1);
 }
+
 .ithem {
     background-color: rgba(255, 0, 0);
-        padding: 5px;
-        height: 20px;
-        line-height: 10px;
-        border-radius: 20px;
-        color: white;
-        transform: translateX(-25px) translateY(-6px);
+    padding: 5px;
+    height: 20px;
+    line-height: 10px;
+    border-radius: 20px;
+    color: white;
+    transform: translateX(-25px) translateY(-6px);
 }
+
 .imputnumber {
     width: 80px;
     align-items: center;
     justify-content: center;
+}
+
+
+#rating-score {
+    display: flex;
+    justify-content: center;
+    width: 12.5%;
+}
+
+/*    Select rate      */
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.radio-input {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.radio-label {
+    cursor: pointer;
+    font-size: 0;
+    color: rgba(0, 0, 0, 0.2);
+    transition: color 0.1s ease-in-out;
+}
+
+.radio-label:before {
+    content: "★";
+    display: inline-block;
+    font-size: 32px;
+}
+
+.radio-input:checked~.radio-label {
+    color: #ffc700;
+    color: gold;
+}
+
+.radio-label:hover,
+.radio-label:hover~.radio-label {
+    color: goldenrod;
+}
+
+.radio-input:checked+.radio-label:hover,
+.radio-input:checked+.radio-label:hover~.radio-label,
+.radio-input:checked~.radio-label:hover,
+.radio-input:checked~.radio-label:hover~.radio-label,
+.radio-label:hover~.radio-input:checked~.radio-label {
+    color: darkgoldenrod;
 }
 .centered {
     position: absolute;
@@ -147,6 +205,7 @@ svg.cart {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .container_pic {
     position: relative;
     text-align: center;
@@ -157,6 +216,7 @@ svg.cart {
     color: white;
     text-shadow: 10px 10px 20px black, 10px 10px 15px rgb(50, 50, 52), 0 0 5px rgb(19, 19, 21);
 }
+
 .btnFront {
     max-width: 700px;
 }

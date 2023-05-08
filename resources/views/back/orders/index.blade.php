@@ -6,15 +6,10 @@
         <div class="col-md-9">
             <div class="card shadow bg-body-tertiary rounded ">
                 <div class="card-header">
-                    <h1>All Orders</h1>
+                    <h1>{{__('All Orders')  }}</h1>
                 </div>
             </div>
-            <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded">
-                @if(Session::has('ok'))
-                <h6 class=" alert alert-success alert-dismissible fade show" role="alert">{{Session::get('ok')}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-                @endif
-            </div>
+            @include('alerts.alert')
             @foreach($orders as $order)
             {{-- @if($order->status != 3) --}}
 
@@ -29,9 +24,9 @@
                             @if($order->status == 0)
                             <h5>{{__('Order open')  }}</h5>
                             @elseif($order->status == 1)
-                            <h5>Processing</h5>
+                            <h5>{{__('Processing') }}</h5>
                             @elseif($order->status == 2)
-                            <h5>Ready to ship</h5>
+                            <h5>{{__('Ready to ship')  }}</h5>
                             @elseif($order->status == 3)
                             <h5>{{__('Order complete')  }}</h5>
                             @endif

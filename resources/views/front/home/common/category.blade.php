@@ -8,9 +8,8 @@
                     <div class="item">
                         <div class="card ">
                             <a class="list-group-item list-group-item-action" href="{{route('list-category',$category->id)}}">
-                                <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="{{$category->title_en}}">
+                                <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="{{$category->title_ . app()->getLocale()}}">
                                 <div class="card-body centered ">
-
                                     @if (app()->getLocale()=="lt")
                                     <h3 class="shadow_new"><b><i>{{$category->title_lt}}</i></b></h3>
                                     @else
@@ -21,7 +20,7 @@
                         </div>
                     </div>
                     @empty
-                    <h5>Oops! Something went wrong, missing category info</h5>
+                    <h5>{{__('Oops! Something went wrong, missing category info')  }}</h5>
                     <h2 class="list-group-item">{{__('List empty')  }}</h2>
                     @endforelse
                 </div>

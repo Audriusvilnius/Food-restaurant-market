@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+@include('alerts.alert')
+
 
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">
@@ -11,11 +13,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header justify-content-between align-content-between d-flex ">
-                    <h1>{{__('Food Catagories')  }}</h1>
-                    <a href="{{route('category-create')}}" class="btn btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                        </svg></a>
+                    <h1>{{__('Food Categories')  }}</h1>
+                    <a href="{{route('category-create')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">ADD</a>
                 </div>
             </div>
         </div>
@@ -39,14 +38,14 @@
                 <div class="card g-0 shadow p-1 bg-body-tertiary rounded">
                     <div class="col-md-12 container_pic">
                         <img src="{{asset($category->photo)}}" class="img-fluid rounded" alt="imageset">
-                        <div class="centered shadow_new justify-content-center"> 
-                        <h1><b><i>
-                            @if (app()->getLocale() == "lt")
-                                {{$category->title_lt}}
-                            @else
-                                {{$category->title_en}}
-                            @endif
-                            {{$category->food_Category()->count()}}</i></b></h1>
+                        <div class="centered shadow_new justify-content-center">
+                            <h1><b><i>
+                                        @if (app()->getLocale() == "lt")
+                                        {{$category->title_lt}}
+                                        @else
+                                        {{$category->title_en}}
+                                        @endif
+                                        {{$category->food_Category()->count()}}</i></b></h1>
                         </div>
                     </div>
                     <div class="col-md-12">
