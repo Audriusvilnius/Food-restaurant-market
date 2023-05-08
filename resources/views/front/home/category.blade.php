@@ -51,8 +51,7 @@
                     </div>
                     <div class="card-body ">
                         <a class="list-group-item list-group-item-action " href="{{route('list-restaurant',$food->foodReataurants_name->id)}}">
-                            <h6>{{__('Restaurant') }}: <b style="font-size:17px;"><i>
-                                        {{$food->foodReataurants_name->title}}</b></i></h6>
+                            <h6>{{__('Restaurant') }}: <b style="font-size:17px;"><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                         </a>
                         <h6>{{__('City') }}: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
                         @if (app()->getLocale() == "lt")
@@ -75,77 +74,66 @@
                         </div>
                         <span class="text-muted">{{$food->add}}</span>
                         <hr class="border border-second border-2 opacity-50">
-                        {{-- <form action="{{route('update-rate')}}" method="post"> --}}
                         <div class="gap-3 align-items-center d-flex justify-content-center">
                             {{__('Rating') }}:<b><i>{{$food->rating}}</i></b>
-                            {{-- Rate:
-                            <input type="hidden" name="product" value="{{$food->id}}">
-                            <input type="hidden" name="user_name" value="{{$name}}">
-                            <input type="number" min="1" max="5" name="rated" value="" placeholder="1 - 5" class="form-control imputnumber"> --}}
-                            {{-- <div class="btn-group">
-                                <button type="submit" class="btn btn-outline-secondary">{{__('RATE')  }}</button>
-                        </div> --}}
-                    </div>
-                    {{-- @csrf --}}
-                    {{-- </form> --}}
-                    {{-- <hr class="border border-second border-2 opacity-50"> --}}
-                    <form action="{{route('update-reviews')}}" method="get">
-                        <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
-                            <input type="hidden" name="product" value="{{$food->id}}">
-                            {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
-                            <div class="btn-group">
-                                <button type="submit" class="btn btn-outline-secondary" style="width:200px;">{{__('Rating & Reviews')  }}</button>
-                            </div>
                         </div>
-                        @csrf
-                    </form>
-
-                    <hr class="border border-second border-2 opacity-50">
-                    <form action="{{route('add-basket')}}" method="post">
-                        <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
-                            <div class="col-md-2">
-                                {{__('Qty') }}:
-                            </div>
-                            <div class="col-md-2">
-                                <input type="number" class="form-control" name="count" value="1" min="1">
-                                <input type="hidden" name="id" value="{{$food->id}}">
-                                <input type="hidden" name="food_city_no" value="{{$food->food_city_no}}">
-                            </div>
-                            <div class="col-md-1 ">
-                                <div class="form-contro">
-                                    <button type="submit" class="btn btn-dark">
-                                        <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
-                                    </button>
+                        <form action="{{route('update-reviews')}}" method="get">
+                            <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
+                                <input type="hidden" name="product" value="{{$food->id}}">
+                                {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-outline-secondary" style="width:200px;">{{__('Rating & Reviews')  }}</button>
                                 </div>
                             </div>
                             @csrf
-                    </form>
-                </div>
-                <div class=" col-md-12 d-flex">
-                    <div class="col-md-4">
+                        </form>
+
+                        <hr class="border border-second border-2 opacity-50">
+                        <form action="{{route('add-basket')}}" method="post">
+                            <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
+                                <div class="col-md-2">
+                                    {{__('Qty') }}:
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" name="count" value="1" min="1">
+                                    <input type="hidden" name="id" value="{{$food->id}}">
+                                    <input type="hidden" name="food_city_no" value="{{$food->food_city_no}}">
+                                </div>
+                                <div class="col-md-1 ">
+                                    <div class="form-contro">
+                                        <button type="submit" class="btn btn-dark">
+                                            <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @csrf
+                        </form>
+                    </div>
+                    <div class=" col-md-12 d-flex">
+                        <div class="col-md-4">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    @empty
-    <div class="col-xxl-12 col-xl-12 col-lg-12">
-        <div class="card shadow bg-body-tertiary rounded d-flex ">
-            <div class="card-header justify-content-md-between align-items-center">
-                <h1>{{__('Oops! No match found. Try again')  }}</h1>
-            </div>
-            <div class="card-header justify-content-md-between align-items-center">
-                <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK') }}</a>
+        @empty
+        <div class="col-xxl-12 col-xl-12 col-lg-12">
+            <div class="card shadow bg-body-tertiary rounded d-flex ">
+                <div class="card-header justify-content-md-between align-items-center">
+                    <h1>{{__('Oops! No match found. Try again')  }}</h1>
+                </div>
+                <div class="card-header justify-content-md-between align-items-center">
+                    <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK') }}</a>
+                </div>
             </div>
         </div>
+        @endforelse
     </div>
-    @endforelse
-</div>
-<div class="mt-4">
-    @if($perPageShow!='All')
-    {{$foods->links()}}
-    @endif
-</div>
-<hr class="border border-second border-0 opacity-50 m-1">
+    <div class="mt-4">
+        @if($perPageShow!='All')
+        {{$foods->links()}}
+        @endif
+    </div>
+    <hr class="border border-second border-0 opacity-50 m-1">
 </div>
 @endsection
