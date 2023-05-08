@@ -1,13 +1,6 @@
 @extends('layouts.front')
 @section('content')
-{{-- <section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1 py-2">
-        @if(Session::has('ok'))
-        <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-@endif
-</div>
-</section> --}}
+
 <div class="conteiner-blue">
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
@@ -67,17 +60,17 @@
                                         </div>
                                         {{-- </a> --}}
                                         <div class="ms-5">
-                                            {{__('Rating')  }}:<b><i> {{$food->rating}}</i></b>
+                                            {{__('Rating') }}:<b><i> {{$food->rating}}</i></b>
                                         </div>
                                     </button>
                                 </h6>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body ">
-                                        <h6>{{__('City')  }}: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
-                                        <h6>{{__('Category')  }}: <b><i>{{$food->foodCategory_no->title_en}}</i></b></h6>
-                                        <h6>{{__('Address')  }}: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
-                                        <h6>{{__('Open')  }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
-                                        <h6>{{__('Close')  }}: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
+                                        <h6>{{__('City') }}: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
+                                        <h6>{{__('Category') }}: <b><i>{{$food->foodCategory_no->title_en}}</i></b></h6>
+                                        <h6>{{__('Address') }}: <b><i>{{$food->foodReataurants_name->addres}}</i></b></h6>
+                                        <h6>{{__('Open') }}: <b><i>{{$food->foodReataurants_name->open}}</i></b></h6>
+                                        <h6>{{__('Close') }}: <b><i>{{$food->foodReataurants_name->close}}</i></b></h6>
                                     </div>
                                     <form action="{{route('update-reviews')}}" method="get">
                                         <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
@@ -92,7 +85,7 @@
                                     <form action="{{route('add-basket')}}" method="post">
                                         <div class="col-md-12 gap-3 align-items-center d-flex justify-content-center">
                                             <div class="col-md-2">
-                                                {{__('Qty')  }}:
+                                                {{__('Qty') }}:
                                             </div>
                                             <div class="col-md-3">
                                                 <input type="number" class="form-control" name="count" value="1" min="1">
@@ -125,7 +118,7 @@
                         <h1>{{__('Oops! No match found. Try again')  }}</h1>
                     </div>
                     <div class="card-header justify-content-md-between align-items-center">
-                        <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK')  }}</a>
+                        <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK') }}</a>
                     </div>
                 </div>
             </div>
