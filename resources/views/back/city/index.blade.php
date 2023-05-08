@@ -11,30 +11,11 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header justify-content-between align-content-between d-flex ">
-
-                    <h1>{{__('Cities')  }}</h1>
-                    <a href="{{route('city-create')}}" class="btn btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                        </svg>
-                    </a>
+                    <h1>{{__('Cities') }}</h1>
+                    <a href="{{route('city-create')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add') }}</a>
                 </div>
             </div>
-            <section class="py-1 text-center container">
-                <div class="col-lg-12 col-md-8 mt-2 ">
-                    @if(Session::has('ok'))
-                    <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-                    @endif
-                    @if(Session::has('not'))
-                    <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </h6>
-                    @endif
-                </div>
-            </section>
-
+            @include('alerts.alert')
             @forelse($cities as $city)
             <div class="card mt-2">
                 <div id="{{ $city['id'] }}" class="row g-0 shadow bg-body-tertiary rounded align-content-center">

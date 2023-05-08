@@ -15,3 +15,10 @@ document.querySelectorAll('button')
     });
 
 
+
+setTimeout(function () {
+    $(".alert").fadeTo(3000, 0).slideUp(3000, function () {
+        $(this).remove();
+    });
+}, 9000);
+
