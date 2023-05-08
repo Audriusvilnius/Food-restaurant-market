@@ -23,9 +23,9 @@
 
     <section class="container shadow_new">
         @if (app()->getLocale() == "lt")
-        <h2 class=" pb-5 text-start"><i>{{$category_lt}} offer to you</i></h2>
+        <h2 class=" pb-5 text-start"><i>{{$category_lt}} {{__('offers to you')  }}</i></h2>
         @else
-        <h2 class=" pb-5 text-start"><i>{{$category_en}} offer to you</i></h2>
+        <h2 class=" pb-5 text-start"><i>{{$category_en}} {{__('offers to you')  }}</i></h2>
         @endif
     </section>
 </div>
@@ -43,7 +43,7 @@
                         <div class="centered shadow_new justify-content-center text-block" style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg)">
                             <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
                                 <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
-                                <div class="appBannerB{{$key}}" style="display: inline;">close</div>
+                                <div class="appBannerB{{$key}}" style="display: inline;">closed</div>
                             </div>
                         </div>
                         @endif
@@ -74,13 +74,16 @@
                         </div>
                         <span class="text-muted">{{$food->add}}</span>
                         <hr class="border border-second border-2 opacity-50">
+
+
                         <div class="gap-3 align-items-center d-flex justify-content-center">
                             {{__('Rating') }}:<b><i>{{$food->rating}}</i></b>
+
                         </div>
+
                         <form action="{{route('update-reviews')}}" method="get">
                             <div class="gap-3 align-items-center d-flex justify-content-center mt-3">
                                 <input type="hidden" name="product" value="{{$food->id}}">
-                                {{-- <input type="hidden" name="count" value="{{$food->counts}}"> --}}
                                 <div class="btn-group">
                                     <button type="submit" class="btn btn-outline-secondary" style="width:200px;">{{__('Rating & Reviews')  }}</button>
                                 </div>
@@ -103,7 +106,7 @@
                                     <div class="form-contro">
                                         <button type="submit" class="btn btn-dark">
                                             <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
-                                        </button>
+                        </button>
                                     </div>
                                 </div>
                                 @csrf

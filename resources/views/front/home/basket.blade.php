@@ -39,7 +39,7 @@
                             <div class="card-body">
                                 <h5><b><i>{{$food->title}}</b></i></h5>
                                 <h6>{{__('Price') }}: <b><i>{{number_format($food->price, 2, '.', '') }} &euro;</b></i></h6>
-                                <h6>Delivery Fee: <b class="text-success"><i>{{$basket->delivery($food->foodReataurants_name->title)}} </i></b></h6>
+                                <h6>{{__('Delivery Fee')  }}: <b class="text-success"><i>{{$basket->delivery($food->foodReataurants_name->title)}} </i></b></h6>
                                 <br>
                                 <div class="gap-3 align-items-center d-flex justify-content-center">
                                     {{__('Quantity') }}:

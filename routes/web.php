@@ -31,6 +31,7 @@ Route::prefix('admin/order')->name('order-')->group(function () {
 
 Route::get('/', [F::class, 'home'])->name('start');
 Route::post('/rate', [F::class, 'rate'])->name('update-rate')->middleware('roles:A|M|C');
+
 Route::post('/city', [F::class, 'city'])->name('select-city');
 Route::get('/city', [F::class, 'getCity'])->name('get-city');
 Route::get('/reviews', [F::class, 'reviews'])->name('update-reviews')->middleware('roles:A|M|C');
@@ -40,6 +41,7 @@ Route::post('/basket', [F::class, 'updateBasket'])->name('update-basket');
 Route::get('/confirm', [F::class, 'confirmBasket'])->name('confirm-basket')->middleware('roles:A|M|C');
 Route::post('/make-order', [F::class, 'makeOrder'])->name('make-order')->middleware('roles:A|M|C');
 Route::get('/list/{restaurant}', [F::class, 'listRestaurants'])->name('list-restaurant');
+
 Route::get('/list/category/{category}', [F::class, 'listCategory'])->name('list-category');
 
 Route::prefix('admin/ovner')->name('ovner-')->group(function () {
@@ -96,17 +98,23 @@ Auth::routes();
 //Auth::routes(['register'=> false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
     return redirect()->back();
 });
 
-Route::get('list/category/language/{locale}', function ($locale) {
-    app()->setLocale($locale);
-    session()->put('locale', $locale);
-    return redirect()->back();
+Route::prefix('list') -> group(function() {
+    Route::get('/category/language/{locale}', function ($locale) {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
+    });
+    Route::get('/language/{locale}', function ($locale) {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
+    });
 });
 //--- Audrius start --//
 Route::get('list/language/{locale}', function ($locale) {
@@ -116,6 +124,7 @@ Route::get('list/language/{locale}', function ($locale) {
 });
 //--- Audrius ebd --//
 Route::prefix('admin')->group(function () {
+
     Route::get('/language/{locale}', function ($locale) {
         app()->setLocale($locale);
         session()->put('locale', $locale);

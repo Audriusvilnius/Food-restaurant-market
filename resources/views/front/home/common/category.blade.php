@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     @empty
-                    <h5>Oops! Something went wrong, missing category info</h5>
+                    <h5>{{__('Oops! Something went wrong, missing category info')  }}</h5>
                     <h2 class="list-group-item">{{__('List empty')  }}</h2>
                     @endforelse
                 </div>

@@ -1,12 +1,14 @@
 @extends('layouts.front')
 @section('content')
+
 @include('alerts.alert')
+
 
 <div class="conteiner-blue">
     <section class="py-1 text-center container shadow_new btnFront">
         <a class="list-group-item list-group-item-action" href="{{route('start')}}">
             <div class="btn btn-dark mt-5">
-                <h1 class="m-3 shadow_new">Back to Restaurants offers</h1>
+                <h1 class="m-3 shadow_new">{{__('Back to Restaurants offers')  }}</h1>
             </div>
         </a>
         <hr class=" border border-second border-0 opacity-75">
@@ -20,7 +22,7 @@
     @include('layouts.find')
 
     <section class="container shadow_new">
-        <h2 class=" pb-5 text-start"><i>{{__('Restaurants')}} {{$restaurant}} offers to you</i></h2>
+        <h2 class=" pb-5 text-start"><i>{{__('Restaurant')}} {{$restaurant}} {{__('offers to you')  }}</i></h2>
     </section>
 </div>
 
@@ -42,6 +44,7 @@
                                     {{ $restaurant->open }}</div>
                                 <div class="appBannerB{{ $key }}" style="display: inline;">closed
                                 </div>
+
                             </div>
                         </div>
                         @endif
@@ -130,6 +133,7 @@
                                             <button type="submit" class="btn btn-dark">
                                                 <i class="bi bi-cart-check-fill" style="font-size: 1rem"></i>
                                             </button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -149,10 +153,12 @@
             <div class="col-xxl-12 col-xl-12 col-lg-12">
                 <div class="card shadow bg-body-tertiary rounded d-flex ">
                     <div class="card-header justify-content-md-between align-items-center">
+
                         <h1>{{ __('Oops! No match found. Try again') }}</h1>
                     </div>
                     <div class="card-header justify-content-md-between align-items-center">
                         <a href="{{ route('start') }}" class="btn btn-secondary">{{ __('BACK') }}</a>
+
                     </div>
                 </div>
             </div>

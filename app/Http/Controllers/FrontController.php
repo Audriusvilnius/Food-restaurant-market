@@ -62,6 +62,7 @@ class FrontController extends Controller
         $foods = Food::all()->sortBy('title_' . app()->getLocale());
 
         $perPageShow = in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All';
+        $perPageShow_lt = in_array($request->per_page, Food::PER_PAGE_LT) ? $request->per_page : 'Visi';
 
         if (!$request->s) {
             if ($request->restaurant_id && $request->restaurant_id != 'all') {
@@ -80,14 +81,14 @@ class FrontController extends Controller
 
             $foods = match ($request->sort ?? '') {
                 'asc_price' => $foods->orderBy('price'),
-                'dessc_price' => $foods->orderBy('price', 'desc'),
+                'desc_price' => $foods->orderBy('price', 'desc'),
                 'asc_name' => $foods->orderBy('title_' . app()->getLocale()),
                 'desc_name' => $foods->orderBy('title_' . app()->getLocale(), 'desc'),
                 'desc_rate' => $foods->orderBy('rating', 'desc'),
                     // 'desc_rest'=>Food::orderBy('title'),
                 default => $foods
             };
-            if ($perPageShow == 'All') {
+            if ($perPageShow == 'All' || $perPageShow_lt == 'Visi') {
                 $foods = $foods->where('food_city_no', $sessionCity)->get();
             } else {
                 $foods = $foods->paginate($perPageShow)->withQueryString();
@@ -115,9 +116,13 @@ class FrontController extends Controller
             'cities' => $cities,
             'ovners' => $ovners,
             'sortSelect' => Food::SORT,
+            'sortSelect_lt' => Food::SORT_LT,
             'sortShow' => isset(Food::SORT[$request->sort]) ? $request->sort : '',
+            'sortShow_lt' => isset(Food::SORT_LT[$request->sort]) ? $request->sort : '',
             'perPageSelect' => Food::PER_PAGE,
+            'perPageSelect_lt' => Food::PER_PAGE_LT,
             'perPageShow' => in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All',
+            'perPageShow_lt' => in_array($request->per_page, Food::PER_PAGE_LT) ? $request->per_page : 'Visi',
             'typeShow' => $request->restaurant_id ? $request->restaurant_id : '',
             // 'cityShow'=>$request->restaurant_id ? $request->restaurant_id :'',
             's' => $request->s ?? ''
@@ -298,9 +303,13 @@ class FrontController extends Controller
             'categories' => $categories,
             'ovners' => $ovners,
             'sortSelect' => Food::SORT,
+            'sortSelect_lt' => Food::SORT_LT,
             'sortShow' => isset(Food::SORT[$request->sort]) ? $request->sort : '',
+            'sortShow_lt' => isset(Food::SORT_LT[$request->sort]) ? $request->sort : '',
             'perPageSelect' => Food::PER_PAGE,
+            'perPageSelect_lt' => Food::PER_PAGE_LT,
             'perPageShow' => in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All',
+            'perPageShow_lt' => in_array($request->per_page, Food::PER_PAGE_LT) ? $request->per_page : 'Visi',
             'typeShow' => $request->restaurant_id ? $request->restaurant_id : '',
             // 'cityShow'=>$request->restaurant_id ? $request->restaurant_id :'',
             's' => $request->s ?? ''
@@ -349,9 +358,13 @@ class FrontController extends Controller
             'category_lt' => $category_lt,
             'ovners' => $ovners,
             'sortSelect' => Food::SORT,
+            'sortSelect_lt' => Food::SORT_LT,
             'sortShow' => isset(Food::SORT[$request->sort]) ? $request->sort : '',
+            'sortShow_lt' => isset(Food::SORT_LT[$request->sort]) ? $request->sort : '',
             'perPageSelect' => Food::PER_PAGE,
+            'perPageSelect_lt' => Food::PER_PAGE_LT,
             'perPageShow' => in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All',
+            'perPageShow_lt' => in_array($request->per_page, Food::PER_PAGE_LT) ? $request->per_page : 'Visi',
             'typeShow' => $request->restaurant_id ? $request->restaurant_id : '',
             // 'cityShow'=>$request->restaurant_id ? $request->restaurant_id :'',
             's' => $request->s ?? ''

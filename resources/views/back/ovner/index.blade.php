@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <h6>{{_('Postcode') }}: <b><i>{{$ovner->postcode}}</b></i></h6>
-                                </div>
+                   </div>
                             </div>
                             <h6>{{__('Country') }}: <b><i>{{$ovner->country}}</b></i></h6>
                         </div>

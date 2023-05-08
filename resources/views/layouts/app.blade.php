@@ -3,6 +3,7 @@
 
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,8 +16,13 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 
 
@@ -29,20 +35,23 @@
     <script src="{{asset('assets/js/time.js')}}"></script>
 
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
+    
 </head>
+
 <body>
     <div id="app ">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">{{--fixed-top--}}
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">{{-- fixed-top --}}
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img class="logo" src="{{asset('/images/temp/exam.png')}}" alt="exam">
+                    <img class="logo" src="{{ asset('/images/temp/exam.png') }}" alt="exam">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!--Lang-->
-                <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+                <div
+                    class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
                     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                         @include('partials/language_switcher')
                     </div>
@@ -59,39 +68,40 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        @if(Auth::user()?->role == 'admin')
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Orders') }}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
+                        @if (Auth::user()?->role == 'admin')
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('Orders') }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                            </div>
-                        </li>
+                                    <a class="dropdown-item"
+                                        href="{{ route('order-index') }}">{{ __('Order list') }}</a>
 
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{__('Foods') }}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('foods-index') }}">{{__('Foods') }}</a>
-                                <a class="dropdown-item" href="{{ route('category-index') }}">{{__('Categories') }}</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('Foods') }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('foods-index') }}">{{ __('Foods') }}</a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('category-index') }}">{{ __('Categories') }}</a>
 
 
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{__('Restaurant') }}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item" href="{{ route('restaurants-index') }}">{{__('Restaurants') }}</a>
-                                <a class="dropdown-item" href="{{ route('city-index') }}">{{__('City') }}</a>
-                                <a class="dropdown-item" href="{{ route('foods-rest_title') }}">{{__('Copy Restaurant title')  }}</a>
-
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('Restaurant') }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                             </div>
                         </li>
@@ -105,6 +115,20 @@
                         </li>
 
 
+
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('Owners') }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item"
+                                        href="{{ route('ovner-create') }}">{{ __('Add new') }}</a>
+                                    <a class="dropdown-item" href="{{ route('ovner-index') }}">{{ __('List') }}</a>
+                                </div>
+                            </li>
                         @endif
 
                         <!-- Authentication Links -->
@@ -137,18 +161,24 @@
                             </div>
                         </li>
                         @endguest
-                        <a href="{{route('view-basket')}}">
+                        <a href="{{ route('view-basket') }}">
                             <svg class="cart">
                                 <use xlink:href="#cart"></use>
                             </svg>
                         </a>
-                        @if($basket->count!=0)
-                        <div class="ithem">
-                            {{-- <span>{{$basket->test()}}</span> --}}
-                            @if($basket->count<=9) <span>{{$basket->count}}</span>
-                                @elseif($basket->count>9) 9+@endif
-                        </div>
-                        <li class="nav-link">{{__('Total') }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></li>
+
+                        @if ($basket->count != 0)
+                            <div class="ithem">
+                                {{-- <span>{{$basket->test()}}</span> --}}
+                                @if ($basket->count <= 9)
+                                    <span>{{ $basket->count }}</span>
+                                @elseif($basket->count > 9)
+                                    9+
+                                @endif
+                            </div>
+                            <li class="nav-link">{{ __('Total') }}:
+                                <b>{{ number_format((float) $basket->total, 2, '.', '') }} &euro;</b>
+                            </li>
                     </ul>
                     @endif
                 </div>
@@ -165,4 +195,5 @@
         @yield('content')
     </main>
 </body>
+
 </html>

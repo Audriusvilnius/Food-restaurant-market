@@ -37,6 +37,7 @@
                             <h6>{{__('Category') }}: <b><i>{{$food->foodCategory_no->title_en}}</b></i></h6>
                             @endif
                             <hr class="border border-second border-2 opacity-50">
+
                             <h6>{{__('Restaurant') }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-6">

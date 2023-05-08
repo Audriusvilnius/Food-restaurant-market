@@ -15,6 +15,7 @@
                 <div class="card-header justify-content-between align-content-between d-flex ">
                     <h1>{{__('Food Catagories')  }}</h1>
                     <a href="{{route('category-create')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">ADD</a>
+
                 </div>
             </div>
         </div>

@@ -57,19 +57,19 @@
                         <h3 @if ($food->price < 20) style="color:crimson;" @endif><b>{{ __('Price') }}:
                                     <i>{{ $food->price }} &euro;</b></i></h3>
                         <div class="ms-10">
-                            <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
-                            <div id="rating-score">
-                                <script>
-                                    for (let i = 0; i < Math.round({
-                                            {
-                                                $food - > rating
-                                            }
-                                        }); i++) {
-                                        document.write('<div class="star"></div>');
-                                    }
+                            <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h6>
+                                <div id="rating-score">
+                                    <script>
+                                        for (let i = 0; i < Math.round({
+                                                {
+                                                    $food - > rating
+                                                }
+                                            }); i++) {
+                                            document.write('<div class="star"></div>');
+                                        }
 
-                                </script>
-                            </div>
+                                    </script>
+                                </div>
                         </div>
                     </div>
                     <div class=" card-body ">
@@ -150,7 +150,7 @@
                 <div class="card shadow bg-body-tertiary rounded d-flex ">
                     <div class="card-header justify-content-md-between align-items-center">
                         <h1>{{ __('Oops! No match found. Try again') }}</h1>
-                    </div>
+                        </div>
                     <div class="card-header justify-content-md-between align-items-center">
                         <a href="{{ route('start') }}" class="btn btn-secondary">{{ __('BACK') }}</a>
                     </div>
@@ -167,3 +167,4 @@
     </div>
 </div>
 @endsection
+
