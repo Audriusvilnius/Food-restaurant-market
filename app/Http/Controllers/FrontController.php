@@ -147,22 +147,22 @@ class FrontController extends Controller
         $food = Food::where('id', '=', $request->product)->first();
         // $faker = Faker::create();
         $rateds = json_decode($food->rating_json, 1);
-        // $request->user_id = Auth::user()->id;
-        // $request->user_name = Auth::user()->name;
+        $request->user_id = Auth::user()->id;
+        $request->user_name = Auth::user()->name;
         $date = date('Y-m-d H:i', time());
 
-        // if ($request->food_review == null) {
-        //     $request->food_review = "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2);
-        // }
-        // if ($request->rated == null) {
-        //     $request->rated = rand(1, 5);
-        // }
+
+        if ($request->food_review == null) {
+            $request->food_review = "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2);
+        }
+        if ($request->rated == null) {
+            $request->rated = rand(1, 5);
+        }
 
         if ($rateds) {
-            $rateds[Auth::user()->id] = ['rate' => $request->rated, 'user_name' => Auth::user()->name, 'review' => $request->food_review, 'date' => $date];
-        }
-        if ($request->food_review == null && $request->rated == null) {
-            $rateds = [Auth::user()->id => ['rate' => rand(1, 5), 'user_name' => Auth::user()->name, 'review' => "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2), 'date' => $date]];
+            $rateds[$request->user_id] = ['rate' => $request->rated, 'user_name' => $request->user_name, 'review' => $request->food_review, 'date' => $date];
+        } else {
+            $rateds = [$request->user_id => ['rate' => $request->rated, 'user_name' => $request->user_name, 'review' => $request->food_review, 'date' => $date]];
         }
 
         $arrysum = 0;
@@ -179,7 +179,7 @@ class FrontController extends Controller
         DB::table('food')->where('id', $request->product)->update(['rating' => $rating]);
         DB::table('food')->where('id', $request->product)->update(['counts' => $count]);
 
-        return redirect(url()->previous() . '#' . Auth::user()->id)->with('ok', 'You rate ' . $food->title . ' ' . $food->rated . ' points');
+        return redirect(url()->previous() . '#' . $request->user_id)->with('ok', 'You rate ' . $food->title . ' ' . $request->rated . ' points');
     }
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)
