@@ -1,97 +1,75 @@
 @extends('layouts.app')
 @section('content')
-<section class="py-1 text-center container">
-    <div class="col-lg-4 col-md-8 mx-auto mt-1  py-2">
-        @if(Session::has('ok'))
-        <h6 class=" alert alert-success alert-dismissible fade show border border-dark border-2" role="alert">{{Session::get('ok')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
-        @endif
-        @if(Session::has('not'))
-        <h6 class=" alert alert-danger alert-dismissible fade show" role="alert">{{Session::get('not')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </h6>
-        @endif
-    </div>
-</section>
-<a href="#" class="text-decoration-none" style="color:black;">
-    <div class="up sticky-bottom">
-        <i class="bi bi-chevron-up"></i>
-    </div>
-</a>
+@include('alerts.alert')
+
 <div class="container mb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header justify-content-center">
-                    <h1>{{__('Owner')  }}</h1>
+                <div class="card-header justify-content-between align-content-between d-flex ">
+                    <h1>{{__('Owner') }}</h1>
+                    <a href="{{route('ovner-create')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add new') }}</a>
+
                 </div>
             </div>
             @forelse($ovners as $ovner)
             <div id="{{$ovner['id'] }}" class="card mt-2 d-flex justify-content-md-between">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <img src="{{asset($ovner->photo)}}" class="img-fluid rounded" alt="imageset">
                     </div>
-                    {{-- sekciaj padalinta i dvus pabaiga--}}
                     <div class="col-md-6">
                         <div class="card-body">
                             <h5><b><i> {{$ovner->title}}</b></i></h5>
-                            {{__('Address')  }}:
+                            {{__('Address') }}:
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-7">
-                                    <h6>{{__('Street')  }}: <b><i>{{$ovner->street}}</b></i></h6>
+                                    <h6>{{__('Street') }}: <b><i>{{$ovner->street}}</b></i></h6>
                                 </div>
-                                {{-- <div class="col-md-1"> --}}
-                                {{-- </div> --}}
                                 <div class="col-md-4">
-                                    <h6>{{__('Build')  }}: <b><i>{{$ovner->build}}</b></i></h6>
+                                    <h6>{{__('Build') }}: <b><i>{{$ovner->build}}</b></i></h6>
                                 </div>
                             </div>
-
-                            {{-- sekciaj padalinta i dvus pradzia--}}
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-7">
-                                    <h6>{{__('City')  }}: <b><i>{{$ovner->city}}</b></i></h6>
+                                    <h6>{{__('City') }}: <b><i>{{$ovner->city}}</b></i></h6>
                                 </div>
-                                {{-- <div class="col-md-1"> --}}
-                                {{-- </div> --}}
                                 <div class="col-md-4">
-                                    <h6>{{__('Postcode')  }}: <b><i>{{$ovner->postcode}}</b></i></h6>
+                                    <h6>{{_('Postcode') }}: <b><i>{{$ovner->postcode}}</b></i></h6>
                                 </div>
                             </div>
-                            <h6>{{__('Country')  }}: <b><i>{{$ovner->country}}</b></i></h6>
-                        </div>
-
-                        <div class="card-body">
-                            <h6>{{__('Bank')  }}: <b><i>{{$ovner->bank}}</b></i></h6>
-                            <h6>{{__('Account')  }}: <b><i>{{$ovner->account}}</b></i></h6>
+                            <h6>{{__('Country') }}: <b><i>{{$ovner->country}}</b></i></h6>
                         </div>
                         <div class="card-body">
-                            <div class="list-table__buttons">
-                                {{-- <a href="{{route('ovner-show', $ovner)}}" class="btn btn-info m-2">{{__('Show')  }}</a> --}}
-                                <a href="{{route('ovner-edit', $ovner)}}" class="btn btn-secondary m-2" style="width: 80px;">{{__('Edit')  }}</a>
-
-                                <form action="{{route('ovner-delete', $ovner)}}" method="post">
-                                    <button type="submit" class="btn btn-danger m-2">{{__('Delete')  }}</button>
-                                    @csrf
-                                    @method('delete')
-                                </form>
-                            </div>
+                            <h6>{{__('Bank') }}: <b><i>{{$ovner->bank}}</b></i></h6>
+                            <h6>{{__('Account') }}: <b><i>{{$ovner->account}}</b></i></h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="list-table__buttons">
+                            {{-- <a href="{{route('ovner-show', $ovner)}}" class="btn btn-info m-2">{{__('Show') }}</a> --}}
+                            <a href="{{route('ovner-edit', $ovner)}}" class="btn btn-secondary m-2" style="width: 80px;">{{__('Edit') }}</a>
+                            <form action="{{route('ovner-delete', $ovner)}}" method="post">
+                                <button type="submit" class="btn btn-danger m-2">{{__('Delete') }}</button>
+                                @csrf
+                                @method('delete')
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            @empty
-            <div class="col-xxl-12 col-xl-12 col-lg-12">
-                <div class="card shadow bg-body-tertiary rounded d-flex ">
-                    <div class="card-header justify-content-md-between align-items-center d-flex">
-                        <h1>{{__('List empty')  }}</h1>
-                        <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK')  }}</a>
-                    </div>
-                </div>
-            </div>
-            @endforelse
         </div>
+        @empty
+        <div class="col-xxl-12 col-xl-12 col-lg-12">
+            <div class="card shadow bg-body-tertiary rounded d-flex ">
+                <div class="card-header justify-content-md-between align-items-center d-flex">
+                    <h1>{{__('List empty')  }}</h1>
+                    <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK') }}</a>
+                </div>
+            </div>
+        </div>
+        @endforelse
     </div>
 </div>
+
 @endsection
