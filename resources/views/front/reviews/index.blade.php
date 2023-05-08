@@ -27,7 +27,7 @@
                             <h6>{{__('Rating') }}: <b><i>{{$food->rating}}</b></i></h6>
                             <h6>{{__('Voted') }}: <b><i>{{$food->counts}}</b></i></h6>
                             <hr class="border border-second border-2 opacity-50">
-                            <h6>{{__('City') }}: <b><i>{{$food->foodReataurants_name->city}}</b></i></h6>
+                            <h6>{{__('City') }}: <b><i>{{$food->foodCities_no->title}}</i></b></h6>
                             <h6>{{__('Restaurant') }}: <b><i>{{$food->foodReataurants_name->title}}</b></i></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-6">
