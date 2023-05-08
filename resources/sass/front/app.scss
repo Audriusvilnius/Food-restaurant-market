@@ -10,13 +10,32 @@
     height: 50px;
     width: auto;
     // filter: invert(70%);
-    
 }
-h1 {
+
+
+.conteiner-blue {
+    min-height: auto;
+    background-color: rgb(27, 176, 235);
+}
+
+.conteiner-black {
+    min-height: auto;
+    background-color: black;
+}
+
+.conteiner-lemon {
+    min-height: auto;
+    background-color: #FAFA33;
+}
+
+
+h1,
+h3 {
     font-family: $sa;
     font-weight: 900;
     //color: skyblue;
 }
+
 svg.cart {
     width: 45px;
     height: 45px;
@@ -41,28 +60,22 @@ svg.cart {
 }
 
 .mystyle {
-    background-image: url("/public/images/temp/2560x1600-508367-allium-aromatic-1.jpg");
+    // background-image: url("/public/images/temp/table.jpg");
+    // background-attachment: fixed;
+    // opacity: 0.97;
+    // background-image: linear-gradient(to bottom, rgba(214, 214, 214, 0.6) 0%, rgba(116, 114, 114, 0.9) 100%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment: fixed;
-    opacity: 0.97;
-    border-radius: 41px;
     text-align: center;
+    background-color: #D6D6D6;
 }
 
-// .page {
-//     background-color: rgba(135, 207, 235, 0.954);
-// }
+.shadow_new {
+    color: rgba(254, 254, 254, 0.95);
+    text-shadow: 10px 10px 20px black, 10px 10px 15px rgb(50, 50, 52), 0 0 5px rgb(19, 19, 21);
 
-// .blure {
-//     filter: blur(5px);
-//     width: 100%;
-//     height: 40px;
-//     transform: translateY(70%);
-//     background-color: skyblue;
-// }
-
+}
 
 .up {
     float: right;
@@ -79,14 +92,19 @@ svg.cart {
     z-index: 1;
 }
 
-// .btnsort{
-// transform: translateX(20%);
-// }
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-// .btnpage
-// {
-// transform: translateX(60%);
-// }
+.container_pic {
+    position: relative;
+    text-align: center;
+    color: white;
+
+}
 
 .pagination>li>a,
 .pagination>li>span {
@@ -99,10 +117,176 @@ svg.cart {
 .pagination>.active>span,
 .pagination>.active>span:focus,
 .pagination>.active>span:hover {
-    background-color:rgb(65, 65, 65);
+    background-color: rgb(65, 65, 65);
     border-color: rgb(65, 65, 65);
 }
-.btn{
-    width: 80px;
+
+
+// .btn {
+//     width: 80px;
+// }
+
+.star {
+    --star-color: orange;
+    margin: 1em auto;
+    font-size: 0.5em;
+    position: relative;
+    display: inline-block;
+    /* add this line */
+    width: 0px;
+    height: 0px;
+    border-right: 1em solid transparent;
+    border-bottom: 0.7em solid var(--star-color);
+    border-left: 1em solid transparent;
+    transform: rotate(35deg);
+    background-color: white;
+    color: transparent;
+    fill: none;
 }
 
+.star:before {
+    border-bottom: 0.8em solid var(--star-color);
+    border-left: 0.3em solid transparent;
+    border-right: 0.3em solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -0.45em;
+    left: -0.65em;
+    display: block;
+    content: "";
+    transform: rotate(-35deg);
+}
+
+.star:after {
+    position: absolute;
+    display: block;
+    top: 0.03em;
+    left: -1.05em;
+    width: 0;
+    height: 0;
+    border-right: 1em solid transparent;
+    border-bottom: 0.7em solid var(--star-color);
+    border-left: 1em solid transparent;
+    transform: rotate(-70deg);
+    content: "";
+}
+
+// #rating-score {
+//     display: flex;
+// }
+
+
+.btnFront {
+    max-width: 700px;
+}
+
+.text-block {
+    opacity: .95;
+    background-color: crimson;
+    color: white;
+    border-radius: 15px;
+    font-family: $cl;
+    font-weight: 100;
+    width: 250px;
+    height: 100px;
+    font-size: 31px;
+    z-index: 10;
+    line-height: 100px;
+    border: solid 2px #869791;
+    transition: 2s;
+}
+
+.text-block-sm {
+    opacity: .95;
+    background-color: crimson;
+    color: white;
+    border-radius: 15px;
+    font-family: $cl;
+    font-weight: 100;
+    width: 250px;
+    height: 80px;
+    line-height: 80px;
+    border: solid 2px #869791;
+    z-index: 10;
+    transition: 2s;
+    font-size: 31px;
+}
+
+.message {
+    z-index: 9;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.text-block-sm:hover {
+    background-color: rgb(27, 176, 235);
+    transition: .5s;
+    font-size: 36px;
+    width: 263px;
+    height: 84px;
+    line-height: 84px;
+    animation: fadein 2s;
+}
+
+
+
+.text-block:hover {
+    background-color: rgb(27, 176, 235);
+    transition: 0.5s;
+    font-size: 36px;
+    width: 263px;
+    height: 105px;
+    line-height: 105px;
+    animation: fadein 2s;
+}
+
+.owl-carousel .nav-btn {
+    height: 47px;
+    position: absolute;
+    width: 26px;
+    cursor: pointer;
+    top: 15%;
+    // top: 100px !important;
+}
+
+.owl-carousel .owl-prev.disabled,
+.owl-carousel .owl-next.disabled {
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+.owl-carousel .prev-slide {
+    // background: url(nav-icon.png) no-repeat scroll 0 0;
+    left: -40px;
+}
+
+.owl-carousel .next-slide {
+    // background: url(nav-icon.png) no-repeat scroll -24px 0px;
+    right: -30px;
+}
+
+.owl-carousel .prev-slide:hover {
+    background-position: 0px -53px;
+}
+
+.owl-carousel .next-slide:hover {
+    background-position: -24px -53px;
+}
+
+.bi {
+    color: rgb(214, 214, 214);
+    font-size: 2rem;
+}
+
+.bi:hover {
+    color: #869791;
+}
