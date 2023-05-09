@@ -261,7 +261,7 @@ class FrontController extends Controller
 
         // Mail::to($to)->send(new OrderBasket($order));
         $basket->empty();
-        return redirect()->route('start');
+        return redirect()->route('start')->with('ok', 'Order coplete, Thank you for the order, see you soon ');
     }
 
 
