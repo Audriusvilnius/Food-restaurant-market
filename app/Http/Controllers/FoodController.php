@@ -35,7 +35,7 @@ class FoodController extends Controller
         if (app()->getLocale() == "lt") {
             $message1 = "Restorano pavadinimas sėkmingai nukopijuotas";
         } else {
-            $message1 = "Restaurant\'s title succesfully copied";
+            $message1 = "Restaurants title succesfully copied";
         }
         $foods = food::all();
 
