@@ -51,6 +51,7 @@
                             @endif
                             @endforeach
                     </div>
+                    TEst!!!
                     <h6 class="mt-3"><i>{{ $food->foodReataurants_name->title }}</i></h6>
                     <div class="justify-content-center align-bottom">
                         @if (app()->getLocale() == 'lt')
