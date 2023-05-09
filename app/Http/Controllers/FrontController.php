@@ -135,16 +135,17 @@ class FrontController extends Controller
         $food = Food::where('id', '=', $request->product)->first();
 
         $rateds = json_decode($food->rating_json, 1);
-        usort($rateds, function ($b, $a) {
-            return $a['date'] <=> $b['date'];
-        });
-
-        $request->user_name = Auth::user()->name;
+        if ($rateds != null) {
+            usort($rateds, function ($b, $a) {
+                return $a['date'] <=> $b['date'];
+            });
+        }
+        // $request->user_name = Auth::user()->name;
         return view('front.reviews.index', [
             'rateds' => $rateds,
             'food' => $food,
             'id' => $request->product,
-            'name' => $request->user_name,
+            'name' => Auth::user()->name,
         ]);
     }
     public function rate(Request $request, Food $food)
