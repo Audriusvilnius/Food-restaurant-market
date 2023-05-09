@@ -165,7 +165,9 @@
                                 <h6 class="float-end">{{ $reviews['date'] }}</h6>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
             @endforeach
         @endif
