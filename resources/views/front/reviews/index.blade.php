@@ -24,8 +24,6 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                            {{-- Reikia tvarkyti , nerodo title ir city, nes pasikeite pavadinimai kitamuju
-                             --}}
                             @if (app()->getLocale() == 'lt')
                             <h6 class="fs-5">{{ __('Category') }}:
                                 <b><i>{{ $food->foodCategory_no->title_lt }}</i></b>
@@ -73,7 +71,6 @@
                                         <input class="radio-input " type="radio" id="star5" name="rated" value="5" required />
                                         <label class="radio-label me-2" class for="star5" title="5 stars">5 stars</label>
 
-                                        {{-- Jeigu ką čia ieškot --}}
                                         <input class="radio-input" type="radio" id="star4" name="rated" value="4" />
                                         <label class="radio-label me-2" for="star4" title="4 stars">4 stars</label>
 
@@ -130,7 +127,6 @@
             {{-- </div> --}}
             <div class="col-md-12 d-flex">
                 <div class="card-body ms-5 me-5">
-                    {{-- <h4 class="float-end fw-light">{{ $reviews['review'] }}</h4> --}}
                     <p class="card-text">{{ $reviews['review'] }}</p>
                 </div>
             </div>
@@ -139,9 +135,7 @@
                     <h6 class="float-end">{{ $reviews['date'] }}</h6>
                 </div>
             </div>
-
         </div>
-
     </div>
     @endforeach
     @endif
