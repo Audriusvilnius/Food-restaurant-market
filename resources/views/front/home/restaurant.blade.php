@@ -62,7 +62,7 @@
                         <h3 @if ($food->price < 20) style="color:crimson;" @endif><b>{{ __('Price') }}:
                                     <i>{{ $food->price }} &euro;</b></i></h3>
                         <div class="ms-10">
-                            <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
+                            {{-- <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5> --}}
                             <div id="rating-score">
                                 <script>
                                     for (let i = 0; i < `${Math.round({{$food -> rating}})}`; i++) {
