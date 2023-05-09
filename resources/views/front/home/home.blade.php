@@ -55,6 +55,7 @@
                     <div class="justify-content-center align-bottom">
                         @if (app()->getLocale() == 'lt')
                         <h4 class="mt-3"><b><i>{{ $food->title_lt }}</b></i></h4>
+
                         @else
                         <h4 class="mt-3"><b><i>{{ $food->title_en }}</b></i></h4>
                         @endif
@@ -73,6 +74,7 @@
                             </div>
                         </div>
                     </div>
+                    <span class="mt-3"><b><i>{{ $food->add }}</b></i></span>
                     <div class=" card-body ">
                         <div class="accordion accordion-flush" id="accordionFlushExample">
                             <div style="font-size:17px;">
