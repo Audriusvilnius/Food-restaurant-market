@@ -1,6 +1,8 @@
 @extends('layouts.front')
 @section('content')
+
 @include('alerts.alert')
+
 
 <div class="conteiner-blue">
     <section class="py-1 text-center container shadow_new btnFront">
@@ -31,19 +33,23 @@
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
-                        <img src="{{ asset($food->photo) }}" class="img-fluid rounded shadow bg-body-tertiary" alt=" hotel">
-                        @foreach ($restaurants as $restaurant)
-                        @if ($restaurant->id == $food->rest_id && $restaurant->works == 'false')
-                        <div style="transform: translateX({{ $restaurant->translateX }}px) translateY({{ $restaurant->translateY }}px) rotate({{ $restaurant->deg }}deg);" class="centered shadow_new justify-content-center text-block-sm">
-                            <div onmouseover="mOver({{ $key }})" onmouseout="mOut({{ $key }})">
-                                <div class="appBannerT{{ $key }}" style="display: none;">open
-                                    {{ $restaurant->open }}</div>
-                                <div class="appBannerB{{ $key }}" style="display: inline;">closed
+                        @if (app()->getLocale() == "lt")
+                        <button type="button" class="btn btn-link p-0" onclick="Yeezy_lt({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            @else
+                            <button type="button" class="btn btn-link p-0" onclick="Yeezy_en({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                @endif
+                                <img src="{{asset($food->photo)}}" class="img-fluid rounded-top shadow bg-body-tertiary" alt=" food-item">
+                            </button>
+                            @foreach($restaurants as $restaurant)
+                            @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
+                            <div style="transform: translateX({{$restaurant->translateX}}px) translateY({{$restaurant->translateY}}px) rotate({{$restaurant->deg}}deg);" class="centered shadow_new justify-content-center text-block-sm">
+                                <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
+                                    <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
+                                    <div class="appBannerB{{$key}}" style="display: inline;">closed</div>
                                 </div>
                             </div>
-                        </div>
-                        @endif
-                        @endforeach
+                            @endif
+                            @endforeach
                     </div>
                     <h6 class="mt-3"><i>{{ $food->foodReataurants_name->title }}</i></h6>
                     <div class="justify-content-center align-bottom">
@@ -55,19 +61,15 @@
                         <h3 @if ($food->price < 20) style="color:crimson;" @endif><b>{{ __('Price') }}:
                                     <i>{{ $food->price }} &euro;</b></i></h3>
                         <div class="ms-10">
-                            <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h6>
-                                <div id="rating-score">
-                                    <script>
-                                        for (let i = 0; i < Math.round({
-                                                {
-                                                    $food - > rating
-                                                }
-                                            }); i++) {
-                                            document.write('<div class="star"></div>');
-                                        }
-                                    </script>
+                            <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
+                            <div id="rating-score">
+                                <script>
+                                    for (let i = 0; i < `${Math.round({{$food -> rating}})}`; i++) {
+                                        document.write('<div class="star"></div>');
+                                    }
 
-                                </div>
+                                </script>
+                            </div>
                         </div>
                     </div>
                     <div class=" card-body ">
@@ -96,12 +98,7 @@
                                 <h6>{{ __('Close') }}:
                                     <b><i>{{ $food->foodReataurants_name->close }}</i></b>
                                 </h6>
-                                <hr class="border border-second border-2 opacity-0">
-                                @if (app()->getLocale() == 'lt')
-                                <span class="text-muted">{{ $food->des_lt }}</span>
-                                @else
-                                <span class="text-muted">{{ $food->des_en }}</span>
-                                @endif
+
                             </div>
                             <hr class="border border-second border-2 opacity-0">
                             <form action="{{ route('update-reviews') }}" method="get">
@@ -156,13 +153,43 @@
                 </div>
             </div>
             @endforelse
-            <div class="mt-4">
-                @if ($perPageShow != 'All')
-                {{ $foods->links() }}
-                @endif
-            </div>
         </div>
         <hr class="border border-second border-0 opacity-50 m-1">
+        <div class="m-4">
+            @if ($perPageShow != 'All')
+            {{ $foods->links() }}
+            @endif
+        </div>
     </div>
 </div>
+
+
+
+
+<!-- Modal -->
+<section class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ModalTitle"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="photopop"></div>
+                <br>
+                <p>
+                    <div id="desc"> </div>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    <div id="bttn"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 @endsection

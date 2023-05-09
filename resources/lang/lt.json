@@ -9,7 +9,6 @@
     "Total": "Iš viso",
     "Add new": "Pridėti naują",
     "List": "Sąrašas",
-    "Add": "Naujas",
     "Login": "Prisijungti",
     "Logout": "Atsijungti",
     "Customer": "Klientas",
@@ -28,9 +27,6 @@
     "SHOW": "RODYTI",
     "RESET": "GRĄŽINTI",
     "City": "Miestas",
-    "Add City": "Pridėti miestą",
-    "Add Category": "Pridėti kategoriją",
-    "Add Restaurant": "Pridėti restoraną",
     "Address": "Adresas",
     "Open": "Atidaromas",
     "Close": "Uždaromas",
@@ -39,7 +35,7 @@
     "Rate": "Įvertinti",
     "RATE": "VERTINTI",
     "Qty": "Kiekis",
-    "You are logged in!": "Esate prisijungęs!",
+    "You are logged in!": "Esate prisijungęs!", 
     "Dashboard": "Valdymo skydas",
     "Verify Your Email Address": "Patvirtinkite elektroninio pašo adresą",
     "A fresh verification link has been sent to your email address.": "Nauja patvirtinimo nuoroda buvo nusiųsta į norodytą elektroninį paštą",
@@ -58,7 +54,7 @@
     "No types yet": "Kol kas nėra grupių",
     "Delivery date and time": "Pristatymo data ir laikas",
     "Sum": "Suma",
-    "Delivery date": "Pristatymo data",
+    "Delivery date" : "Pristatymo data",
     "Delivery from": "Pristatymas nuo",
     "up to": "iki",
     "Comments": "Komentarai",
@@ -150,5 +146,6 @@
     "closed": "Uždaryta",
     "offers to you": "Jums siūlo",
     "Delivery Fee": "Pristatymo mokestis",
-    "Oops! Something went wrong, missing category info": "Oi! Kažkas ne taip, trūksta kategorijų informacijos"
+    "Oops! Something went wrong, missing category info": "Oi! Kažkas ne taip, trūksta kategorijų informacijos",
+    "To ship": "Siųsti"
 }
