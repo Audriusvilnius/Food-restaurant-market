@@ -140,12 +140,12 @@ class FrontController extends Controller
                 return $a['date'] <=> $b['date'];
             });
         }
-        // $request->user_name = Auth::user()->name;
+        $request->user_name = Auth::user()->name;
         return view('front.reviews.index', [
             'rateds' => $rateds,
             'food' => $food,
             'id' => $request->product,
-            'name' => Auth::user()->name,
+            'name' => $request->user_name,
         ]);
     }
     public function rate(Request $request, Food $food)

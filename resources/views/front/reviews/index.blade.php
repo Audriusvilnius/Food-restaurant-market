@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+{{-- @include('alerts.alert') --}}
+
 
 <a href="#" class="text-decoration-none" style="color:black;">
     <div class="up sticky-bottom">

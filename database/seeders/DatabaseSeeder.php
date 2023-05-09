@@ -156,7 +156,7 @@ class DatabaseSeeder extends Seeder
                 'title_lt' => $faker_lt->foodName,
                 'counts' => 0,
                 'price' => rand(499, 2999) / 100,
-                'rating' => rand(100, 500) / 100,
+                'rating' => rand(0, 5),
                 'add' => $faker->realText(100, 5),
                 'photo' => '/images/temp/' . $photo_food . '.jpeg',
                 'des_en' => $faker->realText(600, 5),
