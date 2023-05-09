@@ -135,6 +135,10 @@ class FrontController extends Controller
         $food = Food::where('id', '=', $request->product)->first();
 
         $rateds = json_decode($food->rating_json, 1);
+        usort($rateds, function ($b, $a) {
+            return $a['date'] <=> $b['date'];
+        });
+
         $request->user_name = Auth::user()->name;
         return view('front.reviews.index', [
             'rateds' => $rateds,
@@ -151,7 +155,6 @@ class FrontController extends Controller
         $request->user_id = Auth::user()->id;
         $request->user_name = Auth::user()->name;
         $date = date('Y-m-d H:i', time());
-
 
         if ($request->food_review == null) {
             $request->food_review = "The user doesn't leave a review, but..." . Faker::create()->realText($maxNbChars = 500, $indexSize = 2);

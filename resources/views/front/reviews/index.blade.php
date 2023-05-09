@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-@include('alerts.alert')
 
 
 <a href="#" class="text-decoration-none" style="color:black;">
@@ -64,11 +63,13 @@
                     <form action="{{ route('update-rate') }}" method="post">
                         <div class="gap-3 align-items-center justify-content-center">
                             <div class="col-md-12 d-flex">
+
                                 <div class="card-body d-flex justify-content-end">
                                     <input type="hidden" name="product" value="{{ $food->id }}">
                                     {{-- <input type="number" min="1" max="5" name="rated" value="3"
                                             placeholder="1 - 5" class="form-control imputnumber"> --}}
                                     <div class="star-rating">
+
                                         <input class="radio-input " type="radio" id="star5" name="rated" value="5" required />
                                         <label class="radio-label me-2" class for="star5" title="5 stars">5 stars</label>
 
