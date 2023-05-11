@@ -84,7 +84,7 @@
                                 {{__('Owners') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('ovner-create') }}">{{__('Add new')  }}</a>
+                                {{-- <a class="dropdown-item" href="{{ route('ovner-create') }}">{{__('Add new')  }}</a> --}}
                                 <a class="dropdown-item" href="{{ route('ovner-index') }}">{{__('List') }}</a>
                             </div>
                         </li>
