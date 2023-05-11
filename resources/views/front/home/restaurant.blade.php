@@ -43,7 +43,6 @@
                                 <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
                                     <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
                                     <div class="appBannerB{{$key}}" style="display: inline;">closed</div>
-
                                 </div>
                             </div>
                             @endif
@@ -55,9 +54,7 @@
                         @if (app()->getLocale() == 'lt')
                         <h4 class="mt-3"><b><i>{{ $food->title_lt }}</b></i></h4>
                         @else
-
                         <h4 class="mt-3"><b><i>{{ $food->title_en }}</b></i></h4>
-
                         @endif
                         <h3 @if ($food->price < 20) style="color:crimson;" @endif><b>{{ __('Price') }}:
                                     <i>{{ $food->price }} &euro;</b></i></h3>

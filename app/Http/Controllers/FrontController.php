@@ -145,7 +145,7 @@ class FrontController extends Controller
             'rateds' => $rateds,
             'food' => $food,
             'id' => $request->product,
-            'name' => Auth::user()->name,
+            // 'name' => Auth::user()->name,
         ]);
     }
     public function rate(Request $request, Food $food)
