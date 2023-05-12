@@ -96,7 +96,6 @@
                                 <h6>{{ __('Close') }}:
                                     <b><i>{{ $food->foodReataurants_name->close }}</i></b>
                                 </h6>
-
                             </div>
                             <hr class="border border-second border-2 opacity-0">
                             <form action="{{ route('update-reviews') }}" method="get">
