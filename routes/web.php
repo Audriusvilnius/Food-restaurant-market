@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\FrontController as F;
 use App\Http\Controllers\OvnerController as O;
 use App\Http\Controllers\FoodController as D;
@@ -9,6 +10,11 @@ use App\Http\Controllers\OrderController as B;
 use App\Http\Controllers\CityController as City;
 use App\Http\Controllers\CategoryController as Category;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController as Role;
+use App\Http\Controllers\UserController as User;
+use App\Http\Controllers\ProductController as Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +103,13 @@ Route::prefix('admin/category')->name('category-')->group(function () {
 Auth::routes();
 //Auth::routes(['register'=> false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('roles', Role::class);
+    Route::resource('users', User::class);
+    Route::resource('products', Product::class);
+});
+
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
