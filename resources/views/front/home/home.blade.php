@@ -33,13 +33,12 @@
             <div id="{{ $food['id'] }}" class="col d-flex justify-content-md-between">
                 <div class="card g-0 shadow p-0 bg-body-tertiary rounded">
                     <div class="container_pic">
-
                         @if (app()->getLocale() == "lt")
-                        <button type="button" class="btn btn-link" onclick="Yeezy_lt({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-link p-0" onclick="Yeezy_lt({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             @else
-                            <button type="button" class="btn btn-link" onclick="Yeezy_en({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-link p-0" onclick="Yeezy_en({{$food}})" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 @endif
-                                <img src="{{asset($food->photo)}}" class="img-fluid rounded shadow bg-body-tertiary" alt=" food-item">
+                                <img src="{{asset($food->photo)}}" class="img-fluid rounded-top shadow bg-body-tertiary" alt=" food-item">
                             </button>
                             @foreach($restaurants as $restaurant)
                             @if($restaurant->id == $food->rest_id && $restaurant->works == 'false')
@@ -47,7 +46,6 @@
                                 <div onmouseover="mOver({{$key}})" onmouseout="mOut({{$key}})">
                                     <div class="appBannerT{{$key}}" style="display: none;">open {{$restaurant->open}}</div>
                                     <div class="appBannerB{{$key}}" style="display: inline;">closed</div>
-
                                 </div>
                             </div>
                             @endif
@@ -57,25 +55,26 @@
                     <div class="justify-content-center align-bottom">
                         @if (app()->getLocale() == 'lt')
                         <h4 class="mt-3"><b><i>{{ $food->title_lt }}</b></i></h4>
+
                         @else
-
                         <h4 class="mt-3"><b><i>{{ $food->title_en }}</b></i></h4>
-
                         @endif
                         <h3 @if ($food->price < 20) style="color:crimson;" @endif><b>{{ __('Price') }}:
                                     <i>{{ $food->price }} &euro;</b></i></h3>
                         <div class="ms-10">
-                            <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5>
+                            {{-- <h5 class="mt-10"><i> {{ __('Rating') }}:</i></h5> --}}
                             <div id="rating-score">
                                 <script>
                                     for (let i = 0; i < `${Math.round({{$food -> rating}})}`; i++) {
-                                        document.write('<div class="star"></div>');
+                                        document.write('<div class="star" style="font-size: .5rem"></div>');
+
                                     }
 
                                 </script>
                             </div>
                         </div>
                     </div>
+                    <span class="mt-3"><b><i>{{ $food->add }}</b></i></span>
                     <div class=" card-body ">
                         <div class="accordion accordion-flush" id="accordionFlushExample">
                             <div style="font-size:17px;">
@@ -157,37 +156,43 @@
                 </div>
             </div>
             @endforelse
-            <div class="mt-4">
-                @if ($perPageShow != 'All')
-                {{ $foods->links() }}
-                @endif
-            </div>
         </div>
         <hr class="border border-second border-0 opacity-50 m-1">
+        <div class="m-4">
+            @if ($perPageShow != 'All')
+            {{ $foods->links() }}
+            @endif
+        </div>
     </div>
+</div>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="ModalTitle"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="photopop"></div>
-                    <br>
-                    <p>
-                        <div id="desc"> </div>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                        <div id="bttn"></div>
-                    </button>
-                </div>
+
+
+<!-- Modal -->
+<section class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ModalTitle"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="photopop"></div>
+                <br>
+                <p>
+                    <div id="desc"> </div>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    <div id="bttn"></div>
+                </button>
             </div>
         </div>
     </div>
-    @endsection
+</section>
+
+
+
+@endsection
