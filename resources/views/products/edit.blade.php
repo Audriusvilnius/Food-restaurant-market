@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.front')
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -41,5 +41,4 @@
         </div>
     </div>
 </form>
-<p class="text-center text-primary"><small>Tutorial by LaravelTuts.com</small></p>
 @endsection

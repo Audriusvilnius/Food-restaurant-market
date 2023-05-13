@@ -8,14 +8,23 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\Permission\Traits\HasRoles;
+
+
+
+
+
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    // use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     const ROLES = [
-        'A'=> 'admin',
-        'M'=> 'manager',
-        'C'=> 'customer'
+        'A' => 'admin',
+        'M' => 'manager',
+        'C' => 'customer'
     ];
 
 

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -19,48 +24,88 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'User',
-            'email' => 'user@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'manager'
-        ]);
-        DB::table('users')->insert([
+        $user_a = User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123'),
             'role' => 'admin'
         ]);
-        DB::table('users')->insert([
+
+        $role_a = Role::create(['name' => 'admin']);
+        $permissions_a = Permission::pluck('id', 'id')->all();
+        $role_a->syncPermissions($permissions_a);
+        $user_a->assignRole([$role_a->id]);
+
+        $user = User::create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('123'),
+            'role' => 'manager'
+        ]);
+
+        $role = Role::create(['name' => 'user']);
+        $permissions = Permission::pluck('id', 'id')->all();
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
+
+        $user = User::create([
             'name' => 'Customer',
             'email' => 'customer@gmail.com',
             'password' => Hash::make('123'),
             'role' => 'customer'
         ]);
-        DB::table('users')->insert([
-            'name' => 'Ina',
-            'email' => 'ina@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'admin'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Tomas',
-            'email' => 'tomas@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'admin'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Vytautas',
-            'email' => 'vytautas@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'admin'
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Audrius',
-            'email' => 'audrius@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'admin'
-        ]);
+
+        $role = Role::create(['name' => 'customer']);
+        $permissions = Permission::pluck('id', 'id')->all();
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
+
+
+
+
+
+        // DB::table('users')->insert([
+        //     'name' => 'User',
+        //     'email' => 'user@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'role' => 'manager'
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'role' => 'admin'
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Customer',
+        //     'email' => 'customer@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'role' => 'customer'
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Ina',
+        //     'email' => 'ina@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'role' => 'admin'
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Tomas',
+        //     'email' => 'tomas@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'role' => 'admin'
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Vytautas',
+        //     'email' => 'vytautas@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'role' => 'admin'
+        // ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Audrius',
+        //     'email' => 'audrius@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'role' => 'admin'
+        // ]);
 
         $faker = Faker::create();
         $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
