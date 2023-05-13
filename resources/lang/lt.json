@@ -151,5 +151,10 @@
     "offers to you": "Jums siūlo",
     "Delivery Fee": "Pristatymo mokestis",
     "Oops! Something went wrong, missing category info": "Oi! Kažkas ne taip, trūksta kategorijų informacijos",
-    "To ship": "Siųsti"
+    "To ship": "Siųsti",
+    "My Orders": "Mano užsakymai",
+    "Order status": "Užsakymo būsena",
+    "Opened": "Sukurtas",
+    "Total sum": "Galutinė suma"
+    
 }

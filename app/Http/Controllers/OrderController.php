@@ -18,6 +18,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Mail;
 use LogicException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -33,6 +34,22 @@ class OrderController extends Controller
             'orders' => $orders
         ]);
     }
+
+    public function myorders()
+    {
+        $orders = Order::orderBy('created_at', 'desc')
+            ->where('user_id', Auth::user()->id)
+            ->get()
+            ->map(function ($food) {
+                $food->baskets = json_decode($food->order_json);
+                return $food;
+            });
+        return view('back.orders.myorders', [
+            'orders' => $orders
+        ]);
+    }
+
+    
 
     public function update(Request $request, Order $order)
     {

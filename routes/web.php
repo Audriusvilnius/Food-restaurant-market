@@ -29,6 +29,10 @@ Route::prefix('admin/order')->name('order-')->group(function () {
     Route::post('/staus/{order}', [B::class, 'status'])->name('status')->middleware('roles:A|M');
 });
 
+Route::prefix('customer/{id}/order')->name('order-')->group(function () {
+    Route::get('/', [B::class, 'myorders'])->name('myorders')->middleware('roles:C');
+});
+
 Route::get('/', [F::class, 'home'])->name('start');
 Route::post('/rate', [F::class, 'rate'])->name('update-rate')->middleware('roles:A|M|C');
 
@@ -178,4 +182,9 @@ Route::prefix('admin') -> group(function() {
         session()->put('locale', $locale);
         return redirect()->back();
     });
+});
+Route::get('/customer/{id}/language/{locale}', function ($id, $locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
 });
