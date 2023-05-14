@@ -50,6 +50,8 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         @if(Auth::user()?->role == 'admin')
+                        <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Orders') }}

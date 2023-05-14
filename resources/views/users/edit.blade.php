@@ -87,6 +87,7 @@
                         {!! Form::text('postcode', null, array('placeholder' => 'Postcode','class' => 'form-control')) !!}
                     </div>
                 </div>
+                @if(Auth::user()?->role == 'admin')
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Restaurant:</strong>
@@ -105,6 +106,7 @@
                         {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
                     </div>
                 </div>
+                @endif
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2 d-flex justify-content-end">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
