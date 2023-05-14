@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Restaurant;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -86,10 +87,12 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
         $rest_id = Restaurant::all();
-
+        $cites = City::all();
+        // @dd($rest_id);
         return view('users.edit', [
             'rest_id' => $rest_id,
             'user' => $user,
+            'cites' => $cites,
             'roles' => $roles,
             'userRole' => $userRole
         ]);
@@ -131,6 +134,7 @@ class UserController extends Controller
         // dd($request->roles);
         $user->role = $request->roles[0];
         $user->rest_id = $request->rest_id;
+        $user->city_id = $request->city_id;
         $user->phone = $request->phone;
         $user->street = $request->street;
         $user->build = $request->build;

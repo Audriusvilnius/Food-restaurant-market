@@ -49,8 +49,10 @@
                                 </select>
                                 <h6>{{__('City') }}</h6>
                                 <select class="form-select" name="city_id">
+
                                     @foreach($cities as $city)
                                     <option value="{{$city->id}}" @if($city->id == old('city_id',$food->food_city_no)) selected @endif>{{$city->title}}</option>
+
                                     @endforeach
                                 </select>
 

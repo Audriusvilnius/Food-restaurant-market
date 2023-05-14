@@ -13,6 +13,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Spatie\Permission\Traits\HasRoles;
 
 
+use Illuminate\Database\Eloquent\Model;
 
 
 
@@ -57,4 +58,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function user_City()
+
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
 }

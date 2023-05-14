@@ -37,12 +37,17 @@
                     <td>{{ ++$i }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->city }}</td>
+                    {{-- <td>{{ $user->city_id }}</td> --}}
+                    <td>
+                        @if(!empty($user->user_City->title))
+                        {{ $user->user_City->title }}
+                        @else None
+                        @endif
+                    </td>
                     <td>{{ $user->street}}</td>
                     <td>{{ $user->build}}</td>
                     <td>{{ $user->postcode}}</td>
-                    <td>{{ $user->street}}</td>
-                    <td>{{ $user->phone }}</td>
+                    <td>{{ $user->phone}}</td>
                     <td>{{ $user->rest_id }}</td>
                     <td>
                         @if(!empty($user->getRoleNames()))

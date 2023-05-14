@@ -58,6 +58,18 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
+                        <strong>City:</strong>
+                        <select class="form-select" name="city_id">
+                            @foreach($cites as $city)
+                            <option value="{{$city->id}}" @if($city->id == old('city_id')) selected @endif>{{$city->title}}</option>
+                            @endforeach
+                        </select>
+                        {{-- {{$rest_id->title}} --}}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
                         <strong>Street:</strong>
                         {!! Form::text('street', null, array('placeholder' => 'Street','class' => 'form-control')) !!}
                     </div>
@@ -79,7 +91,7 @@
                         <strong>Rest:</strong>
                         <select class="form-select" name="rest_id">
                             @foreach($rest_id as $restaurant)
-                            <option value="{{$restaurant->id}}" @if($restaurant->id == old('rest_id')) selected @endif>{{$restaurant->title}}</option>
+                            <option value="{{$restaurant->id}}" @if($restaurant->id == old('rest_id',$restaurant->id)) selected @endif>{{$restaurant->title}}</option>
                             @endforeach
                         </select>
                         {{-- {{$rest_id->title}} --}}
@@ -92,7 +104,6 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2 d-flex justify-content-end">
-
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </div>
@@ -100,5 +111,4 @@
         </div>
     </div>
 </div>
-
 @endsection
