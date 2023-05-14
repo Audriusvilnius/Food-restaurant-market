@@ -41,8 +41,9 @@
                     <td>
                         @if(!empty($user->user_City->title))
                         {{ $user->user_City->title }}
-                        @else None
-                        @endif
+                        @else <span class="badge rounded-pill bg-info fw-lighter text-capitalize fs-6">None<span>
+
+                                @endif
                     </td>
                     <td>{{ $user->street}}</td>
                     <td>{{ $user->build}}</td>

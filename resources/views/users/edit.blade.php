@@ -60,6 +60,7 @@
                     <div class="form-group">
                         <strong>City:</strong>
                         <select class="form-select" name="city_id">
+                            <option value="{{null}}">None</option>
                             @foreach($cites as $city)
                             <option value="{{$city->id}}" @if($city->id == old('city_id')) selected @endif>{{$city->title}}</option>
                             @endforeach

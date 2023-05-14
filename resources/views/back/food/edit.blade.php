@@ -38,6 +38,8 @@
                                 @else
                                 <input type="text" class="form-control" name="food_title_en" value="{{old('food_title_en',$food->title_en)}}">
                                 <input type="hidden" name="food_title_lt" value="{{$food->title_lt}}">
+
+
                                 @endif
                                 <h6>{{__('Price') }}: </h6>
                                 <input type="text" class="form-control" name="food_price" value="{{old('food_price',$food->price)}}">
@@ -45,14 +47,13 @@
                                 <select class="form-select" name="restaurant_id">
                                     @foreach($restaurants as $restaurant)
                                     <option value="{{$restaurant->id}}" @if($restaurant->id == old('restaurant_id',$food->rest_id)) selected @endif>{{$restaurant->title}}</option>
+
                                     @endforeach
                                 </select>
                                 <h6>{{__('City') }}</h6>
                                 <select class="form-select" name="city_id">
-
                                     @foreach($cities as $city)
                                     <option value="{{$city->id}}" @if($city->id == old('city_id',$food->food_city_no)) selected @endif>{{$city->title}}</option>
-
                                     @endforeach
                                 </select>
 
