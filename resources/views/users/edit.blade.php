@@ -89,7 +89,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Rest:</strong>
+                        <strong>Restaurant:</strong>
+                        <option value="{{null}}">None</option>
                         <select class="form-select" name="rest_id">
                             @foreach($rest_id as $restaurant)
                             <option value="{{$restaurant->id}}" @if($restaurant->id == old('rest_id',$restaurant->id)) selected @endif>{{$restaurant->title}}</option>

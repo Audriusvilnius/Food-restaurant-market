@@ -14,8 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 
 use Illuminate\Database\Eloquent\Model;
-
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -59,9 +58,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /** @return BelongsTo  */
     public function user_City()
-
     {
         return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+    /** @return BelongsTo  */
+    public function user_Restaurants()
+    {
+        return $this->belongsTo(Restaurant::class, 'rest_id', 'id');
     }
 }

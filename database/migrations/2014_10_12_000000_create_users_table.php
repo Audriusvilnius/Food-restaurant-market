@@ -28,6 +28,7 @@ return new class extends Migration
             $table->text('postcode', 500)->nullable();
             $table->string('phone', 500)->nullable();
             $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('rest_id')->references('id')->on('restaurants');
             $table->timestamps();
         });
     }

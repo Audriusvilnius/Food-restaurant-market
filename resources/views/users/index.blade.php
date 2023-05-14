@@ -28,8 +28,8 @@
                     <th>Build</th>
                     <th>Postcode</th>
                     <th>Phone</th>
-                    <th>Rest</th>
-                    <th>Roles</th>
+                    <th>Restaurant</th>
+                    <th>Role</th>
                     <th>Action</th>
                 </tr>
                 @foreach ($data as $key => $user)
@@ -42,14 +42,19 @@
                         @if(!empty($user->user_City->title))
                         {{ $user->user_City->title }}
                         @else <span class="badge rounded-pill bg-info fw-lighter text-capitalize fs-6">None<span>
-
                                 @endif
                     </td>
                     <td>{{ $user->street}}</td>
                     <td>{{ $user->build}}</td>
                     <td>{{ $user->postcode}}</td>
                     <td>{{ $user->phone}}</td>
-                    <td>{{ $user->rest_id }}</td>
+                    <td>
+                        @if(!empty($user->user_Restaurants->title))
+                        {{ $user->user_Restaurants->title }}
+                        @else <span class="badge rounded-pill bg-info fw-lighter text-capitalize fs-6">None<span>
+                                @endif
+                    </td>
+
                     <td>
                         @if(!empty($user->getRoleNames()))
                         @foreach($user->getRoleNames() as $v)
