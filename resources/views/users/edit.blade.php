@@ -37,6 +37,7 @@
                         {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
                     </div>
                 </div>
+
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Password:</strong>
@@ -47,6 +48,41 @@
                     <div class="form-group">
                         <strong>Confirm Password:</strong>
                         {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Phone:</strong>
+                        {!! Form::text('phone', null, array('placeholder' => 'Phone','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Street:</strong>
+                        {!! Form::text('street', null, array('placeholder' => 'Street','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Build:</strong>
+                        {!! Form::text('build', null, array('placeholder' => 'Build','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Street:</strong>
+                        {!! Form::text('postcode', null, array('placeholder' => 'Postcode','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Rest:</strong>
+                        <select class="form-select" name="rest_id">
+                            @foreach($rest_id as $restaurant)
+                            <option value="{{$restaurant->id}}" @if($restaurant->id == old('rest_id')) selected @endif>{{$restaurant->title}}</option>
+                            @endforeach
+                        </select>
+                        {{-- {{$rest_id->title}} --}}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">

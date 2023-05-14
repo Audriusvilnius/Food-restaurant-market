@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
@@ -84,7 +85,20 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-        return view('users.edit', compact('user', 'roles', 'userRole'));
+        $rest_id = Restaurant::all();
+
+        return view('users.edit', [
+            'rest_id' => $rest_id,
+            'user' => $user,
+            'roles' => $roles,
+            'userRole' => $userRole
+        ]);
+
+        // return view('back.food.index', [
+        //     'foods' => $foods,
+        //     'cities' => $cities,
+        //     'categories' => $categories,
+        // ]);
     }
 
     /**
@@ -114,7 +128,16 @@ class UserController extends Controller
         $user->update($input);
         DB::table('model_has_roles')->where('model_id', $id)->delete();
 
+        // dd($request->roles);
+        $user->role = $request->roles[0];
+        $user->rest_id = $request->rest_id;
+        $user->phone = $request->phone;
+        $user->street = $request->street;
+        $user->build = $request->build;
+        $user->postcode = $request->postcode;
+        // dd($request->phone);
         $user->assignRole($request->input('roles'));
+        $user->save();
 
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully');

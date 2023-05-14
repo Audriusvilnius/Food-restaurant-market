@@ -23,27 +23,37 @@
                     <th>No</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>City</th>
+                    <th>Street</th>
+                    <th>Build</th>
+                    <th>Postcode</th>
+                    <th>Phone</th>
                     <th>Rest</th>
                     <th>Roles</th>
-
-                    <th width="280px">Action</th>
+                    <th>Action</th>
                 </tr>
                 @foreach ($data as $key => $user)
                 <tr>
                     <td>{{ ++$i }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $user->city }}</td>
+                    <td>{{ $user->street}}</td>
+                    <td>{{ $user->build}}</td>
+                    <td>{{ $user->postcode}}</td>
+                    <td>{{ $user->street}}</td>
+                    <td>{{ $user->phone }}</td>
                     <td>{{ $user->rest_id }}</td>
                     <td>
                         @if(!empty($user->getRoleNames()))
                         @foreach($user->getRoleNames() as $v)
-                        <span class="badge rounded-pill bg-dark">{{ $v }}</span>
+                        <span class="badge rounded-pill bg-dark text-capitalize fs-6">{{ $v }}</span>
                         @endforeach
                         @endif
                     </td>
-                    <td class="d-flex justify-content-evenly">
-                        <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                    <td class="d-flex justify-content-end">
+                        <a class="btn btn-info me-1" href="{{ route('users.show',$user->id) }}">Show</a>
+                        <a class="btn btn-primary me-1" href="{{ route('users.edit',$user->id) }}">Edit</a>
                         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}

@@ -22,6 +22,11 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('role', 20)->default('customer');
             $table->unsignedBigInteger('rest_id')->nullable();
+            $table->unsignedBigInteger('city')->nullable();
+            $table->text('street', 500)->nullable();
+            $table->text('build', 500)->nullable();
+            $table->text('postcode', 500)->nullable();
+            $table->string('phone', 500)->nullable();
             $table->timestamps();
         });
     }
