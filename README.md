@@ -32,16 +32,16 @@ Requirements:
 Setup: 
 1. From the root directory (where this file `README.md` is located) navigate to the application source directory: `cd code/` 
 2. Execute the installation script `bash init.sh` OR run commands individually:
-   *. Install dependencies: `composer install`
-   *. Install  XAMPP with  MySQL database
-   *. Run `npm install`
-   *. Run `cp .env.example .env`
-   *. Run `php artisan key:generate`
-   *. Start XAMPP with  MySQL database
-   *. Run `php artisan migrate`
-   *. Run `php artisan migrate:fresh`
-   *. Run `php artisan migrate:fresh --seed`
-   *. Run `npm run dev`
+   * Install dependencies: `composer install`
+   * Install  XAMPP with  MySQL database
+   * Run `npm install`
+   * Run `cp .env.example .env`
+   * Run `php artisan key:generate`
+   * Start XAMPP with  MySQL database
+   * Run `php artisan migrate`
+   * Run `php artisan migrate:fresh`
+   * Run `php artisan migrate:fresh --seed`
+   * Run `npm run dev`
 3. Run web server:
    * With XAMPP 
    * Or with laravel: `php artisan serve`
