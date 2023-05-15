@@ -9,6 +9,7 @@ use App\Models\Restaurant;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,7 +23,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id', 'DESC')->paginate(5);
-        // dd($data);
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -35,7 +35,14 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
-        return view('users.create', compact('roles'));
+        $rest_id = Restaurant::all();
+        $cites = City::all();
+        return view('users.create', [
+            'rest_id' => $rest_id,
+            'cites' => $cites,
+            'roles' => $roles,
+        ]);
+        // return view('users.create', compact('roles'));
     }
 
     /**
@@ -48,6 +55,8 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'rest_id' => 'required',
+            'city_id' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
@@ -58,6 +67,14 @@ class UserController extends Controller
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
+        $user->role = $request->roles[0];
+        $user->rest_id = $request->rest_id;
+        $user->city_id = $request->city_id;
+        $user->phone = $request->phone;
+        $user->street = $request->street;
+        $user->build = $request->build;
+        $user->postcode = $request->postcode;
+        $user->save();
 
         return redirect()->route('users.index')
             ->with('success', 'User created successfully');
@@ -88,7 +105,6 @@ class UserController extends Controller
         $userRole = $user->roles->pluck('name', 'name')->all();
         $rest_id = Restaurant::all();
         $cites = City::all();
-        // @dd($rest_id);
         return view('users.edit', [
             'rest_id' => $rest_id,
             'user' => $user,
@@ -130,17 +146,19 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($input);
         DB::table('model_has_roles')->where('model_id', $id)->delete();
-
-        // dd($request->roles);
-        $user->role = $request->roles[0];
+        if (Auth::user()->role == 'admin') {
+            $user->role = $request->roles[0];
+            $user->assignRole($request->input('roles'));
+        } else {
+            // $user->role = $request->role;
+            $user->assignRole($request->role);
+        }
         $user->rest_id = $request->rest_id;
         $user->city_id = $request->city_id;
         $user->phone = $request->phone;
         $user->street = $request->street;
         $user->build = $request->build;
         $user->postcode = $request->postcode;
-        // dd($request->phone);
-        $user->assignRole($request->input('roles'));
         $user->save();
 
         return redirect()->route('users.index')

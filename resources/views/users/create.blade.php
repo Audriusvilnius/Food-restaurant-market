@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-lg-12 margin-tb">
+                <div class="col-lg-12 d-flex justify-content-between">
                     <div class="pull-left">
                         <h2>Create New User</h2>
                     </div>
@@ -23,43 +23,93 @@
                 </ul>
             </div>
             @endif
-            {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Name:</strong>
-                        {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+            <div class="card mt-2 d-flex justify-content-md-between">
+                <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
+                    {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Name:</strong>
+                                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Email:</strong>
+                                {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Password:</strong>
+                                {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Confirm Password:</strong>
+                                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Phone:</strong>
+                                {!! Form::text('phone', null, array('placeholder' => 'Phone','class' => 'form-control')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>City:</strong>
+                                <select class="form-select" name="city_id">
+                                    <option value="{{null}}">None</option>
+                                    @foreach($cites as $city)
+                                    <option value="{{$city->id}}" @if($city->id == old('city_id',$city->city_id)) selected @endif>{{$city->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Street:</strong>
+                                {!! Form::text('street', null, array('placeholder' => 'Street','class' => 'form-control')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Build:</strong>
+                                {!! Form::text('build', null, array('placeholder' => 'Build','class' => 'form-control')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Postcode:</strong>
+                                {!! Form::text('postcode', null, array('placeholder' => 'Postcode','class' => 'form-control')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Restaurant:</strong>
+                                <select class="form-select" name="rest_id">
+                                    <option value="{{null}}">None</option>
+                                    @foreach($rest_id as $restaurant)
+                                    <option value="{{$restaurant->id}}" @if($restaurant->id == old('rest_id',$restaurant->rest_id)) selected @endif>{{$restaurant->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Role:</strong>
+                                {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Email:</strong>
-                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Password:</strong>
-                        {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Confirm Password:</strong>
-                        {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Role:</strong>
-                        {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    {!! Form::close() !!}
                 </div>
             </div>
-            {!! Form::close() !!}
         </div>
     </div>
 </div>

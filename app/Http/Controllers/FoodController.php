@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class FoodController extends Controller
@@ -22,7 +23,14 @@ class FoodController extends Controller
     {
         $cities = City::all()->sortBy('title');
         $categories = Category::all()->sortBy('title');
-        $foods = Food::orderBy('created_at', 'desc')->get();
+
+        if (Auth::user()->role == 'admin') {
+            $foods = Food::orderBy('created_at', 'desc')->get();
+        } elseif (Auth::user()->role == 'user' && Auth::user()->rest_id != null && Auth::user()->city_id != null) {
+            $foods = Food::where('rest_id', Auth::user()->rest_id)
+                ->where('food_city_no', Auth::user()->city_id)
+                ->get();
+        }
         return view('back.food.index', [
             'foods' => $foods,
             'cities' => $cities,
