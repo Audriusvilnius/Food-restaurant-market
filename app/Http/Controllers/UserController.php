@@ -22,7 +22,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id', 'DESC')->paginate(5);
+        $data = User::orderBy('id', 'DESC');
+        if (Auth::user()->role != 'admin') {
+            $data = $data->where('id', Auth::user()->id)->paginate(5);
+        } else {
+            $data = $data->paginate(5);
+        }
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -129,12 +134,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
-        ]);
+        if (Auth::user()->role == 'admin') {
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,' . $id,
+                'password' => 'same:confirm-password',
+                'roles' => 'required'
+            ]);
+        } else {
+            $this->validate($request, [
+                'name' => 'required',
+                'phone' => 'required',
+                'street' => 'required',
+                'build' => 'required',
+                'email' => 'required|email|unique:users,email,' . $id,
+                'password' => 'same:confirm-password',
+            ]);
+        }
 
         $input = $request->all();
         if (!empty($input['password'])) {

@@ -108,15 +108,9 @@
                         </div>
                         @endif
                         @if(Auth::user()?->role != 'admin')
-
                         <input type="hidden" name="role" value="{{ $user->role }}">
                         <input type="hidden" name="rest_id" value="{{ $user->rest_id }}">
                         @endif
-                        @dump($user->role)
-                        @dump($user->rest_id)
-                        @dump($roles)
-
-
                         <div class=" col-xs-12 col-sm-12 col-md-12 text-center mt-2 d-flex justify-content-end">
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
