@@ -12,6 +12,7 @@ use App\Mail\OrderShipped;
 use App\Mail\OrderProcesing;
 use App\Mail\OrderCompleted;
 use App\Mail\OrderReceived;
+use App\Models\Food;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -30,6 +31,30 @@ class OrderController extends Controller
                 $food->baskets = json_decode($food->order_json);
                 return $food;
             });
+        if (Auth::user()->role == 'user') {
+            $orders = Order::orderBy('created_at', 'desc')
+                ->get()
+                ->map(function ($food) {
+                    $food->baskets = json_decode($food->order_json);
+                    foreach ($food->baskets->baskets as $basket) {
+                        $food->food_id = $basket->id;
+                        $food_id = Food::find($food->food_id);
+                        $food->rest_id = $food_id->rest_id;
+                        $food->title_lt = $food_id->title_lt;
+                        $food->title_en = $food_id->title_en;
+                        $food->price = $food_id->price;
+                        // dump($food->rest_id);
+                    }
+                    return $food;
+                });
+            dump($orders);
+            // foreach ($orders as $order) {
+            //     foreach ($order->baskets->baskets as $basket) {
+            //         dump($basket->id);
+            //     }
+            // }
+        }
+
         return view('back.orders.index', [
             'orders' => $orders
         ]);
@@ -49,7 +74,7 @@ class OrderController extends Controller
         ]);
     }
 
-    
+
 
     public function update(Request $request, Order $order)
     {
