@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container" style="min-height: 900px">
-
+<div class="container pt-5" style="min-height: 900px">
     <div class=" row justify-content-center">
         <div class="col-md-9">
             <div class="card shadow bg-body-tertiary rounded ">
@@ -20,7 +19,7 @@
                             style="background-color:grey;border-radius:5px;" @elseif($order->status == 3)
                             style="background-color:rgba(224, 219, 219, 0.378);border-radius:5px;" @endif>
                             <h4>{{__('Order No.')  }}: <b><i>{{$order->id}}</b></i></h4>
-                            <h6 class="mb-2">{{__('Open')  }} - {{$order->created_at}}</h6>
+                            <h6 class="mb-2">{{__('Open') }} - {{$order->created_at}}</h6>
                             @if($order->status == 0)
                             <h5>{{__('Order open')  }}</h5>
                             @elseif($order->status == 1)
@@ -54,11 +53,11 @@
                     <div class="col-md-10">
                         <hr class="border border-1 opacity-50">
                         {{__('Title') }}: <b><i>
-                        @if (app()->getLocale() == "lt")
-                            {{$food->title_lt}}
-                        @else 
-                        {{$food->title_en}}   
-                        @endif 
+                                @if (app()->getLocale() == "lt")
+                                {{$food->title_lt}}
+                                @else
+                                {{$food->title_en}}
+                                @endif
                         </b></i>
 
                         <p>{{__('price') }}: <b><i>{{$food->price}} &euro;</b></i>
@@ -79,14 +78,14 @@
                         <div class="card-body">
                             @if($order->status == 0)
                             <form action="{{route('order-update', $order)}}" method="post">
-                                <button type="submit" class="btn btn-danger float-end">{{__('Processing')  }}</button>
+                                <button type="submit" class="btn btn-danger float-end">{{__('Processing') }}</button>
                                 @csrf
                                 @method('put')
                             </form>
                             @endif
                             @if($order->status == 1)
                             <form action="{{route('order-update', $order)}}" method="post">
-                                <button type="submit" class="btn btn-warning float-end">{{__('Complete')  }}</button>
+                                <button type="submit" class="btn btn-warning float-end">{{__('Complete') }}</button>
                                 @csrf
                                 @method('put')
                             </form>

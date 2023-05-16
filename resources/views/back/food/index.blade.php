@@ -7,7 +7,7 @@
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
-<div class="container mb-5" style="min-height: 100vh;">
+<div class="container pt-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
