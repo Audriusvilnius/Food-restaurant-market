@@ -36,23 +36,31 @@ class OrderController extends Controller
                 ->get()
                 ->map(function ($food) {
                     $food->baskets = json_decode($food->order_json);
-                    foreach ($food->baskets->baskets as $basket) {
+                    $food->data = [];
+                    foreach ($food->baskets->baskets as $key => $basket) {
+                        $food->count = $basket->count;
                         $food->food_id = $basket->id;
                         $food_id = Food::find($food->food_id);
-                        $food->rest_id = $food_id->rest_id;
+                        $food->rest_title = $basket->id;
+                        // $food->rest_id = $food_id->rest_title;
                         $food->title_lt = $food_id->title_lt;
                         $food->title_en = $food_id->title_en;
                         $food->price = $food_id->price;
-                        // dump($food->rest_id);
+                        $food->data += [$key => [
+                            'id' => $food->food_id,
+                            'rest_id' => $food->rest_id,
+                            // 'rest_title' => $food->rest_title,
+                            'title_lt' => $food->title_lt,
+                            'title_en' => $food->title_en,
+                            'qty' => $food->count,
+                            'price' => $food->price,
+                        ]];
                     }
                     return $food;
                 });
-            dump($orders);
-            // foreach ($orders as $order) {
-            //     foreach ($order->baskets->baskets as $basket) {
-            //         dump($basket->id);
-            //     }
-            // }
+            foreach ($orders as $data) {
+                dump($data->data);
+            }
         }
 
         return view('back.orders.index', [
