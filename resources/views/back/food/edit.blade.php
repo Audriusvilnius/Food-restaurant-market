@@ -4,10 +4,8 @@
 <div class="container pt-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card shadow bg-body-tertiary rounded d-flex">
-                <div class="card-header">
-                    <h1>{{__('Edit Food')  }}</h1>
-                </div>
+            <div class="card-header d-flex">
+                <h1>{{__('Edit Food')  }}</h1>
             </div>
             <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded d-flex justify-content-md-between">
 
@@ -78,18 +76,15 @@
                                 <img src="{{asset($food->photo)}}" class="img-fluid rounded" alt="imageset">
                                 <input type="file" class="form-control mt-3" name="photo">
                             </div>
+                            <div class="list-table__buttons ">
+                                <button type="submit" class="btn btn-danger" name="delete_photo" value="1">{{__('Delete photo')  }}</button>
+                                <button type="submit" class="btn btn-primary d-flex align-content-end m-2 " name="save">{{__('Update') }}</button>
+                            </div>
+
                             {{-- <div class=" card-body">
                                 <div class="list-table__buttons">
                                 </div>
                             </div> --}}
-                        </div>
-                        <div class="col-md-12 ">
-                            <div class="card-body">
-                                <div class="list-table__buttons ">
-                                    <button type="submit" class="btn btn-danger" name="delete_photo" value="1">{{__('Delete photo')  }}</button>
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end m-2 " name="save">{{__('Update') }}</button>
-                                </div>
-                            </div>
                         </div>
                         @csrf
                         @method('put')

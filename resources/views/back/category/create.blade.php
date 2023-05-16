@@ -9,12 +9,9 @@
 <div class="container pt-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header justify-content-center">
-                    <h1>{{__('Create Food Category')  }}</h1>
-                </div>
+            <div class="card-header justify-content-center">
+                <h1>{{__('Create Food Category')  }}</h1>
             </div>
-
             <form action="{{route('category-create')}}" method="post" enctype="multipart/form-data">
                 <div class="card mt-2">
                     <section class="py-1 text-center container">

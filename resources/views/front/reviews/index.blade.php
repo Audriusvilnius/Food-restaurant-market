@@ -10,16 +10,17 @@
     </div>
 </a>
 
-<div class="container pt-5" style="min-height: 850px">
+<div class="container pt-5 pb-5" style="min-height: 850px">
     <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header justify-content-center">
-                    <h1 class="fs-2">{{ __('Hello') }}! {{ __('You can rate & review') }}{{ $food->title }}</h1>
-                    {{-- <h1 class="fs-2">{{ __('Hello') }}, {{ $name }}! {{ __('You can rate & review') }}{{ $food->title }}</h1> --}}
+        <div class="col-md-8">
 
-                </div>
+            <div class="card-header justify-content-between align-content-senter d-flex ">
+
+                <h1 class="fs-2">{{ __('Hello') }}! {{ __('You can rate & review') }}{{ $food->title }}</h1>
+                {{-- <h1 class="fs-2">{{ __('Hello') }}, {{ $name }}! {{ __('You can rate & review') }}{{ $food->title }}</h1> --}}
+                <a href="{{ route('start') }}" class="btn btn-primary d-flex justify-content-center align-content-center">{{ __('HOME') }}</a>
             </div>
+
             <div class="card mt-2 d-flex justify-content-md-between">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-6">
@@ -67,8 +68,6 @@
 
                                 <div class="card-body d-flex justify-content-end">
                                     <input type="hidden" name="product" value="{{ $food->id }}">
-                                    {{-- <input type="number" min="1" max="5" name="rated" value="3"
-                                            placeholder="1 - 5" class="form-control imputnumber"> --}}
                                     <div class="star-rating">
 
                                         <input class="radio-input " type="radio" id="star5" name="rated" value="5" required />
@@ -100,7 +99,6 @@
                         </div>
                         <div class="col-md-12 d-flex">
                             <div class="card-body">
-                                <a href="{{ route('start') }}" class="btn btn-secondary float-start">{{ __('HOME') }}</a>
                                 <button type="submit" class="btn btn-outline-secondary float-end">{{ __('RATE & REVIEW') }}</button>
                             </div>
                         </div>
@@ -108,39 +106,36 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-    @if ($rateds)
-    @foreach ($rateds as $id => $reviews)
-    <div id={{ $id }} class="card mt-2 d-flex justify-content-md-between">
-        <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
-            <div class="col-md-9">
-                <h4>{{ $reviews['user_name'] }}</h4>
-            </div>
-            <div class="col-md-3 ">
-                @for ($i = 0; $i < $reviews['rate'] ; $i++) <span class="float-end d-flex me-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" style="color:orange;" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    </span>
-                    @endfor
-            </div>
-            {{-- <div class="average-rating ms-5"> --}}
-            {{-- <meter class="average-rating" min="0" max="5" value="4.3" title="ratingScore"></meter> --}}
-            {{-- </div> --}}
-            <div class="col-md-12 d-flex">
-                <div class="card-body ms-5 me-5">
-                    <p class="card-text">{{ $reviews['review'] }}</p>
+            @if ($rateds)
+            @foreach ($rateds as $id => $reviews)
+            <div id={{ $id }} class="card mt-2 mb-2 d-flex justify-content-md-between shadow">
+                <div class="row g-0 p-3 bg-body-tertiary rounded">
+                    <div class="col-md-9">
+                        <h4>{{ $reviews['user_name'] }}</h4>
+                    </div>
+                    <div class="col-md-3 ">
+                        @for ($i = 0; $i < $reviews['rate'] ; $i++) <span class="float-end d-flex me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" style="color:orange;" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                            </span>
+                            @endfor
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="card-body ms-5 me-5">
+                            <p class="card-text">{{ $reviews['review'] }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <div class="card-body ms-5 me-5">
+                            <h6 class="float-end">{{ $reviews['date'] }}</h6>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-12 d-flex">
-                <div class="card-body ms-5 me-5">
-                    <h6 class="float-end">{{ $reviews['date'] }}</h6>
-                </div>
-            </div>
+            @endforeach
+            @endif
         </div>
     </div>
-    @endforeach
-    @endif
 </div>
 @endsection

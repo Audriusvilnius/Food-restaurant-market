@@ -8,14 +8,12 @@
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
-<div class="container pt-5" style="min-height: 100vh;">
+<div class="container pt-5 pb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header justify-content-between align-content-between d-flex ">
-                    <h1>{{__('Food Categories')  }}</h1>
-                    <a href="{{route('category-create')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add Category')}}</a>
-                </div>
+            <div class="card-header justify-content-between align-content-between d-flex ">
+                <h1>{{__('Food Categories')  }}</h1>
+                <a href="{{route('category-create')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add Category')}}</a>
             </div>
         </div>
         <section class="py-1 text-center container">

@@ -4,11 +4,8 @@
 <div class="container pt-5" style="min-height: 900px">
     <div class=" row justify-content-center">
         <div class="col-md-9">
-            <div class="card shadow bg-body-tertiary rounded ">
-                <div class="card-header">
-
-                    <h1>{{__('Ticket') }}</h1>
-                </div>
+            <div class="card-header">
+                <h1>{{__('Ticket') }}</h1>
             </div>
             @foreach($order as $ticket)
             <div class="card mt-12 mt-4" style="max-width: 1wm;">

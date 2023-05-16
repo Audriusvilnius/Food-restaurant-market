@@ -1,13 +1,11 @@
 @inject('basket', 'App\Services\BasketService')
 @extends('layouts.app')
 @section('content')
-<div class="container pt-5" style="min-height: 900px">
+<div class="container pt-5 pb-5" style="min-height: 900px">
     <div class=" row justify-content-center">
         <div class="col-md-9">
-            <div class="card shadow bg-body-tertiary rounded ">
-                <div class="card-header">
-                    <h1>{{__('My Orders')  }}</h1>
-                </div>
+            <div class="card-header">
+                <h1>{{__('My Orders')  }}</h1>
             </div>
             @include('alerts.alert')
             @foreach($orders as $order)

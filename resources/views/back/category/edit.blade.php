@@ -18,13 +18,11 @@
         <i class="bi bi-chevron-up"></i>
     </div>
 </a>
-<div class="container mb-5" style="min-height: 100vh;">
+<div class="container pt-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header justify-content-center">
-                    <h1>{{__('Edit Food Category')  }}</h1>
-                </div>
+            <div class="card-header justify-content-center">
+                <h1>{{__('Edit Food Category')  }}</h1>
             </div>
             <form action="{{route('category-update',$category)}}" method="post" enctype="multipart/form-data">
                 <div class="card mt-2">
@@ -47,7 +45,7 @@
                                 @endif
                             </section>
 
-                            
+
                             <div class="card-body d-flex">
                                 <label for="category_title_en" class="mx-2 text-secondary">EN</label>
                                 <input type="text" class="form-control" name="category_title_en" value="{{old('category_title_en', $category->title_en)}}">
@@ -63,7 +61,7 @@
                             <div class="card-body">
                                 <div class="list-table__buttons">
                                     <button type="submit" class="btn btn-danger" name="delete_photo" value="1">{{__('Delete photo')  }}</button>
-                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" style="width: 80px;" name="save">{{__('Update')  }}</button>
+                                    <button type="submit" class="btn btn-primary d-flex align-content-end ms-2" style="width: 80px;" name="save">{{__('Update') }}</button>
                                 </div>
                             </div>
                         </div>
