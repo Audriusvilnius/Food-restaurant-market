@@ -18,7 +18,7 @@
 
                 <h1 class="fs-2">{{ __('Hello') }}! {{ __('You can rate & review') }}{{ $food->title }}</h1>
                 {{-- <h1 class="fs-2">{{ __('Hello') }}, {{ $name }}! {{ __('You can rate & review') }}{{ $food->title }}</h1> --}}
-                <a href="{{ route('start') }}" class="btn btn-primary d-flex justify-content-center align-content-center">{{ __('HOME') }}</a>
+                <a href="{{ route('start') }}" class="btn btn-primary d-flex justify-content-center align-content-center pt-2">{{ __('HOME') }}</a>
             </div>
 
             <div class="card mt-2 d-flex justify-content-md-between">
