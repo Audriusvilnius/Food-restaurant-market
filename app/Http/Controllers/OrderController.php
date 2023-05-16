@@ -41,15 +41,15 @@ class OrderController extends Controller
                         $food->count = $basket->count;
                         $food->food_id = $basket->id;
                         $food_id = Food::find($food->food_id);
-                        $food->rest_title = $basket->id;
-                        // $food->rest_id = $food_id->rest_title;
+                        $food->rest_title = $food_id->rest_title;
+                        $food->rest_id = $food_id->rest_id;
                         $food->title_lt = $food_id->title_lt;
                         $food->title_en = $food_id->title_en;
                         $food->price = $food_id->price;
                         $food->data += [$key => [
                             'id' => $food->food_id,
                             'rest_id' => $food->rest_id,
-                            // 'rest_title' => $food->rest_title,
+                            'rest_title' => $food->rest_title,
                             'title_lt' => $food->title_lt,
                             'title_en' => $food->title_en,
                             'qty' => $food->count,
