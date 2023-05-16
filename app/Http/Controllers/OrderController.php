@@ -58,9 +58,9 @@ class OrderController extends Controller
                     }
                     return $food;
                 });
-            foreach ($orders as $data) {
-                dump($data->data);
-            }
+            // foreach ($orders as $data) {
+            //     dump($data->data);
+            // }
         }
 
         return view('back.orders.index', [
