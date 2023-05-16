@@ -82,7 +82,9 @@
                                 <div class="list-table__buttons ">
                                     <a href="{{route('city-create')}}" class="btn btn-primary m-2 float-end">{{__('Add City') }}</a>
                                     <a href="{{route('category-create')}}" class="btn btn-primary d-flex justify-content-end align-content-center m-2 ">{{__('Add Category') }}</a>
+                                    @if(Auth::user()->role == 'admin')
                                     <a href="{{route('restaurants-store')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add Restaurant') }}</a>
+                                    @endif
                                     <button type="submit" class="btn btn-danger m-2">{{__('Create') }}</button>
                                 </div>
                             </div>

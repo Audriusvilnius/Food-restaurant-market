@@ -74,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <span class="mt-3"><b><i>{{ $food->add }}</b></i></span>
+                    {{-- <span class="mt-3"><b><i>{{ $food->add }}</b></i></span> --}}
                     <div class=" card-body ">
                         <div class="accordion accordion-flush" id="accordionFlushExample">
                             <div style="font-size:17px;">
