@@ -2,15 +2,12 @@
 @section('content')
 @include('alerts.alert')
 
-<div class="container pt-5" style="min-height: 100vh;">
+<div class="container pt-5 pb-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-9">
-            <div class="card">
-                <div class="card-header justify-content-between align-content-between d-flex ">
-                    <h1>{{__('Owner') }}</h1>
-                    <a href="{{route('ovner-create')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add new') }}</a>
-
-                </div>
+            <div class="card-header justify-content-between align-content-between d-flex ">
+                <h1>{{__('Owner') }}</h1>
+                <a href="{{route('ovner-create')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add new') }}</a>
             </div>
             @forelse($ovners as $ovner)
             <div id="{{$ovner['id'] }}" class="card mt-2 d-flex justify-content-md-between">

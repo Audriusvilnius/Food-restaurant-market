@@ -4,14 +4,9 @@
 <div class="container pt-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card shadow bg-body-tertiary rounded d-flex">
-                <div class="card">
-                    <div class="card-header justify-content-between align-content-between d-flex ">
-                        <h1>{{__('New Food') }}</h1>
-                    </div>
-                </div>
+            <div class="card-header justify-content-between align-content-between d-flex ">
+                <h1>{{__('New Food') }}</h1>
             </div>
-
             <div class="col-md-12 mt-3 shadow bg-body-tertiary rounded">
                 @if(Session::has('ok'))
                 <h6 class=" alert alert-success alert-dismissible fade show" role="alert">{{Session::get('ok')}}
@@ -88,9 +83,7 @@
                                     <a href="{{route('city-create')}}" class="btn btn-primary m-2 float-end">{{__('Add City') }}</a>
                                     <a href="{{route('category-create')}}" class="btn btn-primary d-flex justify-content-end align-content-center m-2 ">{{__('Add Category') }}</a>
                                     <a href="{{route('restaurants-store')}}" class="btn btn-primary d-flex justify-content-center align-content-center m-2 ">{{__('Add Restaurant') }}</a>
-
                                     <button type="submit" class="btn btn-danger m-2">{{__('Create') }}</button>
-
                                 </div>
                             </div>
                         </div>
