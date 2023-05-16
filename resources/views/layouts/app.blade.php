@@ -175,7 +175,7 @@
         </nav>
     </div>
     @include('layouts.svg')
-    <main class=" py-4 mystyle">
+    <main class="mystyle">
         @yield('content')
     </main>
 </body>
