@@ -93,7 +93,6 @@
                     @csrf
                     @method('post')
                 </div>
-
             </form>
         </div>
     </div>
