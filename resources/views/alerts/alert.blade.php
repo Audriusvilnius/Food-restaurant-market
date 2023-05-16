@@ -6,7 +6,6 @@
         @endif
         @if(Session::has('not'))
         <h6 class="alert alert-danger alert-dismissible text-dark fade show border border-dark border-2 position-fixed message" role="alert">{{Session::get('not')}}
-
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
         @endif
     </div>
