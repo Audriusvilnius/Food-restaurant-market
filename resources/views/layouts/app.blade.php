@@ -49,16 +49,7 @@
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        @if(Auth::user()?->role == 'admin')
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Orders') }}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
-                            </div>
-                        </li>
-
+                        @if(Auth ::user()?->role == 'user')
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{__('Foods') }}
@@ -67,6 +58,38 @@
                                 <a class="dropdown-item" href="{{ route('foods-index') }}">{{__('Foods') }}</a>
                                 <a class="dropdown-item" href="{{ route('category-index') }}">{{__('Categories') }}</a>
 
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Orders') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
+                            </div>
+                        </li>
+                        @endif
+
+                        @if(Auth::user()?->role == 'admin')
+                        <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Orders') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{__('Foods') }}
+                            </a>
+
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('foods-index') }}">{{__('Foods') }}</a>
+                                <a class="dropdown-item" href="{{ route('category-index') }}">{{__('Categories') }}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -88,6 +111,16 @@
                                 <a class="dropdown-item" href="{{ route('ovner-index') }}">{{__('List') }}</a>
                             </div>
                         </li>
+                        @elseif (Auth::user()?->role == 'customer')
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Orders') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('order-myorders', Auth::user()->id) }}">{{__('My Orders')  }}</a>
+                            </div>
+                        </li>
+
                         @endif
                         <!-- Authentication Links -->
 
@@ -108,10 +141,11 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @if(Auth::user()?->role != 'admin')
+                                <a class="dropdown-item" href="{{ route('users.index') }}">Manage</a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
