@@ -38,29 +38,32 @@ class OrderController extends Controller
                     $food->baskets = json_decode($food->order_json);
                     $food->data = [];
                     foreach ($food->baskets->baskets as $key => $basket) {
-                        $food->count = $basket->count;
-                        $food->food_id = $basket->id;
-                        $food_id = Food::find($food->food_id);
-                        $food->rest_title = $food_id->rest_title;
+                        $food_id = Food::find($basket->id);
                         $food->rest_id = $food_id->rest_id;
+                        $food->rest_title = $food_id->rest_title;
                         $food->title_lt = $food_id->title_lt;
                         $food->title_en = $food_id->title_en;
                         $food->price = $food_id->price;
-                        $food->data += [$key => [
-                            'id' => $food->food_id,
-                            'rest_id' => $food->rest_id,
-                            'rest_title' => $food->rest_title,
-                            'title_lt' => $food->title_lt,
-                            'title_en' => $food->title_en,
-                            'qty' => $food->count,
-                            'price' => $food->price,
-                        ]];
+                        if ($food->rest_id == Auth::user()->id) {
+                            $food->data += [$key => [
+                                'rest_id' => $food->rest_id,
+                                'rest_title' => $food->rest_title,
+                                'id' => $basket->id,
+                                'title_lt' => $food->title_lt,
+                                'title_en' => $food->title_en,
+                                'qty' => $basket->count,
+                                'price' => $food->price,
+                            ]];
+                        }
                     }
                     return $food;
                 });
-            foreach ($orders as $data) {
-                dump($data->data);
-            }
+            // foreach ($orders as $data) {
+            //     dump($data->data);
+            // }
+            return view('back.orders.user', [
+                'orders' => $orders
+            ]);
         }
 
         return view('back.orders.index', [
