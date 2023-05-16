@@ -12,6 +12,7 @@
     "Add Category": "Pridėti kategorijaą",
     "Add Restaurant": "Pridėti restoraną",
     "List": "Sąrašas",
+    "Add": "Naujas",
     "Login": "Prisijungti",
     "Logout": "Atsijungti",
     "Customer": "Klientas",
@@ -30,6 +31,9 @@
     "SHOW": "RODYTI",
     "RESET": "GRĄŽINTI",
     "City": "Miestas",
+    "Add City": "Pridėti miestą",
+    "Add Category": "Pridėti kategoriją",
+    "Add Restaurant": "Pridėti restoraną",
     "Address": "Adresas",
     "Open": "Atidaromas",
     "Close": "Uždaromas",
@@ -151,5 +155,10 @@
     "offers to you": "Jums siūlo",
     "Delivery Fee": "Pristatymo mokestis",
     "Oops! Something went wrong, missing category info": "Oi! Kažkas ne taip, trūksta kategorijų informacijos",
-    "To ship": "Siųsti"
+    "To ship": "Siųsti",
+    "My Orders": "Mano užsakymai",
+    "Order status": "Užsakymo būsena",
+    "Opened": "Sukurtas",
+    "Total sum": "Galutinė suma"
+    
 }

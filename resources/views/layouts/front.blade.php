@@ -123,6 +123,16 @@
                                 <a class="dropdown-item" href="{{ route('ovner-index') }}">{{__('List') }}</a>
                             </div>
                         </li>
+                        @elseif (Auth::user()?->role == 'customer')
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Orders') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('order-myorders', Auth::user()->id) }}">{{__('My Orders')  }}</a>
+                            </div>
+                        </li>
+
 
                         @endif
 
