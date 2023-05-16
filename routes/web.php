@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\FrontController as F;
 use App\Http\Controllers\OvnerController as O;
 use App\Http\Controllers\FoodController as D;
@@ -9,6 +10,11 @@ use App\Http\Controllers\OrderController as B;
 use App\Http\Controllers\CityController as City;
 use App\Http\Controllers\CategoryController as Category;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController as Role;
+use App\Http\Controllers\UserController as User;
+use App\Http\Controllers\ProductController as Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +44,7 @@ Route::post('/rate', [F::class, 'rate'])->name('update-rate')->middleware('roles
 
 Route::post('/city', [F::class, 'city'])->name('select-city');
 Route::get('/city', [F::class, 'getCity'])->name('get-city');
-Route::get('/reviews', [F::class, 'reviews'])->name('update-reviews')->middleware('roles:A|M|C');
+Route::get('/reviews', [F::class, 'reviews'])->name('update-reviews');
 Route::post('/add-basket', [F::class, 'addToBasket'])->name('add-basket');
 Route::get('/basket', [F::class, 'viewBasket'])->name('view-basket');
 Route::post('/basket', [F::class, 'updateBasket'])->name('update-basket');
@@ -102,13 +108,20 @@ Auth::routes();
 //Auth::routes(['register'=> false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('roles', Role::class);
+    Route::resource('users', User::class);
+    Route::resource('products', Product::class);
+});
+
+
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
     return redirect()->back();
 });
 
-Route::prefix('list') -> group(function() {
+Route::prefix('list')->group(function () {
     Route::get('/category/language/{locale}', function ($locale) {
         app()->setLocale($locale);
         session()->put('locale', $locale);
@@ -121,7 +134,7 @@ Route::prefix('list') -> group(function() {
     });
 });
 
-Route::prefix('admin') -> group(function() {
+Route::prefix('admin')->group(function () {
     Route::get('/language/{locale}', function ($locale) {
         app()->setLocale($locale);
         session()->put('locale', $locale);

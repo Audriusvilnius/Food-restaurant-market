@@ -15,8 +15,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1 class="fs-2">{{ __('Hello') }}, {{ $name }}! {{ __('You can rate & review') }}
-                        {{ $food->title }}</h1>
+                    <h1 class="fs-2">{{ __('Hello') }}! {{ __('You can rate & review') }}{{ $food->title }}</h1>
+                    {{-- <h1 class="fs-2">{{ __('Hello') }}, {{ $name }}! {{ __('You can rate & review') }}{{ $food->title }}</h1> --}}
+
                 </div>
             </div>
             <div class="card mt-2 d-flex justify-content-md-between">

@@ -20,7 +20,15 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('role',20)->default('customer');
+            $table->string('role', 20)->default('customer');
+            $table->unsignedBigInteger('rest_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->text('street', 500)->nullable();
+            $table->text('build', 500)->nullable();
+            $table->text('postcode', 500)->nullable();
+            $table->string('phone', 500)->nullable();
+            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('rest_id')->references('id')->on('restaurants');
             $table->timestamps();
         });
     }
