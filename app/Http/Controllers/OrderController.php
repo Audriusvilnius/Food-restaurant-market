@@ -35,41 +35,6 @@ class OrderController extends Controller
                 return $food;
             });
 
-        if (Auth::user()->role == 'user') {
-            $orders = Order::orderBy('created_at', 'desc')
-                ->get()
-                ->map(function ($food) {
-                    $food->baskets = json_decode($food->basket_json);
-                    $food->data = [];
-                    foreach ($food->baskets->baskets as $key => $basket) {
-                        $food_id = Food::find($basket->id);
-                        // $food->rest_id = $food_id->rest_id;
-                        // $food->rest_title = $food_id->rest_title;
-                        // $food->title_lt = $food_id->title_lt;
-                        // $food->title_en = $food_id->title_en;
-                        // $food->price = $food_id->price;
-                        // if ($food->rest_id == Auth::user()->id) {
-                        $food->data += [$key => [
-                            'rest_id' => $food_id->rest_id,
-                            'rest_title' => $food_id->rest_title,
-                            'id' => $basket->id,
-                            'title_lt' => $food_id->title_lt,
-                            'title_en' => $food_id->title_en,
-                            'qty' => $basket->count,
-                            'price' => $food_id->price,
-                            'user' => $basket->user,
-                            'name' => $basket->name,
-                        ]];
-                        // }
-                    }
-                    dump($food->data);
-                    return $food;
-                });
-            return view('back.orders.user', [
-                'orders' => $orders
-            ]);
-        }
-
         return view('back.orders.index', [
             'orders' => $orders
         ]);
