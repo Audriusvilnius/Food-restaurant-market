@@ -7,7 +7,6 @@
                 <h1>{{__('All Orders')  }}</h1>
             </div>
             @include('alerts.alert')
-
             @foreach($orders as $order)
             @foreach ($order->data as $food)
             <div id="{{ $order['id'] }}" class="card mt-12 mt-4" style="max-width: 1wm;">

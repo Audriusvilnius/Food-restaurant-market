@@ -14,12 +14,15 @@ use App\Mail\OrderCompleted;
 use App\Mail\OrderReceived;
 use App\Models\Food;
 use App\Models\User;
+use App\Services\BasketService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Mail;
 use LogicException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Illuminate\Support\Facades\Auth;
+
+use function PHPSTORM_META\map;
 
 class OrderController extends Controller
 {
@@ -31,31 +34,35 @@ class OrderController extends Controller
                 $food->baskets = json_decode($food->order_json);
                 return $food;
             });
+
         if (Auth::user()->role == 'user') {
             $orders = Order::orderBy('created_at', 'desc')
                 ->get()
                 ->map(function ($food) {
-                    $food->baskets = json_decode($food->order_json);
+                    $food->baskets = json_decode($food->basket_json);
                     $food->data = [];
                     foreach ($food->baskets->baskets as $key => $basket) {
                         $food_id = Food::find($basket->id);
-                        $food->rest_id = $food_id->rest_id;
-                        $food->rest_title = $food_id->rest_title;
-                        $food->title_lt = $food_id->title_lt;
-                        $food->title_en = $food_id->title_en;
-                        $food->price = $food_id->price;
+                        // $food->rest_id = $food_id->rest_id;
+                        // $food->rest_title = $food_id->rest_title;
+                        // $food->title_lt = $food_id->title_lt;
+                        // $food->title_en = $food_id->title_en;
+                        // $food->price = $food_id->price;
                         // if ($food->rest_id == Auth::user()->id) {
                         $food->data += [$key => [
-                            'rest_id' => $food->rest_id,
-                            'rest_title' => $food->rest_title,
+                            'rest_id' => $food_id->rest_id,
+                            'rest_title' => $food_id->rest_title,
                             'id' => $basket->id,
-                            'title_lt' => $food->title_lt,
-                            'title_en' => $food->title_en,
+                            'title_lt' => $food_id->title_lt,
+                            'title_en' => $food_id->title_en,
                             'qty' => $basket->count,
-                            'price' => $food->price,
+                            'price' => $food_id->price,
+                            'user' => $basket->user,
+                            'staus' => $basket->status,
                         ]];
                         // }
                     }
+                    dump($food->data);
                     return $food;
                 });
             return view('back.orders.user', [

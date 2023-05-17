@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'User',
             'email' => 'user@gmail.com',
             'password' => Hash::make('123'),
-            'role' => 'manager'
+            'role' => 'user'
         ]);
 
         $role = Role::create(['name' => 'user']);

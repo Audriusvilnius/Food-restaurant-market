@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Food;
 use App\Models\Restaurant;
 use App\Models\Ovner;
-
+use Illuminate\Support\Facades\Auth;
 
 class BasketService
 {
@@ -18,7 +18,6 @@ class BasketService
         $this->basket = session()->get('basket', []);
         $ids = array_keys($this->basket);
         $this->basketList = Food::whereIn('id', $ids)
-
             ->get()
             ->map(function ($food) {
                 $food->count = $this->basket[$food->id];
@@ -116,10 +115,9 @@ class BasketService
             return $this->dfee . ' €';
         } else {
             $this->flag = 0;
-            if ((app()->getLocale() == 'lt')){
-            return 'Jau įtrauktas!';
-            }
-            else {
+            if ((app()->getLocale() == 'lt')) {
+                return 'Jau įtrauktas!';
+            } else {
                 return 'Already Included!';
             }
         }
@@ -128,6 +126,25 @@ class BasketService
     public function getFlag()
     {
         return $this->flag;
+    }
+    public function bascet_order()
+    {
+        $order = (object)[];
+        $order->total = $this->total;
+        $order->baskets = [];
+        foreach ($this->basketList as $basket) {
+            $order->baskets[] = (object)[
+                'title_en' => $basket->title_en,
+                'title_lt' => $basket->title_lt,
+                'count' => $basket->count,
+                'price' => $basket->price,
+                'id' => $basket->id,
+                'status' => 0,
+                'total' => $this->total,
+                'user' => Auth::user()->id,
+            ];
+        }
+        return $order;
     }
 }
 
