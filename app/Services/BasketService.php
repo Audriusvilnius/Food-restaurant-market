@@ -153,6 +153,7 @@ class BasketService
 
             $rest_order->status = 0;
             $rest_order->user_id = Auth::user()->id;
+            $rest_order->city_id = $food_id->food_city_no;
             $rest_order->order_id = $order_id;
             $rest_order->rest_id = $food_id->rest_id;
             $rest_order->food_id = $basket->id;

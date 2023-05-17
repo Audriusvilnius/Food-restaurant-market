@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RestOrder;
+use App\Models\User;
 
 class RestOrderController extends Controller
 {
@@ -14,7 +15,19 @@ class RestOrderController extends Controller
      */
     public function index()
     {
-        //
+
+        // dump($restOrder);
+
+        $restOrder = RestOrder::orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($user) {
+                $city = User::find($user->user_id);
+                $user->city = $city->user_City->title;
+                return $user;
+            });
+        return view('back.restorder.index', [
+            'restOrder' => $restOrder
+        ]);
     }
 
     /**
