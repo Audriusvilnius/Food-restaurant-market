@@ -24,6 +24,8 @@ return new class extends Migration
             $table->decimal('price', 5, 2)->unsigned()->nullable();
             $table->decimal('rating', 4, 2)->unsigned()->default(0);
             $table->text('rating_json')->nullable();
+            $table->text('rest_json')->nullable();
+            $table->text('cate_json')->nullable();
             $table->decimal('counts', 4, 0)->unsigned()->default(0);
             $table->string('photo', 500)->nullable()->nullable();
             $table->string('add', 500)->nullable();
