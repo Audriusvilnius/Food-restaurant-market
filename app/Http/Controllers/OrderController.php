@@ -58,7 +58,7 @@ class OrderController extends Controller
                             'qty' => $basket->count,
                             'price' => $food_id->price,
                             'user' => $basket->user,
-                            'staus' => $basket->status,
+                            'name' => $basket->name,
                         ]];
                         // }
                     }

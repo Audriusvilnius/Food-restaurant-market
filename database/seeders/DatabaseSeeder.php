@@ -36,17 +36,6 @@ class DatabaseSeeder extends Seeder
         $role_a->syncPermissions($permissions_a);
         $user_a->assignRole([$role_a->id]);
 
-        $user = User::create([
-            'name' => 'User',
-            'email' => 'user@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'user'
-        ]);
-
-        $role = Role::create(['name' => 'user']);
-        $permissions = Permission::pluck('id', 'id')->all();
-        $role->syncPermissions($permissions);
-        $user->assignRole([$role->id]);
 
         $user = User::create([
             'name' => 'Customer',
@@ -64,7 +53,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Audrius',
             'email' => 'audrius@gmail.com',
             'password' => Hash::make('123'),
-            'role' => 'admin'
+            'role' => 'customer'
         ]);
 
         // $role = Role::create(['name' => 'admin']);
@@ -76,7 +65,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Ina',
             'email' => 'ina@gmail.com',
             'password' => Hash::make('123'),
-            'role' => 'admin'
+            'role' => 'customer'
         ]);
 
         // $role = Role::create(['name' => 'admin']);
@@ -89,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Tomas',
             'email' => 'tomas@gmail.com',
             'password' => Hash::make('123'),
-            'role' => 'admin'
+            'role' => 'customer'
         ]);
 
         // $role = Role::create(['name' => 'admin']);
@@ -101,15 +90,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Vytautas',
             'email' => 'vytautas@gmail.com',
             'password' => Hash::make('123'),
-            'role' => 'admin'
+            'role' => 'customer'
         ]);
 
         // $role = Role::create(['name' => 'admin']);
         $permissions = Permission::pluck('id', 'id')->all();
         $role->syncPermissions($permissions);
         $user->assignRole([$role->id]);
-
-
 
 
         $faker = Faker::create();
@@ -213,5 +200,23 @@ class DatabaseSeeder extends Seeder
                 'des_lt' => 'Lietuviškas tekstas - ' . $faker->realText(600, 5),
             ]);
         }
+
+        $user = User::create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('123'),
+            'build' => '5',
+            'street' => 'Vasaros',
+            'postcode' => 'LT112911',
+            'phone' => '+37069873063',
+            'rest_id' => 1,
+            'city_id' => 1,
+            'role' => 'user',
+        ]);
+
+        $role = Role::create(['name' => 'user']);
+        $permissions = Permission::pluck('id', 'id')->all();
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
     }
 }

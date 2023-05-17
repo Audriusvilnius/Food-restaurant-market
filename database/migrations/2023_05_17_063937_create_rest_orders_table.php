@@ -13,17 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('rest_orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('status');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('rest_id');
+            $table->unsignedBigInteger('food_id');
+            $table->unsignedBigInteger('qty');
+            $table->foreign('rest_id')->references('id')->on('restaurants');
+            $table->foreign('food_id')->references('id')->on('food');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->text('order_json');
-            $table->text('basket_json')->nullable();
-            $table->smallInteger('status')->unsigned()->default(0);
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -32,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('rest_orders');
     }
 };

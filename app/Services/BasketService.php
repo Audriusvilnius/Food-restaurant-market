@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Food;
 use App\Models\Restaurant;
 use App\Models\Ovner;
+use App\Models\RestOrder;
 use Illuminate\Support\Facades\Auth;
 
 class BasketService
@@ -127,7 +128,7 @@ class BasketService
     {
         return $this->flag;
     }
-    public function bascet_order()
+    public function bascet_order($order_id)
     {
         $order = (object)[];
         $order->total = $this->total;
@@ -142,7 +143,22 @@ class BasketService
                 'status' => 0,
                 'total' => $this->total,
                 'user' => Auth::user()->id,
+                'name' => Auth::user()->name,
             ];
+        }
+
+        foreach ($this->basketList as $basket) {
+            $food_id = Food::find($basket->id);
+            $rest_order = new RestOrder;
+
+            $rest_order->status = 0;
+            $rest_order->user_id = Auth::user()->id;
+            $rest_order->order_id = $order_id;
+            $rest_order->rest_id = $food_id->rest_id;
+            $rest_order->food_id = $basket->id;
+            $rest_order->qty = $basket->count;
+
+            $rest_order->save();
         }
         return $order;
     }

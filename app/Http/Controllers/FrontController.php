@@ -258,8 +258,9 @@ class FrontController extends Controller
     {
         $order = new Order;
         $order->user_id = Auth::user()->id;
-        $order->basket_json = json_encode($basket->bascet_order());
         $order->order_json = json_encode($basket->order());
+        $order->save();
+        $order->basket_json = json_encode($basket->bascet_order($order->id));
         $order->save();
 
         // dd($order);

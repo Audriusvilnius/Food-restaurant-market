@@ -35,8 +35,9 @@
                     </div>
                     <div class="col-md-5">
                         <div class="card-body align-content-center">
-                            <h6>{{__('User name')  }}: <b><i>{{$order->user->name}}</b></i></h6>
-                            <h6>{{__('User ID')  }}: <b><i>{{$order->user->id}}</b></i></h6>
+                            <h6>{{__('User name')  }}: <b><i>{{$food['user']}}</b></i></h6>
+                            <h6>{{__('User ID')  }}: <b><i>{{$food['user']}}</b></i></h6>
+
                         </div>
                     </div>
                     @dump($food)

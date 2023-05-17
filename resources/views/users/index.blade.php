@@ -69,11 +69,13 @@
                     @endif
 
                     <td class="d-flex justify-content-end">
+                        @if($user->id != '1')
                         <a class="btn btn-info me-1" href="{{ route('users.show',$user->id) }}">Show</a>
                         <a class="btn btn-primary me-1" href="{{ route('users.edit',$user->id) }}">Edit</a>
                         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
+                        @endif
                     </td>
                 </tr>
                 @endforeach
