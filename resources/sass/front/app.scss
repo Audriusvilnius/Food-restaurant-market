@@ -15,7 +15,7 @@
 
 .conteiner-blue {
     min-height: auto;
-    background-color: rgb(27, 176, 235);
+    background-color: $body-bg-second;
 }
 
 .conteiner-black {
@@ -228,7 +228,7 @@ svg.cart {
 }
 
 .text-block-sm:hover {
-    background-color: rgb(27, 176, 235);
+    background-color: $body-bg-second;
     transition: .5s;
     font-size: 36px;
     width: 263px;
@@ -240,7 +240,7 @@ svg.cart {
 
 
 .text-block:hover {
-    background-color: rgb(27, 176, 235);
+    background-color: $body-bg-second;
     transition: 0.5s;
     font-size: 36px;
     width: 263px;

@@ -15,9 +15,11 @@
 
 .conteiner-blue {
     min-height: auto;
-    background-color: rgb(27, 176, 235);
+    background-color: $body-bg-second;
 }
-
+.bg-blue{
+    background-color: $body-bg-second;
+}
 .conteiner-black {
     min-height: auto;
     background-color: black;
@@ -123,7 +125,7 @@ h1 {
     background-size: cover;
     background-attachment: fixed;
     opacity: 0.95;
-    background-color: rgb(27, 176, 235);
+    background-color: $body-bg-second;
 }
 
 svg.cart {
@@ -265,7 +267,7 @@ svg.cart {
 }
 
 .text-block-sm:hover {
-    background-color: rgb(27, 176, 235);
+    background-color: $body-bg-second;
     transition: .5s;
     font-size: 36px;
     width: 263px;
@@ -277,7 +279,7 @@ svg.cart {
 
 
 .text-block:hover {
-    background-color: rgb(27, 176, 235);
+    background-color: $body-bg-second;
     transition: 0.5s;
     font-size: 36px;
     width: 263px;
