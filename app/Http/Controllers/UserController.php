@@ -29,6 +29,8 @@ class UserController extends Controller
         } else {
             $data = $data->where('id', Auth::user()->id);
         }
+        Session::put('citySelect', []);
+        Session::put('citySelect', Auth::user()->city_id);
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
