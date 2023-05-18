@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -19,9 +20,10 @@ class CreateAdminUserSeeder extends Seeder
     {
         //Admin Seeder
         // $user = User::create([
-        //     'name' => 'LaravelTuts',
-        //     'email' => 'admin@laraveltuts.com',
-        //     'password' => bcrypt('password')
+        //     'name' => 'Admin',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'role' => 'admin',
         // ]);
 
         // $role = Role::create(['name' => 'Admin']);

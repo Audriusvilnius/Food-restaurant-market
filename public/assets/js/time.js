@@ -46,3 +46,9 @@ function Yeezy_lt_rest(x) {
     document.getElementById("desc").innerHTML = x['des_lt'];
     document.getElementById("bttn").innerHTML = "Uždaryti"
 }
+
+setTimeout(function () {
+    $(".alert").fadeTo(3000, 0).slideUp(3000, function () {
+        $(this).remove();
+    });
+}, 5000);   

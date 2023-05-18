@@ -63,46 +63,48 @@
                             {{__('Sum') }}: <b><i>{{$order->rest_Order_food->price*$order->qty}} &euro;</b></i></p>
                     </div>
                     <div class="col-md-3">
-                        <div class="card-body" style="background-color:rgba(224, 219, 219, 0.378);;border-radius:5px;">
-                            {{-- <h5>{{__('Total sum.')  }}: <b><i>{{$order->baskets->total}} &euro;</b></i></h5> --}}
-                        </div>
-                    </div>
-                    <div class="col-md-9 d-flex align-content-end">
-                        <div class="card-body">
-                            @if($order->status == 0)
-                            <form action="{{route('order-update', $order)}}" method="post">
-                                <button type="submit" class="btn btn-danger float-end">{{__('Processing') }}</button>
-                                @csrf
-                                @method('put')
-                            </form>
-                            @endif
-                            @if($order->status == 1)
-                            <form action="{{route('order-update', $order)}}" method="post">
-                                <button type="submit" class="btn btn-warning float-end">{{__('Complete') }}</button>
-                                @csrf
-                                @method('put')
-                            </form>
-                            @endif
-                            @if($order->status == 2)
-                            <form action="{{route('order-status', $order)}}" method="post">
-                                <input type="hidden" class="form-control" name="ticket" value="{{$order->id}}">
-                                <button type="submit" class="btn btn-success float-end">{{__('To ship')  }}</button>
-                                @csrf
-                                @method('post')
-                            </form>
-                            @endif
-                            @if($order->status == 3) <form action="{{route('order-delete', $order)}}" method="post">
-                                <button type="submit" class="btn btn-danger float-end" @if($order->status !=3)disabled @endif>{{__('Delete') }}</button>
-                                @csrf
-                                @method('delete')
-                            </form>
-                            @endif
-                        </div>
+                        {{-- <div class="card-body" style="background-color:rgba(224, 219, 219, 0.378);;border-radius:5px;">
+                            <h5>{{__('Total sum.')  }}: <b><i>{{$order->baskets->total}} &euro;</b></i></h5>
+                    </div> --}}
+                </div>
+                <div class="col-md-9 d-flex align-content-end">
+                    <div class="card-body">
+                        @if($order->status == 0)
+                        <form action="{{route('restorder-update', $order)}}" method="post">
+                            <input type="hidden" class="form-control" name="order_id" value="{{$order->order_id}}">
+                            <button type="submit" class="btn btn-danger float-end">{{__('Processing') }}</button>
+                            @csrf
+                            @method('put')
+                        </form>
+                        @endif
+                        @if($order->status == 1)
+                        <form action="{{route('restorder-update', $order)}}" method="post">
+                            <input type="hidden" class="form-control" name="order_id" value="{{$order->order_id}}">
+                            <button type="submit" class="btn btn-warning float-end">{{__('Complete') }}</button>
+                            @csrf
+                            @method('put')
+                        </form>
+                        @endif
+                        @if($order->status == 2)
+                        <form action="{{route('restorder-status', $order)}}" method="post">
+                            <input type="hidden" class="form-control" name="order_id" value="{{$order->order_id}}">
+                            <button type="submit" class="btn btn-success float-end">{{__('To ship')  }}</button>
+                            @csrf
+                            @method('post')
+                        </form>
+                        @endif
+                        @if($order->status == 3) <form action="{{route('restorder-delete', $order)}}" method="post">
+                            <button type="submit" class="btn btn-danger float-end" @if($order->status !=3)disabled @endif>{{__('Delete') }}</button>
+                            @csrf
+                            @method('delete')
+                        </form>
+                        @endif
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
+</div>
 </div>
 @endsection

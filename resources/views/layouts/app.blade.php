@@ -23,6 +23,11 @@
     <!-- Scripts -->
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
 
+    <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
+    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/time.js')}}"></script>
+
+
 </head>
 <body>
     <div id="app ">

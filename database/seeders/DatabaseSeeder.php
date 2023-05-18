@@ -24,81 +24,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user_a = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'admin',
-        ]);
-
-        $role_a = Role::create(['name' => 'admin']);
-        $permissions_a = Permission::pluck('id', 'id')->all();
-        $role_a->syncPermissions($permissions_a);
-        $user_a->assignRole([$role_a->id]);
-
-
-        $user = User::create([
-            'name' => 'Customer',
-            'email' => 'customer@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'customer'
-        ]);
-
-        $role = Role::create(['name' => 'customer']);
-        $permissions = Permission::pluck('id', 'id')->all();
-        $role->syncPermissions($permissions);
-        $user->assignRole([$role->id]);
-
-        $user = User::create([
-            'name' => 'Audrius',
-            'email' => 'audrius@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'customer'
-        ]);
-
-        // $role = Role::create(['name' => 'admin']);
-        $permissions = Permission::pluck('id', 'id')->all();
-        $role->syncPermissions($permissions);
-        $user->assignRole([$role->id]);
-
-        $user = User::create([
-            'name' => 'Ina',
-            'email' => 'ina@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'customer'
-        ]);
-
-        // $role = Role::create(['name' => 'admin']);
-        $permissions = Permission::pluck('id', 'id')->all();
-        $role->syncPermissions($permissions);
-        $user->assignRole([$role->id]);
-
-
-        $user = User::create([
-            'name' => 'Tomas',
-            'email' => 'tomas@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'customer'
-        ]);
-
-        // $role = Role::create(['name' => 'admin']);
-        $permissions = Permission::pluck('id', 'id')->all();
-        $role->syncPermissions($permissions);
-        $user->assignRole([$role->id]);
-
-        $user = User::create([
-            'name' => 'Vytautas',
-            'email' => 'vytautas@gmail.com',
-            'password' => Hash::make('123'),
-            'role' => 'customer'
-        ]);
-
-        // $role = Role::create(['name' => 'admin']);
-        $permissions = Permission::pluck('id', 'id')->all();
-        $role->syncPermissions($permissions);
-        $user->assignRole([$role->id]);
-
-
         $faker = Faker::create();
         $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
         $faker_lt = Faker::create();
@@ -119,20 +44,117 @@ class DatabaseSeeder extends Seeder
         ];
         $food_qty = 1500;
 
+        // $user_a = User::create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'phone' => $faker->e164PhoneNumber,
+        //     'street' => $faker->streetName,
+        //     'build' => $faker->buildingNumber,
+        //     'postcode' => $faker->postcode,
+        //     'city_id' => rand(1, count($cities)),
+        //     'role' => 'admin',
+        // ]);
+
+        // $role_a = Role::create(['name' => 'admin']);
+        // $permissions_a = Permission::pluck('id', 'id')->all();
+        // $role_a->syncPermissions($permissions_a);
+        // $user_a->assignRole([$role_a->id]);
+
+
+        // $user = User::create([
+        //     'name' => 'Customer',
+        //     'email' => 'customer@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'phone' => $faker->e164PhoneNumber,
+        //     'street' => $faker->streetName,
+        //     'build' => $faker->buildingNumber,
+        //     'postcode' => $faker->postcode,
+        //     'city_id' => rand(1, count($cities)),
+        //     'role' => 'customer'
+        // ]);
+
+        // $role = Role::create(['name' => 'customer']);
+        // $permissions = Permission::pluck('id', 'id')->all();
+        // $role->syncPermissions($permissions);
+        // $user->assignRole([$role->id]);
+
+        // $user = User::create([
+        //     'name' => 'Audrius',
+        //     'email' => 'audrius@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'phone' => $faker->e164PhoneNumber,
+        //     'street' => $faker->streetName,
+        //     'build' => $faker->buildingNumber,
+        //     'postcode' => $faker->postcode,
+        //     'city_id' => rand(1, count($cities)),
+        //     'role' => 'customer'
+        // ]);
+
+        // // $role = Role::create(['name' => 'admin']);
+        // $permissions = Permission::pluck('id', 'id')->all();
+        // $role->syncPermissions($permissions);
+        // $user->assignRole([$role->id]);
+
+        // $user = User::create([
+        //     'name' => 'Ina',
+        //     'email' => 'ina@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'phone' => $faker->e164PhoneNumber,
+        //     'street' => $faker->streetName,
+        //     'build' => $faker->buildingNumber,
+        //     'postcode' => $faker->postcode,
+        //     'city_id' => rand(1, count($cities)),
+        //     'role' => 'customer'
+        // ]);
+
+        // // $role = Role::create(['name' => 'admin']);
+        // $permissions = Permission::pluck('id', 'id')->all();
+        // $role->syncPermissions($permissions);
+        // $user->assignRole([$role->id]);
+
+
+        // $user = User::create([
+        //     'name' => 'Tomas',
+        //     'email' => 'tomas@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'phone' => $faker->e164PhoneNumber,
+        //     'street' => $faker->streetName,
+        //     'build' => $faker->buildingNumber,
+        //     'postcode' => $faker->postcode,
+        //     'city_id' => rand(1, count($cities)),
+        //     'role' => 'customer'
+        // ]);
+
+        // // $role = Role::create(['name' => 'admin']);
+        // $permissions = Permission::pluck('id', 'id')->all();
+        // $role->syncPermissions($permissions);
+        // $user->assignRole([$role->id]);
+
+        // $user = User::create([
+        //     'name' => 'Vytautas',
+        //     'email' => 'vytautas@gmail.com',
+        //     'password' => Hash::make('123'),
+        //     'phone' => $faker->e164PhoneNumber,
+        //     'street' => $faker->streetName,
+        //     'build' => $faker->buildingNumber,
+        //     'postcode' => $faker->postcode,
+        //     'city_id' => rand(1, count($cities)),
+        //     'role' => 'customer'
+        // ]);
+
+        // // $role = Role::create(['name' => 'admin']);
+        // $permissions = Permission::pluck('id', 'id')->all();
+        // $role->syncPermissions($permissions);
+        // $user->assignRole([$role->id]);
+
+
+
         foreach ($cities as $_) {
             DB::table('cities')->insert([
                 'title' => $_,
             ]);
         }
-
-
-        //foreach ($category as $_) {
-        // $photo_food=rand(22,49);
-        //DB::table('categories')->insert([
-        //'title_en' => $_,
-        //'photo' => '/images/temp/'.$photo_food.'.jpeg',
-        //]);
-        // }
 
         for ($i = 0; $i < count($category_en); $i++) {
             $photo_food = rand(22, 49);
@@ -201,6 +223,24 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+
+        $user_a = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('123'),
+            'phone' => $faker->e164PhoneNumber,
+            'street' => $faker->streetName,
+            'build' => $faker->buildingNumber,
+            'postcode' => $faker->postcode,
+            'city_id' => rand(1, count($cities)),
+            'role' => 'admin',
+        ]);
+
+        $role_a = Role::create(['name' => 'admin']);
+        $permissions_a = Permission::pluck('id', 'id')->all();
+        $role_a->syncPermissions($permissions_a);
+        $user_a->assignRole([$role_a->id]);
+
         $user = User::create([
             'name' => 'User',
             'email' => 'user@gmail.com',
@@ -208,13 +248,104 @@ class DatabaseSeeder extends Seeder
             'build' => '5',
             'street' => 'Vasaros',
             'postcode' => 'LT112911',
-            'phone' => '+37069873063',
+            'phone' => $faker->e164PhoneNumber,
+            'street' => $faker->streetName,
+            'build' => $faker->buildingNumber,
+            'postcode' => $faker->postcode,
             'rest_id' => 1,
-            'city_id' => 1,
+            'city_id' => rand(1, count($cities)),
             'role' => 'user',
         ]);
 
         $role = Role::create(['name' => 'user']);
+        $permissions = Permission::pluck('id', 'id')->all();
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
+
+
+
+        $user = User::create([
+            'name' => 'Customer',
+            'email' => 'customer@gmail.com',
+            'password' => Hash::make('123'),
+            'phone' => $faker->e164PhoneNumber,
+            'street' => $faker->streetName,
+            'build' => $faker->buildingNumber,
+            'postcode' => $faker->postcode,
+            'city_id' => rand(1, count($cities)),
+            'role' => 'customer'
+        ]);
+
+        $role = Role::create(['name' => 'customer']);
+        $permissions = Permission::pluck('id', 'id')->all();
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
+
+        $user = User::create([
+            'name' => 'Audrius',
+            'email' => 'audrius@gmail.com',
+            'password' => Hash::make('123'),
+            'phone' => $faker->e164PhoneNumber,
+            'street' => $faker->streetName,
+            'build' => $faker->buildingNumber,
+            'postcode' => $faker->postcode,
+            'city_id' => rand(1, count($cities)),
+            'role' => 'customer'
+        ]);
+
+        // $role = Role::create(['name' => 'admin']);
+        $permissions = Permission::pluck('id', 'id')->all();
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
+
+        $user = User::create([
+            'name' => 'Ina',
+            'email' => 'ina@gmail.com',
+            'password' => Hash::make('123'),
+            'phone' => $faker->e164PhoneNumber,
+            'street' => $faker->streetName,
+            'build' => $faker->buildingNumber,
+            'postcode' => $faker->postcode,
+            'city_id' => rand(1, count($cities)),
+            'role' => 'customer'
+        ]);
+
+        // $role = Role::create(['name' => 'admin']);
+        $permissions = Permission::pluck('id', 'id')->all();
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
+
+
+        $user = User::create([
+            'name' => 'Tomas',
+            'email' => 'tomas@gmail.com',
+            'password' => Hash::make('123'),
+            'phone' => $faker->e164PhoneNumber,
+            'street' => $faker->streetName,
+            'build' => $faker->buildingNumber,
+            'postcode' => $faker->postcode,
+            'city_id' => rand(1, count($cities)),
+            'role' => 'customer'
+        ]);
+
+        // $role = Role::create(['name' => 'admin']);
+        $permissions = Permission::pluck('id', 'id')->all();
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
+
+        $user = User::create([
+            'name' => 'Vytautas',
+            'email' => 'vytautas@gmail.com',
+            'password' => Hash::make('123'),
+            'phone' => $faker->e164PhoneNumber,
+            'street' => $faker->streetName,
+            'build' => $faker->buildingNumber,
+            'postcode' => $faker->postcode,
+            'city_id' => rand(1, count($cities)),
+            'role' => 'customer'
+        ]);
+
+        // $role = Role::create(['name' => 'admin']);
         $permissions = Permission::pluck('id', 'id')->all();
         $role->syncPermissions($permissions);
         $user->assignRole([$role->id]);

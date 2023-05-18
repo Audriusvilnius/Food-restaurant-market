@@ -19,10 +19,12 @@ class RestOrder extends Model
     {
         return $this->belongsTo(Food::class, 'food_id', 'id');
     }
+    /** @return BelongsTo  */
     public function rest_Order_City()
     {
         return $this->belongsTo(City::class, 'city_id', 'id');
     }
+    /** @return BelongsTo  */
     public function user_rest_Order()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

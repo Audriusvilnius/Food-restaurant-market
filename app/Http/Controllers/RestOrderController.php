@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\RestOrder;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\Eloquent\InvalidCastException;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\Auth;
+use InvalidArgumentException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class RestOrderController extends Controller
 {
@@ -15,9 +22,6 @@ class RestOrderController extends Controller
      */
     public function index()
     {
-
-        // dump($restOrder);
-
         $restOrder = RestOrder::orderBy('created_at', 'desc')
             ->get()
             ->map(function ($user) {
@@ -25,74 +29,75 @@ class RestOrderController extends Controller
                 $user->city = $city->user_City->title;
                 return $user;
             });
+        // dd($restOrder);
+        if (Auth::user()->role == 'user') {
+            $restOrder = $restOrder->where('rest_id', Auth::user()->rest_id);
+            // dd(Auth::user()->rest_id);
+        }
         return view('back.restorder.index', [
             'restOrder' => $restOrder
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\Request   $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request  $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\RestOrder  $restOrder
-     * @return \Illuminate\Http\Response
-     */
-    public function show(RestOrder $restOrder)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\RestOrder  $restOrder
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(RestOrder $restOrder)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update status the specified resource in storage.
      *
      * @param  \App\Http\Requests\Request   $request
      * @param  \App\Models\RestOrder  $restOrder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request  $request, RestOrder $restOrder)
+    public function update(Request  $request, RestOrder $order)
     {
-        //
+        $to = User::find($order->user_id);
+        $order_status = Order::find($request->order_id);
+        if ($order->status == 0) {
+            // Mail::to($to)->send(new OrderReceived($order));
+            $order->status = 1;
+            $order_status->status = 1;
+        } elseif ($order->status == 1) {
+            // Mail::to($to)->send(new OrderProcesing($order));
+            $order->status = 2;
+            $order_status->status = 2;
+        }
+        $order_status->save();
+        $order->save();
+
+        return redirect()->route('restorder-index', ['#' . $order->id]);
     }
 
+
+    public function status(Request  $request, RestOrder $order)
+    {
+        $to = User::find($order->user_id);
+        $order_status = Order::find($request->order_id);
+
+        if ($order->status == 2) {
+            // Mail::to($to)->send(new OrderCompleted($order));
+            $order->status = 3;
+            $order_status->status = 3;
+        }
+        $order_status->save();
+        $order->save();
+
+        $orders = Order::orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($food) {
+                $food->baskets = json_decode($food->order_json);
+                return $food;
+            });
+        $order->ticket = $request->ticket;
+
+        return redirect()->route('restorder-index', ['#' . $order->id]);
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\RestOrder  $restOrder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RestOrder $restOrder)
+    public function destroy(RestOrder $order)
     {
-        //
+        $order->delete();
+        return redirect()->route('restorder-index', ['#' . $order->id]);
     }
 }
