@@ -5,7 +5,8 @@ namespace App\Services;
 use App\Models\Food;
 use App\Models\Restaurant;
 use App\Models\Ovner;
-
+use App\Models\RestOrder;
+use Illuminate\Support\Facades\Auth;
 
 class BasketService
 {
@@ -18,7 +19,6 @@ class BasketService
         $this->basket = session()->get('basket', []);
         $ids = array_keys($this->basket);
         $this->basketList = Food::whereIn('id', $ids)
-
             ->get()
             ->map(function ($food) {
                 $food->count = $this->basket[$food->id];
@@ -116,10 +116,9 @@ class BasketService
             return $this->dfee . ' €';
         } else {
             $this->flag = 0;
-            if ((app()->getLocale() == 'lt')){
-            return 'Jau įtrauktas!';
-            }
-            else {
+            if ((app()->getLocale() == 'lt')) {
+                return 'Jau įtrauktas!';
+            } else {
                 return 'Already Included!';
             }
         }
@@ -128,6 +127,41 @@ class BasketService
     public function getFlag()
     {
         return $this->flag;
+    }
+    public function bascet_order($order_id)
+    {
+        $order = (object)[];
+        $order->total = $this->total;
+        $order->baskets = [];
+        foreach ($this->basketList as $basket) {
+            $order->baskets[] = (object)[
+                'title_en' => $basket->title_en,
+                'title_lt' => $basket->title_lt,
+                'count' => $basket->count,
+                'price' => $basket->price,
+                'id' => $basket->id,
+                'status' => 0,
+                'total' => $this->total,
+                'user' => Auth::user()->id,
+                'name' => Auth::user()->name,
+            ];
+        }
+
+        foreach ($this->basketList as $basket) {
+            $food_id = Food::find($basket->id);
+            $rest_order = new RestOrder;
+
+            $rest_order->status = 0;
+            $rest_order->user_id = Auth::user()->id;
+            $rest_order->city_id = $food_id->food_city_no;
+            $rest_order->order_id = $order_id;
+            $rest_order->rest_id = $food_id->rest_id;
+            $rest_order->food_id = $basket->id;
+            $rest_order->qty = $basket->count;
+
+            $rest_order->save();
+        }
+        return $order;
     }
 }
 

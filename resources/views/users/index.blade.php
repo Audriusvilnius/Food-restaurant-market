@@ -15,14 +15,23 @@
                     @endif
                 </div>
             </div>
-            @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-            @endif
+
+            <section id="alert" class="text-center m-2 conteiner">
+                <div class="col-lg-12 mx-auto d-flex justify-content-center align-content-center">
+                    @if(Session::has('ok'))
+                    <h6 class="alert alert-success alert-dismissible fade show border border-dark border-2 message" role="alert">{{Session::get('ok')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+                    @endif
+                    @if(Session::has('not'))
+                    <h6 class="alert alert-danger alert-dismissible text-dark fade show border border-dark border-2 message" role="alert">{{Session::get('not')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></h6>
+                    @endif
+                </div>
+            </section>
+
             <table class="table table-bordered bg-body">
                 <tr>
-                    <th>No</th>
+                    <th>User ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>City</th>
@@ -69,11 +78,14 @@
                     @endif
 
                     <td class="d-flex justify-content-end">
+
+                        @if($user->id != '1')
                         <a class="btn btn-info me-1" href="{{ route('users.show',$user->id) }}">Show</a>
                         <a class="btn btn-primary me-1" href="{{ route('users.edit',$user->id) }}">Edit</a>
                         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
+                        @endif
                     </td>
                 </tr>
                 @endforeach

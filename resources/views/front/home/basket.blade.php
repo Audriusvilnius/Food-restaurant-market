@@ -18,14 +18,12 @@
     </div>
 </a>
 
-<div class="container mb-5" style="min-height: 900px">
+<div class="container pt-5 pb-5" style="min-height: 900px">
     <div class="row justify-content-center">
         <div class="col-md-12">
             @if($basketList->count())
-            <div class="card">
-                <div class="card-header justify-content-center">
-                    <h1>{{__('Basket') }}</h1>
-                </div>
+            <div class="card-header justify-content-center">
+                <h1>{{__('Basket') }}</h1>
             </div>
             @endif
             <form action="{{route('update-basket')}}" method="post">

@@ -11,14 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-            public function up()
+    public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->text('order_json');
-            $table->text('basket_json');
+            $table->text('basket_json')->nullable();
             $table->smallInteger('status')->unsigned()->default(0);
             $table->timestamps();
         });

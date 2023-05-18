@@ -78,7 +78,7 @@
                                 {{ __('Orders') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
+                                <a class="dropdown-item" href="{{ route('restorder-index') }}">{{__('Order list')  }}</a>
                             </div>
                         </li>
 
@@ -92,6 +92,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
+                                <a class="dropdown-item" href="{{ route('restorder-index') }}">Rest {{__('Order list')  }}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

@@ -9,6 +9,7 @@ use App\Http\Controllers\RestaurantController as R;
 use App\Http\Controllers\OrderController as B;
 use App\Http\Controllers\CityController as City;
 use App\Http\Controllers\CategoryController as Category;
+use App\Http\Controllers\RestOrderController as RestOrder;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\HomeController;
@@ -26,6 +27,14 @@ use App\Http\Controllers\ProductController as Product;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::prefix('admin/restorder')->name('restorder-')->group(function () {
+    Route::get('/', [RestOrder::class, 'index'])->name('index')->middleware('roles:A|M');
+    Route::get('/shiped', [RestOrder::class, 'shiped'])->name('shiped')->middleware('roles:A|M');
+    Route::put('/edit/{order}', [RestOrder::class, 'update'])->name('update')->middleware('roles:A|M');
+    Route::delete('/delete/{order}', [RestOrder::class, 'destroy'])->name('delete')->middleware('roles:A|M');
+    Route::post('/staus/{order}', [RestOrder::class, 'status'])->name('status')->middleware('roles:A|M');
+});
 
 Route::prefix('admin/order')->name('order-')->group(function () {
     Route::get('/', [B::class, 'index'])->name('index')->middleware('roles:A|M');

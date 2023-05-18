@@ -23,9 +23,14 @@
     <!-- Scripts -->
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
 
+    <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
+    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/time.js')}}"></script>
+
+
 </head>
-<body>
-    <div id="app ">
+<body class="bg-blue">
+    <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">{{-- fixed-top --}}
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -44,6 +49,10 @@
                 <!--Lang-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    <div class="dropdown ms-5">
+                        @include('front.home.common.city')
+                    </div>
+
                     {{-- @include('front.home.common.restaurant') --}}
                     <ul class="navbar-nav me-auto">
                     </ul>
@@ -65,7 +74,7 @@
                                 {{ __('Orders') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
+                                <a class="dropdown-item" href="{{ route('restorder-index') }}">{{__('Order list')  }}</a>
                             </div>
                         </li>
                         @endif
@@ -79,6 +88,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Order list')  }}</a>
+                                <a class="dropdown-item" href="{{ route('restorder-index') }}">Rest {{__('Order list')  }}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
