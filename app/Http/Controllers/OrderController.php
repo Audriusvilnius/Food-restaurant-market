@@ -34,7 +34,6 @@ class OrderController extends Controller
                 $food->baskets = json_decode($food->order_json);
                 return $food;
             });
-
         return view('back.orders.index', [
             'orders' => $orders
         ]);
