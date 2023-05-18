@@ -49,6 +49,10 @@
                 <!--Lang-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    <div class="dropdown ms-5">
+                        @include('front.home.common.city')
+                    </div>
+
                     {{-- @include('front.home.common.restaurant') --}}
                     <ul class="navbar-nav me-auto">
                     </ul>

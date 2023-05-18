@@ -26,6 +26,8 @@ class FrontController extends Controller
 {
     public function home(Request $request, City $city, FrontController $citySelect)
     {
+
+
         $sessionCity = Session::get('citySelect');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
@@ -191,17 +193,25 @@ class FrontController extends Controller
 
     public function addToBasket(Request $request, Food $food, BasketService $basket)
     {
-        if ($request->food_city_no != Session::get('citySelect')) {
+        if ($request->food_city_no != Session::get('citySelect') || $request->food_city_no != Auth::user()->city_id) {
             $city = City::where('id', '=', $request->food_city_no)->first();
             $local = City::where('id', '=', Session::get('citySelect'))->first();
             $food = Food::where('id', '=', $request->id)->first();
-
-            if (app()->getLocale() == "lt") {
-                $message = 'Pasirinkimas ' . $food->title_lt . ' yra ' . $city->title . ' mieste . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
-                // $message = 'Pasirinkimas neatitinka miesto . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
-            } else {
-                $message = 'The selected dish is not in ' . $city->title . ' city. You choose ' . $local->title . '. Choose another dish or change city';
+            if ($request->food_city_no != Session::get('citySelect')) {
+                if (app()->getLocale() == "lt") {
+                    $message = 'Pasirinkimas ' . $food->title_lt . ' yra ' . $city->title . ' mieste . Jūsų miestas ' . $local->title .  '. Pasirunkit patiekalą iš ' . $local->title . ' miesto';
+                } else {
+                    $message = 'The selected dish is not in ' . $city->title . ' city. You choose ' . $local->title . '. Choose another dish or change city';
+                }
             }
+            if ($request->food_city_no != Auth::user()->city_id) {
+                if (app()->getLocale() == "lt") {
+                    $message = 'Žodžiu taip, ' . $food->title_lt . ' yra kitam mieste, nei ' . Auth::user()->name . ' vartotojo miesta. Pasirink kita patiekalą arba kita pristatymo miesta';
+                } else {
+                    $message = 'The selected dish is not in ' . $city->title . ' city. You choose ' . $local->title . '. Choose another dish or change city';
+                }
+            }
+
             return redirect(url()->previous() . '#' . $request->id)->with('not', $message);
         } else {
             $food = Food::where('id', '=', $request->id)->first();

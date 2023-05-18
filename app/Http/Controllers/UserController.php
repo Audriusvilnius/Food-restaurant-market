@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
         if (Auth::user()->role != 'admin') {
             $data = $data->where('id', Auth::user()->id)->paginate(5);
         } else {
-            $data = $data->paginate(5);
+            $data = $data->where('id', Auth::user()->id);
         }
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -80,6 +81,9 @@ class UserController extends Controller
         $user->build = $request->build;
         $user->postcode = $request->postcode;
         $user->save();
+
+        Session::put('citySelect', []);
+        Session::put('citySelect', Auth::user()->city_id);
 
         return redirect()->route('users.index')
             ->with('ok', 'User created successfully');
@@ -176,6 +180,9 @@ class UserController extends Controller
         $user->build = $request->build;
         $user->postcode = $request->postcode;
         $user->save();
+
+        Session::put('citySelect', []);
+        Session::put('citySelect', Auth::user()->city_id);
 
         return redirect()->route('users.index')
             ->with('ok', 'User updated successfully');

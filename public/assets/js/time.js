@@ -51,4 +51,4 @@ setTimeout(function () {
     $(".alert").fadeTo(3000, 0).slideUp(3000, function () {
         $(this).remove();
     });
-}, 5000);   
+}, 9000);   

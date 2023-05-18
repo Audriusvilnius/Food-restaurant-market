@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\Restaurant;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Contracts\Role;
 
 class LoginController extends Controller
 {
@@ -54,6 +59,8 @@ class LoginController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
+            Session::put('citySelect', []);
+            Session::put('citySelect', Auth::user()->city_id);
             return redirect(session()->get('url.intended'));
         }
         return redirect("login")->with('Oppes!');
