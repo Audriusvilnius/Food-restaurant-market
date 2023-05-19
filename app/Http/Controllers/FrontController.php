@@ -280,17 +280,6 @@ class FrontController extends Controller
 
     public function makeOrder(Request $request,  BasketService $basket)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'count' => 'required|numeric|min:1',
-            ]
-        );
-        if ($validator->fails()) {
-            $request->flash();
-            return redirect()->back()->withErrors($validator);
-        }
-
         $order = new Order;
         $order->user_id = Auth::user()->id;
         $order->order_json = json_encode($basket->order());
