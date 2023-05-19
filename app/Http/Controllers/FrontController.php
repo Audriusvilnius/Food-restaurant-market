@@ -23,6 +23,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class FrontController extends Controller
 {
@@ -204,6 +205,18 @@ class FrontController extends Controller
             }
             return redirect(url()->previous() . '#' . $request->id)->with('not', $message);
         } else {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'count' => 'required|numeric|min:1',
+                ]
+            );
+
+            if ($validator->fails()) {
+                $request->flash();
+                return redirect()->back()->withErrors($validator);
+            }
+
             $food = Food::where('id', '=', $request->id)->first();
             $id = (int)$request->id;
             $count = (int)$request->count;
@@ -244,6 +257,17 @@ class FrontController extends Controller
 
     public function updateBasket(Request $request, BasketService $basket)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'count' => 'required|numeric|min:1',
+            ]
+        );
+
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
 
         if ($request->delete) {
             $basket->delete($request->delete);
@@ -256,6 +280,17 @@ class FrontController extends Controller
 
     public function makeOrder(Request $request,  BasketService $basket)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'count' => 'required|numeric|min:1',
+            ]
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
         $order = new Order;
         $order->user_id = Auth::user()->id;
         $order->order_json = json_encode($basket->order());
