@@ -73,8 +73,18 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
-        $order->delete();
-        return redirect()->route('order-index', ['#' . $order->id]);
+        // $order->delete();
+        // return redirect()->route('order-index', ['#' . $order->id]);
+
+
+        if (!$order->rest_Order()->count()) {
+            $order->delete();
+            return redirect()->route('order-index', ['#' . $order->id])->with('ok', 'Order was delet');
+        } else {
+            $countOrder = $order->rest_Order()->count();
+            //dump($count);
+            return redirect()->back()->with('not', 'Hotel date can,t delet. Hotel have open ' . $countOrder . ' offer. ');
+        }
     }
 
     public function status(Request $request, Order $order)

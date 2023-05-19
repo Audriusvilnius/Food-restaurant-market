@@ -18,7 +18,9 @@ use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 use App\Services\BasketService;
 use App\Mail\OrderReceived;
-
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
@@ -26,8 +28,6 @@ class FrontController extends Controller
 {
     public function home(Request $request, City $city, FrontController $citySelect)
     {
-
-
         $sessionCity = Session::get('citySelect');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
@@ -62,7 +62,6 @@ class FrontController extends Controller
 
         $categories = Category::all()->sortBy('title_' . app()->getLocale());
         $foods = Food::all()->sortBy('title_' . app()->getLocale());
-
 
         $perPageShow = in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All';
         $perPageShow_lt = in_array($request->per_page, Food::PER_PAGE_LT) ? $request->per_page : 'Visi';
@@ -127,7 +126,6 @@ class FrontController extends Controller
             'perPageShow' => in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All',
             'perPageShow_lt' => in_array($request->per_page, Food::PER_PAGE_LT) ? $request->per_page : 'Visi',
             'typeShow' => $request->restaurant_id ? $request->restaurant_id : '',
-            // 'cityShow'=>$request->restaurant_id ? $request->restaurant_id :'',
             's' => $request->s ?? ''
         ]);
     }
@@ -142,21 +140,17 @@ class FrontController extends Controller
                 return $a['date'] <=> $b['date'];
             });
         }
-        // $request->user_name = Auth::user()->name;
+
         return view('front.reviews.index', [
             'rateds' => $rateds,
             'food' => $food,
             'id' => $request->product,
-            // 'name' => Auth::user()->name,
         ]);
     }
     public function rate(Request $request, Food $food)
     {
         $food = Food::where('id', '=', $request->product)->first();
-        // $faker = Faker::create();
         $rateds = json_decode($food->rating_json, 1);
-        // $request->user_id = Auth::user()->id;
-        // $request->user_name = Auth::user()->name;
         $date = date('Y-m-d H:i', time());
 
         if ($request->food_review == null) {
@@ -164,9 +158,6 @@ class FrontController extends Controller
         } else {
             $food_review = $request->food_review;
         }
-        // if ($request->rated == null) {
-        //     $request->rated = rand(1, 5);
-        // }
 
         if ($rateds) {
             $rateds[Auth::user()->id] = ['rate' => $request->rated, 'user_name' => Auth::user()->name, 'review' => $food_review, 'date' => $date];
@@ -211,7 +202,6 @@ class FrontController extends Controller
                     $message = 'The selected dish is not in ' . $city->title . ' city. You choose ' . $local->title . '. Choose another dish or change city';
                 }
             }
-
             return redirect(url()->previous() . '#' . $request->id)->with('not', $message);
         } else {
             $food = Food::where('id', '=', $request->id)->first();
@@ -273,23 +263,17 @@ class FrontController extends Controller
         $order->basket_json = json_encode($basket->bascet_order($order->id));
         $order->save();
 
-        // dd($order);
         $to = User::find($order->user_id);
-
         // Mail::to($to)->send(new OrderBasket($order));
         $basket->empty();
         return redirect()->route('start')->with('ok', 'Order coplete, Thank you for the order, see you soon ');
     }
 
-
     public function listRestaurants(Request $request, Restaurant $restaurant)
     {
-        // dump(Carbon::parse(now('Europe/Vilnius'))->format('H:i'));
         $foods = Food::where('rest_id', $restaurant->id)
             ->where('food_city_no', Session::get('citySelect'))
             ->get();
-
-        // $foods = Food::where('food_city_no', Session::get('citySelect'))->get();
 
         $categories = Category::all()->sortBy('title');
         $ovners = Ovner::all()->sortBy('title');
@@ -330,15 +314,12 @@ class FrontController extends Controller
             'perPageShow' => in_array($request->per_page, Food::PER_PAGE) ? $request->per_page : 'All',
             'perPageShow_lt' => in_array($request->per_page, Food::PER_PAGE_LT) ? $request->per_page : 'Visi',
             'typeShow' => $request->restaurant_id ? $request->restaurant_id : '',
-            // 'cityShow'=>$request->restaurant_id ? $request->restaurant_id :'',
             's' => $request->s ?? ''
         ]);
     }
 
     public function listCategory(Request $request, Category $category, City $city)
     {
-        // dump(Session::get('citySelect'));
-        // $categories=Category::all()->sortBy('title');
         $ovners = Ovner::all()->sortBy('title');
         $cities = City::all()->sortBy('title');
         $restaurants = Restaurant::all();
@@ -366,8 +347,6 @@ class FrontController extends Controller
             } else $status->works = 'false';
             return $status;
         });
-
-
 
         return view('front.home.category', [
             'restaurants' => $restaurants,
