@@ -97,8 +97,8 @@ return [
     'available_locales' => [
         'EN' => 'en',
         'LT' => 'lt',
-        
-      ],
+
+    ],
 
     'fallback_locale' => 'en',
 
@@ -186,7 +186,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        
+
 
         /*
          * Package Service Providers...
@@ -201,9 +201,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BasketServiceProvider::class,
-        App\Providers\RestaurantServiceProvider::class, 
-        App\Providers\CategoryServiceProvider::class, 
-        App\Providers\CityServiceProvider::class, 
+        App\Providers\RestaurantServiceProvider::class,
+        App\Providers\CategoryServiceProvider::class,
+        App\Providers\CityServiceProvider::class,
+        App\Providers\OrderServiceProvider::class,
 
     ],
 

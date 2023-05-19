@@ -3,6 +3,8 @@
 @inject('restaurant', 'App\Services\RestaurantService')
 @inject('city', 'App\Services\CityService')
 @inject('category', 'App\Services\CategoryService')
+@inject('order', 'App\Services\OrderService')
+
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>

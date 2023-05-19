@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Services\RestaurantService;
+use App\Services\OrderService;
 use Illuminate\Support\ServiceProvider;
 
-class RestaurantServiceProvider extends ServiceProvider
+class OrderServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -24,8 +24,8 @@ class RestaurantServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(RestaurantService::class, function ($app) {
-            return new RestaurantService();
+        $this->app->singleton(OrderService::class, function ($app) {
+            return new OrderService();
         });
     }
 }

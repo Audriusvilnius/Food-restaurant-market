@@ -4,6 +4,8 @@
 @inject('restaurant', 'App\Services\RestaurantService')
 @inject('city', 'App\Services\CityService')
 @inject('category', 'App\Services\CategoryService')
+@inject('order', 'App\Services\OrderService')
+
 
 <head>
     <meta charset="utf-8" data-bs-theme="dark">
@@ -90,6 +92,10 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Orders') }}
                             </a>
+                            <div class="ithem">
+                                <span>{{$restOrder->testOrder()}}</span>
+                            </div>
+
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Customer Order list')  }}</a>
                                 <a class="dropdown-item" href="{{ route('restorder-index') }}">{{__('Restaurants Order list')  }}</a>

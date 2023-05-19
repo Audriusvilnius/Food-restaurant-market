@@ -17,6 +17,7 @@ use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 use App\Services\BasketService;
+use App\Services\OrderService;
 use App\Mail\OrderReceived;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
