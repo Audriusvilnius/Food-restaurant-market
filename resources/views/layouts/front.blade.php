@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @inject('basket', 'App\Services\BasketService')
 @inject('restaurant', 'App\Services\RestaurantService')
 @inject('city', 'App\Services\CityService')
 @inject('category', 'App\Services\CategoryService')
 @inject('order', 'App\Services\OrderService')
 
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8" data-bs-theme="dark">
@@ -190,7 +190,6 @@
             </div>
         </nav>
     </div>
-
     @include('layouts.svg')
     <main class="mystyle">
         @yield('content')
