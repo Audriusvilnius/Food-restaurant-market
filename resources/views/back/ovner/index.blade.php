@@ -18,7 +18,7 @@
                     <div class="col-md-6">
                         <div class="card-body">
                             <h5><b><i> {{$ovner->title}}</b></i></h5>
-                            {{__('Address') }}:
+                            <h6><b>{{__('Address') }}:</b></h6>
                             <div class="col-md-12 d-flex">
                                 <div class="col-md-7">
                                     <h6>{{__('Street') }}: <b><i>{{$ovner->street}}</b></i></h6>
@@ -32,7 +32,7 @@
                                     <h6>{{__('City') }}: <b><i>{{$ovner->city}}</b></i></h6>
                                 </div>
                                 <div class="col-md-4">
-                                    <h6>{{_('Postcode') }}: <b><i>{{$ovner->postcode}}</b></i></h6>
+                                    <h6>{{__('Postcode') }}: <b><i>{{$ovner->postcode}}</b></i></h6>
                                 </div>
                             </div>
                             <h6>{{__('Country') }}: <b><i>{{$ovner->country}}</b></i></h6>

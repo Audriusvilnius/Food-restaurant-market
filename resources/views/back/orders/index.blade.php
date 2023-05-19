@@ -4,7 +4,7 @@
     <div class=" row justify-content-center">
         <div class="col-md-9">
             <div class="card-header">
-                <h1>{{__('All Orders')  }}</h1>
+                <h1>{{__('All Customer Orders')  }}</h1>
             </div>
 
             @include('alerts.alert')
@@ -95,7 +95,6 @@
                                 <button type="submit" class="btn btn-success float-end">{{__('To ship')  }}</button>
                                 @csrf
                                 @method('post')
-
                             </form>
                             @endif
                             @if($order->status == 3) <form action="{{route('order-delete', $order)}}" method="post">

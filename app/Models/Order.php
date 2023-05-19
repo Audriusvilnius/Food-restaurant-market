@@ -11,6 +11,10 @@ class Order extends Model
 
     public function user()
     {
-    return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function rest_Order()
+    {
+        return $this->hasMany(RestOrder::class, 'order_id', 'id');
     }
 }

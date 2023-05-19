@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-lg-12 d-flex justify-content-between mb-2">
                     <div class="pull-left">
-                        <h2>Users Management</h2>
+                        <h2>{{__('Users Management')}}</h2>
                     </div>
                     @if(Auth::user()->role == 'admin')
                     <div class="pull-right">
-                        <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+                        <a class="btn btn-success" href="{{ route('users.create') }}"> {{__('Create New User')}}</a>
                     </div>
                     @endif
                 </div>
@@ -31,19 +31,19 @@
 
             <table class="table table-bordered bg-body">
                 <tr>
-                    <th>User ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>City</th>
-                    <th>Street</th>
-                    <th>Build</th>
-                    <th>Postcode</th>
-                    <th>Phone</th>
+                    <th>{{__('User ID')}}</th>
+                    <th>{{__('Name')}}</th>
+                    <th>{{__('Email')}}</th>
+                    <th>{{__('City')}}</th>
+                    <th>{{__('Street')}}</th>
+                    <th>{{__('Build')}}</th>
+                    <th>{{__('Postcode')}}</th>
+                    <th>{{__('Phone')}}</th>
                     @if(Auth::user()->role != 'customer')
-                    <th>Restaurant</th>
-                    <th>Role</th>
+                    <th>{{__('Restaurant')}}</th>
+                    <th>{{__('Role')}}</th>
                     @endif
-                    <th>Action</th>
+                    <th>{{__('Action')}}</th>
                 </tr>
                 @foreach ($data as $key => $user)
                 <tr>
@@ -53,7 +53,7 @@
                     <td>
                         @if(!empty($user->user_City->title))
                         {{ $user->user_City->title }}
-                        @else <span class="badge rounded-pill bg-info fw-lighter text-capitalize fs-6">None<span>
+                        @else <span class="badge rounded-pill bg-info fw-lighter text-capitalize fs-6">{{__('Nėra')}}<span>
                                 @endif
                     </td>
                     <td>{{ $user->street}}</td>
@@ -65,7 +65,7 @@
                     <td>
                         @if(!empty($user->user_Restaurants->title))
                         {{ $user->user_Restaurants->title }}
-                        @else <span class="badge rounded-pill bg-info bg-primary fw-lighter text-capitalize fs-6">None<span>
+                        @else <span class="badge rounded-pill bg-info bg-primary fw-lighter text-capitalize fs-6">{{__('Nėra')}}<span>
                                 @endif
                     </td>
                     <td>
@@ -80,10 +80,14 @@
                     <td class="d-flex justify-content-end">
 
                         @if($user->id != '1')
-                        <a class="btn btn-info me-1" href="{{ route('users.show',$user->id) }}">Show</a>
-                        <a class="btn btn-primary me-1" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                        {{-- <a class="btn btn-info me-1" href="{{ route('users.show',$user->id) }}">{{__('Show')}}</a> --}}
+                        <a class="btn btn-primary me-1" href="{{ route('users.edit',$user->id) }}">{{__('Edit')}}</a>
                         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+                        @if (app()->getLocale() == "lt")
+                        {!! Form::submit('Ištrinti', ['class' => 'btn btn-danger']) !!}
+                        @else
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                        @endif
                         {!! Form::close() !!}
                         @endif
                     </td>

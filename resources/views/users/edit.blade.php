@@ -6,10 +6,10 @@
             <div class="row">
                 <div class="col-lg-12 d-flex justify-content-between">
                     <div class="pull-left">
-                        <h2>Edit User data</h2>
+                        <h2>{{__('Edit User data')}}</h2>
                     </div>
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('users.index') }}"> {{__('Back')}}</a>
                     </div>
                 </div>
             </div>
@@ -29,40 +29,41 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Name:</strong>
+                                <strong>{{__('Name')}}:</strong>
                                 {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Email:</strong>
+                                <strong>{{__('Email')}}:</strong>
+
                                 {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
                             </div>
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Password:</strong>
+                                <strong>{{__('Password')}}:</strong>
                                 {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Confirm Password:</strong>
+                                <strong>{{__('Confirm Password')}}:</strong>
                                 {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Phone:</strong>
+                                <strong>{{__('Phone')}}:</strong>
                                 {!! Form::text('phone', null, array('placeholder' => 'Phone','class' => 'form-control')) !!}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>City:</strong>
+                                <strong>{{__('City')}}:</strong>
                                 <select class="form-select" name="city_id">
-                                    <option value="{{null}}">None</option>
+                                    <option value="{{null}}">{{__('Nėra')}}</option>
                                     @foreach($cites as $city)
                                     <option value="{{$city->id}}" @if($city->id == old('city_id',$user->city_id)) selected @endif>{{$city->title}}</option>
                                     @endforeach
@@ -71,28 +72,28 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Street:</strong>
+                                <strong>{{__('Street')}}:</strong>
                                 {!! Form::text('street', null, array('placeholder' => 'Street','class' => 'form-control')) !!}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Build:</strong>
+                                <strong>{{__('Build')}}:</strong>
                                 {!! Form::text('build', null, array('placeholder' => 'Build','class' => 'form-control')) !!}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Postcode:</strong>
+                                <strong>{{__('Postcode')}}:</strong>
                                 {!! Form::text('postcode', null, array('placeholder' => 'Postcode','class' => 'form-control')) !!}
                             </div>
                         </div>
                         @if(Auth::user()?->role == 'admin')
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Restaurant:</strong>
+                                <strong>{{__('Restaurant')}}:</strong>
                                 <select class="form-select" name="rest_id">
-                                    <option value="{{null}}">None</option>
+                                    <option value="{{null}}">{{__('Nėra')}}</option>
                                     @foreach($rest_id as $restaurant)
                                     <option value="{{$restaurant->id}}" @if($restaurant->id == old('rest_id',$user->rest_id)) selected @endif>{{$restaurant->title}}</option>
                                     @endforeach
@@ -101,7 +102,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Role:</strong>
+                                <strong>{{__('Role')}}:</strong>
                                 {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
                             </div>
                         </div>
@@ -111,7 +112,7 @@
                         <input type="hidden" name="rest_id" value="{{ $user->rest_id }}">
                         @endif
                         <div class=" col-xs-12 col-sm-12 col-md-12 text-center mt-2 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success">{{__('Submit')}}</button>
                         </div>
                     </div>
                     {!! Form::close() !!}
