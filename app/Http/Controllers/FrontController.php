@@ -378,7 +378,6 @@ class FrontController extends Controller
             'foods' => $foods,
             'cities' => $cities,
             'city' => $city,
-            // 'categories'=>$categories,
             'category_en' => $category_en,
             'category_lt' => $category_lt,
             'ovners' => $ovners,

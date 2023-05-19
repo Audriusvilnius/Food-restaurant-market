@@ -3,14 +3,11 @@
 <div class="container pt-5 pb-5" style="min-height: 900px">
     <div class=" row justify-content-center">
         <div class="col-md-9">
-            <div class="card-header">
+            <div class="card-header align-items-center justify-content-center d-flex">
                 <h1>{{__('All Customer Orders')  }}</h1>
             </div>
-
             @include('alerts.alert')
-            @foreach($orders as $order)
-            {{-- @if($order->status != 3) --}}
-
+            @forelse($orders as $order)
             <div id="{{ $order['id'] }}" class="card mt-12 mt-4" style="max-width: 1wm;">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-6">
@@ -68,11 +65,9 @@
                     <div class="col-md-3">
                         <div class="card-body" style="background-color:rgba(224, 219, 219, 0.378);;border-radius:5px;">
                             <h5>{{__('Total sum.')  }}: <b><i>{{$order->baskets->total}} &euro;</b></i></h5>
-
                         </div>
                     </div>
-                    {{-- <div class="col-md-3">
-                    </div> --}}
+
                     <div class="col-md-9 d-flex align-content-end">
                         <div class="card-body">
                             @if($order->status == 0)
@@ -108,21 +103,16 @@
                     </div>
                 </div>
             </div>
-            {{-- @endif --}}
-            @endforeach
+            @empty
+            <div class="col-xxl-12 col-xl-12 col-lg-12">
+                <div class="card-body align-items-center justify-content-center d-flex">
+                    <a href="{{route('start')}}" class="btn btn-secondary mt-3">{{__('BACK') }}</a>
+                </div>
+            </div>
+            @endforelse
         </div>
     </div>
 </div>
 </div>
 
 @endsection
-
-
-
-{{-- @elseif($order->status == 1)
-<h5>{{__('Order confirmed')  }}</h5>
-@elseif($order->status == 2)
-<h5>{{__('Order complete')  }}</h5>
-
-<button type="submit" class="btn btn-success m-1">{{__('Receive') }}</button>
-<button type="submit" class="btn btn-warning m-1">{{__('Confirm') }}</button> --}}

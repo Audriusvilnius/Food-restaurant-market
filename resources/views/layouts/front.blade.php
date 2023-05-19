@@ -178,8 +178,6 @@
                         </a>
                         @if($basket->count!=0)
                         <div class="ithem">
-                            {{-- <span>{{$order->allOrder()}}</span> --}}
-
                             @if($basket->count<=9) <span>{{$basket->count}}</span>
                                 @elseif($basket->count>9) 9+
                                 @endif

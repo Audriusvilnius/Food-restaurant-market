@@ -169,6 +169,17 @@
                                 <use xlink:href="#cart"></use>
                             </svg>
                         </a>
+
+                        {{-- @if($order->counts!=0) --}}
+
+                        {{-- <div class="ithem"> --}}
+                        {{-- <span>{{$orders->allOrder()}}</span> --}}
+                        {{-- <span>{{$order->counts}}</span> --}}
+                        {{-- </div> --}}
+                        {{-- <li class="nav-link">{{__('Total') }}: <b>{{number_format((float)$order->totals, 2, '.', '')}} &euro;</b></li> --}}
+                        {{-- @endif --}}
+
+
                         @if($basket->count!=0)
                         <div class="ithem">
                             {{-- <span>{{$basket->test()}}</span> --}}
