@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Food;
+use App\Models\Order;
 use App\Models\RestOrder;
 
 
@@ -10,23 +11,12 @@ use App\Models\RestOrder;
 class OrderService
 {
 
-    private $restOrder, $basketList, $total = 0, $count = 0;
+    private $restOrder, $orders, $countOrder = 0, $count = 0;
 
 
     // public function __construct()
     // {
-    //     $this->order = session()->get('Order', []);
-    //     $ids = array_keys($this->basket);
-    //     $this->basketList = Food::whereIn('id', $ids)
-    //         ->get()
-    //         ->map(function ($food) {
-    //             $food->count = $this->basket[$food->id];
-    //             $food->sum = $food->count * $food->price;
-    //             $this->total += $food->sum;
-    //             return $food;
-    //         });
-    //     $this->total += updatePrice($ids);
-    //     $this->count = $this->basketList->count();
+    //     $this->restOrder = rest_Order()->count();
     // }
 
     // public function __get($props)
@@ -42,15 +32,21 @@ class OrderService
     // }
 
 
-    // public function addOrder(int $id, int $count)
-    // {
-    //     if (isset($this->basket[$id])) {
-    //         $this->order[$id] += $count;
-    //     } else {
-    //         $this->order[$id] = $count;
-    //     }
-    //     session()->put('basket', $this->basket);
-    // }
+    /** @return never  */
+    public function allOrder()
+    {
+        $this->orders = Order::orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($food) {
+                $food->baskets = json_decode($food->order_json);
+                return $food;
+            });
+        foreach ($this->orders as $_) {
+            $this->restOrder++;
+        }
+        $orders = $this->restOrder++;
+        // dump($this->orders);
+    }
 
     // public function updateOrder(array $order)
     // {

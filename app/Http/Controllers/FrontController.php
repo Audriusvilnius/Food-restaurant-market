@@ -258,21 +258,21 @@ class FrontController extends Controller
 
     public function updateBasket(Request $request, BasketService $basket)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'count' => 'required|numeric|min:1',
-            ]
-        );
-
-        if ($validator->fails()) {
-            $request->flash();
-            return redirect()->back()->withErrors($validator);
-        }
 
         if ($request->delete) {
             $basket->delete($request->delete);
         } else {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'count' => 'required|numeric|min:1',
+                ]
+            );
+
+            if ($validator->fails()) {
+                $request->flash();
+                return redirect()->back()->withErrors($validator);
+            }
             $updatedBasket = array_combine($request->ids ?? [], $request->count ?? []);
             $basket->update($updatedBasket);
         }
