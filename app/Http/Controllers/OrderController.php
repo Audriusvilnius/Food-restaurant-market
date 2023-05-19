@@ -84,7 +84,7 @@ class OrderController extends Controller
 
     public function status(Request $request, Order $order)
     {
-        $to = User::find($order->user_id);
+        $to = User::find($order->id);
         if ($order->status == 2) {
             // Mail::to($to)->send(new OrderCompleted($order));
             $order->status = 3;
@@ -98,10 +98,7 @@ class OrderController extends Controller
                 return $food;
             });
         $order->ticket = $request->ticket;
-
-        return view('back.orders.index', [
-            'orders' => $orders
-        ]);
+        return redirect()->route('order-index', ['#' . $order->id]);
     }
 
     public function shiped(Request $request, Order $order)
