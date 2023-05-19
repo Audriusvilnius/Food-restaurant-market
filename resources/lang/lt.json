@@ -1,6 +1,8 @@
 {
     "Orders": "Užsakymai",
     "Order list": "Užsakymų sąrašas",
+    "Customer Order list": "Klientų užsakymų sąrašas",
+    "Restaurants Order list": "Restoranų užsakymų sąrašas",
     "New Dish": "Naujas patiekalas",
     "Dish list": "Patiekalų sąrašas",
     "Add new Restaurant": "Pridėti naują restoraną",
@@ -158,5 +160,16 @@
     "Opened": "Sukurtas",
     "Total sum": "Galutinė suma",
     "Menu No": "Meniu Nr",
-    "All Customer Orders": "Visi Pirkėjų užsakymai"
+    "All Customer Orders": "Visi Pirkėjų užsakymai",
+    "Manage Users": "Vartojai",
+    "Manage": "Mano duomenys",
+    "Role": "Rolė",
+    "Action": "Veiksmas",
+    "Create New User": "Naujas vartotojas",
+    "Users Management": "Vartotojai",
+    "Edit User data": "Keisti vartotojo duomenis",
+    "Back": "Grįžti",
+    "Submit": "Atlikt",
+    "None": "Nėra",
+    "Confirm Password:": "Pakartoti slaptažodi"
 }

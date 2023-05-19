@@ -5,7 +5,6 @@
         <div class="col-md-9">
             <div class="card-header">
                 <h1>{{__('All Orders')  }}: {{Auth::user()->name }}</h1>
-
             </div>
             @include('alerts.alert')
             @foreach($restOrder as $order)
