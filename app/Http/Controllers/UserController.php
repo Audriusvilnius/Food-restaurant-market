@@ -27,7 +27,7 @@ class UserController extends Controller
         if (Auth::user()->role != 'admin') {
             $data = $data->where('id', Auth::user()->id)->paginate(5);
         } else {
-            $data = $data->where('id', Auth::user()->id);
+            $data = $data->paginate(5);
         }
         Session::put('citySelect', []);
         Session::put('citySelect', Auth::user()->city_id);
