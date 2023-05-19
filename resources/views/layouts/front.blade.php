@@ -92,9 +92,6 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Orders') }}
                             </a>
-                            <div class="ithem">
-                                <span>{{$restOrder->testOrder()}}</span>
-                            </div>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Customer Order list')  }}</a>
@@ -183,11 +180,12 @@
                         <div class="ithem">
                             {{-- <span>{{$basket->test()}}</span> --}}
                             @if($basket->count<=9) <span>{{$basket->count}}</span>
-                                @elseif($basket->count>9) 9+@endif
+                                @elseif($basket->count>9) 9+
+                                @endif
                         </div>
                         <li class="nav-link">{{__('Total') }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></li>
+                        @endif
                     </ul>
-                    @endif
                 </div>
             </div>
         </nav>

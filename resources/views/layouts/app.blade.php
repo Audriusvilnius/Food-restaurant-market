@@ -179,8 +179,8 @@
                         <li class="nav-link">{{ __('Total') }}:
                             <b>{{ number_format((float) $basket->total, 2, '.', '') }} &euro;</b>
                         </li>
+                        @endif
                     </ul>
-                    @endif
                 </div>
             </div>
         </nav>

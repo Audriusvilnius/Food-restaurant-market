@@ -184,7 +184,7 @@ class FrontController extends Controller
         return redirect(url()->previous() . '#' . Auth::user()->id)->with('ok', 'You rate ' . $food->title . ' ' . $request->rated . ' points');
     }
 
-    public function addToBasket(Request $request, Food $food, BasketService $basket)
+    public function addToBasket(Request $request, Food $food, BasketService $basket,)
     {
         if ($request->food_city_no != Session::get('citySelect') || $request->food_city_no != Auth::user()->city_id) {
             $city = City::where('id', '=', $request->food_city_no)->first();

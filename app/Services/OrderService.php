@@ -10,7 +10,7 @@ use App\Models\RestOrder;
 class OrderService
 {
 
-    private $order, $basketList, $total = 0, $count = 0;
+    private $restOrder, $basketList, $total = 0, $count = 0;
 
 
     // public function __construct()
@@ -92,6 +92,7 @@ class OrderService
 
     public function testOrder()
     {
-        return 'Test from Order service';
+        $this->restOrder = 'Test from Order service';
+        return $this->restOrder;
     }
 }
