@@ -44,7 +44,8 @@
                     @foreach ($order->baskets->baskets as $food)
                     <div class="col-md-2">
                         <div class="card-body align-content-center">
-                            {{-- {{__('Restaurant') }}: <b><i>{{$food->id}}</b></i> --}}
+                            {{__('Restaurant') }}: <b><i>{{$food->rest_title}}</b></i>
+
                         </div>
                     </div>
                     <div class="col-md-10">

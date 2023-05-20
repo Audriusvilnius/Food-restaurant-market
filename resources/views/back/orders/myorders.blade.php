@@ -35,7 +35,10 @@
                     <div class="col-md-12">
                         <div class="card-body align-content-center">
                             @foreach ($order->baskets->baskets as $food)
+                            {{__('Restaurant') }}: <b>{{$food->rest_title}}</b>
+
                             <div class="col-md-12">
+
 
                                 {{__('Title') }}: <b><i>
                                         @if (app()->getLocale() == "lt")

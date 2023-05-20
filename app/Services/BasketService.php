@@ -71,12 +71,15 @@ class BasketService
         $order->total = $this->total;
         $order->baskets = [];
         foreach ($this->basketList as $basket) {
+            $food_id = Food::find($basket->id);
+
             $order->baskets[] = (object)[
                 'title_en' => $basket->title_en,
                 'title_lt' => $basket->title_lt,
                 'count' => $basket->count,
                 'price' => $basket->price,
                 'id' => $basket->id,
+                'rest_title' => $food_id->rest_title,
                 'status' => 0,
                 'total' => $this->total,
             ];
