@@ -45,7 +45,7 @@ Route::prefix('admin/order')->name('order-')->group(function () {
 });
 
 Route::prefix('customer/{id}/order')->name('order-')->group(function () {
-    Route::get('/', [B::class, 'myorders'])->name('myorders')->middleware('roles:C');
+    Route::get('/', [B::class, 'myorders'])->name('myorders')->middleware('roles:A|M|C');
 });
 
 Route::get('/', [F::class, 'home'])->name('start');

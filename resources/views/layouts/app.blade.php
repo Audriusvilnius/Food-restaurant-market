@@ -89,6 +89,7 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Customer Order list')  }}</a>
                                 <a class="dropdown-item" href="{{ route('restorder-index') }}">{{__('Restaurants Order list')  }}</a>
+                                <a class="dropdown-item" href="{{ route('order-myorders', Auth::user()->id) }}">{{__('My Orders')  }}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -169,16 +170,6 @@
                                 <use xlink:href="#cart"></use>
                             </svg>
                         </a>
-
-                        {{-- @if($order->counts!=0) --}}
-
-                        {{-- <div class="ithem"> --}}
-                        {{-- <span>{{$orders->allOrder()}}</span> --}}
-                        {{-- <span>{{$order->counts}}</span> --}}
-                        {{-- </div> --}}
-                        {{-- <li class="nav-link">{{__('Total') }}: <b>{{number_format((float)$order->totals, 2, '.', '')}} &euro;</b></li> --}}
-                        {{-- @endif --}}
-
 
                         @if($basket->count!=0)
                         <div class="ithem">
