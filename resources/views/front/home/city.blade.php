@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="card-body align-content-center justify-content-center">
 
-                    <h5 class="card-title text-dark text-center rounded p-3 bg-info text-secondary">Selecte Customer City locate</h5>
+                    <h5 class="card-title text-dark text-center rounded p-3 bg-info text-secondary">{{__('Selecte Customer City locate')}}</h5>
 
                     <p class="card-text">{{$text}}</p>
                     {{-- <img src="{{asset($ovner->photo)}}" class="img-fluid rounded-start" style="width:50%" alt=" bascet"> --}}

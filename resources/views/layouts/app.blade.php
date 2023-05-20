@@ -3,6 +3,8 @@
 @inject('restaurant', 'App\Services\RestaurantService')
 @inject('city', 'App\Services\CityService')
 @inject('category', 'App\Services\CategoryService')
+@inject('order', 'App\Services\OrderService')
+
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -31,10 +33,10 @@
 </head>
 <body class="bg-blue">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">{{-- fixed-top --}}
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">{{--fixed-top--}}
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img class="logo" src="{{ asset('/images/temp/exam.png') }}" alt="exam">
+                    <img class="logo" src="{{asset('/images/temp/exam.png')}}" alt="exam">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -53,9 +55,6 @@
                         @include('front.home.common.city')
                     </div>
 
-                    {{-- @include('front.home.common.restaurant') --}}
-                    <ul class="navbar-nav me-auto">
-                    </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         @if(Auth ::user()?->role == 'user')
@@ -77,6 +76,7 @@
                                 <a class="dropdown-item" href="{{ route('restorder-index') }}">{{__('Order list')  }}</a>
                             </div>
                         </li>
+
                         @endif
 
                         @if(Auth::user()?->role == 'admin')
@@ -85,20 +85,21 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Orders') }}
                             </a>
+
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Customer Order list')  }}</a>
                                 <a class="dropdown-item" href="{{ route('restorder-index') }}">{{__('Restaurants Order list')  }}</a>
+                                <a class="dropdown-item" href="{{ route('order-myorders', Auth::user()->id) }}">{{__('My Orders')  }}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{__('Foods') }}
                             </a>
-
-
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('foods-index') }}">{{__('Foods') }}</a>
                                 <a class="dropdown-item" href="{{ route('category-index') }}">{{__('Categories') }}</a>
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -130,15 +131,17 @@
                             </div>
                         </li>
 
-                        @endif
-                        <!-- Authentication Links -->
 
+                        @endif
+
+                        <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @endif
+
                         @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -146,39 +149,38 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}</a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 @if(Auth::user()?->role != 'admin')
                                 <a class="dropdown-item" href="{{ route('users.index') }}">{{__('Manage') }}</a>
+
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
                         </li>
                         @endguest
-                        <a href="{{ route('view-basket') }}">
+                        <a href="{{route('view-basket')}}">
                             <svg class="cart">
                                 <use xlink:href="#cart"></use>
                             </svg>
                         </a>
-                        @if ($basket->count != 0)
+
+                        @if($basket->count!=0)
                         <div class="ithem">
                             {{-- <span>{{$basket->test()}}</span> --}}
-                            @if ($basket->count <= 9) <span>{{ $basket->count }}</span>
-                                @elseif($basket->count > 9)
-                                9+
+                            @if($basket->count<=9) <span>{{$basket->count}}</span>
+                                @elseif($basket->count>9) 9+
                                 @endif
                         </div>
-                        <li class="nav-link">{{ __('Total') }}:
-                            <b>{{ number_format((float) $basket->total, 2, '.', '') }} &euro;</b>
-                        </li>
+                        <li class="nav-link">{{__('Total') }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></li>
+                        @endif
                     </ul>
-                    @endif
                 </div>
             </div>
         </nav>

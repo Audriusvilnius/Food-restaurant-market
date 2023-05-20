@@ -84,18 +84,14 @@
                     </div>
                 </div>
                 @empty
-
-                <div class="col-xxl-12 col-xl-12 col-lg-12">
-                    <div class="card shadow bg-body-tertiary rounded ">
-                        <div class="card-body align-items-center justify-content-center d-flex">
-                            <h1>{{__('Basket empty')  }}</h1>
-                        </div>
-                        <div class="card-body align-items-center justify-content-center d-flex">
-                            <a href="{{route('start')}}" class="btn btn-secondary">{{__('BACK') }}</a>
-                        </div>
+                <div class="col-xxl-12 col-xl-12 col-lg-12 position-absolute top-50 start-50 translate-middle">
+                    <div class="card-body align-items-center justify-content-center d-flex">
+                        <h1>{{__('Basket empty')  }}</h1>
+                    </div>
+                    <div class="card-body align-items-center justify-content-center d-flex">
+                        <a href="{{route('start')}}" class="btn btn-secondary mt-3">{{__('BACK') }}</a>
                     </div>
                 </div>
-
                 @endforelse
                 @csrf
                 @method('post')

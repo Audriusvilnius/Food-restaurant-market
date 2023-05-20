@@ -17,6 +17,7 @@ use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 use App\Services\BasketService;
+use App\Services\OrderService;
 use App\Mail\OrderReceived;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
@@ -183,7 +184,7 @@ class FrontController extends Controller
         return redirect(url()->previous() . '#' . Auth::user()->id)->with('ok', 'You rate ' . $food->title . ' ' . $request->rated . ' points');
     }
 
-    public function addToBasket(Request $request, Food $food, BasketService $basket)
+    public function addToBasket(Request $request, Food $food, BasketService $basket,)
     {
         if ($request->food_city_no != Session::get('citySelect') || $request->food_city_no != Auth::user()->city_id) {
             $city = City::where('id', '=', $request->food_city_no)->first();
@@ -234,9 +235,7 @@ class FrontController extends Controller
     public function viewBasket(Request $request, BasketService $basket)
     {
         $delivery = [];
-
         foreach ($basket->list as $data) {
-
             if ($data->rest_id) {
                 $delivery[$data->rest_id] = ['rest_id' => $data->rest_id];
             } else {
@@ -257,21 +256,21 @@ class FrontController extends Controller
 
     public function updateBasket(Request $request, BasketService $basket)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'count' => 'required|numeric|min:1',
-            ]
-        );
-
-        if ($validator->fails()) {
-            $request->flash();
-            return redirect()->back()->withErrors($validator);
-        }
 
         if ($request->delete) {
             $basket->delete($request->delete);
         } else {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'count' => 'required|numeric|min:1',
+                ]
+            );
+
+            if ($validator->fails()) {
+                $request->flash();
+                return redirect()->back()->withErrors($validator);
+            }
             $updatedBasket = array_combine($request->ids ?? [], $request->count ?? []);
             $basket->update($updatedBasket);
         }
@@ -377,7 +376,6 @@ class FrontController extends Controller
             'foods' => $foods,
             'cities' => $cities,
             'city' => $city,
-            // 'categories'=>$categories,
             'category_en' => $category_en,
             'category_lt' => $category_lt,
             'ovners' => $ovners,

@@ -3,11 +3,11 @@
 <div class="container pt-5 pb-5" style="min-height: 900px">
     <div class=" row justify-content-center">
         <div class="col-md-9">
-            <div class="card-header">
+            <div class="card-header align-items-center justify-content-center d-flex">
                 <h1>{{__('All Orders')  }}: {{Auth::user()->name }}</h1>
             </div>
             @include('alerts.alert')
-            @foreach($restOrder as $order)
+            @forelse($restOrder as $order)
             <div id="{{ $order['id'] }}" class="card mt-12 mt-4" style="max-width: 1wm;">
                 <div class="row g-0 shadow p-3 bg-body-tertiary rounded">
                     <div class="col-md-6">
@@ -103,8 +103,13 @@
                 </div>
             </div>
         </div>
-        @endforeach
+        @empty
+        <div class="col-xxl-12 col-xl-12 col-lg-12">
+            <div class="card-body align-items-center justify-content-center d-flex">
+                <a href="{{route('start')}}" class="btn btn-secondary mt-3">{{__('HOME') }}</a>
+            </div>
+        </div>
+        @endforelse
     </div>
-</div>
 </div>
 @endsection

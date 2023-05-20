@@ -35,9 +35,9 @@
             , nav: true
             , margin: 10
             , autoplay: true
-            , autoplayTimeout: 10000
+            , autoplayTimeout: 20000
             , autoplayHoverPause: true
-            , smartSpeed: 6000
+            , smartSpeed: 2000
             , navText: [
                 `<div class="nav-btn prev-slide"><i class="bi bi-chevron-compact-left"></i></div>`
                 , `<div class="nav-btn next-slide"><i class="bi bi-chevron-compact-right"></i></div>`

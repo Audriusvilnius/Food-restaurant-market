@@ -25,8 +25,8 @@
             , nav: true
             , margin: 20
             , autoplay: true
-            , autoplayTimeout: 15000
-            , smartSpeed: 6000
+            , autoplayTimeout: 25000
+            , smartSpeed: 2000
             , autoplayHoverPause: true
             , navText: [
                 `<div class="nav-btn prev-slide mt-3"><i class="bi bi-chevron-compact-left"></i></div>`

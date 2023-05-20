@@ -1,9 +1,11 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @inject('basket', 'App\Services\BasketService')
 @inject('restaurant', 'App\Services\RestaurantService')
 @inject('city', 'App\Services\CityService')
 @inject('category', 'App\Services\CategoryService')
+@inject('order', 'App\Services\OrderService')
+
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8" data-bs-theme="dark">
@@ -90,9 +92,11 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Orders') }}
                             </a>
+
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('order-index') }}">{{__('Customer Order list')  }}</a>
                                 <a class="dropdown-item" href="{{ route('restorder-index') }}">{{__('Restaurants Order list')  }}</a>
+                                <a class="dropdown-item" href="{{ route('order-myorders', Auth::user()->id) }}">{{__('My Orders')  }}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -175,18 +179,17 @@
                         </a>
                         @if($basket->count!=0)
                         <div class="ithem">
-                            {{-- <span>{{$basket->test()}}</span> --}}
                             @if($basket->count<=9) <span>{{$basket->count}}</span>
-                                @elseif($basket->count>9) 9+@endif
+                                @elseif($basket->count>9) 9+
+                                @endif
                         </div>
                         <li class="nav-link">{{__('Total') }}: <b>{{number_format((float)$basket->total, 2, '.', '')}} &euro;</b></li>
+                        @endif
                     </ul>
-                    @endif
                 </div>
             </div>
         </nav>
     </div>
-
     @include('layouts.svg')
     <main class="mystyle">
         @yield('content')
