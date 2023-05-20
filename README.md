@@ -39,8 +39,7 @@ Setup:
    * Run `php artisan key:generate`
    * Run `composer require spatie/laravel-permission`
    * Run `composer require laravelcollective/html`
-   * Run `php artisan vendor:publish -- 
-          provider="Spatie\Permission\PermissionServiceProvider"`
+   * Run `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
    * Start XAMPP with  MySQL database
    * Run `php artisan migrate`
    * Run `php artisan migrate:fresh`
