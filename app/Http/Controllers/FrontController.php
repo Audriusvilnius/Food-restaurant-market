@@ -235,9 +235,7 @@ class FrontController extends Controller
     public function viewBasket(Request $request, BasketService $basket)
     {
         $delivery = [];
-
         foreach ($basket->list as $data) {
-
             if ($data->rest_id) {
                 $delivery[$data->rest_id] = ['rest_id' => $data->rest_id];
             } else {

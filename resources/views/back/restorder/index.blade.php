@@ -102,14 +102,14 @@
                     </div>
                 </div>
             </div>
-            @empty
-            <div class="col-xxl-12 col-xl-12 col-lg-12">
-                <div class="card-body align-items-center justify-content-center d-flex">
-                    <a href="{{route('start')}}" class="btn btn-secondary mt-3">{{__('BACK') }}</a>
-                </div>
-            </div>
-            @endforelse
         </div>
+        @empty
+        <div class="col-xxl-12 col-xl-12 col-lg-12">
+            <div class="card-body align-items-center justify-content-center d-flex">
+                <a href="{{route('start')}}" class="btn btn-secondary mt-3">{{__('HOME') }}</a>
+            </div>
+        </div>
+        @endforelse
     </div>
 </div>
 @endsection

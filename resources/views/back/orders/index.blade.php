@@ -44,6 +44,7 @@
                     @foreach ($order->baskets->baskets as $food)
                     <div class="col-md-2">
                         <div class="card-body align-content-center">
+                            {{-- {{__('Restaurant') }}: <b><i>{{$food->id}}</b></i> --}}
                         </div>
                     </div>
                     <div class="col-md-10">
@@ -106,7 +107,7 @@
             @empty
             <div class="col-xxl-12 col-xl-12 col-lg-12">
                 <div class="card-body align-items-center justify-content-center d-flex">
-                    <a href="{{route('start')}}" class="btn btn-secondary mt-3">{{__('BACK') }}</a>
+                    <a href="{{route('start')}}" class="btn btn-secondary mt-3">{{__('HOME') }}</a>
                 </div>
             </div>
             @endforelse
