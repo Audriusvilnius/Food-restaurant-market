@@ -37,7 +37,6 @@
                         <div class="card-body align-content-center">
                             <h6>{{__('User name')  }}: <b><i>{{$food['user']}}</b></i></h6>
                             <h6>{{__('User ID')  }}: <b><i>{{$food['user']}}</b></i></h6>
-
                         </div>
                     </div>
                     @dump($food)
@@ -56,7 +55,6 @@
                                 {{$food['title_en']}}
                                 @endif
                         </b></i>
-
                         <p>{{__('price') }}: <b><i>{{$food['price']}} &euro;</b></i>
                             {{__('qty') }}: <b><i>{{$food['qty']}}</b></i>
                             {{__('Sum') }}: <b><i>{{$food['price']*$food['qty']}} &euro;</b></i></p>
@@ -66,7 +64,6 @@
                             <h5>{{__('Total sum.')  }}: <b><i>{{$order->baskets->total}} &euro;</b></i></h5>
                         </div>
                     </div>
-
                     <div class="col-md-9 d-flex align-content-end">
                         <div class="card-body">
                             @if($order->status == 0)
