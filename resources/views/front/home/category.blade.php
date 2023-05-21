@@ -3,18 +3,28 @@
 
 <script>
     function Yeezy_en_test(x) {
-        let data = x;
+        var data = x
+         var info_en = ['milk','eggs','nuts','wheat','soybeans','fish'];
+         var info_lt = ['pieno','kiaušinių','riešutų','kviečių','sojų','žuvis'];
+         var digit = Math.floor(Math.random()* 6);
         document.getElementById("ModalTitle").innerHTML = x['title_en'];
         document.getElementById("photopop").innerHTML = "<img src={{URL::to('/')}}" + data['photo'] + " class=" + "img-fluid" + " >";
         document.getElementById("desc").innerHTML = x['des_en'];
+        document.getElementById("a_ttl").innerHTML = 'Allergy advice !'
+        document.getElementById("desc_a").innerHTML = 'Contains : ' +info_en[digit];
         document.getElementById("bttn").innerHTML = "Close"
     }
 
     function Yeezy_lt_test(x) {
-        let data = x;
+        var data = x
+         var info_en = ['milk','eggs','nuts','wheat','soybeans','fish'];
+         var info_lt = ['pieno','kiaušinių','riešutų','kviečių','sojų','žuvis'];
+         var digit = Math.floor(Math.random()* 6);
         document.getElementById("ModalTitle").innerHTML = x['title_lt'];
         document.getElementById("photopop").innerHTML = "<img src={{URL::to('/')}}" + data['photo'] + " class=" + "img-fluid" + " >";
         document.getElementById("desc").innerHTML = x['des_lt'];
+        document.getElementById("a_ttl").innerHTML = 'Alergine informacija !'
+        document.getElementById("desc_a").innerHTML = 'Sudetyje yra : ' +info_lt[digit];
         document.getElementById("bttn").innerHTML = "Uždaryti"
     }
 
@@ -204,6 +214,11 @@
                 <br>
                 <p>
                     <div id="desc"> </div>
+                </p>
+                <p>
+                    <div id="a_ttl" class="badge bg-warning    text-wrap" ></div>
+                    
+                    <div id="desc_a" class="badge bg-info    text-wrap"> </div>
                 </p>
             </div>
             <div class="modal-footer">
