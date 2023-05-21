@@ -31,8 +31,9 @@ class RestOrderController extends Controller
             });
         // dd($restOrder);
         if (Auth::user()->role == 'user') {
-            $restOrder = $restOrder->where('rest_id', Auth::user()->rest_id);
-            // dd(Auth::user()->rest_id);
+            $restOrder = $restOrder
+                ->where('rest_id', Auth::user()->rest_id)
+                ->where('city_id', Auth::user()->city_id);
         }
         return view('back.restorder.index', [
             'restOrder' => $restOrder

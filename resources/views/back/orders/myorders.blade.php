@@ -17,7 +17,6 @@
                             style="background-color:rgba(224, 219, 219, 0.378);border-radius:5px;" @endif>
                             <h4>{{__('Order No.')  }}: <b><i>{{$order->id}}</b></i></h4>
                             <span class="mb-2">{{__('Opened') }} - {{$order->created_at}}</h6>
-
                                 <h4>{{__('Order status')  }}:</h4>
                                 @if($order->status == 0)
                                 <h5>{{__('Order open')  }}</h5>
@@ -29,17 +28,13 @@
                                 <h5>{{__('Order complete')  }}</h5>
                                 @endif
                                 - {{$order->created_at}}
-
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="card-body align-content-center">
                             @foreach ($order->baskets->baskets as $food)
                             {{__('Restaurant') }}: <b>{{$food->rest_title}}</b>
-
                             <div class="col-md-12">
-
-
                                 {{__('Title') }}: <b><i>
                                         @if (app()->getLocale() == "lt")
                                         {{$food->title_lt}}
@@ -48,18 +43,15 @@
                                         @endif
                                 </b></i><br>
                                 <div class="d-flex justify-content-end">
-
                                     {{__('Price') }}: <b><i>{{$food->price}} &euro;</b></i>
                                     {{__('Qty') }}: <b><i>{{$food->count}}</b></i>
                                     {{__('Sum') }}: <b><i>{{$food->price*$food->count}} &euro;</b></i>
                                     {{__('Delivery Fee')  }}: <b class="text-success"><i>{{$basket->delivery($food)}} </i></b><br>
                                 </div>
                             </div>
-
                             @endforeach
                         </div>
                         <hr>
-
                         <div class="col-md-12">
                             <div class="card-body" style="background-color:rgba(224, 219, 219, 0.378);;border-radius:5px;">
                                 <h5>{{__('Total sum')  }}: <b class="text-success"><i>{{$order->baskets->total}} &euro;</b></i></h5>
@@ -67,11 +59,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             @empty
             <div class="col-xxl-12 col-xl-12 col-lg-12">
-                <div class="card-body align-items-end justify-content-end d-flex">
+                <div class="card-body align-items-center justify-content-center d-flex">
                     <a href="{{route('start')}}" class="btn btn-secondary mt-3">{{__('HOME') }}</a>
                 </div>
             </div>
