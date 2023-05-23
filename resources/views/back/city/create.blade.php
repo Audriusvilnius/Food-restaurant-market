@@ -11,6 +11,14 @@
             @include('alerts.alert')
             <form action="{{route('city-create')}}" method="post" enctype="multipart/form-data">
                 <div class="card">
+                    @if($errors)
+                        @foreach ($errors->all() as $message)
+                            <h6 class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                                {{ $message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </h6>
+                        @endforeach
+                     @endif
                     <div class="row g-0 shadow bg-body-tertiary rounded align-content-center">
                         <div class="col-md-10">
                             <div class="card-body d-flex">

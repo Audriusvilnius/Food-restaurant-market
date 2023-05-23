@@ -210,3 +210,21 @@ Route::get('/customer/{id}/language/{locale}', function ($id, $locale) {
     session()->put('locale', $locale);
     return redirect()->back();
 });
+
+Route::get('/users/{id}/language/{locale}', function ($id, $locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
+
+Route::get('/users/language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
+
+Route::get('/password/language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Contracts\Role;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -54,9 +55,11 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'email' => 'required|email:strict',
             'password' => 'required',
         ]);
+       
+        
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             Session::put('citySelect', []);

@@ -78,7 +78,7 @@ class OrderController extends Controller
             return redirect()->route('order-index', ['#' . $order->id])->with('ok', 'Order was delet');
         } else {
             $countOrder = $order->rest_Order()->count();
-            return redirect()->back()->with('not', 'Can,t delet order. User have open ' . $countOrder . ' offer. ');
+            return redirect()->back()->with('not', 'Can\'t delete order. User have open ' . $countOrder . ' offer. ');
         }
     }
 
