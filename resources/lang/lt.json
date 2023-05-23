@@ -11,7 +11,7 @@
     "Total": "Iš viso",
     "Add new": "Pridėti naują",
     "Add City": "Pridėti miestą",
-    "Add Category": "Pridėti kategorijaą",
+    "Add Category": "Pridėti kategoriją",
     "Add Restaurant": "Pridėti restoraną",
     "List": "Sąrašas",
     "Add": "Naujas",
@@ -161,7 +161,7 @@
     "Total sum": "Galutinė suma",
     "Menu No": "Meniu Nr",
     "All Customer Orders": "Visi Pirkėjų užsakymai",
-    "Manage Users": "Vartojai",
+    "Manage Users": "Vartotojai",
     "Manage": "Mano duomenys",
     "Role": "Rolė",
     "Action": "Veiksmas",
@@ -171,6 +171,8 @@
     "Back": "Grįžti",
     "Submit": "Atlikt",
     "None": "Nėra",
-    "Confirm Password:": "Pakartoti slaptažodi",
-    "Selecte Customer City locate": "Pasirinkite Miestą"
+    "Confirm Password:": "Pakartoti slaptažodį",
+    "Select Customer City locate": "Pasirinkite Miestą",
+    "Whoops!": "Oi!",
+    "There were some problems with your input": "Kažkas negerai su jūsų įvestimi"
 }
