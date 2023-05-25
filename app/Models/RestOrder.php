@@ -29,4 +29,8 @@ class RestOrder extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+    // public function user_food_Order()
+    // {
+    //     return $this->belongsTo(User::class, 'user_id', 'rest_id');
+    // }
 }
