@@ -53,17 +53,13 @@ class OrderController extends Controller
         ]);
     }
 
-
-
     public function update(Request $request, Order $order)
     {
         $to = User::find($order->user_id);
-        dd($to);
         if ($order->status == 0) {
             Mail::to($to)->send(new OrderReceived($order));
             $order->status = 1;
             $order->save();
-            dd($order);
         } elseif ($order->status == 1) {
             Mail::to($to)->send(new OrderProcesing($order));
             $order->status = 2;
