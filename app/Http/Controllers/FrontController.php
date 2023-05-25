@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use App\Services\BasketService;
 use App\Services\OrderService;
 use App\Mail\OrderReceived;
+use App\Models\RestOrder;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -285,9 +286,23 @@ class FrontController extends Controller
         $order->save();
         $order->basket_json = json_encode($basket->bascet_order($order->id));
         $order->save();
+        $rest_order = RestOrder::where('order_id', $order->id)->get();
+        $user = User::all();
+        // dump($user);
 
-        $to = User::find($order->user_id);
+        foreach ($rest_order as $rest) {
+            foreach ($user as $to) {
+                if ($to->rest_id == $rest->rest_id) {
+
+                    dump($to->id);
+                    // $to = User::find($to->id);
+                }
+            }
+        }
+
+        // $rest = User::find($rest->rest_id);
         // Mail::to($to)->send(new OrderBasket($order));
+        die;
         $basket->empty();
         return redirect()->route('start')->with('ok', 'Order coplete, Thank you for the order, see you soon ');
     }
