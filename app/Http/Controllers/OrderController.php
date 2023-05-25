@@ -55,13 +55,13 @@ class OrderController extends Controller
 
     public function update(Request $request, Order $order)
     {
-        $to = User::find($order->user_id);
+        // $to = User::find($order->user_id);
         if ($order->status == 0) {
-            Mail::to($to)->send(new OrderReceived($order));
+            // Mail::to($to)->send(new OrderReceived($order));
             $order->status = 1;
             $order->save();
         } elseif ($order->status == 1) {
-            Mail::to($to)->send(new OrderProcesing($order));
+            // Mail::to($to)->send(new OrderProcesing($order));
             $order->status = 2;
             $order->save();
         }
@@ -82,9 +82,9 @@ class OrderController extends Controller
 
     public function status(Request $request, Order $order)
     {
-        $to = User::find($order->id);
+        // $to = User::find($order->id);
         if ($order->status == 2) {
-            Mail::to($to)->send(new OrderCompleted($order));
+            // Mail::to($to)->send(new OrderCompleted($order));
             $order->status = 3;
             $order->save();
         }
