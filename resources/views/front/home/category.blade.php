@@ -23,7 +23,7 @@
         document.getElementById("ModalTitle").innerHTML = x['title_lt'];
         document.getElementById("photopop").innerHTML = "<img src={{URL::to('/')}}" + data['photo'] + " class=" + "img-fluid" + " >";
         document.getElementById("desc").innerHTML = x['des_lt'];
-        document.getElementById("a_ttl").innerHTML = 'Alergine informacija !'
+        document.getElementById("a_ttl").innerHTML = 'Alerginė informacija !'
         document.getElementById("desc_a").innerHTML = 'Sudetyje yra : ' +info_lt[digit];
         document.getElementById("bttn").innerHTML = "Uždaryti"
     }
