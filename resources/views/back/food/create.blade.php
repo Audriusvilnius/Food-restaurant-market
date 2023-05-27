@@ -3,7 +3,7 @@
 @section('content')
 <div class="container pt-5" style="min-height: 100vh;">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card-header justify-content-between align-content-between d-flex ">
                 <h1>{{__('New Food') }}</h1>
             </div>

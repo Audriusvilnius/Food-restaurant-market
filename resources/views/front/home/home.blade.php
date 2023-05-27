@@ -181,9 +181,8 @@
                     <div id="desc"> </div>
                 </p>
                 <p>
-                    <div id="a_ttl" class="badge bg-warning    text-wrap" ></div>
-                    
-                    <div id="desc_a" class="badge bg-info    text-wrap"> </div>
+                    <div id="a_ttl" class="badge bg-warning text-wrap"></div>
+                    <div id="desc_a" class="badge bg-info text-wrap"> </div>
                 </p>
             </div>
             <div class="modal-footer">
