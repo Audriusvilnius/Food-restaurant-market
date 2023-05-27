@@ -286,19 +286,19 @@ class FrontController extends Controller
         $order->save();
         $order->basket_json = json_encode($basket->bascet_order($order->id));
         $order->save();
-        $rest_order = RestOrder::where('order_id', $order->id)->get();
-        $user = User::all();
-        foreach ($rest_order as $rest) {
-            foreach ($user as $to) {
-                if ($to->rest_id == $rest->rest_id) {
-                    // dump($to->id);
-                    // $to = User::find($to->id);
-                    // Mail::to($to)->send(new OrderBasket($order));
-                }
-            }
-        }
-        $rest = User::find($rest->rest_id);
-        Mail::to($to)->send(new OrderBasket($order));
+        // $rest_order = RestOrder::where('order_id', $order->id)->get();
+        // $user = User::all();
+        // foreach ($rest_order as $rest) {
+        //     foreach ($user as $to) {
+        //         if ($to->rest_id == $rest->rest_id) {
+        //             dump($to->id);
+        //             $to = User::find($to->id);
+        //             Mail::to($to)->send(new OrderBasket($order));
+        //         }
+        //     }
+        // }
+        // $rest = User::find($rest->rest_id);
+        // Mail::to($to)->send(new OrderBasket($order));
         $basket->empty();
         return redirect()->route('start')->with('ok', 'Order coplete, Thank you for the order, see you soon ');
     }

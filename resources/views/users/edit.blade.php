@@ -15,7 +15,7 @@
             </div>
             @if (count($errors) > 0)
             <div class="alert alert-danger">
-                <strong>{{__('Whoops!')  }}</strong> {{__('There were some problems with your input')  }}.<br><br>
+                <strong>{{__('Whoops!') }}</strong> {{__('There were some problems with your input')  }}.<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <strong>{{__('City')}}:</strong>
                                 <select class="form-select" name="city_id">
-                                    <option value="{{null}}">{{__('Nėra')}}</option>
+                                    <option value="{{null}}">{{__('None')}}</option>
                                     @foreach($cites as $city)
                                     <option value="{{$city->id}}" @if($city->id == old('city_id',$user->city_id)) selected @endif>{{$city->title}}</option>
                                     @endforeach
@@ -93,7 +93,7 @@
                             <div class="form-group">
                                 <strong>{{__('Restaurant')}}:</strong>
                                 <select class="form-select" name="rest_id">
-                                    <option value="{{null}}">{{__('Nėra')}}</option>
+                                    <option value="{{null}}">{{__('None')}}</option>
                                     @foreach($rest_id as $restaurant)
                                     <option value="{{$restaurant->id}}" @if($restaurant->id == old('rest_id',$user->rest_id)) selected @endif>{{$restaurant->title}}</option>
                                     @endforeach

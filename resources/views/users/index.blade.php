@@ -53,7 +53,7 @@
                     <td>
                         @if(!empty($user->user_City->title))
                         {{ $user->user_City->title }}
-                        @else <span class="badge rounded-pill bg-info fw-lighter text-capitalize fs-6">{{__('Nėra')}}<span>
+                        @else <span class="badge rounded-pill bg-info fw-lighter text-capitalize fs-6">{{__('None')}}<span>
                                 @endif
                     </td>
                     <td>{{ $user->street}}</td>
@@ -65,7 +65,7 @@
                     <td>
                         @if(!empty($user->user_Restaurants->title))
                         {{ $user->user_Restaurants->title }}
-                        @else <span class="badge rounded-pill bg-info bg-primary fw-lighter text-capitalize fs-6">{{__('Nėra')}}<span>
+                        @else <span class="badge rounded-pill bg-info bg-primary fw-lighter text-capitalize fs-6">{{__('None')}}<span>
                                 @endif
                     </td>
                     <td>
