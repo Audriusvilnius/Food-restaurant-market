@@ -33,14 +33,14 @@ Setup:
 1. From the root directory (where this file `README.md` is located) navigate to the application source directory: `cd code/` 
 2. Execute the installation script `bash init.sh` OR run commands individually:
    * Install dependencies: `composer install`
-   * Install  XAMPP with  MySQL database
+   * Install  XAMPP with  MySQL database or MySQL database
    * Run `npm install`
    * Run `cp .env.example .env`
    * Run `php artisan key:generate`
    * Run `composer require spatie/laravel-permission`
    * Run `composer require laravelcollective/html`
    * Run `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
-   * Start XAMPP with  MySQL database
+   * Start XAMPP with  MySQL database or MySQL database
    * Run `php artisan migrate`
    * Run `php artisan migrate:fresh`
    * Run `php artisan migrate:fresh --seed`
