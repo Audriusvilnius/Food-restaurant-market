@@ -88,13 +88,15 @@ class FoodController extends Controller
      */
     public function create()
     {
+
         $cities = City::all()->sortBy('city');
         $categories = Category::all()->sortBy('title');
         if (Auth::user()->role == 'admin') {
             $restaurants = Restaurant::all()->sortBy('title');
         } elseif (Auth::user()->role == 'user' && Auth::user()->rest_id != null && Auth::user()->city_id != null) {
-            $restaurants = Restaurant::where('id', Auth::user()->rest_id)
-                ->get();
+            // $restaurants = Restaurant::where('id', Auth::user()->rest_id)
+            //     ->get();
+            $restaurants = Restaurant::all()->sortBy('title');
         }
 
         return view('back.food.create', [
@@ -119,7 +121,7 @@ class FoodController extends Controller
                 'food_title_en' => 'required|nullable',
                 'food_title_lt' => 'required|nullable',
                 'food_price' => 'required|decimal:0,2|min:0|max:999',
-                'photo' => 'required|nullable',
+                // 'photo' => 'required|nullable',
             ]
         );
 
@@ -207,11 +209,10 @@ class FoodController extends Controller
         if (Auth::user()->role == 'admin') {
             $restaurants = Restaurant::all()->sortBy('title');
         } elseif (Auth::user()->role == 'user' && Auth::user()->rest_id != null && Auth::user()->city_id != null) {
-            $restaurants = Restaurant::where('id', Auth::user()->rest_id)
-                ->get();
+            // $restaurants = Restaurant::where('id', Auth::user()->rest_id)
+            //     ->get();
+            $restaurants = Restaurant::all()->sortBy('title');
         }
-
-
         return view('back.food.edit', [
             'food' => $food,
             'restaurants' => $restaurants,
