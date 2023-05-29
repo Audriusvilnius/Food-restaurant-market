@@ -88,9 +88,14 @@ class FoodController extends Controller
      */
     public function create()
     {
-        $restaurants = Restaurant::all()->sortBy('title');
-        $cities = City::all()->sortBy('title');
+        $cities = City::all()->sortBy('city');
         $categories = Category::all()->sortBy('title');
+        if (Auth::user()->role == 'admin') {
+            $restaurants = Restaurant::all()->sortBy('title');
+        } elseif (Auth::user()->role == 'user' && Auth::user()->rest_id != null && Auth::user()->city_id != null) {
+            $restaurants = Restaurant::where('id', Auth::user()->rest_id)
+                ->get();
+        }
 
         return view('back.food.create', [
             'restaurants' => $restaurants,
@@ -196,9 +201,17 @@ class FoodController extends Controller
      */
     public function edit(Food $food)
     {
-        $restaurants = Restaurant::all()->sortBy('title');
+
         $cities = City::all()->sortBy('city');
         $categories = Category::all()->sortBy('title');
+        if (Auth::user()->role == 'admin') {
+            $restaurants = Restaurant::all()->sortBy('title');
+        } elseif (Auth::user()->role == 'user' && Auth::user()->rest_id != null && Auth::user()->city_id != null) {
+            $restaurants = Restaurant::where('id', Auth::user()->rest_id)
+                ->get();
+        }
+
+
         return view('back.food.edit', [
             'food' => $food,
             'restaurants' => $restaurants,
