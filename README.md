@@ -45,12 +45,11 @@ Setup:
    * Or with laravel: `php artisan serve` (from anywhere)
 4. The application should now be available at http://127.0.0.1:8000
 7.	Users:
-*admin@gmail.com;
-*user@gmail.com;
-*customer@gmail.com.
+    * admin@gmail.com;
+    * user@gmail.com;
+    * customer@gmail.com.
 8.	All pass:
-*123
-![image](https://github.com/Audriusvilnius/VVK-projektinis/assets/101082768/027d6380-83af-4c9e-80f4-64185c33319f)
+    * 123
 
 
 
