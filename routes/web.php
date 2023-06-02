@@ -54,9 +54,9 @@ Route::post('/rate', [F::class, 'rate'])->name('update-rate')->middleware('roles
 Route::post('/city', [F::class, 'city'])->name('select-city');
 Route::get('/city', [F::class, 'getCity'])->name('get-city');
 Route::get('/reviews', [F::class, 'reviews'])->name('update-reviews');
-Route::post('/add-basket', [F::class, 'addToBasket'])->name('add-basket');
-Route::get('/basket', [F::class, 'viewBasket'])->name('view-basket');
-Route::post('/basket', [F::class, 'updateBasket'])->name('update-basket');
+Route::post('/add-basket', [F::class, 'addToBasket'])->name('add-basket')->middleware('roles:A|M|C');
+Route::get('/basket', [F::class, 'viewBasket'])->name('view-basket')->middleware('roles:A|M|C');
+Route::post('/basket', [F::class, 'updateBasket'])->name('update-basket')->middleware('roles:A|M|C');
 Route::get('/confirm', [F::class, 'confirmBasket'])->name('confirm-basket')->middleware('roles:A|M|C');
 Route::post('/make-order', [F::class, 'makeOrder'])->name('make-order')->middleware('roles:A|M|C');
 Route::get('/list/{restaurant}', [F::class, 'listRestaurants'])->name('list-restaurant');
